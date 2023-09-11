@@ -1,61 +1,61 @@
 {
-  "name": "sero-project",
-  "engines": {
-    "node": "18.x"
-  },
-  "private": true,
-  "version": "0.0.0",
-  "main": "main.jsx",
-  "type": "module",
-  "scripts": {
-    "dev": "vite --port 3000",
-    "build": "vite build",
-    "lint": "eslint --fix . --ext .js,.jsx",
-    "preview": "vite preview",
-    "format": "prettier --write ."
-  },
-  "authors": [
-    {
-      "name": "Sebastian Lopez",
-      "email": "sals180801@hotmail.com",
-      "url": "https://github.com/sebastianlopezs"
+    "name": "sero-project",
+    "engines": {
+        "node": "18.x"
     },
-    {
-      "name": "Sebastian Castro",
-      "email": "sebastiancastrorajbe@gmail.com",
-      "url": "https://github.com/sicr2000"
+    "private": true,
+    "version": "0.0.0",
+    "main": "main.jsx",
+    "type": "module",
+    "scripts": {
+        "dev": "vite --port 3000",
+        "build": "vite build",
+        "lint": "eslint --fix . --ext .js,.jsx",
+        "preview": "vite preview",
+        "format": "prettier --write ."
     },
-    {
-      "name": "Roberto Vargas",
-      "email": "xroberv@gmail.com",
-      "url": "https://github.com/RVSolutionsplus507"
+    "authors": [
+        {
+            "name": "Sebastian Lopez",
+            "email": "sals180801@hotmail.com",
+            "url": "https://github.com/sebastianlopezs"
+        },
+        {
+            "name": "Sebastian Castro",
+            "email": "sebastiancastrorajbe@gmail.com",
+            "url": "https://github.com/sicr2000"
+        },
+        {
+            "name": "Roberto Vargas",
+            "email": "xroberv@gmail.com",
+            "url": "https://github.com/RVSolutionsplus507"
+        },
+        {
+            "name": "Rolando Uzcategui",
+            "email": "rolandou548@gmail.com",
+            "url": "https://github.com/RolandoU548"
+        }
+    ],
+    "dependencies": {
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.15.0"
     },
-    {
-      "name": "Rolando Uzcategui",
-      "email": "rolandou548@gmail.com",
-      "url": "https://github.com/RolandoU548"
+    "devDependencies": {
+        "@types/react": "^18.2.15",
+        "@types/react-dom": "^18.2.7",
+        "@vitejs/plugin-react": "^4.0.3",
+        "eslint": "^8.47.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-n": "^16.0.2",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.3",
+        "prettier": "^3.0.2",
+        "tailwindcss": "^3.3.3",
+        "vite": "^4.4.5"
     }
-  ],
-  "dependencies": {
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.3",
-    "eslint": "^8.47.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-n": "^16.0.2",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "prettier": "^3.0.2",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.4.5"
-  }
 }
