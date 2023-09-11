@@ -4,7 +4,7 @@ import Layout from "./layout.jsx";
 import "../css/main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Layout />
-  </React.StrictMode>
+    <React.StrictMode>
+        <Layout />
+    </React.StrictMode>
 );
