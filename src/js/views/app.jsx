@@ -8,7 +8,7 @@ export const App = () => {
     const navigate = useNavigate();
     return (
         <div className="app h-screen overflow-hidden">
-            <header className="flex justify-between items-center z-50 fixed top-0 w-full px-[10%] py-5">
+            <header className="flex justify-between items-center z-50 fixed top-0 w-full px-[5%] py-5">
                 <Link to="/" className="text-4xl font-semibold ml-9">
                     SERØ.
                 </Link>

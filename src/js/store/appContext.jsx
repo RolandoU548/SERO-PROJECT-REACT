@@ -22,6 +22,12 @@ const injectContext = PassedComponent => {
         );
 
         useEffect(() => {
+            if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                state.store.theme = "light";
+            }
+        }, []);
+
+        useEffect(() => {
             if (state.store.theme === "dark") {
                 document.querySelector("html").classList.add("dark");
             } else {
