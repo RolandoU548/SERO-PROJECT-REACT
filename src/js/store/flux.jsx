@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
+            theme: "light",
             demo: [
                 {
                     title: "FIRST",
@@ -18,6 +19,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             // Use getActions to call a function within a fuction
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
+            },
+            changeTheme: () => {
+                const theme = getStore().theme;
+                setStore({ theme: theme === "light" ? "dark" : "light" });
             }
         }
     };

@@ -1,14 +1,9 @@
 $color-titles: #ededed;
 $color-principal: #00f2ff;
 
-* {
+.app {
     font-family: "Poppins", sans-serif;
     color: $color-titles;
-}
-
-body {
-    background-color: black;
-    overflow: hidden;
 }
 
 .navbar {
@@ -20,7 +15,8 @@ body {
     a.active {
         color: $color-principal;
     }
-    button:hover {
+    .login-button:hover,
+    .signin-button:hover {
         background-color: $color-principal;
         color: #5f5e5e;
         transition: 0.6s;

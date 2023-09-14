@@ -1,12 +1,7 @@
 @charset "UTF-8";
-* {
+.app {
   font-family: "Poppins", sans-serif;
   color: #ededed;
-}
-
-body {
-  background-color: black;
-  overflow: hidden;
 }
 
 .navbar a {
@@ -17,7 +12,8 @@ body {
 .navbar a.active {
   color: #00f2ff;
 }
-.navbar button:hover {
+.navbar .login-button:hover,
+.navbar .signin-button:hover {
   background-color: #00f2ff;
   color: #5f5e5e;
   transition: 0.6s;
