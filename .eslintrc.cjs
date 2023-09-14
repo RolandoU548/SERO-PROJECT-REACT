@@ -31,6 +31,7 @@ module.exports = {
         semi: "off",
         "space-before-function-paren": "off",
         "import/no-absolute-path": "off",
-        indent: "off"
+        indent: "off",
+        "multiline-ternary": "off"
     }
 };
