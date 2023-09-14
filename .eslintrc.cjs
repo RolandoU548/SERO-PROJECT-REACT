@@ -32,6 +32,7 @@ module.exports = {
         "space-before-function-paren": "off",
         "import/no-absolute-path": "off",
         indent: "off",
-        "multiline-ternary": "off"
+        "multiline-ternary": "off",
+        unknownAtRules: "off"
     }
 };
