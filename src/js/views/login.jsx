@@ -85,7 +85,7 @@ export const LogIn = () => {
                                     Login with GitHub
                                 </button>
                                 <p className=" flex-1 items-center leading-none px-2 py-3 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                    Dont have an account?{" "}
+                                    Don&apos;t have an account?
                                     <Link
                                         to="/signin"
                                         className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
