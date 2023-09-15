@@ -82,7 +82,7 @@ export const SignIn = () => {
                                 Already have an account?{" "}
                                 <Link
                                     to="/login"
-                                    className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
+                                    className="w-20 px-1 py-2 mt-3 text-md underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
                                     LogIn
                                 </Link>
                             </p>
