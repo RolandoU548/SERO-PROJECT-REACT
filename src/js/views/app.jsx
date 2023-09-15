@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
@@ -6,6 +6,14 @@ import "../../css/app.css";
 export const App = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const [theme, setTheme] = useState();
+    useEffect(() => {
+        setTheme(store.theme);
+    }, [store.theme]);
+
+    if (store.theme === "") {
+        return <></>;
+    }
     return (
         <div className="app h-screen overflow-hidden">
             <header className="flex justify-between items-center z-50 fixed top-0 w-full px-[5%] py-5">
@@ -39,7 +47,7 @@ export const App = () => {
                     <button
                         className={
                             "text-xl p-5 rounded-full" +
-                            (store.theme === "dark" ? "" : " text-gray-600")
+                            (theme === "dark" ? "" : " text-gray-600")
                         }
                         onClick={() => {
                             actions.changeTheme();
@@ -47,15 +55,13 @@ export const App = () => {
                         <i className="fa-solid fa-circle-half-stroke"></i>
                     </button>
                     <div
-                        className={
-                            "tdnn" + (store.theme === "dark" ? "" : " day")
-                        }
+                        className={"tdnn" + (theme === "dark" ? "" : " day")}
                         onClick={() => {
                             actions.changeTheme();
                         }}>
                         <div
                             className={
-                                "moon" + (store.theme === "dark" ? "" : " sun")
+                                "moon" + (theme === "dark" ? "" : " sun")
                             }></div>
                     </div>
                 </nav>

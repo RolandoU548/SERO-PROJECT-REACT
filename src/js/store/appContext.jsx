@@ -22,7 +22,9 @@ const injectContext = PassedComponent => {
         );
 
         useEffect(() => {
-            if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                state.store.theme = "dark";
+            } else {
                 state.store.theme = "light";
             }
         }, []);

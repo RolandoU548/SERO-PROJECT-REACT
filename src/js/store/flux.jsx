@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            theme: "dark",
+            theme: "",
             demo: [
                 {
                     title: "FIRST",
