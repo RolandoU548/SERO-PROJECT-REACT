@@ -46,6 +46,18 @@ export const App = () => {
                         }}>
                         <i className="fa-solid fa-circle-half-stroke"></i>
                     </button>
+                    <div
+                        className={
+                            "tdnn" + (store.theme === "dark" ? "" : " day")
+                        }
+                        onClick={() => {
+                            actions.changeTheme();
+                        }}>
+                        <div
+                            className={
+                                "moon" + (store.theme === "dark" ? "" : " sun")
+                            }></div>
+                    </div>
                 </nav>
             </header>
             <video autoPlay loop muted playsInline className="-z-50">

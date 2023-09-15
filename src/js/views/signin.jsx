@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const SignIn = () => {
     return (
-        <div className="flex items-center min-h-screen bg-gray-50  dark:bg-slate-800">
+        <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800 h-screen overflow-hidden">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
                     <div className="flex items-center justify-center p-3 sm:p-6 md:w-1/2">
@@ -48,8 +48,8 @@ export const SignIn = () => {
                                 </label>
                                 <input
                                     type="email"
-                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                    placeholder=""
+                                    className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    placeholder="Email"
                                 />
                             </div>
                             <div>
@@ -57,9 +57,9 @@ export const SignIn = () => {
                                     Password
                                 </label>
                                 <input
-                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600 dark:text-white"
-                                    placeholder=""
+                                    className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                     type="password"
+                                    placeholder="Password"
                                 />
                             </div>
                             <p className="mt-4">
@@ -71,7 +71,7 @@ export const SignIn = () => {
                             </p>
                             <div className="mx-auto max-w-xs">
                                 <p className="mt-6 text-xs text-gray-600 text-center dark:text-white">
-                                    I agree to abide by SER0 Terms of Service
+                                    I agree to abide by SERØ Terms of Service
                                     and its Privacy Policy
                                 </p>
                             </div>
@@ -81,7 +81,7 @@ export const SignIn = () => {
                                 Sign Up
                             </button>
                             <p className=" flex-1 items-center leading-none px-12 py-1 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white dark:bg-slate-800 dark:text-white transform translate-y-1/2">
-                                Already have an account?{" "}
+                                Already have an account?
                                 <Link
                                     to="/login"
                                     className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500  dark:bg-slate-800 dark:text-white">
