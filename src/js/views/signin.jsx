@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const SignIn = () => {
     return (
-        <div className="flex items-center min-h-screen bg-gray-50">
+        <div className="flex items-center min-h-screen bg-gray-50 h-screen overflow-hidden">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
                     <div className="flex items-center justify-center p-3 sm:p-6 md:w-1/2">
