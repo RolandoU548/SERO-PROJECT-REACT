@@ -20,8 +20,16 @@ const Layout = () => {
                 <ScrollToTop>
                     <Routes>
                         <Route path="/" element={<App />} />
-                        <Route path="/login" element={<LogIn />} />
-                        <Route path="/signin" element={<SignIn />} />
+                        <Route
+                            path="/login"
+                            transition="fade"
+                            element={<LogIn />}
+                        />
+                        <Route
+                            path="/signin"
+                            transition="fade"
+                            element={<SignIn />}
+                        />
                         <Route path="*" element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
