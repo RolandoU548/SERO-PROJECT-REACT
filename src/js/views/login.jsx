@@ -6,7 +6,12 @@ export const LogIn = () => {
         <div className="flex items-center min-h-screen bg-gray-50">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
-                    <div className="h-32 md:h-auto md:w-1/2">
+                    <div className="h-32 md:h-auto md:w-1/2 hidden md:block">
+                        <Link
+                            to="/"
+                            className="absolute mt-3 text-4xl text-gray-500 font-semibold ml-9">
+                            SERØ.
+                        </Link>
                         <video
                             autoPlay
                             loop

@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const SignIn = () => {
     return (
@@ -36,7 +36,7 @@ export const SignIn = () => {
                                     Sign Up with GitHub
                                 </button>
                             </div>
-                            <div className="my-12 border-b text-center">
+                            <div className="my-4 border-b text-center">
                                 <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                                     Or sign up with e-mail
                                 </div>
@@ -78,9 +78,22 @@ export const SignIn = () => {
                                 href="#">
                                 Sign Up
                             </button>
+                            <p className=" flex-1 items-center leading-none px-12 py-1 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                                Already have an account?{" "}
+                                <Link
+                                    to="/login"
+                                    className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
+                                    LogIn
+                                </Link>
+                            </p>
                         </div>
                     </div>
-                    <div className="h-32 md:h-auto md:w-1/2">
+                    <div className="h-32 md:h-auto md:w-1/2 hidden md:block">
+                        <Link
+                            to="/"
+                            className="absolute top-4 right-64 mt-3 text-4xl text-gray-500 font-semibold ml-9">
+                            SERØ.
+                        </Link>
                         <video
                             autoPlay
                             loop

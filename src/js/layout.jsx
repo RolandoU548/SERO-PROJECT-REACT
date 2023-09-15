@@ -5,6 +5,7 @@ import ScrollToTop from "./component/ScrollToTop.jsx";
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
 import { SignIn } from "./views/signin.jsx";
+// import { devCard } from "./views/devcard.jsx";
 
 import injectContext from "./store/appContext.jsx";
 
@@ -29,6 +30,11 @@ const Layout = () => {
                             path="/signin"
                             transition="fade"
                             element={<SignIn />}
+                        />
+                        <Route
+                            path="/devcard"
+                            transition="fade"
+                            element={<devCard />}
                         />
                         <Route path="*" element={<h1>Not found!</h1>} />
                     </Routes>
