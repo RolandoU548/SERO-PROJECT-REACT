@@ -88,8 +88,8 @@ export const LogIn = () => {
                                     Don&apos;t have an account?
                                     <Link
                                         to="/signin"
-                                        className="w-20 px-1 py-2 mt-3 ml-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
-                                        SingUp
+                                        className="w-20 px-1 py-2 mt-3 text-md underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
+                                        Sign In
                                     </Link>
                                 </p>
                             </div>
