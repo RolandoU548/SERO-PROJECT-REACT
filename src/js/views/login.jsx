@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const LogIn = () => {
     return (
-        <div className="flex items-center min-h-screen bg-gray-50 h-screen overflow-hidden">
+        <div className="flex items-center min-h-screen bg-gray-50">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
                     <div className="h-32 md:h-auto md:w-1/2 hidden md:block">
@@ -85,11 +85,11 @@ export const LogIn = () => {
                                     Login with GitHub
                                 </button>
                                 <p className=" flex-1 items-center leading-none px-2 py-3 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                    Don&apos;t have an account?
+                                    Dont have an account?{" "}
                                     <Link
-                                        to="/signin"
-                                        className="w-20 px-1 py-2 mt-3 text-md underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
-                                        Sign In
+                                        to="/login"
+                                        className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500">
+                                        SignUp
                                     </Link>
                                 </p>
                             </div>
