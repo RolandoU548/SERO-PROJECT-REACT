@@ -9,7 +9,7 @@ export const LogIn = () => {
                     <div className="h-32 md:h-auto md:w-1/2 hidden md:block">
                         <Link
                             to="/"
-                            className="absolute mt-3 text-4xl text-gray-500 font-semibold ml-9">
+                            className="absolute z-40 mt-3 text-4xl text-gray-400 font-semibold ml-9">
                             SERØ.
                         </Link>
                         <video
