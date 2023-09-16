@@ -51,7 +51,7 @@ export const SignIn = () => {
                                 <input
                                     type="email"
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                    placeholder=""
+                                    placeholder="name@email.com"
                                 />
                             </div>
                             <div>
@@ -59,8 +59,8 @@ export const SignIn = () => {
                                     Password
                                 </label>
                                 <input
-                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600 dark:text-white"
-                                    placeholder=""
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    placeholder="Password"
                                     type="password"
                                 />
                             </div>
