@@ -1,19 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Darkmode } from "../component/DarkMode";
 import "../../css/app.css";
 
 export const App = () => {
-    const { store, actions } = useContext(Context);
     const navigate = useNavigate();
-    const [theme, setTheme] = useState();
-    useEffect(() => {
-        setTheme(store.theme);
-    }, [store.theme]);
-
-    if (store.theme === "") {
-        return <></>;
-    }
     return (
         <div className="app h-screen overflow-hidden">
             <header className="flex justify-between items-center z-50 fixed top-0 w-full px-[5%] py-5">
@@ -44,26 +35,7 @@ export const App = () => {
                         }}>
                         Crear Cuenta
                     </button>
-                    <button
-                        className={
-                            "text-xl p-5 rounded-full" +
-                            (theme === "dark" ? "" : " text-gray-600")
-                        }
-                        onClick={() => {
-                            actions.changeTheme();
-                        }}>
-                        <i className="fa-solid fa-circle-half-stroke"></i>
-                    </button>
-                    <div
-                        className={"tdnn" + (theme === "dark" ? "" : " day")}
-                        onClick={() => {
-                            actions.changeTheme();
-                        }}>
-                        <div
-                            className={
-                                "moon" + (theme === "dark" ? "" : " sun")
-                            }></div>
-                    </div>
+                    <Darkmode className="text-[10%] ml-3" />
                 </nav>
             </header>
             <video autoPlay loop muted playsInline className="-z-50">

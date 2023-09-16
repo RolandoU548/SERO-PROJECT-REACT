@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Darkmode } from "../component/DarkMode";
 
 export const LogIn = () => {
     return (
         <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800 h-screen overflow-hidden">
+            <Darkmode className="text-[10%] absolute top-2 right-2" />
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
                     <div className="h-32 md:h-auto md:w-1/2 hidden md:block">

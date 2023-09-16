@@ -23,19 +23,19 @@ const injectContext = PassedComponent => {
 
         useEffect(() => {
             if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                state.store.theme = "dark";
-            } else {
-                state.store.theme = "light";
-            }
-        }, []);
-
-        useEffect(() => {
-            if (state.store.theme === "dark") {
                 document.querySelector("html").classList.add("dark");
             } else {
                 document.querySelector("html").classList.remove("dark");
             }
-        }, [state.store.theme]);
+        }, []);
+
+        // useEffect(() => {
+        //     if (state.store.theme === "dark") {
+        //         document.querySelector("html").classList.add("dark");
+        //     } else {
+        //         document.querySelector("html").classList.remove("dark");
+        //     }
+        // }, [state.store.theme]);
 
         // The initial value for the context is not null anymore, but the current state of this component,
         // the context will now have a getStore, getActions and setStore functions available, because they were declared
