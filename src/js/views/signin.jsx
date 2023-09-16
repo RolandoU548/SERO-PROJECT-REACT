@@ -15,7 +15,7 @@ export const SignIn = () => {
                                     New User? Sign Up!
                                 </h1>
                                 <div className="flex items-center justify-center flex-col gap-4">
-                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 dark:text-white">
+                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 dark:text-white dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
                                         <img
                                             className="w-6 h-6"
                                             src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -44,47 +44,53 @@ export const SignIn = () => {
                                         Or sign up with e-mail
                                     </div>
                                 </div>
-
-                                <div>
-                                    <label className="block text-sm dark:text-white">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        placeholder="name@email.com"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block mt-4 text-sm dark:text-white">
-                                        Password
-                                    </label>
-                                    <input
-                                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        placeholder="Password"
-                                        type="password"
-                                    />
-                                </div>
-                                <p className="mt-4">
-                                    <a
-                                        className="text-sm text-blue-600 hover:underline"
-                                        href="./forgot-password.html">
-                                        Forgot your password?
-                                    </a>
-                                </p>
-                                <div className="mx-auto max-w-xs">
-                                    <p className="mt-6 text-xs text-gray-600 text-center dark:text-white">
-                                        I agree to abide by SER0 Terms of
-                                        Service and its Privacy Policy
+                                <form
+                                    onSubmit={e => {
+                                        e.preventDefault();
+                                    }}>
+                                    <div>
+                                        <label className="block text-sm dark:text-white">
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            placeholder="name@email.com"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block mt-4 text-sm dark:text-white">
+                                            Password
+                                        </label>
+                                        <input
+                                            className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            placeholder="Password"
+                                            type="password"
+                                            required
+                                        />
+                                    </div>
+                                    <p className="mt-4">
+                                        <a
+                                            className="text-sm text-blue-600 hover:underline"
+                                            href="./forgot-password.html">
+                                            Forgot your password?
+                                        </a>
                                     </p>
-                                </div>
-                                <button
-                                    className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
-                                    href="#">
-                                    Sign Up
-                                </button>
+                                    <div className="mx-auto max-w-xs">
+                                        <p className="mt-6 text-xs text-gray-600 text-center dark:text-white">
+                                            I agree to abide by SERØ Terms of
+                                            Service and its Privacy Policy
+                                        </p>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        className="w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700">
+                                        Sign Up
+                                    </button>
+                                </form>
                                 <p className=" flex-1 items-center leading-none px-12 py-1 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white dark:bg-slate-800 dark:text-white transform translate-y-1/2">
-                                    Already have an account?{" "}
+                                    Already have an account?
                                     <Link
                                         to="/login"
                                         className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500  dark:bg-slate-800 dark:text-white">

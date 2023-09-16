@@ -32,41 +32,44 @@ export const LogIn = () => {
                                 <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
                                     Login to Your Account
                                 </h1>
-                                <div>
+                                <form
+                                    onSubmit={e => {
+                                        e.preventDefault();
+                                    }}>
                                     <label className="block text-sm dark:text-white">
                                         Email
                                     </label>
                                     <input
                                         type="email"
-                                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                        className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                         placeholder="name@email.com"
+                                        required
                                     />
-                                </div>
-                                <div>
                                     <label className="block mt-4 text-sm dark:text-white">
                                         Password
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                        className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                         placeholder="Password"
                                         type="password"
+                                        required
                                     />
-                                </div>
-                                <p className="mt-4">
-                                    <a
-                                        className="text-sm text-blue-600 hover:underline"
-                                        href="./forgot-password.html">
-                                        Forgot your password?
-                                    </a>
-                                </p>
-                                <button
-                                    className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
-                                    href="#">
-                                    Log in
-                                </button>
+                                    <p className="mt-4">
+                                        <a
+                                            className="text-sm text-blue-600 hover:underline"
+                                            href="./forgot-password.html">
+                                            Forgot your password?
+                                        </a>
+                                    </p>
+                                    <button
+                                        type="submit"
+                                        className="w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700">
+                                        Log in
+                                    </button>
+                                </form>
                                 <hr className="my-8" />
                                 <div className="flex items-center justify-center flex-col gap-4">
-                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700  dark:bg-slate-800 dark:text-white hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700  dark:bg-slate-800 dark:text-white hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
                                         <img
                                             className="w-6 h-6"
                                             src="https://www.svgrepo.com/show/475656/google-color.svg"
