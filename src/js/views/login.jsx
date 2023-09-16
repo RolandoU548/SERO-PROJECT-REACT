@@ -4,7 +4,7 @@ import { Darkmode } from "../component/Darkmode";
 
 export const LogIn = () => {
     return (
-        <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800 h-screen overflow-hidden">
+        <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
             <Darkmode className="text-[10%] absolute top-2 right-2" />
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
@@ -37,8 +37,8 @@ export const LogIn = () => {
                                 </label>
                                 <input
                                     type="email"
-                                    className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                    placeholder="Email"
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    placeholder=""
                                 />
                             </div>
                             <div>
@@ -46,9 +46,9 @@ export const LogIn = () => {
                                     Password
                                 </label>
                                 <input
-                                    className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    placeholder=""
                                     type="password"
-                                    placeholder="Password"
                                 />
                             </div>
                             <p className="mt-4">
