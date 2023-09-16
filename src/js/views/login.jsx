@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Darkmode } from "../component/DarkMode";
+import { Darkmode } from "../component/Darkmode";
 
 export const LogIn = () => {
     return (

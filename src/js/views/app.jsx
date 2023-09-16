@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Darkmode } from "../component/DarkMode";
+import { Darkmode } from "../component/Darkmode";
 import "../../css/app.css";
 
 export const App = () => {
