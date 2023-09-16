@@ -11,7 +11,7 @@ export const App = () => {
                 <Link to="/" className="text-4xl font-semibold ml-9">
                     SERØ.
                 </Link>
-                <nav className="navbar">
+                <nav className="navbar flex items-center">
                     <Link to="/" className="active text-lg font-medium ml-9">
                         Inicio
                     </Link>

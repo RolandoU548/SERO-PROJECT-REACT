@@ -17,8 +17,8 @@
 }
 
 .moon {
-  position: absolute;
-  display: block;
+  position: relative;
+  display: inline-block;
   border-radius: 50%;
   transition: all 0.6s;
   top: 3em;
