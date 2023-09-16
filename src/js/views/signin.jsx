@@ -4,7 +4,7 @@ import { Darkmode } from "../component/Darkmode";
 
 export const SignIn = () => {
     return (
-        <div className="flex items-center min-h-screen bg-gray-50  dark:bg-slate-800 overflow-hidden">
+        <div className="flex items-center min-h-screen bg-gray-50  dark:bg-slate-800 overflow-hidden h-screen">
             <Darkmode className="text-[10%] absolute top-2 right-2" />
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                 <div className="flex flex-col md:flex-row">
