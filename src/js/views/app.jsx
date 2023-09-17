@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Darkmode } from "../component/Darkmode";
 import "../../css/app.css";
 
 export const App = () => {
@@ -35,7 +34,6 @@ export const App = () => {
                         }}>
                         Crear Cuenta
                     </button>
-                    <Darkmode className="text-[10%] ml-3" />
                 </nav>
             </header>
             <video autoPlay loop muted playsInline className="-z-50">
