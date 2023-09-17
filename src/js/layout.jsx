@@ -28,8 +28,8 @@ const Layout = () => {
                             transition="fade"
                             element={
                                 <>
-                                    <LogIn />
                                     <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                    <LogIn />
                                 </>
                             }
                         />
@@ -38,8 +38,8 @@ const Layout = () => {
                             transition="fade"
                             element={
                                 <>
-                                    <SignIn />
                                     <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                    <SignIn />
                                 </>
                             }
                         />
