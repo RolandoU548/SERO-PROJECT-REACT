@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/ScrollToTop.jsx";
+import { Darkmode } from "./component/Darkmode.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
@@ -25,12 +26,22 @@ const Layout = () => {
                         <Route
                             path="/login"
                             transition="fade"
-                            element={<LogIn />}
+                            element={
+                                <>
+                                    <LogIn />
+                                    <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                </>
+                            }
                         />
                         <Route
                             path="/signin"
                             transition="fade"
-                            element={<SignIn />}
+                            element={
+                                <>
+                                    <SignIn />
+                                    <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                </>
+                            }
                         />
                         <Route path="*" element={<h1>Not found!</h1>} />
                     </Routes>
