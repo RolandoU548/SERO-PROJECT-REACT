@@ -4,6 +4,16 @@ $color-principal: #00f2ff;
 .app {
     font-family: "Poppins", sans-serif;
     color: $color-titles;
+    height: 100vh;
+    position: relative;
+    overflow-y: hidden;
+}
+
+.video-inicio {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
 }
 
 .navbar {

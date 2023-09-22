@@ -5,7 +5,7 @@ import "../../css/app.css";
 export const App = () => {
     const navigate = useNavigate();
     return (
-        <div className="app h-screen overflow-hidden">
+        <div className="app">
             <header className="flex justify-between items-center z-50 fixed top-0 w-full px-[5%] py-5">
                 <Link to="/" className="text-4xl font-semibold ml-9">
                     SERØ.
@@ -36,7 +36,12 @@ export const App = () => {
                     </button>
                 </nav>
             </header>
-            <video autoPlay loop muted playsInline className="-z-50">
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="-z-50 video-inicio">
                 <source src="SERO_BG.mp4" type="video/mp4" />
             </video>
             <div className="triangle z-20 absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl"></div>
