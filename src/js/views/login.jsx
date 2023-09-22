@@ -20,7 +20,7 @@ export const LogIn = () => {
                                 playsInline
                                 className="w-auto h-full object-cover overflow-auto rounded-l-lg">
                                 <source
-                                    src="src/assets/media/Login_Video.mp4"
+                                    src="Login_video.mp4"
                                     type="video/mp4"
                                 />
                             </video>

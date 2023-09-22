@@ -37,10 +37,7 @@ export const App = () => {
                 </nav>
             </header>
             <video autoPlay loop muted playsInline className="-z-50">
-                <source
-                    src="src/assets/media/SERO Live Background Short Loop.mp4"
-                    type="video/mp4"
-                />
+                <source src="SERO_BG.mp4" type="video/mp4" />
             </video>
             <div className="triangle z-20 absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl"></div>
             <h1 className="text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
