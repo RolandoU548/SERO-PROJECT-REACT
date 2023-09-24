@@ -45,7 +45,9 @@ const Layout = () => {
                     <Route
                         path="*"
                         element={
-                            <h1 className="dark:text-white">Not found!</h1>
+                            <h1 className="dark:text-white text-center text-4xl">
+                                Not found!
+                            </h1>
                         }
                     />
                 </Routes>
