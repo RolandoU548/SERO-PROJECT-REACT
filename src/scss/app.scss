@@ -8,7 +8,7 @@ $color-principal: #00f2ff;
 .app {
     font-family: "Poppins", sans-serif;
     color: $color-titles;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
 }

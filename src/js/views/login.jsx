@@ -67,7 +67,7 @@ export const LogIn = () => {
                                 </form>
                                 <hr className="my-8" />
                                 <div className="flex items-center justify-center flex-col gap-4">
-                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700  dark:bg-slate-800 dark:text-white hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150 dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
+                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 dark:bg-slate-800 dark:text-white hover:border-slate-400 hover:text-slate-900 hover:shadow dark:hover:bg-[#192336] transition duration-200 dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
                                         <img
                                             className="w-6 h-6"
                                             src="https://www.svgrepo.com/show/475656/google-color.svg"
