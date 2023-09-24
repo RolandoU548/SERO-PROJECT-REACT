@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 $color-titles: #ededed;
 $color-principal: #00f2ff;
 
@@ -6,7 +10,7 @@ $color-principal: #00f2ff;
     color: $color-titles;
     height: 100vh;
     position: relative;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .video-inicio {
@@ -26,7 +30,7 @@ $color-principal: #00f2ff;
         color: $color-principal;
     }
     .login-button:hover,
-    .signin-button:hover {
+    .signup-button:hover {
         background-color: $color-principal;
         color: #5f5e5e;
         transition: 0.6s;

@@ -7,10 +7,10 @@ export const LogIn = () => {
             <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
                 <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                     <div className="flex flex-col md:flex-row">
-                        <div className="h-32 md:h-auto md:w-1/2 hidden md:block">
+                        <div className="h-32 md:h-auto md:w-1/2 hidden md:block relative">
                             <Link
                                 to="/"
-                                className="absolute z-40 mt-3 text-4xl text-gray-400 font-semibold ml-9">
+                                className="absolute z-40 mt-3 left-0 text-4xl text-gray-400 font-semibold ml-9">
                                 SERØ.
                             </Link>
                             <video
@@ -53,11 +53,11 @@ export const LogIn = () => {
                                         required
                                     />
                                     <p className="mt-4">
-                                        <a
+                                        <Link
                                             className="text-sm text-blue-600 hover:underline"
-                                            href="./forgot-password.html">
+                                            to="/forgot-password">
                                             Forgot your password?
-                                        </a>
+                                        </Link>
                                     </p>
                                     <button
                                         type="submit"
@@ -94,7 +94,7 @@ export const LogIn = () => {
                                 <p className="text-center leading-none px-2 py-2 text-sm text-gray-600 tracking-wide font-medium bg-white dark:bg-slate-800 dark:text-white transform translate-y-1/2 inline-block w-full">
                                     Don&apos;t have an account?
                                     <Link
-                                        to="/signin"
+                                        to="/signup"
                                         className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500  dark:bg-slate-800 dark:text-white">
                                         SignUp
                                     </Link>

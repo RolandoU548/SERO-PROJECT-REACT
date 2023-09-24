@@ -5,7 +5,7 @@ import { Darkmode } from "./component/Darkmode.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
-import { SignIn } from "./views/signin.jsx";
+import { SignUp } from "./views/signup.jsx";
 
 // import { devCard } from "./views/devcard.jsx";
 
@@ -18,36 +18,39 @@ const Layout = () => {
     const basename = import.meta.env.VITE_BASENAME || "";
     console.log(basename);
     return (
-        <div>
-            <BrowserRouter basename={basename}>
-                <ScrollToTop>
-                    <Routes>
-                        <Route path="/" element={<App />} />
-                        <Route
-                            path="/login"
-                            transition="fade"
-                            element={
-                                <>
-                                    <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                    <LogIn />
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/signin"
-                            transition="fade"
-                            element={
-                                <>
-                                    <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                    <SignIn />
-                                </>
-                            }
-                        />
-                        <Route path="*" element={<h1>Not found!</h1>} />
-                    </Routes>
-                </ScrollToTop>
-            </BrowserRouter>
-        </div>
+        <BrowserRouter basename={basename}>
+            <ScrollToTop>
+                <Routes>
+                    <Route path="/" element={<App />} />
+                    <Route
+                        path="/login"
+                        transition="fade"
+                        element={
+                            <>
+                                <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                <LogIn />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/signup"
+                        transition="fade"
+                        element={
+                            <>
+                                <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                <SignUp />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={
+                            <h1 className="dark:text-white">Not found!</h1>
+                        }
+                    />
+                </Routes>
+            </ScrollToTop>
+        </BrowserRouter>
     );
 };
 

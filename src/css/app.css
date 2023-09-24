@@ -1,10 +1,13 @@
 @charset "UTF-8";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .app {
   font-family: "Poppins", sans-serif;
   color: #ededed;
   height: 100vh;
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .video-inicio {
@@ -23,7 +26,7 @@
   color: #00f2ff;
 }
 .navbar .login-button:hover,
-.navbar .signin-button:hover {
+.navbar .signup-button:hover {
   background-color: #00f2ff;
   color: #5f5e5e;
   transition: 0.6s;

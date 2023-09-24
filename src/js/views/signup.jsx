@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const SignIn = () => {
+export const SignUp = () => {
     return (
         <div className="overflow-hidden h-screen">
             <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
@@ -69,11 +69,11 @@ export const SignIn = () => {
                                         />
                                     </div>
                                     <p className="mt-4">
-                                        <a
+                                        <Link
                                             className="text-sm text-blue-600 hover:underline"
-                                            href="./forgot-password.html">
+                                            to="/forgot-password">
                                             Forgot your password?
-                                        </a>
+                                        </Link>
                                     </p>
                                     <div className="mx-auto max-w-xs">
                                         <p className="mt-6 text-xs text-gray-600 text-center dark:text-white">
@@ -97,10 +97,10 @@ export const SignIn = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="h-32 md:h-auto md:w-1/2 hidden md:block">
+                        <div className="h-32 md:h-auto md:w-1/2 hidden md:block relative">
                             <Link
                                 to="/"
-                                className="absolute z-40 top-8 right-64 mt-3 text-4xl text-gray-400 font-semibold ml-9">
+                                className="absolute z-40 right-10 mt-3 text-4xl text-gray-400 font-semibold ml-9">
                                 SERØ.
                             </Link>
                             <video
