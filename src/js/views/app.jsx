@@ -41,14 +41,14 @@ export const App = () => {
                         </li>
                         <li>
                             <Link
-                                to="/"
+                                to="/services"
                                 className="text-lg font-medium ml-7 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
                                 Servicios
                             </Link>
                         </li>
                         <li>
                             <Link
-                                to="/"
+                                to="/contact"
                                 className="text-lg font-medium ml-7 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
                                 Contacto
                             </Link>
