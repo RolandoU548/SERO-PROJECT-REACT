@@ -1,37 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 
 export const App = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     return (
         <div className="app">
-            <header className="flex justify-between items-center z-50 fixed top-0 w-full py-5">
-                <Link to="/" className="text-4xl font-semibold ml-12">
+            <header className="header-home flex justify-between items-center z-50 fixed top-0 w-full py-5">
+                <h2 className="text-4xl font-semibold ml-12 lg:ml-32 cursor-pointer">
                     SERØ.
-                </Link>
-                <nav className="navbar mr-9">
-                    <ul className="flex items-center">
+                </h2>
+                <i
+                    className="fa-solid fa-bars"
+                    id="toggle-menu"
+                    onClick={() => {
+                        setIsOpen(!isOpen);
+                    }}></i>
+                <div
+                    className={isOpen ? "block" : "hidden"}
+                    id="back__menu"
+                    onClick={() => {
+                        setIsOpen(!isOpen);
+                    }}></div>
+                <nav
+                    className={
+                        "navbar-home mr-9" +
+                        (isOpen ? " navbar-home-opened" : "")
+                    }>
+                    <h2 className="menu-title text-gray-600 text-center text-4xl font-semibold hidden">
+                        SERØ.
+                    </h2>
+                    <ul className="flex items-center navbar__ul">
                         <li>
                             <Link
                                 to="/"
-                                className="active text-lg font-medium ml-9">
+                                className="active text-lg font-medium ml-7">
                                 Inicio
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="text-lg font-medium ml-9">
+                            <Link to="/" className="text-lg font-medium ml-7">
                                 Servicios
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="text-lg font-medium ml-9">
+                            <Link to="/" className="text-lg font-medium ml-7">
                                 Contacto
                             </Link>
                         </li>
                         <li>
                             <button
-                                className="login-button text-lg rounded-full p-2 bg-white text-black ml-6"
+                                className="login-button text-lg rounded-full p-2 bg-gray-100 bg-white text-black ml-6"
                                 onClick={() => {
                                     navigate("/login");
                                 }}>
@@ -40,7 +60,7 @@ export const App = () => {
                         </li>
                         <li>
                             <button
-                                className="signup-button text-lg rounded-full p-2 bg-white text-black ml-6"
+                                className="signup-button text-lg rounded-full p-2 bg-gray-100 bg-white text-black ml-6"
                                 onClick={() => {
                                     navigate("/signup");
                                 }}>
@@ -50,16 +70,11 @@ export const App = () => {
                     </ul>
                 </nav>
             </header>
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="-z-50 video-inicio">
+            <video autoPlay loop muted playsInline className="-z-50 home-video">
                 <source src="SERO_BG.mp4" type="video/mp4" />
             </video>
             <div className="triangle z-20 absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl"></div>
-            <h1 className="text-5xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h1 className="text-4xl sm:text-7xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
                 Solucionamos tu problema
             </h1>
         </div>

@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/ScrollToTop.jsx";
 import { Darkmode } from "./component/Darkmode.jsx";
+import { BackArrow } from "./component/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
@@ -27,6 +28,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
+                                <BackArrow className="absolute top-2 left-2" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <LogIn />
                             </>
@@ -37,6 +39,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
+                                <BackArrow className="absolute top-2 left-2" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <SignUp />
                             </>
@@ -45,9 +48,16 @@ const Layout = () => {
                     <Route
                         path="*"
                         element={
-                            <h1 className="dark:text-white text-center text-4xl">
-                                Not found!
-                            </h1>
+                            <>
+                                <h1 className="dark:text-white text-center text-4xl">
+                                    Not found!
+                                </h1>
+                                <Link
+                                    to="/"
+                                    className="block m-auto text-3xl bg-gray-300 w-40 my-5 p-2 pb-3 text-center font-medium rounded-full dark:text-white dark:bg-blue-500 ">
+                                    Go Home
+                                </Link>
+                            </>
                         }
                     />
                 </Routes>
