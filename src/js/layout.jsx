@@ -28,7 +28,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackArrow className="absolute top-2 left-2" />
+                                <BackArrow className="absolute top-2 left-2 md:hidden" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <LogIn />
                             </>
@@ -39,7 +39,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackArrow className="absolute top-2 left-2" />
+                                <BackArrow className="absolute top-2 left-2 md:hidden" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <SignUp />
                             </>
