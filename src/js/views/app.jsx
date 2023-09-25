@@ -25,33 +25,37 @@ export const App = () => {
                     }}></div>
                 <nav
                     className={
-                        "navbar-home mr-9" +
+                        "navbar-home mr-9 resp:dark:bg-slate-800" +
                         (isOpen ? " navbar-home-opened" : "")
                     }>
-                    <h2 className="menu-title text-gray-600 text-center text-4xl font-semibold hidden">
+                    <h2 className="menu-title text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden">
                         SERØ.
                     </h2>
                     <ul className="flex items-center navbar__ul">
                         <li>
                             <Link
                                 to="/"
-                                className="active text-lg font-medium ml-7">
+                                className="active text-lg font-medium ml-7 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
                                 Inicio
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="text-lg font-medium ml-7">
+                            <Link
+                                to="/"
+                                className="text-lg font-medium ml-7 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
                                 Servicios
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="text-lg font-medium ml-7">
+                            <Link
+                                to="/"
+                                className="text-lg font-medium ml-7 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
                                 Contacto
                             </Link>
                         </li>
                         <li>
                             <button
-                                className="login-button text-lg rounded-full p-2 bg-gray-100 bg-white text-black ml-6"
+                                className="login-button text-lg rounded-full p-2 bg-white resp:dark:bg-gray-100 text-black ml-6"
                                 onClick={() => {
                                     navigate("/login");
                                 }}>
@@ -60,7 +64,7 @@ export const App = () => {
                         </li>
                         <li>
                             <button
-                                className="signup-button text-lg rounded-full p-2 bg-gray-100 bg-white text-black ml-6"
+                                className="signup-button text-lg rounded-full p-2 bg-white resp:dark:bg-gray-100 text-black ml-6"
                                 onClick={() => {
                                     navigate("/signup");
                                 }}>
