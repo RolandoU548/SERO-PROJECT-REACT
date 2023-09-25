@@ -18,7 +18,6 @@
 }
 
 .navbar-home a {
-  color: #ededed;
   transition: 300ms;
 }
 .navbar-home a:hover,
@@ -66,11 +65,9 @@
   .navbar-home .navbar__ul li a,
   .navbar-home .navbar__ul li button {
     margin: 0;
-    color: #808080;
   }
   .navbar-home .navbar__ul li button {
     border: 1px solid darkgray;
-    background-color: #fdfdfd;
   }
   .navbar-home .menu-title {
     display: block;

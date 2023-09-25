@@ -21,7 +21,6 @@ $color-principal: #00f2ff;
 
 .navbar-home {
     a {
-        color: $color-titles;
         transition: 300ms;
     }
     a:hover,
@@ -68,11 +67,9 @@ $color-principal: #00f2ff;
         .navbar__ul li a,
         .navbar__ul li button {
             margin: 0;
-            color: #808080;
         }
         .navbar__ul li button {
             border: 1px solid darkgray;
-            background-color: #fdfdfd;
         }
         .menu-title {
             display: block;
