@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/ScrollToTop.jsx";
-import { Darkmode } from "./component/Darkmode.jsx";
-import { BackArrow } from "./component/BackArrow.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
+import { Darkmode } from "./components/Darkmode.jsx";
+import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
