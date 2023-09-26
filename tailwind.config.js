@@ -5,12 +5,13 @@ export default {
     theme: {
         extend: {},
         screens: {
+            tiny: "480px",
             sm: "640px",
             md: "768px",
             lg: "1024px",
             xl: "1280px",
             "2xl": "1536px",
-            resp: { min: "0px", max: "768px" }
+            resp: { max: "768px" }
         }
     },
     plugins: []

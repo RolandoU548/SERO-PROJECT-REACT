@@ -8,7 +8,7 @@
   transition: all 0.5s;
   background: #2d2745;
   cursor: pointer;
-  box-shadow: 0 0 6px #ffffff;
+  box-shadow: 0 0 6px -1px #ffffff;
   z-index: 100;
 }
 

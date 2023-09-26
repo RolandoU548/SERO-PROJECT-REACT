@@ -48,7 +48,7 @@ const Layout = () => {
                         path="*"
                         element={
                             <>
-                                <h1 className="dark:text-white text-center text-4xl">
+                                <h1 className="dark:text-white text-center text-4xl mt-5">
                                     Not found!
                                 </h1>
                                 <Link
