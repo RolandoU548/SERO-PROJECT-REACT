@@ -64,7 +64,7 @@ export const App = () => {
                         </li>
                         <li>
                             <button
-                                className="signup-button text-lg rounded-full p-2 bg-white resp:dark:bg-gray-100 text-black ml-6"
+                                className="signup-button text-lg rounded-full p-2 bg-white resp:dark:bg-gray-100 text-black ml-4"
                                 onClick={() => {
                                     navigate("/signup");
                                 }}>
