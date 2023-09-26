@@ -7,7 +7,8 @@ export const BackArrow = ({ className }) => {
         <Link
             to="/"
             className={
-                "leading-[10px] text-gray-600 text-5xl dark:text-white " +
+                "leading-[10px] text-gray-600 text-5xl dark:text-white" +
+                " " +
                 className
             }>
             ←
