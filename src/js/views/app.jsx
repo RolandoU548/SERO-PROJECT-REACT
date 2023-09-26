@@ -78,7 +78,7 @@ export const App = () => {
                 <source src="SERO_BG.mp4" type="video/mp4" />
             </video>
             <div className="triangle z-20 absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl"></div>
-            <h1 className="text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h1 className="text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
                 Solucionamos tu problema
             </h1>
         </div>

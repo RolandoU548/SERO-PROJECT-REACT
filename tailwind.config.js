@@ -5,6 +5,7 @@ export default {
     theme: {
         extend: {},
         screens: {
+            minimum: "320px",
             tiny: "480px",
             sm: "640px",
             md: "768px",
