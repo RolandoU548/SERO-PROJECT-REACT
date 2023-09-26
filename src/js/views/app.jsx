@@ -55,7 +55,7 @@ export const App = () => {
                         </li>
                         <li>
                             <button
-                                className="login-button text-lg rounded-full p-2 text-black ml-6 resp:dark:bg-gray-100 hover:transition-all bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 duration-1000 hover:text-gray-700"
+                                className="login-button text-lg rounded-full p-2 text-black ml-6 resp:dark:bg-gray-100 hover:transition-all bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 duration-1000 hover:text-gray-800"
                                 onClick={() => {
                                     navigate("/login");
                                 }}>
@@ -64,7 +64,7 @@ export const App = () => {
                         </li>
                         <li>
                             <button
-                                className="signup-button text-lg rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 hover:transition-all bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 duration-1000 hover:text-gray-700"
+                                className="signup-button text-lg rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 hover:transition-all bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 duration-1000 hover:text-gray-800"
                                 onClick={() => {
                                     navigate("/signup");
                                 }}>
