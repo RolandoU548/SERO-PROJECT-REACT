@@ -27,12 +27,6 @@ $color-principal: #00f2ff;
     a.active {
         color: $color-principal;
     }
-    .login-button:hover,
-    .signup-button:hover {
-        transition: all 300ms;
-        background-color: $color-principal;
-        color: #3a3a3a;
-    }
 }
 
 .triangle {

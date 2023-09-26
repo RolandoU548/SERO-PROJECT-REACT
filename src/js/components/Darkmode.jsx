@@ -12,8 +12,10 @@ export const Darkmode = ({ className }) => {
         document.querySelector("html").classList.toggle("dark");
         if (document.querySelector("html").classList.contains("dark")) {
             setTheme("dark");
+            localStorage.theme = "dark";
         } else {
             setTheme("light");
+            localStorage.theme = "light";
         }
     };
 

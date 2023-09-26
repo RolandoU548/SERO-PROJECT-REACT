@@ -53,7 +53,7 @@ const Layout = () => {
                                 </h1>
                                 <Link
                                     to="/"
-                                    className="block m-auto text-3xl bg-gray-300 w-40 my-5 p-2 pb-3 text-center font-medium rounded-full dark:text-white dark:bg-blue-500 ">
+                                    className="block m-auto text-3xl bg-gray-300 hover:bg-gray-400 w-40 my-5 p-2 pb-3 text-center font-medium rounded-full dark:text-white dark:bg-blue-500 dark:hover:bg-blue-600">
                                     Go Home
                                 </Link>
                             </>
