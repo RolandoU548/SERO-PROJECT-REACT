@@ -25,7 +25,6 @@ const Layout = () => {
                         path="/"
                         element={
                             <>
-                                <LanguageButton className="absolute top-7 left-10" />
                                 <App />
                             </>
                         }

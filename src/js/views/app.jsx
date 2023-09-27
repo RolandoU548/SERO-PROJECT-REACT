@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import { useTranslation } from "react-i18next";
+import { LanguageButton } from "../components/LanguageButton";
 
 export const App = () => {
     const [t] = useTranslation("app");
@@ -11,7 +12,7 @@ export const App = () => {
     return (
         <div className="app">
             <header className="header-home flex justify-between items-center z-40 fixed top-0 w-full py-5">
-                <h2 className="text-4xl font-semibold ml-12 lg:ml-32 cursor-pointer">
+                <h2 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer">
                     SERØ.
                 </h2>
                 <i
@@ -28,7 +29,7 @@ export const App = () => {
                     }}></div>
                 <nav
                     className={
-                        "navbar-home mr-9 resp:dark:bg-slate-800" +
+                        "navbar-home mr-4 lg:mr-16 resp:dark:bg-slate-800" +
                         (isOpen ? " navbar-home-opened" : "")
                     }>
                     <h2 className="menu-title text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden">
@@ -38,7 +39,7 @@ export const App = () => {
                         <li>
                             <Link
                                 to="/"
-                                className="active text-lg font-medium ml-7 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
+                                className="active text-lg font-medium ml-6 text-gray-200 resp:dark:text-gray-200 resp:text-gray-600">
                                 {t("home")}
                             </Link>
                         </li>
@@ -73,6 +74,9 @@ export const App = () => {
                                 }}>
                                 {t("signup")}
                             </button>
+                        </li>
+                        <li>
+                            <LanguageButton className="ml-3 resp:absolute resp:top-3 resp:right-5" />
                         </li>
                     </ul>
                 </nav>
