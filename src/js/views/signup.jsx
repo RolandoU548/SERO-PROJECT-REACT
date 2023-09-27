@@ -110,11 +110,11 @@ export const SignUp = () => {
                                         Sign Up
                                     </button>
                                 </form>
-                                <p className=" flex-1 items-center leading-none px-12 py-1 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white dark:bg-slate-800 dark:text-white transform translate-y-1/2">
+                                <p className="text-center px-2 py-2 text-sm text-gray-600 tracking-wide font-medium dark:text-white transform translate-y-1/2 inline-block w-full">
                                     Already have an account?
                                     <Link
                                         to="/login"
-                                        className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500  dark:bg-slate-800 dark:text-white">
+                                        className="w-20 px-1 mt-3 minimum:text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500 dark:text-white">
                                         LogIn
                                     </Link>
                                 </p>

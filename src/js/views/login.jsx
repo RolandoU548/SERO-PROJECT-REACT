@@ -114,11 +114,11 @@ export const LogIn = () => {
                                         Login with GitHub
                                     </button>
                                 </div>
-                                <p className="text-center leading-none px-2 py-2 text-sm text-gray-600 tracking-wide font-medium bg-white dark:bg-slate-800 dark:text-white transform translate-y-1/2 inline-block w-full">
+                                <p className="text-center leading-none px-2 py-2 text-sm text-gray-600 tracking-wide font-medium dark:text-white transform translate-y-1/2 inline-block w-full">
                                     Don&apos;t have an account?
                                     <Link
                                         to="/signup"
-                                        className="w-20 px-1 py-2 mt-3 text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500  dark:bg-slate-800 dark:text-white">
+                                        className="w-20 px-1 mt-3 minimum:text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500 dark:text-white">
                                         SignUp
                                     </Link>
                                 </p>
