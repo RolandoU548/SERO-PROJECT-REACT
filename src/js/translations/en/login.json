@@ -1,0 +1,13 @@
+{
+    "message": "Log in to your account",
+    "email": "Email",
+    "exampleEmail": "name@email.com",
+    "password": "Password",
+    "examplePassword": "Password",
+    "forgottenPassword": "Forgot your password?",
+    "loginButton": "Log In",
+    "loginGoogle": "Log in with Google",
+    "loginGithub": "Log in with GitHub",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign Up"
+}

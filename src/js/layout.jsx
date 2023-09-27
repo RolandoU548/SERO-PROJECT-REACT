@@ -1,14 +1,14 @@
 import React from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import { Darkmode } from "./components/Darkmode.jsx";
+import { LanguageButton } from "./components/LanguageButton.jsx";
 import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
 import { SignUp } from "./views/signup.jsx";
-
-// import { devCard } from "./views/devcard.jsx";
+import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
 
@@ -21,13 +21,22 @@ const Layout = () => {
         <BrowserRouter basename={basename}>
             <ScrollToTop>
                 <Routes>
-                    <Route path="/" element={<App />} />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <LanguageButton className="absolute top-7 left-10" />
+                                <App />
+                            </>
+                        }
+                    />
                     <Route
                         path="/login"
                         transition="fade"
                         element={
                             <>
                                 <BackArrow className="absolute top-2 left-2 md:hidden" />
+                                <LanguageButton className="absolute top-3 left-16" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <LogIn />
                             </>
@@ -39,6 +48,7 @@ const Layout = () => {
                         element={
                             <>
                                 <BackArrow className="absolute top-2 left-2 md:hidden" />
+                                <LanguageButton className="absolute top-3 left-16" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <SignUp />
                             </>
@@ -48,14 +58,9 @@ const Layout = () => {
                         path="*"
                         element={
                             <>
-                                <h1 className="dark:text-white text-center text-4xl mt-5">
-                                    Not found!
-                                </h1>
-                                <Link
-                                    to="/"
-                                    className="block m-auto text-3xl bg-gray-300 hover:bg-gray-400 w-40 my-5 p-2 pb-3 text-center font-medium rounded-full dark:text-white dark:bg-blue-500 dark:hover:bg-blue-600">
-                                    Go Home
-                                </Link>
+                                <LanguageButton className="absolute top-7 left-10" />
+                                <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                <NotFound />
                             </>
                         }
                     />
