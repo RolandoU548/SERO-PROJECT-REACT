@@ -28,55 +28,60 @@ export const LogIn = () => {
                                 />
                             </video>
                         </div>
-                        <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                        <div className="flex items-center justify-center p-6 sm:p-6 md:w-1/2">
                             <div className="w-full">
                                 <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
                                     {t("message")}
                                 </h1>
                                 <form
+                                    className="flex flex-col items-center justify-center"
                                     onSubmit={e => {
                                         e.preventDefault();
                                     }}>
-                                    <label
-                                        className="block text-sm dark:text-white"
-                                        htmlFor="email">
-                                        {t("email")}
-                                    </label>
-                                    <input
-                                        type="email"
-                                        className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        placeholder={t("exampleEmail")}
-                                        id="email"
-                                        autoComplete="email"
-                                        required
-                                        value={logInData.email}
-                                        onChange={e => {
-                                            setLogInData({
-                                                ...logInData,
-                                                email: e.target.value
-                                            });
-                                        }}
-                                    />
-                                    <label
-                                        className="block mt-4 text-sm dark:text-white"
-                                        htmlFor="password">
-                                        {t("password")}
-                                    </label>
-                                    <input
-                                        className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        placeholder={t("examplePassword")}
-                                        type="password"
-                                        required
-                                        id="password"
-                                        autoComplete="current-password"
-                                        value={logInData.password}
-                                        onChange={e => {
-                                            setLogInData({
-                                                ...logInData,
-                                                password: e.target.value
-                                            });
-                                        }}
-                                    />
+                                    <div className="w-full max-w-md">
+                                        <label
+                                            className="block text-sm dark:text-white"
+                                            htmlFor="email">
+                                            {t("email")}
+                                        </label>
+                                        <input
+                                            type="email"
+                                            className="w-full max-w-md px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            placeholder={t("exampleEmail")}
+                                            id="email"
+                                            autoComplete="email"
+                                            required
+                                            value={logInData.email}
+                                            onChange={e => {
+                                                setLogInData({
+                                                    ...logInData,
+                                                    email: e.target.value
+                                                });
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="w-full max-w-md">
+                                        <label
+                                            className="block mt-4 text-sm dark:text-white"
+                                            htmlFor="password">
+                                            {t("password")}
+                                        </label>
+                                        <input
+                                            className="w-full max-w-md px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            placeholder={t("examplePassword")}
+                                            type="password"
+                                            required
+                                            id="password"
+                                            autoComplete="current-password"
+                                            value={logInData.password}
+                                            onChange={e => {
+                                                setLogInData({
+                                                    ...logInData,
+                                                    password: e.target.value
+                                                });
+                                            }}
+                                        />
+                                    </div>
                                     <p className="mt-4">
                                         <Link
                                             className="text-sm text-blue-600 hover:underline"
@@ -86,13 +91,13 @@ export const LogIn = () => {
                                     </p>
                                     <button
                                         type="submit"
-                                        className="w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700">
+                                        className="w-full max-w-md px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700">
                                         {t("loginButton")}
                                     </button>
                                 </form>
                                 <hr className="my-8" />
                                 <div className="flex items-center justify-center flex-col gap-4">
-                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 dark:bg-slate-800 dark:text-white hover:border-slate-400 hover:text-slate-900 hover:shadow dark:hover:bg-[#192336] transition duration-200 dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
+                                    <button className="px-2 py-1 max-w-md w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 dark:bg-slate-800 dark:text-white hover:border-slate-400 hover:text-slate-900 hover:shadow dark:hover:bg-[#192336] transition duration-200 dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
                                         <img
                                             className="w-6 h-6"
                                             src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -120,7 +125,7 @@ export const LogIn = () => {
                                     {t("noAccount")}
                                     <Link
                                         to="/signup"
-                                        className="w-20 px-1 mt-3 minimum:text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500 dark:text-white">
+                                        className="w-20 px-1 mt-3 minimum:text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500 dark:text-white btn">
                                         {t("signup")}
                                     </Link>
                                 </p>
