@@ -40,7 +40,7 @@ export const SignUp = () => {
                                         {t("signupGithub")}
                                     </button>
                                 </div>
-                                <div className="my-4 border-b text-center">
+                                <div className="my-4 max-w-md m-auto border-b text-center">
                                     <div className="leading-none max-w-md px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 dark:bg-slate-800 dark:text-white">
                                         {t("signupWithEmail")}
                                     </div>
