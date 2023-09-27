@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const SignUp = () => {
+    const [signUpData, setSignUpData] = useState({ email: "", password: "" });
     return (
         <div className="overflow-hidden h-screen">
             <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
@@ -47,7 +48,9 @@ export const SignUp = () => {
                                         e.preventDefault();
                                     }}>
                                     <div>
-                                        <label className="block text-sm dark:text-white">
+                                        <label
+                                            className="block text-sm dark:text-white"
+                                            htmlFor="email">
                                             Email
                                         </label>
                                         <input
@@ -55,10 +58,21 @@ export const SignUp = () => {
                                             className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                             placeholder="name@email.com"
                                             required
+                                            id="email"
+                                            autoComplete="email"
+                                            value={signUpData.email}
+                                            onChange={e => {
+                                                setSignUpData({
+                                                    ...signUpData,
+                                                    email: e.target.value
+                                                });
+                                            }}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block mt-4 text-sm dark:text-white">
+                                        <label
+                                            className="block mt-4 text-sm dark:text-white"
+                                            htmlFor="password">
                                             Password
                                         </label>
                                         <input
@@ -66,6 +80,15 @@ export const SignUp = () => {
                                             placeholder="Password"
                                             type="password"
                                             required
+                                            id="password"
+                                            autoComplete="new-password"
+                                            value={signUpData.password}
+                                            onChange={e => {
+                                                setSignUpData({
+                                                    ...signUpData,
+                                                    password: e.target.value
+                                                });
+                                            }}
                                         />
                                     </div>
                                     <p className="mt-4">

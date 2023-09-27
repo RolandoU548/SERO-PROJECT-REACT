@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const LogIn = () => {
+    const [logInData, setLogInData] = useState({ email: "", password: "" });
     return (
         <div className="overflow-hidden h-screen">
             <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
@@ -34,16 +35,29 @@ export const LogIn = () => {
                                     onSubmit={e => {
                                         e.preventDefault();
                                     }}>
-                                    <label className="block text-sm dark:text-white">
+                                    <label
+                                        className="block text-sm dark:text-white"
+                                        htmlFor="email">
                                         Email
                                     </label>
                                     <input
                                         type="email"
                                         className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                         placeholder="name@email.com"
+                                        id="email"
+                                        autoComplete="email"
                                         required
+                                        value={logInData.email}
+                                        onChange={e => {
+                                            setLogInData({
+                                                ...logInData,
+                                                email: e.target.value
+                                            });
+                                        }}
                                     />
-                                    <label className="block mt-4 text-sm dark:text-white">
+                                    <label
+                                        className="block mt-4 text-sm dark:text-white"
+                                        htmlFor="password">
                                         Password
                                     </label>
                                     <input
@@ -51,6 +65,15 @@ export const LogIn = () => {
                                         placeholder="Password"
                                         type="password"
                                         required
+                                        id="password"
+                                        autoComplete="current-password"
+                                        value={logInData.password}
+                                        onChange={e => {
+                                            setLogInData({
+                                                ...logInData,
+                                                password: e.target.value
+                                            });
+                                        }}
                                     />
                                     <p className="mt-4">
                                         <Link
