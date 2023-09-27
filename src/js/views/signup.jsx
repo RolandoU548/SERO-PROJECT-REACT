@@ -10,13 +10,13 @@ export const SignUp = () => {
             <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
                 <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                     <div className="flex flex-col md:flex-row">
-                        <div className="flex items-center justify-center p-3 sm:p-6 md:w-1/2">
-                            <div className="w-90">
+                        <div className="flex items-center justify-center p-6 sm:p-6 md:w-1/2">
+                            <div className="w-full">
                                 <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
                                     {t("message")}
                                 </h1>
                                 <div className="flex items-center justify-center flex-col gap-4">
-                                    <button className="px-2 py-1 w-full border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow dark:hover:bg-[#192336] transition duration-200 dark:text-white dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
+                                    <button className="px-2 py-1 w-full max-w-md  border flex justify-center gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow dark:hover:bg-[#192336] transition duration-200 dark:text-white dark:focus:ring-gray-500 dark:focus:ring-offset-gray-200 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-offset-2 focus:ring-1 focus:ring-offset-2">
                                         <img
                                             className="w-6 h-6"
                                             src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -41,23 +41,24 @@ export const SignUp = () => {
                                     </button>
                                 </div>
                                 <div className="my-4 border-b text-center">
-                                    <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 dark:bg-slate-800 dark:text-white">
+                                    <div className="leading-none max-w-md px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 dark:bg-slate-800 dark:text-white">
                                         {t("signupWithEmail")}
                                     </div>
                                 </div>
                                 <form
+                                    className="flex flex-col items-center justify-center"
                                     onSubmit={e => {
                                         e.preventDefault();
                                     }}>
-                                    <div>
+                                    <div className="w-full max-w-md">
                                         <label
-                                            className="block text-sm dark:text-white"
+                                            className="block mt-4 text-sm dark:text-white"
                                             htmlFor="email">
                                             {t("email")}
                                         </label>
                                         <input
                                             type="email"
-                                            className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            className="w-full max-w-md px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                             placeholder={t("emailExample")}
                                             required
                                             id="email"
@@ -71,14 +72,14 @@ export const SignUp = () => {
                                             }}
                                         />
                                     </div>
-                                    <div>
+                                    <div className="w-full max-w-md">
                                         <label
                                             className="block mt-4 text-sm dark:text-white"
                                             htmlFor="password">
                                             {t("password")}
                                         </label>
                                         <input
-                                            className="w-full px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                            className="w-full max-w-md px-2 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                             placeholder={t("passwordExample")}
                                             type="password"
                                             required
@@ -107,7 +108,7 @@ export const SignUp = () => {
                                     </div>
                                     <button
                                         type="submit"
-                                        className="w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700">
+                                        className="w-full max-w-md px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 btn">
                                         {t("signupButton")}
                                     </button>
                                 </form>
@@ -115,7 +116,7 @@ export const SignUp = () => {
                                     {t("account")}
                                     <Link
                                         to="/login"
-                                        className="w-20 px-1 mt-3 minimum:text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500 dark:text-white">
+                                        className="w-20 px-1 mt-3 minimum:text-xl underline underline-offset-8 font-medium leading-5 text-center text-gray-500 dark:text-white btn">
                                         {t("login")}
                                     </Link>
                                 </p>
