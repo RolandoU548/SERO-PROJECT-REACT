@@ -2,14 +2,15 @@
     "message": "Nuevo Usuario? Regístrate!",
     "signupGoogle": "Regístrate con Google",
     "signupGithub": "Regístrate con GitHub",
-    "signupWithEmail": "O regístrate con correo electrónico",
+    "option": "O regístrate con correo electrónico",
     "email": "Correo electrónico",
-    "emailExample": "nombre@correoelectrónico.com",
+    "exampleEmail": "nombre@correoelectrónico.com",
     "password": "Contraseña",
-    "passwordExample": "Contraseña",
+    "examplePassword": "Contraseña",
     "forgottenPassword": "Olvidaste tu contraseña?",
     "agreement": "Acepto cumplir con los Términos de servicio de SERØ y su Política de privacidad",
     "signupButton": "Crear Cuenta",
     "account": "Ya tienes una cuenta?",
-    "login": "Acceder"
+    "login": "Acceder",
+    "signup": "Registro exitoso"
 }

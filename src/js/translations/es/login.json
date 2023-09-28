@@ -9,5 +9,6 @@
     "loginGoogle": "Iniciar Sesión con Google",
     "loginGithub": "Iniciar Sesión con GitHub",
     "noAccount": "No tienes una cuenta?",
-    "signup": "Crear Cuenta"
+    "signup": "Crear Cuenta",
+    "login": "Acceso exitoso"
 }
