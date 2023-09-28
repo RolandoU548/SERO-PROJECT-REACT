@@ -39,7 +39,7 @@ export const SignUp = () => {
                     {t("agreement")}
                 </p>
             </Form>
-            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-3">
+            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-2">
                 {t("account")}
                 <Link
                     to="/login"
