@@ -1,9 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import { Darkmode } from "./components/Darkmode.jsx";
-import { LanguageButton } from "./components/LanguageButton.jsx";
-import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
@@ -21,54 +18,18 @@ const Layout = () => {
         <BrowserRouter basename={basename}>
             <ScrollToTop>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <App />
-                            </>
-                        }
-                    />
+                    <Route path="/" element={<App />} />
                     <Route
                         path="/login"
                         transition="fade"
-                        element={
-                            <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
-                                <LanguageButton className="absolute top-3 left-16" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                <LogIn />
-                            </>
-                        }
+                        element={<LogIn />}
                     />
                     <Route
                         path="/signup"
                         transition="fade"
-                        element={
-                            <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
-                                <LanguageButton className="absolute top-3 left-16" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                <SignUp />
-                            </>
-                        }
+                        element={<SignUp />}
                     />
-                    <Route
-                        path="*"
-                        element={
-                            <>
-                                <LanguageButton className="absolute top-7 left-10" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                <NotFound />
-                            </>
-                        }
-                    />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </ScrollToTop>
         </BrowserRouter>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { BackArrow } from "../components/BackArrow";
+import { LanguageButton } from "../components/LanguageButton";
+import { Darkmode } from "../components/Darkmode";
 import { Base } from "../components/login-signup/Base";
 import { Form } from "../components/login-signup/Form";
 import { Buttons } from "../components/login-signup/Buttons";
@@ -10,6 +13,9 @@ export const SignUp = () => {
     const [signUpData, setSignUpData] = useState({ email: "", password: "" });
     return (
         <Base left>
+            <BackArrow to="/" className="absolute top-2 left-2 md:hidden" />
+            <LanguageButton className="absolute top-3 left-16" />
+            <Darkmode className="text-[10%] absolute top-2 right-2" />
             <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-white">
                 {t("message")}
             </h2>

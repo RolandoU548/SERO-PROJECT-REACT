@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Darkmode } from "../components/Darkmode";
+import { LanguageButton } from "../components/LanguageButton";
 
 export const NotFound = () => {
     const [t] = useTranslation("notfound");
     return (
         <>
+            <LanguageButton className="absolute top-3 left-10" />
+            <Darkmode className="text-[10%] absolute top-2 right-2" />
             <h1 className="dark:text-white text-center text-4xl mt-5">
                 {t("notfound")}!
             </h1>
