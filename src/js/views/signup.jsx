@@ -35,7 +35,7 @@ export const SignUp = () => {
                 examplePassword={t("examplePassword")}
                 forgottenPassword={t("forgottenPassword")}
                 submitButton={t("signupButton")}>
-                <p className="text-xs text-gray-600 text-center dark:text-white">
+                <p className="text-xs text-gray-600 text-center dark:text-white md:px-10">
                     {t("agreement")}
                 </p>
             </Form>
