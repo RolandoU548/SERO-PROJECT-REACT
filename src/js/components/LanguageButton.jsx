@@ -6,7 +6,7 @@ export const LanguageButton = ({ className }) => {
     const i18n = useTranslation("global")[1];
     return (
         <button
-            className={"z-50" + " " + className}
+            className={"z-50 w-6 h-4" + " " + className}
             onClick={() => {
                 i18n.language === "es"
                     ? i18n.changeLanguage("en")
@@ -14,7 +14,7 @@ export const LanguageButton = ({ className }) => {
                 localStorage.language = i18n.language;
             }}>
             <img
-                className="w-6 h-4"
+                className="w-full h-full"
                 src={
                     i18n.language === "en"
                         ? "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/300px-Flag_of_the_United_States.svg.png"
