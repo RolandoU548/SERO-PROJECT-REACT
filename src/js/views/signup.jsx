@@ -10,7 +10,7 @@ export const SignUp = () => {
             <div className="flex items-center min-h-screen bg-gray-50 dark:bg-slate-800">
                 <div className="flex-1 h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-xl">
                     <div className="flex flex-col md:flex-row">
-                        <div className="flex items-center justify-center p-6 sm:p-6 md:w-1/2">
+                        <div className="flex items-center justify-center p-6 md:w-1/2">
                             <div className="w-full">
                                 <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
                                     {t("message")}
@@ -94,9 +94,9 @@ export const SignUp = () => {
                                             }}
                                         />
                                     </div>
-                                    <p className="mt-4">
+                                    <p className="w-full">
                                         <Link
-                                            className="text-sm text-blue-600 hover:underline"
+                                            className="text-sm text-left text-blue-600 hover:underline"
                                             to="/forgot-password">
                                             {t("forgottenPassword")}
                                         </Link>
@@ -112,7 +112,7 @@ export const SignUp = () => {
                                         {t("signupButton")}
                                     </button>
                                 </form>
-                                <p className="text-center px-2 py-2 text-sm text-gray-600 tracking-wide font-medium dark:text-white transform translate-y-1/2 inline-block w-full">
+                                <p className="text-center px-2 text-sm text-gray-600 tracking-wide font-medium dark:text-white transform translate-y-1/2 inline-block w-full">
                                     {t("account")}
                                     <Link
                                         to="/login"

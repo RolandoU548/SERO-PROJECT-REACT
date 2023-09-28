@@ -28,7 +28,7 @@ export const LogIn = () => {
                                 />
                             </video>
                         </div>
-                        <div className="flex items-center justify-center p-6 sm:p-6 md:w-1/2">
+                        <div className="flex items-center justify-center p-6 md:w-1/2">
                             <div className="w-full">
                                 <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
                                     {t("message")}
@@ -82,7 +82,7 @@ export const LogIn = () => {
                                             }}
                                         />
                                     </div>
-                                    <p className="mt-4">
+                                    <p className="mt-4 w-full">
                                         <Link
                                             className="text-sm text-blue-600 hover:underline"
                                             to="/forgot-password">
@@ -121,7 +121,7 @@ export const LogIn = () => {
                                         {t("loginGithub")}
                                     </button>
                                 </div>
-                                <p className="text-center leading-none px-2 py-2 text-sm text-gray-600 tracking-wide font-medium dark:text-white transform translate-y-1/2 inline-block w-full">
+                                <p className="text-center leading-none px-2 pb-10 text-sm text-gray-600 tracking-wide font-medium dark:text-white transform translate-y-1/2 inline-block w-full">
                                     {t("noAccount")}
                                     <Link
                                         to="/signup"
