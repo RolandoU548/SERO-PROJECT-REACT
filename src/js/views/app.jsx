@@ -81,7 +81,7 @@ export const App = () => {
                     </ul>
                 </nav>
             </header>
-            <video autoPlay loop muted playsInline className="-z-50 home-video">
+            <video autoPlay loop muted playsInline className="home-video">
                 <source src="SERO_BG.mp4" type="video/mp4" />
             </video>
             <div className="triangle z-20 absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl"></div>

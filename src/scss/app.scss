@@ -8,15 +8,20 @@ $color-principal: #00f2ff;
     font-family: "Poppins", sans-serif;
     color: $color-titles;
     min-height: 100vh;
-    position: relative;
-    overflow: hidden;
 }
 
 .home-video {
-    position: absolute;
     width: 100%;
-    min-height: 100%;
+    height: 100vh;
     object-fit: cover;
+    position: fixed;
+    z-index: -50;
+    top: 0;
+}
+
+p {
+    font-size: 60px;
+    color: white;
 }
 
 .navbar-home {
