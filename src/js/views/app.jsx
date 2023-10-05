@@ -19,7 +19,7 @@ export const App = () => {
                 className="w-[100%] h-[100%] -z-50 absolute object-cover">
                 <source src="SERO_BG.mp4" type="video/mp4" />
             </video>
-            <header className="header-home flex justify-between items-center z-40 fixed top-0 w-full py-5">
+            <header className="flex justify-between items-center z-40 fixed top-0 w-full py-3">
                 <h2 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer">
                     SERØ.
                 </h2>
