@@ -98,7 +98,7 @@ export const App = () => {
                 </nav>
             </header>
             <div className="absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl border-b-[25px] border-l-[60px] border-r-[60px] border-b-cyan-400 border-l-transparent border-r-transparent"></div>
-            <h1 className="w-[80%] text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h1 className="mix-blend-difference w-[80%] text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
                 {t("title")}
             </h1>
         </div>
