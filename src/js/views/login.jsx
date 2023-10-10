@@ -17,7 +17,7 @@ export const LogIn = () => {
                 playsInline
                 className="w-[100%] h-[100%] -z-50 absolute object-cover">
                 <source
-                    src="/public/SERO Register & Login Background.mp4"
+                    src="/public/SERØ Live Background Login & Signup Short.mp4"
                     type="video/mp4"
                 />
             </video>
