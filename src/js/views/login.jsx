@@ -9,35 +9,49 @@ export const LogIn = () => {
     const [t] = useTranslation("login");
     const [logInData, setLogInData] = useState({ email: "", password: "" });
     return (
-        <Base right>
-            <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
-                {t("message")}
-            </h2>
-            <Form
-                onSubmit={() => {
-                    alert(`${t("login")} ${logInData.email}`);
-                }}
-                loadData={setLogInData}
-                email={t("email")}
-                exampleEmail={t("exampleEmail")}
-                password={t("password")}
-                examplePassword={t("examplePassword")}
-                forgottenPassword={t("forgottenPassword")}
-                submitButton={t("loginButton")}
-            />
-            <hr className="my-8 border-t-[1px] border-gray-300 " />
-            <Buttons
-                buttonGoogle={t("loginGoogle")}
-                buttonGithub={t("loginGithub")}
-            />
-            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
-                {t("noAccount")}
-                <Link
-                    to="/signup"
-                    className="ml-1 minimum:text-xl underline underline-offset-8 text-gray-600 dark:text-white">
-                    {t("signup")}
-                </Link>
-            </p>
-        </Base>
+        <>
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-[100%] h-[100%] -z-50 absolute object-cover">
+                <source
+                    src="/public/SERO Register & Login Background.mp4"
+                    type="video/mp4"
+                />
+            </video>
+
+            <Base right>
+                <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
+                    {t("message")}
+                </h2>
+                <Form
+                    onSubmit={() => {
+                        alert(`${t("login")} ${logInData.email}`);
+                    }}
+                    loadData={setLogInData}
+                    email={t("email")}
+                    exampleEmail={t("exampleEmail")}
+                    password={t("password")}
+                    examplePassword={t("examplePassword")}
+                    forgottenPassword={t("forgottenPassword")}
+                    submitButton={t("loginButton")}
+                />
+                <hr className="my-8 border-t-[1px] border-gray-300 " />
+                <Buttons
+                    buttonGoogle={t("loginGoogle")}
+                    // buttonGithub={t("loginGithub")}
+                />
+                <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
+                    {t("noAccount")}
+                    <Link
+                        to="/signup"
+                        className="ml-1 minimum:text-xl underline underline-offset-8 text-gray-600 dark:text-white">
+                        {t("signup")}
+                    </Link>
+                </p>
+            </Base>
+        </>
     );
 };
