@@ -90,28 +90,6 @@ export const App = () => {
                                 }}>
                                 {t("signup")}
                             </button>
-                            <button
-                                className="signup-button w-32 text-lg rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 transition duration-1000 bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 hover:text-gray-800 resp:m-0 resp:border resp:border-gray-300"
-                                onClick={async () => {
-                                    try {
-                                        const resp = await fetch(
-                                            "http://localhost:3001/user"
-                                        );
-                                        const data = await resp.json();
-                                        console.log(data);
-                                        const apiKey =
-                                            process.env.REACT_APP_BACKEND_URL;
-
-                                        console.log(apiKey);
-                                    } catch (error) {
-                                        console.log(
-                                            "There has been an error",
-                                            error
-                                        );
-                                    }
-                                }}>
-                                DALE
-                            </button>
                         </li>
                         <li className="my-2.5">
                             <LanguageButton className="ml-3 resp:absolute resp:top-3 resp:right-5" />
