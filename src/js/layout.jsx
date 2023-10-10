@@ -8,6 +8,7 @@ import { BackArrow } from "./components/BackArrow.jsx";
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
 import { SignUp } from "./views/signup.jsx";
+import { Dash } from "./views/userDash.jsx";
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
@@ -56,6 +57,21 @@ const Layout = () => {
                                 <LanguageButton className="absolute top-3 left-16" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <SignUp />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/userDash"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackArrow
+                                    to="/"
+                                    className="absolute top-2 left-2 md:hidden"
+                                />
+                                <LanguageButton className="absolute top-3 left-16" />
+                                <Darkmode className="text-[10%] absolute top-2 right-2" />
+                                <Dash />
                             </>
                         }
                     />
