@@ -24,10 +24,10 @@ export const Form = ({
                 e.preventDefault();
                 onSubmit();
             }}>
-            <label className="dark:text-white text-sm">
+            <label className="dark:text-white text-xl">
                 {email}
                 <input
-                    className="w-full p-2 text-sm border rounded focus:outline-blue-600"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600"
                     placeholder={exampleEmail}
                     type="email"
                     name="email"
@@ -41,10 +41,10 @@ export const Form = ({
                     }}
                 />
             </label>
-            <label className="dark:text-white text-sm">
+            <label className="dark:text-white text-xl">
                 {password}
                 <input
-                    className="w-full p-2 text-sm border rounded focus:outline-blue-600"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600"
                     placeholder={examplePassword}
                     type="password"
                     name="password"
@@ -56,13 +56,13 @@ export const Form = ({
                 />
             </label>
             <Link
-                className="block text-sm text-blue-600 hover:underline"
+                className="block text-md text-blue-600 hover:underline"
                 to="/forgot-password">
                 {forgottenPassword}
             </Link>
             {children}
             <button
-                className="w-full py-2 text-sm font-medium text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+                className="w-full py-2 text-md font-medium text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
                 type="submit">
                 {submitButton}
             </button>

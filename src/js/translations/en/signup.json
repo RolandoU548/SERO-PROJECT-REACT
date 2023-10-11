@@ -1,8 +1,7 @@
 {
     "message": "New User? Sign Up!",
     "signupGoogle": "Sign Up with Google",
-    "signupGithub": "Sign Up with GitHub",
-    "option": "Or sign up with e-mail",
+    "option": "Or sign up with your Google account",
     "email": "Email",
     "exampleEmail": "name@email.com",
     "password": "Password",

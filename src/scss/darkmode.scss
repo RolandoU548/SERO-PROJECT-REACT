@@ -1,6 +1,6 @@
 $height: 16em;
 $width: 30em;
-$color-night: #2d2745;
+$color-night: #00f2ff;
 $btn-radius: 10em;
 $moon-color: #d9fbff;
 $sun-color: #ffffff;
@@ -12,14 +12,14 @@ $sun-color: #ffffff;
     height: $height;
     width: $width;
     border-radius: $height;
-    transition: all 0.5s;
+    transition: all 2s;
     background: $color-night;
     cursor: pointer;
     box-shadow: 0 0 6px -1px #ffffff;
     z-index: 100;
 }
 .day {
-    background: #ffbf71;
+    background: #000000;
 }
 .moon {
     position: relative;

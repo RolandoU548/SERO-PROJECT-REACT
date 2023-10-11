@@ -6,7 +6,7 @@ export const LanguageButton = ({ className }) => {
     const i18n = useTranslation("global")[1];
     return (
         <button
-            className={"z-50 w-6 h-4" + " " + className}
+            className={"z-50" + " " + className}
             onClick={() => {
                 i18n.language === "es"
                     ? i18n.changeLanguage("en")

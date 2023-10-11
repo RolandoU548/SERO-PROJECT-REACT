@@ -1,8 +1,7 @@
 {
-    "message": "Nuevo Usuario? Regístrate!",
+    "message": "¿Usuario Nuevo? ¡Regístrate!",
     "signupGoogle": "Regístrate con Google",
-    "signupGithub": "Regístrate con GitHub",
-    "option": "O regístrate con correo electrónico",
+    "option": "O regístrate con tu cuenta Google",
     "email": "Correo electrónico",
     "exampleEmail": "nombre@correoelectrónico.com",
     "password": "Contraseña",

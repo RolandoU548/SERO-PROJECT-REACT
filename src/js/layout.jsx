@@ -39,8 +39,6 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
-                                <LanguageButton className="absolute top-3 left-16" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <LogIn />
                             </>
                         }
@@ -54,8 +52,6 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
-                                <LanguageButton className="absolute top-3 left-16" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <SignUp />
                             </>
                         }
@@ -79,7 +75,7 @@ const Layout = () => {
                         path="*"
                         element={
                             <>
-                                <LanguageButton className="absolute top-7 left-10" />
+                                <LanguageButton className="absolute top-7 left-10 w-6 h-4" />
                                 <Darkmode className="text-[10%] absolute top-2 right-2" />
                                 <NotFound />
                             </>

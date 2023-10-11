@@ -1,48 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../../../css/glass.css";
+import { LanguageButton } from "../LanguageButton";
+import { Darkmode } from "../Darkmode";
 
-export const Base = ({ children, right }) => {
+export const Base = ({ children }) => {
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-slate-800 flex justify-center items-center">
-            <div
+        <>
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-[100%] h-[100%] -z-50 absolute object-cover dark:invert-0 invert">
+                <source src="LoginSignupBG.mp4" type="video/mp4" />
+            </video>
+            <LanguageButton className="absolute top-3 right-20 w-10 h-7" />
+            <Darkmode className="text-[10%] absolute top-3 right-4" />
+            <Link
+                to="/"
                 className={
-                    "min-h-[94vh] w-full mx-2 my-2 max-w-4xl rounded-lg shadow-xl bg-white dark:bg-slate-800 resp:max-w-md flex" +
-                    " " +
-                    (right ? "flex-row" : "flex-row-reverse")
+                    "absolute top-3 z-40 text-4xl font-semibold left-10 text-black dark:text-white"
                 }>
-                <div className="video-container w-[50%] min-h-full relative resp:hidden">
-                    <Link
-                        to="/"
-                        className={
-                            "absolute top-3 z-40 text-4xl font-semibold" +
-                            " " +
-                            (right
-                                ? "left-10 text-gray-400"
-                                : "right-10 text-gray-500")
-                        }>
-                        SERØ.
-                    </Link>
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className={
-                            "h-full object-cover" +
-                            " " +
-                            (right ? "rounded-l-lg" : "rounded-r-lg")
-                            //     right ? "l" : "r"
-                            // }-lg`
-                        }>
-                        <source src="Login_video.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div className="form-container w-[50%] resp:w-full h-full p-6">
+                SERØ.
+            </Link>
+            <div className="h-screen flex justify-center items-center">
+                <div className="form-container w-[50%] resp:w-[80%] p-6 glass">
                     {children}
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
@@ -51,6 +39,5 @@ Base.propTypes = {
         PropTypes.string,
         PropTypes.array,
         PropTypes.object
-    ]),
-    right: PropTypes.bool
+    ])
 };
