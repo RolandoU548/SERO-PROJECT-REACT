@@ -4,16 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Base } from "../components/login-signup/Base";
 import { Form } from "../components/login-signup/Form";
 import { Buttons } from "../components/login-signup/Buttons";
-import { LanguageButton } from "../components/LanguageButton";
-import { Darkmode } from "../components/Darkmode";
 
 export const SignUp = () => {
     const [t] = useTranslation("signup");
     const [signUpData, setSignUpData] = useState({ email: "", password: "" });
     return (
         <>
-            <LanguageButton className="absolute top-3 right-20 w-10 h-7" />
-            <Darkmode className="text-[10%] absolute top-3 right-4" />
             <video
                 autoPlay
                 loop

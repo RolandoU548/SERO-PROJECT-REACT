@@ -2,10 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../../../css/glass.css";
+import { LanguageButton } from "../LanguageButton";
+import { Darkmode } from "../Darkmode";
 
 export const Base = ({ children, right }) => {
     return (
         <>
+            <LanguageButton className="absolute top-3 right-20 w-10 h-7" />
+            <Darkmode className="text-[10%] absolute top-3 right-4" />
             <Link
                 to="/"
                 className={
