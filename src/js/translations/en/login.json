@@ -1,6 +1,7 @@
 {
     "message": "Log in to your account",
     "email": "Email",
+    "option": "Or login with your Google account",
     "exampleEmail": "name@email.com",
     "password": "Password",
     "examplePassword": "Password",

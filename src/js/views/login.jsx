@@ -26,8 +26,14 @@ export const LogIn = () => {
                     forgottenPassword={t("forgottenPassword")}
                     submitButton={t("loginButton")}
                 />
-                <hr className="my-8 border-t-[1px] border-gray-300 " />
-                <Buttons buttonGoogle={t("loginGoogle")} />
+                <div className="border-b text-center">
+                    <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white">
+                        {t("option")}
+                    </div>
+                </div>
+                <div className="mt-5">
+                    <Buttons buttonGoogle={t("loginGoogle")} />
+                </div>
                 <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                     {t("noAccount")}
                     <Link
