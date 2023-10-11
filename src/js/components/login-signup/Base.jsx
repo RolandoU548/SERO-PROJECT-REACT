@@ -14,10 +14,7 @@ export const Base = ({ children }) => {
                 muted
                 playsInline
                 className="w-[100%] h-[100%] -z-50 absolute object-cover dark:invert-0 invert">
-                <source
-                    src="/public/SERØ Live Background Login & Signup Short.mp4"
-                    type="video/mp4"
-                />
+                <source src="LoginSignupBG.mp4" type="video/mp4" />
             </video>
             <LanguageButton className="absolute top-3 right-20 w-10 h-7" />
             <Darkmode className="text-[10%] absolute top-3 right-4" />
