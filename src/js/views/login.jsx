@@ -23,7 +23,7 @@ export const LogIn = () => {
             </video>
 
             <Base right>
-                <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
+                <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
                     {t("message")}
                 </h2>
                 <Form
@@ -41,7 +41,6 @@ export const LogIn = () => {
                 <hr className="my-8 border-t-[1px] border-gray-300 " />
                 <Buttons
                     buttonGoogle={t("loginGoogle")}
-                    // buttonGithub={t("loginGithub")}
                 />
                 <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                     {t("noAccount")}

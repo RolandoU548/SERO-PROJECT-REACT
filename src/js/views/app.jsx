@@ -24,7 +24,7 @@ export const App = () => {
                     SERØ.
                 </h2>
                 <div
-                    className="hidden resp:flex justify-center items-center mr-5 w-10 h-10 text-2xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer transition duration-300"
+                    className="hidden resp:flex justify-center items-center mr-5 w-10 h-10 text-2xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer blue-transition"
                     onClick={() => {
                         setIsOpen(true);
                     }}>
@@ -53,29 +53,29 @@ export const App = () => {
                         <li className="my-2.5">
                             <Link
                                 to="/"
-                                className="text-lg font-medium ml-6 text-gray-200 hover:text-cyan-300 transition duration-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
+                                className="text-xl font-medium ml-6 text-gray-200 hover:text-cyan-300 blue-transition resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
                                 {t("home")}
                             </Link>
                         </li>
                         <li className="my-2.5">
                             <Link
                                 to="/services"
-                                className="text-lg font-medium ml-7 text-gray-200
-                                hover:text-cyan-300 transition duration-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
+                                className="blue-transition text-xl font-medium ml-7 text-gray-200
+                                hover:text-cyan-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
                                 {t("services")}
                             </Link>
                         </li>
                         <li className="my-2.5">
                             <Link
                                 to="/contact"
-                                className="text-lg font-medium ml-7 text-gray-200 hover:text-cyan-300 transition duration-300
+                                className="text-xl font-medium ml-7 text-gray-200 hover:text-cyan-300 blue-transition
                                 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
                                 {t("contacts")}
                             </Link>
                         </li>
                         <li className="my-2.5">
                             <button
-                                className="login-button w-32 text-lg rounded-full p-2 text-black ml-6 resp:dark:bg-gray-100 transition duration-300 bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 hover:text-gray-800 resp:m-0 resp:border resp:border-gray-300"
+                                className="login-button w-40 text-xl rounded-full p-2 text-black ml-6 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
                                 onClick={() => {
                                     navigate("/login");
                                 }}>
@@ -84,7 +84,7 @@ export const App = () => {
                         </li>
                         <li className="my-2.5">
                             <button
-                                className="signup-button w-32 text-lg rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 transition duration-1000 bg-gradient-to-r from-white to-[rgba(255,255,255,0.8)] hover:to-cyan-400 hover:text-gray-800 resp:m-0 resp:border resp:border-gray-300"
+                                className="signup-button w-40 text-xl rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
                                 onClick={() => {
                                     navigate("/signup");
                                 }}>
@@ -92,7 +92,7 @@ export const App = () => {
                             </button>
                         </li>
                         <li className="my-2.5">
-                            <LanguageButton className="ml-3 resp:absolute resp:top-3 resp:right-5" />
+                            <LanguageButton className="ml-7 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
                         </li>
                     </ul>
                 </nav>

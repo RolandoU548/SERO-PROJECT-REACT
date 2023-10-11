@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../../../css/glass.css";
 
 export const Base = ({ children, right }) => {
     return (
@@ -8,16 +9,16 @@ export const Base = ({ children, right }) => {
             <Link
                 to="/"
                 className={
-                    "absolute top-3 z-40 text-4xl font-semibold" +
-                    " " +
-                    (right ? "left-10 text-gray-400" : "right-10 text-gray-500")
+                    "absolute top-3 z-40 text-4xl font-semibold left-10 text-black dark:text-white"
                 }>
                 SERØ.
             </Link>
-        <div className="form-container w-[50%] resp:w-[80%] h-full p-6">
-            {children}
-        </div>
-                    </>
+            <div className="h-screen flex justify-center items-center">
+                <div className="form-container w-[50%] resp:w-[80%] p-6 glass">
+                    {children}
+                </div>
+            </div>
+        </>
     );
 };
 
