@@ -10,18 +10,7 @@ export const SignUp = () => {
     const [signUpData, setSignUpData] = useState({ email: "", password: "" });
     return (
         <>
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-[100%] h-[100%] -z-50 absolute object-cover dark:invert-0 invert">
-                <source
-                    src="/public/SERØ Live Background Login & Signup Short.mp4"
-                    type="video/mp4"
-                />
-            </video>
-            <Base left>
+            <Base>
                 <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-3">
                     {t("message")}
                 </h2>

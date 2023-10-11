@@ -10,19 +10,7 @@ export const LogIn = () => {
     const [logInData, setLogInData] = useState({ email: "", password: "" });
     return (
         <>
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-[100%] h-[100%] -z-50 absolute object-cover">
-                <source
-                    src="/public/SERØ Live Background Login & Signup Short.mp4"
-                    type="video/mp4"
-                />
-            </video>
-
-            <Base right>
+            <Base>
                 <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
                     {t("message")}
                 </h2>
@@ -39,9 +27,7 @@ export const LogIn = () => {
                     submitButton={t("loginButton")}
                 />
                 <hr className="my-8 border-t-[1px] border-gray-300 " />
-                <Buttons
-                    buttonGoogle={t("loginGoogle")}
-                />
+                <Buttons buttonGoogle={t("loginGoogle")} />
                 <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                     {t("noAccount")}
                     <Link
