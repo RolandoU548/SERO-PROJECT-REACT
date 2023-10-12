@@ -8,6 +8,7 @@ import { BackArrow } from "./components/BackArrow.jsx";
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
 import { SignUp } from "./views/signup.jsx";
+import { Database } from "./views/database.jsx";
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
@@ -52,6 +53,19 @@ const Layout = () => {
                                     className="absolute top-2 left-2 md:hidden"
                                 />
                                 <SignUp />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/database"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackArrow
+                                    to="/"
+                                    className="absolute top-2 left-2 md:hidden"
+                                />
+                                <Database />
                             </>
                         }
                     />

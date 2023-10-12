@@ -43,7 +43,7 @@ export const App = () => {
                         }}></div>
                     <nav
                         className={
-                            "navbar-home mr-4 lg:mr-16 resp:dark:bg-slate-800 resp:bg-white resp:m-0 resp:fixed resp:w-60 resp:h-screen resp:top-0 resp:p-7 resp:z-10" +
+                            "navbar-home mr-4 lg:mr-16 resp:dark:bg-zinc-950 resp:bg-white resp:m-0 resp:fixed resp:w-60 resp:h-screen resp:top-0 resp:p-7 resp:z-10" +
                             " " +
                             (isOpen ? "resp:right-0" : "resp:-right-60")
                         }>
@@ -98,20 +98,29 @@ export const App = () => {
                         </ul>
                     </nav>
                 </header>
-                <div className="absolute cursor-pointer left-1/2 bottom-6 -translate-x-1/2 -translate-y-1/2 rounded-xl border-b-[25px] border-l-[60px] border-r-[60px] border-b-cyan-400 border-l-transparent border-r-transparent rotate-180"></div>
                 <h1 className="mix-blend-difference lg:px-36 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
                     {t("title")}
                 </h1>
+                <div
+                    className="cursor-pointer m-auto mt-64 w-0 h-0
+                    border-l-[60px] border-l-transparent
+                    border-t-[35px] border-t-cyan-300
+                    border-r-[60px] border-r-transparent"></div>
             </div>
-            <div className="flex justify-evenly flex-wrap mb-10 gap-5">
-                <div className="w-64 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
-                    Database
+            <div className="flex justify-evenly flex-wrap my-10 gap-5">
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white" onClick={() => {
+                    navigate("/database")
+                }}>
+                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">Database</h2>
                 </div>
-                <div className="w-64 bg-[url('../../../public/FormCardBG.webp')] bg-center bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
-                    Form
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">Form</h2>
                 </div>
-                <div className="w-64 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-center bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
-                    Dashboard
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/DashboardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">Database</h2>
                 </div>
             </div>
         </>
