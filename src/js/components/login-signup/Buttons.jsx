@@ -18,6 +18,5 @@ export const Buttons = ({ buttonGoogle }) => {
 };
 
 Buttons.propTypes = {
-    buttonGoogle: PropTypes.string.isRequired,
-    buttonGithub: PropTypes.string.isRequired
+    buttonGoogle: PropTypes.string.isRequired
 };

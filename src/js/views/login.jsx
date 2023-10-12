@@ -27,7 +27,7 @@ export const LogIn = () => {
                     submitButton={t("loginButton")}
                 />
                 <div className="border-b text-center">
-                    <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white">
+                    <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white rounded">
                         {t("option")}
                     </div>
                 </div>

@@ -17,10 +17,10 @@ export const App = () => {
                     loop
                     muted
                     playsInline
-                    className="w-[100%] h-[100%] -z-50 absolute object-cover">
+                    className="w-[100%] h-[100%] -z-50 fixed object-cover">
                     <source src="SERO_BG.mp4" type="video/mp4" />
                 </video>
-                <header className="flex justify-between items-center z-40 fixed top-0 w-full py-3">
+                <header className="flex justify-between items-center z-40 relative top-0 w-full py-3">
                     <h2 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer">
                         SERØ.
                     </h2>
@@ -98,23 +98,20 @@ export const App = () => {
                         </ul>
                     </nav>
                 </header>
-                {/* <div className="absolute left-1/2 bottom-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xl border-b-[25px] border-l-[60px] border-r-[60px] border-b-cyan-400 border-l-transparent border-r-transparent"></div> */}
-                <h1 className="mix-blend-difference w-[80%] text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center absolute text-white top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute cursor-pointer left-1/2 bottom-6 -translate-x-1/2 -translate-y-1/2 rounded-xl border-b-[25px] border-l-[60px] border-r-[60px] border-b-cyan-400 border-l-transparent border-r-transparent rotate-180"></div>
+                <h1 className="mix-blend-difference lg:px-36 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
                     {t("title")}
                 </h1>
             </div>
-            <div className="absolute min-h-full min-w-full bg-black">
-                <div className="font-semibold border-2 border-white text-5xl grid place-content-center rounded-2xl bg-white text-white absolute bottom-6 left-20 h-4/5 w-1/4 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-right bg-cover">
-                    <div className="bg-black absolute w-[100%] h-[100%] rounded-2xl opacity-60 z-0"></div>
-                    <h2 className="z-10">Database</h2>
+            <div className="flex justify-evenly flex-wrap mb-10 gap-5">
+                <div className="w-64 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                    Database
                 </div>
-                <div className="font-semibold border-2 border-white text-5xl grid place-content-center rounded-2xl text-white absolute bottom-6 left-1/3 ms-12 h-4/5 w-1/4 bg-[url('../../../public/FormCardBG.webp')] bg-cover bg-center">
-                    <div className="bg-black absolute w-[100%] h-[100%] rounded-2xl opacity-60 z-0"></div>
-                    <h2 className="z-10">Form</h2>
+                <div className="w-64 bg-[url('../../../public/FormCardBG.webp')] bg-center bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                    Form
                 </div>
-                <div className="font-semibold border-2 border-white text-5xl grid place-content-center rounded-2xl bg-white text-white absolute bottom-6 right-20 h-4/5 w-1/4 bg-[url('../../../public/DashboardBG.jpg')] bg-center">
-                    <div className="bg-black absolute w-[100%] h-[100%] rounded-2xl opacity-60 z-0"></div>
-                    <h2 className="z-10">Dashboard</h2>
+                <div className="w-64 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-center bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                    Dashboard
                 </div>
             </div>
         </>
