@@ -27,7 +27,7 @@ export const Form = ({
             <label className="dark:text-white text-xl">
                 {email}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
                     placeholder={exampleEmail}
                     type="email"
                     name="email"
@@ -44,7 +44,7 @@ export const Form = ({
             <label className="dark:text-white text-xl">
                 {password}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
                     placeholder={examplePassword}
                     type="password"
                     name="password"

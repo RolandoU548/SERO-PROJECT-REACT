@@ -21,7 +21,7 @@ export const Base = ({ children }) => {
             <Link
                 to="/"
                 className={
-                    "absolute top-3 z-40 text-4xl font-semibold left-10 text-black dark:text-white"
+                    "font-serif absolute top-3 z-40 text-4xl font-semibold left-10 text-black dark:text-white"
                 }>
                 SERØ.
             </Link>
