@@ -18,7 +18,7 @@ export const Database = () => {
                     muted
                     playsInline
                     className="w-[100%] h-[100%] -z-50 fixed object-cover">
-                    <source src="SERO_BG.mp4" type="video/mp4" />
+                    <source src="../../../public/DatabaseBG.mp4" type="video/mp4" />
                 </video>
                     <h2 className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer" onClick={() => {
                         navigate("/")
