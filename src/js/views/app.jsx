@@ -108,19 +108,23 @@ export const App = () => {
                     border-r-[60px] border-r-transparent"></div>
             </div>
             <div className="flex justify-evenly flex-wrap mb-10 gap-5">
-                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white" onClick={() => {
-                    navigate("/database")
-                }}>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    onClick={() => {
+                        navigate("/database");
+                    }}>
                     <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">Database</h2>
                 </div>
-                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white" onClick={() => {
-                    navigate("/form")
-                }}>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    onClick={() => {
+                        navigate("/form");
+                    }}>
                     <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">Form</h2>
                 </div>
-                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/DashboardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
                     <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">Dashboard</h2>
                 </div>

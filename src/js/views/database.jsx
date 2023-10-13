@@ -18,13 +18,15 @@ export const Database = () => {
                     muted
                     playsInline
                     className="w-[100%] h-[100%] -z-50 fixed object-cover">
-                    <source src="../../../public/DatabaseBG.mp4" type="video/mp4" />
+                    <source src="DatabaseBG.mp4" type="video/mp4" />
                 </video>
-                    <h2 className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer" onClick={() => {
-                        navigate("/")
+                <h2
+                    className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
+                    onClick={() => {
+                        navigate("/");
                     }}>
-                        SERØ.
-                    </h2>
+                    SERØ.
+                </h2>
                 <h1 className="mix-blend-difference lg:px-36 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
                     Bienvenido al database mamaguevo!
                 </h1>
