@@ -5,8 +5,8 @@ import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "../components/LanguageButton";
 
-export const App = () => {
-    const [t] = useTranslation("app");
+export const Cards = () => {
+    const [t] = useTranslation("private");
 
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
@@ -81,7 +81,7 @@ export const App = () => {
                             </li>
                             <li className="my-2.5">
                                 <button
-                                    className="login-button w-40 text-xl p-2 text-black ml-6 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
+                                    className="login-button w-40 text-xl rounded-full p-2 text-black ml-6 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
                                     onClick={() => {
                                         navigate("/login");
                                     }}>
@@ -90,7 +90,7 @@ export const App = () => {
                             </li>
                             <li className="my-2.5">
                                 <button
-                                    className="signup-button w-40 text-xl p-2 text-black ml-4 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
+                                    className="signup-button w-40 text-xl rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
                                     onClick={() => {
                                         navigate("/signup");
                                     }}>
@@ -103,35 +103,35 @@ export const App = () => {
                         </ul>
                     </nav>
                 </header>
-                <h2 className="mix-blend-difference lg:px-36 mt-60 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
-                    {t("title")}
-                </h2>
-                <h2 className="mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-[0.5rem] tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-10 text-center text-white">
-                    {t("subtitle")}
-                </h2>
-                <div className="flex justify-center mt-10 mb-8">
-                    <button
-                        className="w-[250px] p-6 getStarted-button text-3xl text-black ml-6 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
-                        onClick={() => {
-                            navigate("/signup");
-                        }}>
-                        {t("getStarted")}
-                    </button>
+                <div className="mix-blend-difference mx-auto mt-32 w-4/5 h-14">
+                    <h2 className="text-3xl text-center">{t("cardMessage")}</h2>
                 </div>
-                <div className="glass mix-blend-difference w-4/5 h-3/5 p-12 mt-[260px] mb-10 m-auto">
-                    <h2 className="text-5xl">¿Quiénes somos?</h2>
-                    <h2 className="text-2xl">
-                        <br></br>
-                        Somos un grupo de desarrolladores Full-Stack que creó
-                        SERØ para solventar problemas de organización de base de
-                        datos.<br></br>
-                        <br></br>
-                        Esta Web App se especializa en automatizar todo aquello
-                        relacionado a la información importante que contenga una
-                        empresa, una firma de abogados, o cualquier otra entidad
-                        que necesite simplicidad en su sistema.<br></br>
-                        <br></br>
-                    </h2>
+                <div
+                    className="cursor-pointer m-auto mb-5 w-0 h-0
+                    border-l-[60px] border-l-transparent
+                    border-t-[35px] border-t-cyan-300
+                    border-r-[60px] border-r-transparent"></div>
+            </div>
+            <div className="flex justify-evenly flex-wrap mb-10 gap-5">
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    onClick={() => {
+                        navigate("/database");
+                    }}>
+                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">{t("databaseCard")}</h2>
+                </div>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    onClick={() => {
+                        navigate("/form");
+                    }}>
+                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">{t("formCard")}</h2>
+                </div>
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">{t("dashboardCard")}</h2>
                 </div>
             </div>
         </>

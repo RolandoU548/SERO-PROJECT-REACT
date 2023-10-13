@@ -1,0 +1,12 @@
+{
+    "home": "Inicio",
+    "services": "Servicios",
+    "contacts": "Contacto",
+    "login": "Iniciar Sesión",
+    "signup": "Crear Cuenta",
+    "privateTitle": "Solucionamos tus problemas",
+    "cardMessage": "Elije la carta de tu preferencia",
+    "databaseCard": "Base de Datos",
+    "formCard": "Formularios",
+    "dashboardCard": "Panel de Control"
+}

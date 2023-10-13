@@ -26,8 +26,12 @@
   transform: rotate(-75deg);
   width: 10em;
   height: 10em;
-  box-shadow: 3em 2.5em 0 0em rgba(0, 0, 0, 0.5) inset, rgba(0, 0, 0, 0.2) 0em -7em 0 -4.5em, rgba(0, 0, 0, 0.2) 3em 7em 0 -4.5em, rgba(0, 0, 0, 0.2) 2em 13em 0 -4em, rgba(0, 0, 0, 0.2) 6em 2em 0 -4.1em, rgba(0, 0, 0, 0.2) 8em 8em 0 -4.5em, rgba(0, 0, 0, 0.2) 6em 13em 0 -4.5em, rgba(0, 0, 0, 0.2) -4em 7em 0 -4.5em, rgba(0, 0, 0, 0.2) -1em 10em 0 -4.5em;
+  box-shadow: 3em 2.5em 0 0em rgb(255, 255, 255) inset
 }
+
+/* Stars below here */
+
+/* rgba(0, 0, 0, 0.2) 0em -7em 0 -4.5em, rgba(0, 0, 0, 0.2) 3em 7em 0 -4.5em, rgba(0, 0, 0, 0.2) 2em 13em 0 -4em, rgba(0, 0, 0, 0.2) 6em 2em 0 -4.1em, rgba(0, 0, 0, 0.2) 8em 8em 0 -4.5em, rgba(0, 0, 0, 0.2) 6em 13em 0 -4.5em, rgba(0, 0, 0, 0.2) -4em 7em 0 -4.5em, rgba(0, 0, 0, 0.2) -1em 10em 0 -4.5em; */
 
 .sun {
   top: 4.5em;

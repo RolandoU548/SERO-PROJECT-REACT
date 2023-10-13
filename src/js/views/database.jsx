@@ -23,7 +23,7 @@ export const Database = () => {
                 <h2
                     className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                     onClick={() => {
-                        navigate("/");
+                        navigate("/private");
                     }}>
                     SERØ.
                 </h2>
