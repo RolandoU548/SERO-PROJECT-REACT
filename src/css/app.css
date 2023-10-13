@@ -17,27 +17,12 @@
   color: #00f2ff;
 }
 
-.getStarted-button {
-  background-color: #ffffff;
-  color: black;
-  padding: 15px;
-  border: none;
-  border-radius: 50px;
-}
-
-.getStarted-button:hover {
-  background-color: #00f2ff;
-  color: #ffffff;
-  transition: 0.5s;
-  cursor: pointer;
-}
-
 .login-button, .signup-button {
   background-color: #ffffff;
   color: black;
-  padding: 10px;
+  padding: 8px;
   border: none;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 
 .login-button:hover, .signup-button:hover {
