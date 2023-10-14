@@ -25,7 +25,7 @@ export const Base = ({ children }) => {
                 }>
                 SERØ.
             </Link>
-            <div className="h-screen flex justify-center items-center">
+            <div className="min-h-screen flex justify-center items-center">
                 <div className="form-container w-[50%] resp:w-[80%] p-6 glass">
                     {children}
                 </div>
