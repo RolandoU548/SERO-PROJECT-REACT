@@ -19,13 +19,16 @@ export const Form = () => {
             <h2
                 className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                 onClick={() => {
-                    navigate("/");
+                    navigate("/private");
                 }}>
                 SERØ.
             </h2>
-            <h1 className="mix-blend-difference lg:px-36 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
-                Bienvenido al form pana flexsd!
+            <h1 className="lg:px-36 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white">
+                Form
             </h1>
+            <div className="glass p-10 w-11/12 mt-5 m-auto">
+                Formulario por modelar...
+            </div>
         </div>
     );
 };

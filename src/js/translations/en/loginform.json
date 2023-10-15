@@ -1,4 +1,6 @@
 {
+    "nameRequired": "Name is required",
+    "lastNameRequired": "Last Name is required",
     "emailRequired": "Email is required",
     "emailMinLength": "Email must be at least 5 characters",
     "emailMaxLength": "Email must have a maximum of 30 characters",

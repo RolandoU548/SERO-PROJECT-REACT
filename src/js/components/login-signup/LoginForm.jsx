@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-export const LoginSignup = ({
+export const LoginForm = ({
     email,
     exampleEmail,
     password,
@@ -14,7 +14,7 @@ export const LoginSignup = ({
     children,
     onSubmit
 }) => {
-    const [t] = useTranslation("loginsignup");
+    const [t] = useTranslation("loginform");
     const {
         register,
         handleSubmit,
@@ -101,7 +101,7 @@ export const LoginSignup = ({
     );
 };
 
-LoginSignup.propTypes = {
+LoginForm.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array,

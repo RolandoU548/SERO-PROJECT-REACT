@@ -1,0 +1,11 @@
+{
+    "nameRequired": "Nombre requerido",
+    "lastNameRequired": "Apellido requerido",
+    "emailRequired": "Correo requerido",
+    "emailMinLength": "Correo debe tener al menos 5 caracteres",
+    "emailMaxLength": "Correo debe tener máximo 30 caracteres",
+    "invalidEmail": "Correo no válido",
+    "passwordRequired": "Contraseña requerida",
+    "passwordMinLength": "Contraseña debe tener al menos 6 caracteres",
+    "passwordMaxLength": "Contraseña debe tener máximo 15 caracteres"
+}

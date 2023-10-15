@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Base } from "../components/login-signup/Base";
 import { Buttons } from "../components/login-signup/Buttons";
-import { LoginSignup } from "../components/login-signup/LoginSignup";
+import { LoginForm } from "../components/login-signup/LoginForm";
 
 export const LogIn = () => {
     const [t] = useTranslation("login");
@@ -14,7 +14,7 @@ export const LogIn = () => {
             <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
                 {t("message")}
             </h2>
-            <LoginSignup
+            <LoginForm
                 email={t("email")}
                 exampleEmail={t("exampleEmail")}
                 password={t("password")}
