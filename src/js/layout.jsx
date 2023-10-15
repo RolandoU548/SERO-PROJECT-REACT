@@ -116,8 +116,6 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackgroundVideo />
-                                <Navbar />
                                 <Private />
                             </>
                         }

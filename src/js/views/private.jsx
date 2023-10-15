@@ -11,21 +11,33 @@ export const Private = () => {
     return (
         <>
             <div className="font-serif text-gray-200">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-[100%] h-[100%] -z-50 fixed object-cover">
+                    <source
+                        src="../../../public/PrivateBG.mp4"
+                        type="video/mp4"
+                    />
+                </video>
                 {/* <h2 className="mix-blend-difference lg:px-32 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
                     {t("privateTitle")}
                 </h2> */}
-                <div className="">
-                    <div className="mix-blend-difference mx-auto mt-20 w-4/5 h-14">
-                        <h2 className="text-3xl text-center">
+                <div className="h-32"></div>
+                <div className="mb-20">
+                    <div className="mix-blend-difference mx-auto w-4/5 h-14">
+                        <h2 className="text-5xl text-center">
                             {t("cardMessage")}
                         </h2>
                     </div>
-                    <a
+                    {/* <a
                         className="cursor-pointer m-auto w-0 h-0
                     border-l-[60px] border-l-transparent
                     border-t-[35px] border-t-cyan-300
                     border-r-[60px] border-r-transparent block"
-                        href="#cards"></a>
+                        href="#cards"></a> */}
                 </div>
             </div>
             <div

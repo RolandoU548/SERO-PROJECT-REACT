@@ -69,7 +69,7 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <button
-                            className="w-40 hover:bg-cyan-300 transition duration-300 hover:text-gray-600 text-xl p-2 text-black ml-6 bg-white rounded-full resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
+                            className="w-40 hover:bg-cyan-300 transition duration-300 hover:text-white text-xl p-2 text-black ml-6 bg-white rounded-full resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                             onClick={() => {
                                 navigate("/login");
                             }}>
@@ -78,7 +78,7 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <button
-                            className="hover:bg-cyan-300 transition duration-300 hover:text-gray-600 w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
+                            className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                             onClick={() => {
                                 navigate("/signup");
                             }}>
