@@ -21,7 +21,7 @@ export const LoginSignupCard = () => {
                         {/* SIGNUP */}
                         <div>
                             <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-3">
-                                {t("message")}
+                                {t("signupMessage")}
                             </h2>
                             <SignUpForm
                                 name={t("name")}
@@ -41,13 +41,13 @@ export const LoginSignupCard = () => {
                             </SignUpForm>
                             <div className="border-b text-center">
                                 <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white rounded transition duration-500">
-                                    {t("option")}
+                                    {t("signupOption")}
                                 </div>
                             </div>
                             <div className="mt-5">
                                 <Buttons buttonGoogle={t("signupGoogle")} />
                             </div>
-                            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-2">
+                            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                                 {t("account")}
                                 <button
                                     className="ml-1 minimum:text-xl underline underline-offset-8 text-gray-600 dark:text-white"
@@ -59,7 +59,7 @@ export const LoginSignupCard = () => {
                         {/* LOGIN */}
                         <div>
                             <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
-                                {t("message")}
+                                {t("loginMessage")}
                             </h2>
                             <LoginForm
                                 email={t("email")}
@@ -72,18 +72,18 @@ export const LoginSignupCard = () => {
                             />
                             <div className="border-b text-center">
                                 <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white rounded transition duration-500">
-                                    {t("option")}
+                                    {t("loginOption")}
                                 </div>
                             </div>
                             <div className="mt-5">
                                 <Buttons buttonGoogle={t("loginGoogle")} />
                             </div>
-                            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
+                            <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-2">
                                 {t("noAccount")}
                                 <button
-                                    className="ml-1 minimum:text-xl underline underline-offset-8 text-gray-600"
+                                    className="ml-1 minimum:text-xl underline underline-offset-8 text-gray-600 dark:text-white"
                                     onClick={() => setFlip(!flip)}>
-                                    {t("login")}
+                                    {t("signupButton")}
                                 </button>
                             </p>
                         </div>
