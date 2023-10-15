@@ -106,7 +106,7 @@ export const Services = () => {
                 {t("title")}
             </h2>
             <h2 className="mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-[0.5rem] tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-10 text-center text-white">
-                SERVICIOS
+                {t("services")}
             </h2>
         </div>
     );
