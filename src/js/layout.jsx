@@ -11,6 +11,9 @@ import { SignUp } from "./views/signup.jsx";
 import { Database } from "./views/database.jsx";
 import { Form } from "./views/form.jsx";
 import { Private } from "./views/private.jsx";
+import { Services } from "./views/services.jsx";
+import { Contact } from "./views/contact.jsx";
+
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
@@ -92,6 +95,8 @@ const Layout = () => {
                             </>
                         }
                     />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </ScrollToTop>
         </BrowserRouter>
