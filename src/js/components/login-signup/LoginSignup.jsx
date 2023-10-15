@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
-export const Form = ({
+export const LoginSignup = ({
     email,
     exampleEmail,
     password,
@@ -13,6 +14,7 @@ export const Form = ({
     children,
     onSubmit
 }) => {
+    const [t] = useTranslation("loginsignup");
     const {
         register,
         handleSubmit,
@@ -35,18 +37,18 @@ export const Form = ({
                     type="text"
                     autoComplete="email"
                     {...register("email", {
-                        required: { value: true, message: "Correo requerido" },
+                        required: { value: true, message: t("emailRequired") },
                         minLength: {
                             value: 5,
-                            message: "Correo debe tener al menos 5 caracteres"
+                            message: t("emailMinLength")
                         },
                         maxLength: {
                             value: 30,
-                            message: "Correo debe tener máximo 30 caracteres"
+                            message: t("emailMaxLength")
                         },
                         pattern: {
                             value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}/,
-                            message: "Correo no válido"
+                            message: t("invalidEmail")
                         }
                     })}
                 />
@@ -66,17 +68,15 @@ export const Form = ({
                     {...register("password", {
                         required: {
                             value: true,
-                            message: "Contraseña requerida"
+                            message: t("passwordRequired")
                         },
                         minLength: {
                             value: 6,
-                            message:
-                                "Contraseña debe tener al menos 6 caracteres"
+                            message: t("passwordMinLength")
                         },
                         maxLength: {
                             value: 15,
-                            message:
-                                "Contraseña debe tener máximo 15 caracteres"
+                            message: t("passwordMaxLength")
                         }
                     })}
                 />
@@ -101,7 +101,7 @@ export const Form = ({
     );
 };
 
-Form.propTypes = {
+LoginSignup.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array,

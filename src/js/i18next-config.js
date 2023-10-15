@@ -8,7 +8,9 @@ import signupEn from "./translations/en/signup.json";
 import notfoundEs from "./translations/es/notfound.json";
 import notfoundEn from "./translations/en/notfound.json";
 import privateEs from "./translations/es/private.json";
-import privateEn from "./translations/en/private.json"
+import privateEn from "./translations/en/private.json";
+import loginsignupEs from "./translations/es/loginsignup.json";
+import loginsignupEn from "./translations/en/loginsignup.json";
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -20,14 +22,16 @@ i18next.init({
             login: loginEs,
             signup: signupEs,
             notfound: notfoundEs,
-            private: privateEs
+            private: privateEs,
+            loginsignup: loginsignupEs
         },
         en: {
             app: appEn,
             login: loginEn,
             signup: signupEn,
             notfound: notfoundEn,
-            private: privateEn
+            private: privateEn,
+            loginsignup: loginsignupEn
         }
     }
 });
