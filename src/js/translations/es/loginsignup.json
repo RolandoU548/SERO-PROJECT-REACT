@@ -1,0 +1,22 @@
+{
+    "loginButton": "Iniciar Sesión",
+    "loginGoogle": "Iniciar Sesión con Google",
+    "noAccount": "No tienes una cuenta?",
+    "message": "¿Usuario Nuevo? ¡Regístrate!",
+    "signupGoogle": "Regístrate con Google",
+    "option": "O regístrate con tu cuenta Google",
+    "name": "Nombre",
+    "exampleName": "Alan",
+    "lastName": "Apellido",
+    "exampleLastName": "Anderson",
+    "email": "Correo electrónico",
+    "exampleEmail": "nombre@correoelectrónico.com",
+    "password": "Contraseña",
+    "examplePassword": "Contraseña",
+    "forgottenPassword": "Olvidaste tu contraseña?",
+    "agreement": "Acepto cumplir con los Términos de servicio de SERØ y su Política de privacidad",
+    "signupButton": "Crear Cuenta",
+    "account": "Ya tienes una cuenta?",
+    "login": "Acceder",
+    "signup": "Registro exitoso"
+}

@@ -9,10 +9,12 @@ import notfoundEs from "./translations/es/notfound.json";
 import notfoundEn from "./translations/en/notfound.json";
 import privateEs from "./translations/es/private.json";
 import privateEn from "./translations/en/private.json";
-import loginsignupEs from "./translations/es/loginform.json";
-import loginsignupEn from "./translations/en/loginform.json";
+import loginformEs from "./translations/es/loginform.json";
+import loginformEn from "./translations/en/loginform.json";
 import signupformEs from "./translations/es/signupform.json";
-import signupformEn from "./translations/en/signupform.json"
+import signupformEn from "./translations/en/signupform.json";
+import loginsignupEs from "./translations/es/loginsignup.json";
+import loginsignupEn from "./translations/en/loginsignup.json"
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -25,8 +27,9 @@ i18next.init({
             signup: signupEs,
             notfound: notfoundEs,
             private: privateEs,
-            loginsignup: loginsignupEs,
-            signupform: signupformEs
+            loginform: loginformEs,
+            signupform: signupformEs,
+            loginsignup: loginsignupEs
         },
         en: {
             app: appEn,
@@ -34,9 +37,9 @@ i18next.init({
             signup: signupEn,
             notfound: notfoundEn,
             private: privateEn,
-            loginsignup: loginsignupEn,
-            signupform: signupformEn
-
+            loginform: loginformEn,
+            signupform: signupformEn,
+            loginsignup: loginsignupEn
         }
     }
 });

@@ -15,6 +15,7 @@ import { Form } from "./views/form.jsx";
 import { Private } from "./views/private.jsx";
 import { Services } from "./views/services.jsx";
 import { Contact } from "./views/contact.jsx";
+import { LoginSignupCard } from "./views/login-signup.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -117,6 +118,15 @@ const Layout = () => {
                         element={
                             <>
                                 <Private />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/login-signup"
+                        transition="fade"
+                        element={
+                            <>
+                                <LoginSignupCard />
                             </>
                         }
                     />

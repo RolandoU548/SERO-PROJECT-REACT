@@ -16,7 +16,7 @@ export const App = () => {
             </h2>
             <Link
                 className="w-[250px] hover:bg-[#00f2ff80] transition duration-300 m-auto block mt-16 p-4 text-3xl text-center border border-white rounded-full"
-                to="/signup">
+                to="/login-signup">
                 {t("getStarted")}
             </Link>
             <div className="glass w-4/5 p-12 mt-56 mb-10 m-auto text-2xl ">

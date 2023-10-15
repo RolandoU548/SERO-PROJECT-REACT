@@ -1,0 +1,16 @@
+.ReactCardFlipper {
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .ReactCardFlipper > div {
+    backface-visibility: hidden;
+  }
+  
+  .ReactCardFlipper > div:first-child {
+    transform: rotateX(0deg);
+  }
+  
+  .ReactCardFlipper > div:last-child {
+    transform: rotateX(180deg);
+  }
+  
