@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import { Darkmode } from "./components/Darkmode.jsx";
+import { Navbar } from "./components/Navbar.jsx";
+import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
 import { LanguageButton } from "./components/LanguageButton.jsx";
 import { BackArrow } from "./components/BackArrow.jsx";
 
@@ -27,7 +29,36 @@ const Layout = () => {
         <BrowserRouter basename={basename}>
             <ScrollToTop>
                 <Routes>
-                    <Route path="/" element={<App />} />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <App />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/services"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Services />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/contact"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Contact />
+                            </>
+                        }
+                    />
                     <Route
                         path="/login"
                         transition="fade"
@@ -83,7 +114,13 @@ const Layout = () => {
                     <Route
                         path="/private"
                         transition="fade"
-                        element={<Private />}
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Private />
+                            </>
+                        }
                     />
                     <Route
                         path="*"
@@ -95,8 +132,6 @@ const Layout = () => {
                             </>
                         }
                     />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </ScrollToTop>
         </BrowserRouter>
