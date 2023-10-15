@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import { useTranslation } from "react-i18next";
-import { LanguageButton } from "../components/LanguageButton";
 
 export const Database = () => {
     const [t] = useTranslation("app");
 
-    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     return (
         <>
@@ -23,7 +21,7 @@ export const Database = () => {
                 <h2
                     className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                     onClick={() => {
-                        navigate("/private");
+                        navigate("/");
                     }}>
                     SERØ.
                 </h2>

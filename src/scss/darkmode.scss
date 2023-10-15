@@ -2,7 +2,7 @@ $height: 16em;
 $width: 30em;
 $color-night: #00f2ff;
 $btn-radius: 10em;
-$moon-color: rgba(0, 0, 0, 0.5);
+$moon-color: #00000080;
 $sun-color: #ffffff;
 
 .tdnn {
@@ -12,14 +12,14 @@ $sun-color: #ffffff;
     height: $height;
     width: $width;
     border-radius: $height;
-    transition: all 2s;
+    transition: all 0.5s;
     background: $color-night;
     cursor: pointer;
-    box-shadow: 0 0 6px -1px #ffffff;
+    box-shadow: 0 0 10px 0px #ffffff;
     z-index: 100;
 }
 .day {
-    background: #000000;
+    background: #ffbf71;
 }
 .moon {
     position: relative;
@@ -31,6 +31,7 @@ $sun-color: #ffffff;
     transform: rotate(-75deg);
     width: $btn-radius;
     height: $btn-radius;
+    background: $color-night;
     box-shadow:
         3em 2.5em 0 0em $moon-color inset,
         rgba(0, 0, 0, 0.2) 0em -7em 0 -4.5em,

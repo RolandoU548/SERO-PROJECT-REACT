@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
@@ -57,31 +57,31 @@ export const Private = () => {
                         </h2>
                         <ul className="flex items-center resp:mt-5 resp:flex-col">
                             <li className="my-2.5">
-                                <Link
-                                    to="/"
+                                <NavLink
+                                    to="/private"
                                     className="text-xl font-medium ml-6 text-gray-200 hover:text-cyan-300 blue-transition resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
                                     {t("home")}
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="my-2.5">
-                                <Link
+                                <NavLink
                                     to="/services"
                                     className="blue-transition text-xl font-medium ml-7 text-gray-200
                                 hover:text-cyan-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
                                     {t("services")}
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="my-2.5">
-                                <Link
+                                <NavLink
                                     to="/contact"
                                     className="text-xl font-medium ml-7 text-gray-200 hover:text-cyan-300 blue-transition
                                 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
                                     {t("contacts")}
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="my-2.5">
                                 <button
-                                    className="login-button w-40 text-xl rounded-full p-2 text-black ml-6 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
+                                    className="hover:bg-cyan-300 transition duration-300 hover:text-gray-600 w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                                     onClick={() => {
                                         navigate("/login");
                                     }}>
@@ -90,7 +90,7 @@ export const Private = () => {
                             </li>
                             <li className="my-2.5">
                                 <button
-                                    className="signup-button w-40 text-xl rounded-full p-2 text-black ml-4 resp:dark:bg-gray-100 blue-transition resp:m-0 resp:border resp:border-gray-300"
+                                    className="hover:bg-cyan-300 transition duration-300 hover:text-gray-600 w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                                     onClick={() => {
                                         navigate("/signup");
                                     }}>
@@ -103,22 +103,22 @@ export const Private = () => {
                         </ul>
                     </nav>
                 </header>
-                <h2 className="mix-blend-difference lg:px-36 mt-64 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
+                <h2 className="mix-blend-difference lg:px-32 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
                     {t("privateTitle")}
                 </h2>
-                <div className="mix-blend-difference mx-auto mt-80 w-4/5 h-14">
+                <div className="mix-blend-difference mx-auto mt-20 w-4/5 h-14">
                     <h2 className="text-3xl text-center">{t("cardMessage")}</h2>
                 </div>
-                <div
-                    className="cursor-pointer m-auto mb-10 w-0 h-0
+                <a
+                    className="cursor-pointer m-auto w-0 h-0
                     border-l-[60px] border-l-transparent
                     border-t-[35px] border-t-cyan-300
-                    border-r-[60px] border-r-transparent"
-                    onClick={() => {
-                        navigate("/private/cards");
-                    }}></div>
+                    border-r-[60px] border-r-transparent block"
+                    href="#cards"></a>
             </div>
-            <div className="flex justify-evenly flex-wrap mb-10 gap-5">
+            <div
+                className="flex justify-evenly flex-wrap my-10 gap-5"
+                id="cards">
                 <div
                     className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
                     onClick={() => {

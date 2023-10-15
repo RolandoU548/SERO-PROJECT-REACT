@@ -11,7 +11,6 @@ import { SignUp } from "./views/signup.jsx";
 import { Database } from "./views/database.jsx";
 import { Form } from "./views/form.jsx";
 import { Private } from "./views/private.jsx";
-import { Cards } from "./views/cards.jsx"
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
@@ -25,14 +24,7 @@ const Layout = () => {
         <BrowserRouter basename={basename}>
             <ScrollToTop>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <App />
-                            </>
-                        }
-                    />
+                    <Route path="/" element={<App />} />
                     <Route
                         path="/login"
                         transition="fade"
@@ -88,28 +80,7 @@ const Layout = () => {
                     <Route
                         path="/private"
                         transition="fade"
-                        element={
-                            <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
-                                <Private />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/private/cards"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
-                                <Cards />
-                            </>
-                        }
+                        element={<Private />}
                     />
                     <Route
                         path="*"

@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import { useTranslation } from "react-i18next";
-import { LanguageButton } from "../components/LanguageButton";
 
 export const Form = () => {
     const [t] = useTranslation("app");
-
-    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     return (
         <>

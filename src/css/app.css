@@ -6,28 +6,6 @@
     transition: all 300ms;
   }
 }
-.blue-transition {
-  color: #ededed;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.blue-transition :hover,
-.blue-transition .active {
+.active {
   color: #00f2ff;
-}
-
-.login-button, .signup-button {
-  background-color: #ffffff;
-  color: black;
-  padding: 8px;
-  border: none;
-  border-radius: 20px;
-}
-
-.login-button:hover, .signup-button:hover {
-  background-color: #00f2ff;
-  color: #ffffff;
-  transition: 0.5s;
-  cursor: pointer;
 }/*# sourceMappingURL=app.css.map */
