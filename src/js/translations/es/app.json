@@ -4,5 +4,10 @@
     "contacts": "Contacto",
     "login": "Iniciar Sesión",
     "signup": "Crear Cuenta",
-    "title": "Solucionamos tu problema"
+    "title": "Bienvenido a SERØ",
+    "getStarted": "Regístrate",
+    "subtitle": "Simplifique su gestión de datos",
+    "aboutUs": "¿Quiénes somos?",
+    "whoWeAre": "Somos un grupo de desarrolladores Full-Stack que creó SERØ para solventar problemas de organización de base de datos.",
+    "description": "Esta Web App se especializa en automatizar todo aquello relacionado a la información importante que contenga una empresa, una firma de abogados, o cualquier otra entidad que necesite simplicidad en su sistema."
 }

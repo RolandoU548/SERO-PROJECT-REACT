@@ -2,13 +2,21 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import { Darkmode } from "./components/Darkmode.jsx";
+import { Navbar } from "./components/Navbar.jsx";
+import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
 import { LanguageButton } from "./components/LanguageButton.jsx";
 import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
 import { LogIn } from "./views/login.jsx";
 import { SignUp } from "./views/signup.jsx";
-import { Dash } from "./views/userDash.jsx";
+import { Database } from "./views/database.jsx";
+import { Form } from "./views/form.jsx";
+import { Private } from "./views/private.jsx";
+import { Services } from "./views/services.jsx";
+import { Contact } from "./views/contact.jsx";
+import { LoginSignupCard } from "./views/login-signup.jsx";
+
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
@@ -26,7 +34,29 @@ const Layout = () => {
                         path="/"
                         element={
                             <>
+                                <BackgroundVideo />
+                                <Navbar />
                                 <App />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/services"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Services />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/contact"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Contact />
                             </>
                         }
                     />
@@ -57,7 +87,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/userDash"
+                        path="/database"
                         transition="fade"
                         element={
                             <>
@@ -65,9 +95,38 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
-                                <LanguageButton className="absolute top-3 left-16" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                <Dash />
+                                <Database />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/form"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackArrow
+                                    to="/"
+                                    className="absolute top-2 left-2 md:hidden"
+                                />
+                                <Form />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/private"
+                        transition="fade"
+                        element={
+                            <>
+                                <Private />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/login-signup"
+                        transition="fade"
+                        element={
+                            <>
+                                <LoginSignupCard />
                             </>
                         }
                     />

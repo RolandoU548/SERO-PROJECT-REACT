@@ -1,0 +1,27 @@
+{
+    "loginMessage": "Log in to your account",
+    "email": "Email",
+    "loginOption": "Or login with your Google account",
+    "exampleEmail": "name@email.com",
+    "password": "Password",
+    "examplePassword": "Password",
+    "loginButton": "Log In",
+    "loginGoogle": "Log in with Google",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign Up",
+    "successLogin": "Successful login",
+
+    "signupMessage": "New User? Sign Up!",
+    "signupGoogle": "Sign Up with Google",
+    "signupOption": "Or sign up with your Google account",
+    "name": "Name",
+    "exampleName": "Alan",
+    "lastName": "Last Name",
+    "exampleLastName": "Anderson",
+    "forgottenPassword": "Forgot your password?",
+    "agreement": "I agree to abide by SERØ Terms of Service and its Privacy Policy",
+    "signupButton": "Sign Up",
+    "account": "Already have an account?",
+    "login": "Log In",
+    "sucessSignup": "Successful sign up"
+}
