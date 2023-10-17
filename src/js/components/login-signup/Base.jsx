@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { LanguageButton } from "../LanguageButton";
 import { Darkmode } from "../Darkmode";
-import "../../../css/glass.css"
+import "../../../css/glass.css";
 
 export const Base = ({ children }) => {
     return (
@@ -25,12 +25,9 @@ export const Base = ({ children }) => {
                 }>
                 SERØ.
             </Link>
-            {/* <div className="min-h-screen flex justify-center items-center"> */}
-                <div className="">
-                    {children}
-                    {/* classname = form-container w-[50%] resp:w-[80%]  p-6 glass */}
-                </div>
-            {/* </div> */}
+            <div className="min-h-screen flex justify-center items-center">
+                {children}
+            </div>
         </>
     );
 };
