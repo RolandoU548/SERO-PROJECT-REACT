@@ -25,9 +25,7 @@ export const Base = ({ children }) => {
                 }>
                 SERØ.
             </Link>
-            <div className="min-h-screen flex justify-center items-center">
-                {children}
-            </div>
+            <div className="overflow-hidden">{children}</div>
         </>
     );
 };
