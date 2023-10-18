@@ -16,7 +16,7 @@ export const LoginSignupCard = () => {
             <div className="mt-24"></div>
             <ReactCardFlip isFlipped={flip} flipDirection="vertical">
                 {/* SIGNUP */}
-                <div className="m-auto flex justify-center w-[50%] resp:w-[80%] items-center glass">
+                <div className="m-auto flex justify-center w-[50%] resp:w-[80%] items-center glass mb-24">
                     <div className="w-[100%] resp:w-[100%] p-6 my-4">
                         <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-3">
                             {t("signupMessage")}
@@ -56,7 +56,7 @@ export const LoginSignupCard = () => {
                     </div>
                 </div>
                 {/* LOGIN */}
-                <div className="m-auto flex justify-center w-[50%] resp:w-[80%] items-center glass mt-[13%]">
+                <div className="m-auto flex justify-center w-[50%] resp:w-[80%] items-center glass mt-[13%] mb-12">
                     <div className="w-[100%] resp:w-[100%] p-6 my-4">
                         <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
                             {t("loginMessage")}
