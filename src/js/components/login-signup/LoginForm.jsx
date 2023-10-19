@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -11,10 +12,11 @@ export const LoginForm = ({
     examplePassword,
     forgottenPassword,
     submitButton,
-    children,
-    onSubmit
+    children
 }) => {
     const [t] = useTranslation("loginform");
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -22,13 +24,22 @@ export const LoginForm = ({
         formState: { errors }
     } = useForm();
 
-    const submit = handleSubmit(data => {
-        onSubmit(data);
+    const submit = async data => {
+        const token = await actions.generateToken(data);
+        if (token.message === "Incorrect password") {
+            alert("Contraseña incorrecta");
+        } else if (token.message === "User doesn't exist") {
+            alert("El usuario no está registrado");
+        } else if (token.token) {
+            actions.identificateUser(token.token);
+            alert("Sesión Iniciada");
+            navigate("/private");
+        }
         reset();
-    });
+    };
 
     return (
-        <form className="flex flex-col gap-4" onSubmit={submit}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(submit)}>
             <label className="dark:text-white text-xl">
                 {email}
                 <input
@@ -112,6 +123,5 @@ LoginForm.propTypes = {
     password: PropTypes.string.isRequired,
     examplePassword: PropTypes.string.isRequired,
     forgottenPassword: PropTypes.string.isRequired,
-    submitButton: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    submitButton: PropTypes.string.isRequired
 };

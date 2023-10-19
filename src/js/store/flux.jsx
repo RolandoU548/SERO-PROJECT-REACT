@@ -16,6 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
+                                name: info.name,
+                                lastname: info.lastname,
                                 email: info.email,
                                 password: info.password
                             })

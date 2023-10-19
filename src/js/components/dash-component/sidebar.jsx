@@ -1,73 +1,71 @@
 import React, { useState } from "react";
-// Icons
-import {
-    RiHome3Line,
-    RiFileCopyLine,
-    RiWalletLine,
-    RiPieChartLine,
-    RiMore2Fill,
-    RiCloseFill
-} from "react-icons/ri";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { MdOutlineDashboard } from "react-icons/md";
+import { RiSettings4Line } from "react-icons/ri";
+import { TbReportAnalytics } from "react-icons/tb";
+import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
+import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
-    const [showMenu, setShowMenu] = useState(false);
+export const Sidebar = () => {
+    const menus = [
+        { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+        { name: "user", link: "/", icon: AiOutlineUser },
+        { name: "messages", link: "/", icon: FiMessageSquare },
+        { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
+        { name: "File Manager", link: "/", icon: FiFolder },
+        { name: "Cart", link: "/", icon: FiShoppingCart },
+        { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
+        { name: "Setting", link: "/", icon: RiSettings4Line }
+    ];
+    const [open, setOpen] = useState(true);
     return (
-        <>
+        <section className="flex gap-6">
             <div
-                className={`bg-primary-900 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
-                    showMenu ? "left-0" : "-left-full"
-                }`}>
-                {/* Profile */}
-                <div className="mt-8 flex flex-col items-center justify-center p-8 gap-2 h-[30vh]">
-                    <img
-                        src="https://img.freepik.com/foto-gratis/anciano-sonriente-gafas_23-2148740051.jpg"
-                        className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
+                className={`bg-[#0e0e0e] min-h-screen ${
+                    open ? "w-72" : "w-16"
+                } duration-500 text-gray-100 px-4`}>
+                <div className="py-3 flex justify-end">
+                    <HiMenuAlt3
+                        size={26}
+                        className="cursor-pointer"
+                        onClick={() => setOpen(!open)}
                     />
-                    <h1 className="text-xl text-white font-bold">
-                        Roberto Vargas
-                    </h1>
-                    <p className="bg-primary-100 py-2 px-4 rounded-full text-white">
-                        Super Admin
-                    </p>
                 </div>
-                {/* Nav */}
-                <div className="bg-primary-300 p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8">
-                    <nav className="flex flex-col gap-8">
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors">
-                            <RiHome3Line /> Inicio
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors">
-                            <RiFileCopyLine /> Clientes
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors">
-                            <RiWalletLine /> Tramites
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors">
-                            <RiPieChartLine /> Reportes
-                        </a>
-                    </nav>
-                    {/* <div className="bg-primary-900/50 text-white p-4 rounded-xl">
-                        <p className="text-gray-400">Having troubles?</p>
-                        <a href="#">Contact us</a>
-                    </div> */}
+                <div className="mt-4 flex flex-col gap-4 relative">
+                    {menus?.map((menu, i) => (
+                        <Link
+                            to={menu?.link}
+                            key={i}
+                            className={` ${
+                                menu?.margin && "mt-5"
+                            } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}>
+                            <div>
+                                {React.createElement(menu?.icon, {
+                                    size: "20"
+                                })}
+                            </div>
+                            <h2
+                                style={{
+                                    transitionDelay: `${i + 3}00ms`
+                                }}
+                                className={`whitespace-pre duration-500 ${
+                                    !open &&
+                                    "opacity-0 translate-x-28 overflow-hidden"
+                                }`}>
+                                {menu?.name}
+                            </h2>
+                            <h2
+                                className={`${
+                                    open && "hidden"
+                                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}>
+                                {menu?.name}
+                            </h2>
+                        </Link>
+                    ))}
                 </div>
             </div>
-            {/* Button mobile */}
-            <button
-                onClick={() => setShowMenu(!showMenu)}
-                className="lg:hidden fixed right-4 bottom-4 text-2xl bg-primary-900 p-2.5 rounded-full text-white z-50">
-                {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
-            </button>
-        </>
+            <div className="m-3 text-xl text-gray-900 font-semibold">SER0</div>
+        </section>
     );
 };
-
-export default Sidebar;
