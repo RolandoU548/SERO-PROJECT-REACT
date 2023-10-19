@@ -16,6 +16,7 @@ import { Private } from "./views/private.jsx";
 import { Services } from "./views/services.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
+import { PrivateNavbar } from "./components/PrivateNavbar.jsx"
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -117,6 +118,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
+                                <PrivateNavbar />
                                 <Private />
                             </>
                         }
