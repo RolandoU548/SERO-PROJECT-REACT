@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton";
+import "../../css/glass.css"
 
 export const Navbar = () => {
     const [t] = useTranslation("app");
@@ -9,7 +10,7 @@ export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="flex justify-between items-center z-40 relative top-0 w-full py-3 font-serif text-gray-200">
+        <header className="fixed flex justify-between items-center z-40 mb-40 w-full py-3 font-serif text-gray-200 glassNav">
             <h2
                 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                 onClick={() => {

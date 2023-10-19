@@ -8,5 +8,8 @@
     "subtitle": "Simplify your data management",
     "aboutUs": "About us",
     "whoWeAre": "We are a group of Full-Stack developers that created SERØ to solve database organization problems.",
-    "description": "This Web App specializes in automating everything related to the important information contained in a company, a law firm, or any other entity that needs simplicity in its system."
+    "description": "This Web App specializes in automating everything related to the important information contained in a company, a law firm, or any other entity that needs simplicity in its system.",
+    "databaseCard": "Database",
+    "formCard": "Form",
+    "dashboardCard": "Dashboard"
 }

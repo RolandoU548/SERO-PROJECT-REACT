@@ -97,7 +97,7 @@ export const PrivateNavbar = () => {
                         <i className="fa-solid fa-bars"></i>
                     </div>
                     <h2
-                        className={"text-4xl font-semibold cursor-pointer ml-8" + " " + (open ? "ml-72" : "")}
+                        className={"text-4xl font-semibold cursor-pointer" + " " + (open ? "ml-72" : "ml-4")}
                         onClick={() => {
                             navigate("/private");
                         }}>
@@ -131,29 +131,6 @@ export const PrivateNavbar = () => {
                         SERØ.
                     </h2>
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
-                        <li className="my-2.5">
-                            <NavLink
-                                to="/"
-                                className="text-xl font-medium ml-6 text-gray-200 hover:text-cyan-300 transition duration-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
-                                {t("home")}
-                            </NavLink>
-                        </li>
-                        <li className="my-2.5">
-                            <NavLink
-                                to="/services"
-                                className="transition duration-300  text-xl font-medium ml-7 text-gray-200
-                    hover:text-cyan-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
-                                {t("services")}
-                            </NavLink>
-                        </li>
-                        <li className="my-2.5">
-                            <NavLink
-                                to="/contact"
-                                className="text-xl font-medium ml-7 text-gray-200 hover:text-cyan-300 transition duration-300
-                    resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
-                                {t("contacts")}
-                            </NavLink>
-                        </li>
                         <li className="my-2.5">
                             <button
                                 className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"

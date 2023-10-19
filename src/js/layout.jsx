@@ -21,6 +21,10 @@ import { Clients } from "./views/clients.jsx";
 import { Reports } from "./views/reports.jsx";
 import { Payments } from "./views/payments.jsx";
 import { Settings } from "./views/settings.jsx";
+import { SebastianLopez } from "./views/sebastianlopez.jsx";
+import { SebastianCastroRajbe } from "./views/sebastiancastrorajbe.jsx";
+import { RobertoVargas } from "./views/robertovargas.jsx";
+import { RolandoUzcategui } from "./views/rolandouzcategui.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -175,6 +179,50 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Settings />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/SebastianLopez"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <SebastianLopez />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/SebastianCastroRajbe"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <SebastianCastroRajbe />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/RobertoVargas"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <RobertoVargas />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/RolandoUzcategui"
+                        transition="fade"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <Navbar />
+                                <RolandoUzcategui />
                             </>
                         }
                     />

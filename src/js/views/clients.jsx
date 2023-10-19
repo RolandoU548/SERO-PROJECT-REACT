@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/app.css";
-import "../../css/glass.css"
+import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
 
 export const Clients = () => {
@@ -10,28 +10,12 @@ export const Clients = () => {
     const navigate = useNavigate();
     return (
         <>
-            <div className="font-serif text-gray-200 min-h-screen">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-[100%] h-[100%] -z-50 fixed object-cover">
-                    <source src="DatabaseBG.mp4" type="video/mp4" />
-                </video>
-                <h2
-                    className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
-                    onClick={() => {
-                        navigate("/private");
-                    }}>
-                    SERØ.
-                </h2>
-                <h1 className="mix-blend-difference lg:px-36 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white">
+            <div className="font-serif text-gray-200 min-h-screen bg-[url('ClientsBG.jpg')] bg-cover bg-bottom">
+                <div className="h-28"></div>
+                <h1 className="lg:px-36 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white">
                     Clients
                 </h1>
-                <div className="glass p-10 w-11/12 mt-5 m-auto">
-                    Base de datos por modelar...
-                </div>
+                <div className="glass p-10 w-11/12 mt-5 m-auto">CLIENTS</div>
             </div>
         </>
     );
