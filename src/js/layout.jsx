@@ -69,7 +69,7 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
-                                <LogIn />
+                                <LoginSignupCard flip={true} />
                             </>
                         }
                     />
@@ -82,7 +82,7 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
-                                <SignUp />
+                                <LoginSignupCard flip={false} />
                             </>
                         }
                     />
@@ -118,15 +118,6 @@ const Layout = () => {
                         element={
                             <>
                                 <Private />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/login-signup"
-                        transition="fade"
-                        element={
-                            <>
-                                <LoginSignupCard />
                             </>
                         }
                     />

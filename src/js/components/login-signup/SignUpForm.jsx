@@ -58,7 +58,10 @@ export const SignUpForm = ({
                     type="text"
                     autoComplete="lastName"
                     {...register("lastName", {
-                        required: { value: true, message: t("lastNameRequired") }
+                        required: {
+                            value: true,
+                            message: t("lastNameRequired")
+                        }
                     })}
                 />
                 {errors.lastName && (
@@ -124,11 +127,6 @@ export const SignUpForm = ({
                     </span>
                 )}
             </label>
-            <Link
-                className="block text-md text-blue-600 hover:underline"
-                to="/forgot-password">
-                {forgottenPassword}
-            </Link>
             {children}
             <button
                 className="w-full py-2 text-md font-medium text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"

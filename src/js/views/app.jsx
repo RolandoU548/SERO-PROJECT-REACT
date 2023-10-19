@@ -16,10 +16,10 @@ export const App = () => {
             </h2>
             <Link
                 className="w-[250px] hover:bg-[#00f2ff80] transition duration-300 m-auto block mt-16 p-4 text-3xl text-center border border-white rounded-full"
-                to="/login-signup">
+                to="/signup">
                 {t("getStarted")}
             </Link>
-            <div className="glass w-4/5 p-12 mt-56 mb-10 m-auto text-2xl ">
+            <div className="glass w-4/5 p-12 mt-56 mb-10 m-auto text-2xl text-center">
                 <h2 className="text-5xl">{t("aboutUs")}</h2>
                 <p className="my-10">{t("whoWeAre")}</p>
                 <p className="mt-10">{t("description")}</p>

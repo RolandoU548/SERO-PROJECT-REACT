@@ -6,11 +6,12 @@ import { Base } from "../components/login-signup/Base";
 import { SignUpForm } from "../components/login-signup/SignUpForm";
 import { LoginForm } from "../components/login-signup/LoginForm";
 import { Buttons } from "../components/login-signup/Buttons";
+import PropTypes from "prop-types";
 
-export const LoginSignupCard = () => {
+export const LoginSignupCard = props => {
     const [t] = useTranslation("loginsignup");
     const { actions } = useContext(Context);
-    const [flip, setFlip] = useState(false);
+    const [flip, setFlip] = useState(props.flip);
     return (
         <Base>
             <div className="mt-24"></div>
@@ -91,4 +92,8 @@ export const LoginSignupCard = () => {
             </ReactCardFlip>
         </Base>
     );
+};
+
+LoginSignupCard.propTypes = {
+    flip: PropTypes.bool.isRequired
 };
