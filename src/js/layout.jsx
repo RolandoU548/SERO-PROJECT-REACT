@@ -13,10 +13,14 @@ import { SignUp } from "./views/signup.jsx";
 import { Database } from "./views/database.jsx";
 import { Form } from "./views/form.jsx";
 import { Private } from "./views/private.jsx";
-import { Services } from "./views/services.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
-import { PrivateNavbar } from "./components/PrivateNavbar.jsx"
+import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
+import { Dashboard } from "./views/dashboard.jsx";
+import { Clients } from "./views/clients.jsx";
+import { Reports } from "./views/reports.jsx";
+import { Payments } from "./views/payments.jsx";
+import { Settings } from "./views/settings.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -38,16 +42,6 @@ const Layout = () => {
                                 <BackgroundVideo />
                                 <Navbar />
                                 <App />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/services"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <Services />
                             </>
                         }
                     />
@@ -96,6 +90,7 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
+                                <PrivateNavbar />
                                 <Database />
                             </>
                         }
@@ -109,6 +104,7 @@ const Layout = () => {
                                     to="/"
                                     className="absolute top-2 left-2 md:hidden"
                                 />
+                                <PrivateNavbar />
                                 <Form />
                             </>
                         }
@@ -129,6 +125,56 @@ const Layout = () => {
                         element={
                             <>
                                 <LoginSignupCard />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/dashboard"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <Dashboard />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/clients"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <Clients />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/reports"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <Reports />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/payments"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <Payments />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/settings"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <Settings />
                             </>
                         }
                     />

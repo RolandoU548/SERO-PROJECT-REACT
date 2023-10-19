@@ -53,14 +53,6 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <NavLink
-                            to="/services"
-                            className="transition duration-300  text-xl font-medium ml-7 text-gray-200
-                    hover:text-cyan-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
-                            {t("services")}
-                        </NavLink>
-                    </li>
-                    <li className="my-2.5">
-                        <NavLink
                             to="/contact"
                             className="text-xl font-medium ml-7 text-gray-200 hover:text-cyan-300 transition duration-300
                     resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">

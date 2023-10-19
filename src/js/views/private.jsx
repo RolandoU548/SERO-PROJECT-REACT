@@ -18,7 +18,7 @@ export const Private = () => {
                     playsInline
                     className="w-[100%] h-[100%] -z-50 fixed object-cover">
                     <source
-                        src="../../../public/PrivateBG.mp4"
+                        src="PrivateBG.mp4"
                         type="video/mp4"
                     />
                 </video>
@@ -26,18 +26,12 @@ export const Private = () => {
                     {t("privateTitle")}
                 </h2> */}
                 <div className="h-32"></div>
-                <div className="mb-20">
+                <div className="mb-10">
                     <div className="mix-blend-difference mx-auto w-4/5 h-14">
                         <h2 className="text-5xl text-center">
                             {t("cardMessage")}
                         </h2>
                     </div>
-                    {/* <a
-                        className="cursor-pointer m-auto w-0 h-0
-                    border-l-[60px] border-l-transparent
-                    border-t-[35px] border-t-cyan-300
-                    border-r-[60px] border-r-transparent block"
-                        href="#cards"></a> */}
                 </div>
             </div>
             <div
@@ -59,7 +53,9 @@ export const Private = () => {
                     <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">{t("formCard")}</h2>
                 </div>
-                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white" onClick={() => {
+                        navigate("/dashboard");
+                    }}>
                     <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">{t("dashboardCard")}</h2>
                 </div>
