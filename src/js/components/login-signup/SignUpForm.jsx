@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
 
 export const SignUpForm = ({
@@ -13,12 +14,12 @@ export const SignUpForm = ({
     exampleEmail,
     password,
     examplePassword,
-    forgottenPassword,
     submitButton,
-    children,
-    onSubmit
+    children
 }) => {
     const [t] = useTranslation("signupform");
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -26,13 +27,21 @@ export const SignUpForm = ({
         formState: { errors }
     } = useForm();
 
-    const submit = handleSubmit(data => {
-        onSubmit(data);
+    const submit = async data => {
+        const respuesta = await actions.createUser(data);
+        if (respuesta?.message === "A user has been created") {
+            alert("Usuario Creado");
+            const token = await actions.generateToken(data);
+            if (token.token) {
+                actions.identificateUser(token.token);
+                navigate("/private");
+            }
+        }
         reset();
-    });
+    };
 
     return (
-        <form className="flex flex-col gap-4" onSubmit={submit}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(submit)}>
             <label className="dark:text-white text-xl">
                 {name}
                 <input
@@ -151,7 +160,5 @@ SignUpForm.propTypes = {
     exampleEmail: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     examplePassword: PropTypes.string.isRequired,
-    forgottenPassword: PropTypes.string.isRequired,
-    submitButton: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    submitButton: PropTypes.string.isRequired
 };

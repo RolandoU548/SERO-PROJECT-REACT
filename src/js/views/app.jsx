@@ -1,11 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
 
 export const App = () => {
     const [t] = useTranslation("app");
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            navigate("/private");
+        }
+    }, []);
     return (
         <div className="font-serif text-gray-200">
             <h2 className="mix-blend-difference lg:px-32 mt-64 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
-import ReactCardFlip from "react-card-flip";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import ReactCardFlip from "react-card-flip";
 import { useTranslation } from "react-i18next";
 import { Base } from "../components/login-signup/Base";
 import { SignUpForm } from "../components/login-signup/SignUpForm";
@@ -9,9 +9,12 @@ import { Buttons } from "../components/login-signup/Buttons";
 import PropTypes from "prop-types";
 
 export const LoginSignupCard = props => {
-    const [t] = useTranslation("loginsignup");
     const { actions } = useContext(Context);
+    const [t] = useTranslation("loginsignup");
     const [flip, setFlip] = useState(props.flip);
+    useEffect(() => {
+        actions.signOut();
+    }, []);
     return (
         <Base>
             <div className="mt-24"></div>
@@ -32,8 +35,7 @@ export const LoginSignupCard = props => {
                             password={t("password")}
                             examplePassword={t("examplePassword")}
                             forgottenPassword={t("forgottenPassword")}
-                            submitButton={t("signupButton")}
-                            onSubmit={actions.createUser}>
+                            submitButton={t("signupButton")}>
                             <p className="text-xs text-gray-600 text-center dark:text-white md:px-10">
                                 {t("agreement")}
                             </p>
@@ -69,7 +71,6 @@ export const LoginSignupCard = props => {
                             examplePassword={t("examplePassword")}
                             forgottenPassword={t("forgottenPassword")}
                             submitButton={t("loginButton")}
-                            onSubmit={actions.logIn}
                         />
                         <div className="border-b text-center">
                             <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white rounded transition duration-500">

@@ -2,12 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { email: null }
+            user: { id: null, name: null, lastname: null, email: null }
         },
         actions: {
-            logIn: data => {
-                alert(data);
-            },
             createUser: async info => {
                 try {
                     const resp = await fetch(
@@ -46,14 +43,37 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    if (!resp.ok) {
-                        alert(JSON.stringify(data.message));
-                    }
-                    localStorage.setItem("token", data.access_token);
-                    setStore({ token: data.access_token });
+                    localStorage.setItem("token", data.token);
+                    setStore({ token: data.token });
                     return data;
                 } catch (error) {
-                    console.log("Error generating Token.", error);
+                    console.log("Error generating Token", error);
+                }
+            },
+            identificateUser: async token => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/user",
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    console.log(data);
+                    setStore({
+                        user: {
+                            name: data.name,
+                            id: data.id,
+                            lastname: data.lastname,
+                            email: data.email
+                        }
+                    });
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
                 }
             },
             signOut: () => {
