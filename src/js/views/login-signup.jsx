@@ -46,9 +46,6 @@ export const LoginSignupCard = props => {
                                 {t("signupOption")}
                             </div>
                         </div>
-                        <div className="mt-5">
-                            <Buttons buttonGoogle={t("signupGoogle")} />
-                        </div>
                         <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                             {t("account")}
                             <button
