@@ -56,17 +56,17 @@ export const SignUpForm = ({
                     className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
                     placeholder={exampleLastName}
                     type="text"
-                    autoComplete="lastName"
-                    {...register("lastName", {
+                    autoComplete="family-name"
+                    {...register("lastname", {
                         required: {
                             value: true,
                             message: t("lastNameRequired")
                         }
                     })}
                 />
-                {errors.lastName && (
+                {errors.lastname && (
                     <span className="text-sm text-red-500">
-                        {errors.lastName.message}
+                        {errors.lastname.message}
                     </span>
                 )}
             </label>
