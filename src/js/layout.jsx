@@ -8,8 +8,6 @@ import { LanguageButton } from "./components/LanguageButton.jsx";
 import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
-import { LogIn } from "./views/login.jsx";
-import { SignUp } from "./views/signup.jsx";
 import { Database } from "./views/database.jsx";
 import { Form } from "./views/form.jsx";
 import { Private } from "./views/private.jsx";
