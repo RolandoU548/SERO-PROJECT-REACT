@@ -70,7 +70,7 @@ export const App = () => {
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-20 mt-20 mb-16 flex justify-between">
-                <div className="ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
                     <div
                         className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
                         onClick={() => {
@@ -90,12 +90,15 @@ export const App = () => {
                         de la base de datos.
                     </p>
                     <p className="mt-10">
-                        Genere sus tablas de manera fácil y organizada, cree su propia organización o únase a una donde compartan los mismos datos entre varios y simplifique sus datos en conjunto.
+                        Genere sus tablas de manera fácil y organizada, cree su
+                        propia organización o únase a una donde compartan los
+                        mismos datos entre varios y simplifique sus datos en
+                        conjunto.
                     </p>
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-64 mt-20 mb-16 flex justify-end">
-                <div className="ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
+                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
                     <div
                         className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
                         onClick={() => {
@@ -109,17 +112,38 @@ export const App = () => {
                         para rellenar sus bases de datos de manera
                         personalizada, fácil y rápido.
                     </p>
-                    <p className="mt-10">Este apartado le será de mucha utilidad, ya que podrá enviarle dichos formularios a sus clientes para que rellenen sus propios datos por usted, generando fluidez en el sistema de información.</p>
+                    <p className="mt-10">
+                        Este apartado le será de mucha utilidad, ya que podrá
+                        enviarle dichos formularios a sus clientes para que
+                        rellenen sus propios datos por usted, generando fluidez
+                        en el sistema de información.
+                    </p>
+                    <p className="mt-10">
+                        ¡Permitase a usted y sus respectivos clientes
+                        simplificarse la vida con estos maravillosos
+                        formularios!
+                    </p>
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-20 mt-20 mb-16 flex justify-between">
                 <div
-                    className="ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/login-signup");
                     }}>
                     <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">{t("dashboardCard")}</h2>
+                </div>
+                <div className="w-8/12 p-10 text-2xl items-center">
+                    <p>
+                        Con el Panel de Control usted podrá tener un resumen general de sus datos de manera estadística, de esta forma podrá tener un control amplio, fácil y cómodo de sus bases de datos, clientes y pagos.
+                    </p>
+                    <p className="mt-10">
+                        Podrá establecer resumenes personalizados que permitan una comprensión sencilla para los miembros de su organización o sus respectivos clientes.
+                    </p>
+                    <p className="mt-10">
+                        Es importante que analice su Panel de Control para llevar de la mejor manera posible el progreso de su organizacion
+                    </p>
                 </div>
             </div>
         </div>
