@@ -24,7 +24,7 @@ export const SebastianCastroRajbe = () => {
                     <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                 </div>
                 <div className="w-8/12 p-10 text-2xl flex items-center">
-                    <h2>EL BYNX</h2>
+                    <h2>BYNX</h2>
                 </div>
             </div>
         </div>

@@ -23,8 +23,16 @@ export const SebastianLopez = () => {
                     }}>
                     <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                 </div>
-                <div className="w-8/12 p-10 text-2xl flex items-center">
-                    <h2>EL SEBA</h2>
+                <div className="w-[50rem] p-10 text-2xl flex items-center">
+                    <div>
+                        <h2>Mejor conocido como: EL SEBA</h2>
+                        <p className="mt-10">
+                            Es diseñador gráfico y desarrollador Full-Stack,
+                            especializado en Front-End.
+                        </p>
+                        <p className="mt-10">Conoce la psicología del consumidor y del usuario cibernauta.</p>
+                        <p className="mt-10">Visionario del nombre SERØ.</p>
+                    </div>
                 </div>
             </div>
         </div>

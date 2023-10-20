@@ -26,7 +26,8 @@ export const Contact = () => {
                         }}>
                         <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                         <h2 className="z-10 relative top-72 h-10">
-                            SEbastián López
+                            <bold className="text-cyan-300">SE</bold>bastián
+                            López
                         </h2>
                     </div>
                     <div
@@ -36,7 +37,8 @@ export const Contact = () => {
                         }}>
                         <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                         <h2 className="z-10 relative top-72 h-10">
-                            SEbastián Castro Rajbe
+                            <bold className="text-cyan-300">SE</bold>bastián
+                            Castro Rajbe
                         </h2>
                     </div>
                     <div
@@ -46,7 +48,8 @@ export const Contact = () => {
                         }}>
                         <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                         <h2 className="z-10 relative top-72 h-10">
-                            RØberto Vargas
+                            <bold className="text-cyan-300">RØ</bold>berto
+                            Vargas
                         </h2>
                     </div>
                     <div
@@ -56,7 +59,8 @@ export const Contact = () => {
                         }}>
                         <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                         <h2 className="z-10 relative top-72 h-10">
-                            RØlando Uzcátegui
+                            <bold className="text-cyan-300">RØ</bold>lando
+                            Uzcátegui
                         </h2>
                     </div>
                 </div>
