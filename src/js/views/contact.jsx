@@ -10,25 +10,75 @@ export const Contact = () => {
     const { actions } = useContext(Context);
     const navigate = useNavigate();
     return (
-        <div className="font-serif text-gray-200">
-            <h2 className="mix-blend-difference lg:px-32 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
-                {t("title")}
-            </h2>
-            <h2 className="mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-[0.5rem] tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-10 text-center text-white">
-                {t("contacts")}
-            </h2>
-            <button
-                onClick={() => {
-                    actions.setToken("Hey");
-                }}>
-                HOLA
-            </button>
-            <button
-                onClick={() => {
-                    navigate("/private");
-                }}>
-                ADIOS
-            </button>
-        </div>
+        <>
+            <div className="font-serif text-gray-200">
+                <div className="h-40"></div>
+                <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center text-white">
+                    Fundadores de SERØ
+                </h2>
+                <div
+                    className="flex justify-evenly flex-wrap my-20 gap-5"
+                    id="cards">
+                    <div
+                        className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('../../../public/SebastianLopezCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white"
+                        onClick={() => {
+                            navigate("/SebastianLopez");
+                        }}>
+                        <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                        <h2 className="z-10 relative top-72 h-10">
+                            <bold className="text-cyan-300">SE</bold>bastián
+                            López
+                        </h2>
+                    </div>
+                    <div
+                        className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('SebastianCastroRajbeCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-2xl font-semibold border-2 border-white"
+                        onClick={() => {
+                            navigate("/SebastianCastroRajbe");
+                        }}>
+                        <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                        <h2 className="z-10 relative top-72 h-10">
+                            <bold className="text-cyan-300">SE</bold>bastián
+                            Castro Rajbe
+                        </h2>
+                    </div>
+                    <div
+                        className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('../../../public/RobertoVargasCard.png')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white"
+                        onClick={() => {
+                            navigate("/RobertoVargas");
+                        }}>
+                        <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                        <h2 className="z-10 relative top-72 h-10">
+                            <bold className="text-cyan-300">RØ</bold>berto
+                            Vargas
+                        </h2>
+                    </div>
+                    <div
+                        className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('RolandoUzcateguiCard.jpeg')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white"
+                        onClick={() => {
+                            navigate("/RolandoUzcategui");
+                        }}>
+                        <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
+                        <h2 className="z-10 relative top-72 h-10">
+                            <bold className="text-cyan-300">RØ</bold>lando
+                            Uzcátegui
+                        </h2>
+                    </div>
+                </div>
+                <button
+                    onClick={() => {
+                        actions.setToken("Hey");
+                    }}>
+                    token
+                </button>
+                <div></div>
+                <button
+                    className="text-4xl"
+                    onClick={() => {
+                        navigate("/private");
+                    }}>
+                    PRIVATE
+                </button>
+            </div>
+        </>
     );
 };
