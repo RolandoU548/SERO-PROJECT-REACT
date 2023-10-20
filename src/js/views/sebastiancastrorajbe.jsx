@@ -17,14 +17,26 @@ export const SebastianCastroRajbe = () => {
             </h2>
             <div className="glass rounded-2xl w-9/12 ml-40 mt-20 mb-16 flex justify-between">
                 <div
-                    className="invert cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('SebastianCastroRajbeCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-2xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('SebastianCastroRajbeCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-2xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/SebastianCastroRajbe");
                     }}>
-                    <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                 </div>
-                <div className="w-8/12 p-10 text-2xl flex items-center">
-                    <h2>BYNX</h2>
+                <div className="w-[50rem] p-10 text-xl flex items-center">
+                    <div>
+                        <h2>Mejor conocido como: BYNX.</h2>
+                        <p className="mt-10">
+                            Es comunicador social, fotógrafo y desarrollador
+                            Full-Stack, especializado en Front-End.
+                        </p>
+                        <p className="mt-10">
+                            Le gusta crear funcionalidades complejas que
+                            parezcan tareas simples para el usuario.
+                        </p>
+                        <p className="mt-10">
+                            Es el responsable de los videos de fondo.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

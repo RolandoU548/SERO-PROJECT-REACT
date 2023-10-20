@@ -17,15 +17,14 @@ export const SebastianLopez = () => {
             </h2>
             <div className="glass rounded-2xl w-9/12 ml-40 mt-20 mb-16 flex justify-between">
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 invert bg-[url('SebastianLopezCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex text-white text-3xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('SebastianLopezCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex text-white text-3xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/SebastianLopez");
                     }}>
-                    <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                 </div>
                 <div className="w-[50rem] p-10 text-2xl flex items-center">
                     <div>
-                        <h2>Mejor conocido como: EL SEBA</h2>
+                        <h2>Mejor conocido como: EL SEBA.</h2>
                         <p className="mt-10">
                             Es diseñador gráfico y desarrollador Full-Stack,
                             especializado en Front-End.
