@@ -12,9 +12,6 @@ th {
 
 th {
   background-color: rgba(0, 255, 251, 0.365);
-  border-top: none;
-  border-bottom-left-radius: none;
-  border-bottom-right-radius: none;
 }
 
 th:first-child {
