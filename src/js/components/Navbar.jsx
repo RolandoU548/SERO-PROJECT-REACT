@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton";
-import "../../css/glass.css"
+import "../../css/glass.css";
 
 export const Navbar = () => {
     const [t] = useTranslation("app");

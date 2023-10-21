@@ -76,7 +76,7 @@ export const App = () => {
                         onClick={() => {
                             navigate("/login-signup");
                         }}></div>
-                    <h2 className="z-10">{t("databaseCard")}</h2>
+                    <h2 className="z-10 text-center">{t("databaseCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
                     <p>
@@ -104,7 +104,7 @@ export const App = () => {
                         onClick={() => {
                             navigate("/login-signup");
                         }}></div>
-                    <h2 className="z-10">{t("formCard")}</h2>
+                    <h2 className="z-10 text-center">{t("formCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
                     <p>
@@ -132,17 +132,24 @@ export const App = () => {
                         navigate("/login-signup");
                     }}>
                     <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
-                    <h2 className="z-10">{t("dashboardCard")}</h2>
+                    <h2 className="z-10 text-center">{t("dashboardCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
                     <p>
-                        Con el Panel de Control usted podrá tener un resumen general de sus datos de manera estadística, de esta forma podrá tener un control amplio, fácil y cómodo de sus bases de datos, clientes y pagos.
+                        Con el Panel de Control usted podrá tener un resumen
+                        general de sus datos de manera estadística, de esta
+                        forma podrá tener un control amplio, fácil y cómodo de
+                        sus bases de datos, clientes y pagos.
                     </p>
                     <p className="mt-10">
-                        Podrá establecer resumenes personalizados que permitan una comprensión sencilla para los miembros de su organización o sus respectivos clientes.
+                        Podrá establecer resumenes personalizados que permitan
+                        una comprensión sencilla para los miembros de su
+                        organización o sus respectivos clientes.
                     </p>
                     <p className="mt-10">
-                        Es importante que analice su Panel de Control para llevar de la mejor manera posible el progreso de su organizacion
+                        Es importante que analice su Panel de Control para
+                        llevar de la mejor manera posible el progreso de su
+                        organizacion
                     </p>
                 </div>
             </div>

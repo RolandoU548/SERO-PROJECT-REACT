@@ -7,7 +7,13 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { FiDatabase, FiFolder, FiShoppingCart, FiDollarSign, FiHome } from "react-icons/fi";
+import {
+    FiDatabase,
+    FiFolder,
+    FiShoppingCart,
+    FiDollarSign,
+    FiHome
+} from "react-icons/fi";
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
@@ -19,9 +25,19 @@ export const PrivateNavbar = () => {
         { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
         { name: "Clients", link: "/clients", icon: AiOutlineUser },
         { name: "Database", link: "/database", icon: FiDatabase },
-        { name: "Fill Form", link: "/form", icon: TbReportAnalytics, margin: true },
+        {
+            name: "Fill Form",
+            link: "/form",
+            icon: TbReportAnalytics,
+            margin: true
+        },
         { name: "Reports", link: "/reports", icon: FiFolder },
-        { name: "Payments", link: "/payments", icon: FiDollarSign, margin: true },
+        {
+            name: "Payments",
+            link: "/payments",
+            icon: FiDollarSign,
+            margin: true
+        },
         { name: "Settings", link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
@@ -97,7 +113,11 @@ export const PrivateNavbar = () => {
                         <i className="fa-solid fa-bars"></i>
                     </div>
                     <h2
-                        className={"text-4xl font-semibold cursor-pointer" + " " + (open ? "ml-72" : "ml-4")}
+                        className={
+                            "text-4xl font-semibold cursor-pointer" +
+                            " " +
+                            (open ? "ml-72" : "ml-4")
+                        }
                         onClick={() => {
                             navigate("/private");
                         }}>
