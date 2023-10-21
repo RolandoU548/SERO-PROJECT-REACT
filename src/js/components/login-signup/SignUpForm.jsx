@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
 
 export const SignUpForm = ({
@@ -37,18 +37,7 @@ export const SignUpForm = ({
                 navigate("/private");
             }
         }
-    const submit = async data => {
-        const respuesta = await actions.createUser(data);
-        if (respuesta?.message === "A user has been created") {
-            alert("Usuario Creado");
-            const token = await actions.generateToken(data);
-            if (token.token) {
-                actions.identificateUser(token.token);
-                navigate("/private");
-            }
-        }
         reset();
-    };
     };
 
     return (
@@ -78,16 +67,14 @@ export const SignUpForm = ({
                     type="text"
                     autoComplete="family-name"
                     {...register("lastname", {
-                    autoComplete="family-name"
-                            required: {
-                                value: true,
-                                message: t("lastNameRequired")
+                        required: {
+                            value: true,
+                            message: t("lastNameRequired")
                         }
                     })}
                 />
                 {errors.lastname && (
                     <span className="text-sm text-red-500">
-                        {errors.lastname.message}
                         {errors.lastname.message}
                     </span>
                 )}

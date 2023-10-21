@@ -5,12 +5,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             user: { id: null, name: null, lastname: null, email: null }
         },
         actions: {
-<<<<<<< HEAD
-            // logIn: data => {
-            //     alert(data);
-            // },
-=======
->>>>>>> 7088938e9c1e45c715eeda8db9d99a12f5763b5b
             createUser: async info => {
                 try {
                     const resp = await fetch(
@@ -85,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             signOut: () => {
                 setStore({
                     token: null,
-                    user: { email: null }
+                    user: { id: null, name: null, lastname: null, email: null }
                 });
                 localStorage.removeItem("token");
             }

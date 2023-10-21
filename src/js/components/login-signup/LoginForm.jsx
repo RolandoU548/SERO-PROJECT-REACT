@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
 
 export const LoginForm = ({
@@ -35,19 +35,7 @@ export const LoginForm = ({
             alert("Sesión Iniciada");
             navigate("/private");
         }
-        const submit = async data => {
-            const token = await actions.generateToken(data);
-            if (token.message === "Incorrect password") {
-                alert("Contraseña incorrecta");
-            } else if (token.message === "User doesn't exist") {
-                alert("El usuario no está registrado");
-            } else if (token.token) {
-                actions.identificateUser(token.token);
-                alert("Sesión Iniciada");
-                navigate("/private");
-            }
-            reset();
-        };
+        reset();
     };
 
     return (
