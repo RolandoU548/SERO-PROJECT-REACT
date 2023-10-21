@@ -65,7 +65,7 @@ export const App = () => {
                         Todo esto lo podrá hacer una vez se haya registrado o
                         iniciado sesión. ¡No espere más! Comience a organizar
                         sus datos hoy mismo{" "}
-                        <Link to="/login-signup">
+                        <Link to="/signup">
                             <u className="text-cyan-300">
                                 registrándose en SERØ.
                             </u>
@@ -78,7 +78,7 @@ export const App = () => {
                     <div
                         className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
                         onClick={() => {
-                            navigate("/login-signup");
+                            navigate("/signup");
                         }}></div>
                     <h2 className="z-10 text-center">{t("databaseCard")}</h2>
                 </div>
@@ -106,7 +106,7 @@ export const App = () => {
                     <div
                         className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
                         onClick={() => {
-                            navigate("/login-signup");
+                            navigate("/signup");
                         }}></div>
                     <h2 className="z-10 text-center">{t("formCard")}</h2>
                 </div>
@@ -133,7 +133,7 @@ export const App = () => {
                 <div
                     className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
                     onClick={() => {
-                        navigate("/login-signup");
+                        navigate("/signup");
                     }}>
                     <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10 text-center">{t("dashboardCard")}</h2>

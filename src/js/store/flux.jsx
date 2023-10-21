@@ -79,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             signOut: () => {
                 setStore({
                     token: null,
-                    user: { email: null }
+                    user: { id: null, name: null, lastname: null, email: null }
                 });
                 localStorage.removeItem("token");
             }

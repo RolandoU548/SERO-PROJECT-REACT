@@ -122,15 +122,6 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/login-signup"
-                        transition="fade"
-                        element={
-                            <>
-                                <LoginSignupCard />
-                            </>
-                        }
-                    />
-                    <Route
                         path="/dashboard"
                         transition="fade"
                         element={
