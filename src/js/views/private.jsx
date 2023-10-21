@@ -22,9 +22,6 @@ export const Private = () => {
                         type="video/mp4"
                     />
                 </video>
-                {/* <h2 className="mix-blend-difference lg:px-32 mt-24 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
-                    {t("privateTitle")}
-                </h2> */}
                 <div className="h-32"></div>
                 <div className="mb-10">
                     <div className="mix-blend-difference mx-auto w-4/5 h-14">
