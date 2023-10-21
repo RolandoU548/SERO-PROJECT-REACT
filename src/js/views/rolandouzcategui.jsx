@@ -32,7 +32,6 @@ export const RolandoUzcategui = () => {
                             inconveniente.
                         </p>
                         <p className="mt-10">
-                            {" "}
                             Fue quien estableció las principales tecnologías del
                             proyecto.
                         </p>

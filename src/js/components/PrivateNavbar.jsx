@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -17,6 +18,7 @@ import {
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
+    const { actions } = useContext(Context);
     const [t] = useTranslation("private");
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
@@ -155,6 +157,7 @@ export const PrivateNavbar = () => {
                             <button
                                 className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                                 onClick={() => {
+                                    actions.signOut();
                                     navigate("/");
                                 }}>
                                 {t("logout")}
