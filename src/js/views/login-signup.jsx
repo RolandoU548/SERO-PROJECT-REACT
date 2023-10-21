@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import ReactCardFlip from "react-card-flip";
 import { Context } from "../store/appContext";
+import ReactCardFlip from "react-card-flip";
 import { useTranslation } from "react-i18next";
 import { Base } from "../components/login-signup/Base";
 import { SignUpForm } from "../components/login-signup/SignUpForm";
@@ -12,10 +12,6 @@ export const LoginSignupCard = props => {
     const { actions } = useContext(Context);
     const [t] = useTranslation("loginsignup");
     const [flip, setFlip] = useState(props.flip);
-    useEffect(() => {
-        actions.signOut();
-    }, []);
-
     return (
         <Base>
             <div className="mt-24"></div>

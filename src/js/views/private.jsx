@@ -7,10 +7,11 @@ import { useTranslation } from "react-i18next";
 
 export const Private = () => {
     const [t] = useTranslation("private");
-    const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
     const token = localStorage.getItem("token");
 
     const navigate = useNavigate();
+
     return (
         <>
             <video
@@ -76,7 +77,6 @@ export const Private = () => {
                     </button>
                 </div>
             )}
-            ;
         </>
     );
 };

@@ -16,13 +16,6 @@ export const Form = () => {
                 className="w-[100%] h-[100%] -z-50 fixed object-cover">
                 <source src="FormBG.mp4" type="video/mp4" />
             </video>
-            <h2
-                className="py-3 text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
-                onClick={() => {
-                    navigate("/private");
-                }}>
-                SERØ.
-            </h2>
             <h1 className="lg:px-36 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white">
                 Form
             </h1>

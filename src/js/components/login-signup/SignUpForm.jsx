@@ -37,7 +37,18 @@ export const SignUpForm = ({
                 navigate("/private");
             }
         }
+    const submit = async data => {
+        const respuesta = await actions.createUser(data);
+        if (respuesta?.message === "A user has been created") {
+            alert("Usuario Creado");
+            const token = await actions.generateToken(data);
+            if (token.token) {
+                actions.identificateUser(token.token);
+                navigate("/private");
+            }
+        }
         reset();
+    };
     };
 
     return (
@@ -67,14 +78,16 @@ export const SignUpForm = ({
                     type="text"
                     autoComplete="family-name"
                     {...register("lastname", {
-                        required: {
-                            value: true,
-                            message: t("lastNameRequired")
+                    autoComplete="family-name"
+                            required: {
+                                value: true,
+                                message: t("lastNameRequired")
                         }
                     })}
                 />
                 {errors.lastname && (
                     <span className="text-sm text-red-500">
+                        {errors.lastname.message}
                         {errors.lastname.message}
                     </span>
                 )}
