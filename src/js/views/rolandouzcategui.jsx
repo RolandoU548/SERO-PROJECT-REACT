@@ -19,7 +19,7 @@ export const RolandoUzcategui = () => {
                 <div
                     className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('RolandoUzcateguiCard.jpeg')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-2xl font-semibold border-2 border-white"
                     onClick={() => {
-                        navigate("/RolandoUzcategui");
+                        navigate("/contact/RolandoUzcategui");
                     }}></div>
                 <div className="w-[50rem] p-10 text-xl flex items-center">
                     <div>

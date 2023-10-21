@@ -148,7 +148,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/SebastianLopez"
+                        path="contact/SebastianLopez"
                         transition="fade"
                         element={
                             <>
@@ -159,7 +159,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/SebastianCastroRajbe"
+                        path="contact/SebastianCastroRajbe"
                         transition="fade"
                         element={
                             <>
@@ -170,7 +170,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/RobertoVargas"
+                        path="contact/RobertoVargas"
                         transition="fade"
                         element={
                             <>
@@ -181,7 +181,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/RolandoUzcategui"
+                        path="contact/RolandoUzcategui"
                         transition="fade"
                         element={
                             <>

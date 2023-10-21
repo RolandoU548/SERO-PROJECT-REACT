@@ -19,7 +19,7 @@ export const RobertoVargas = () => {
                 <div
                     className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('RobertoVargasCard.jpg')] bg-left bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white"
                     onClick={() => {
-                        navigate("/RobertoVargas");
+                        navigate("/contact/RobertoVargas");
                     }}>
                     <div className="bg-black absolute w-80 h-[23rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"></div>
                 </div>
@@ -27,9 +27,11 @@ export const RobertoVargas = () => {
                     <div>
                         <h2>Mejor conocido como: EL PASTOR.</h2>
                         <p className="mt-10">
-                            Se gana la vida con su empresa{" "}
+                            Se gana la vida con su empresa
                             <b>{'"Roberto Vargas Solutions"'} (RVS)</b> y crea
-                            sistemas de administración de datos. Es desarrollador Full-Stack, especializado tanto en Front-End como Back-End.
+                            sistemas de administración de datos. Es
+                            desarrollador Full-Stack, especializado tanto en
+                            Front-End como Back-End.
                         </p>
                         <p className="mt-10">
                             Busca crear soluciones sencillas que optimicen el

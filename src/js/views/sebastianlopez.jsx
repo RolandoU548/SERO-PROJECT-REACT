@@ -19,9 +19,8 @@ export const SebastianLopez = () => {
                 <div
                     className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('SebastianLopezCard.jpg')] bg-center bg-cover rounded-2xl h-[23rem] flex text-white text-3xl font-semibold border-2 border-white"
                     onClick={() => {
-                        navigate("/SebastianLopez");
-                    }}>
-                </div>
+                        navigate("/contact/SebastianLopez");
+                    }}></div>
                 <div className="w-[50rem] p-10 text-2xl flex items-center">
                     <div>
                         <h2>Mejor conocido como: EL SEBA.</h2>
@@ -29,7 +28,10 @@ export const SebastianLopez = () => {
                             Es diseñador gráfico y desarrollador Full-Stack,
                             especializado en Front-End.
                         </p>
-                        <p className="mt-10">Conoce la psicología del consumidor y del usuario cibernauta.</p>
+                        <p className="mt-10">
+                            Conoce la psicología del consumidor y del usuario
+                            cibernauta.
+                        </p>
                         <p className="mt-10">Visionario del nombre SERØ.</p>
                     </div>
                 </div>
