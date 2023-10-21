@@ -12,8 +12,7 @@ export const Contact = () => {
     return (
         <>
             <div className="font-serif text-gray-200">
-                <div className="h-40"></div>
-                <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center text-white">
+                <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center text-white mt-36">
                     Fundadores de SERØ
                 </h2>
                 <div

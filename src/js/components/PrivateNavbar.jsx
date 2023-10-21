@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -48,7 +48,7 @@ export const PrivateNavbar = () => {
         <>
             <div
                 className={
-                    "fixed h-full w-72  z-50 duration-300 delay-1500" +
+                    "fixed h-full w-72 top-0 z-50 duration-300 delay-1500" +
                     " " +
                     (open ? "left-0" : "-left-96")
                 }>

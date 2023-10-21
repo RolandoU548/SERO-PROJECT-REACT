@@ -10,7 +10,7 @@ export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="fixed flex justify-between items-center z-40 mb-40 w-full py-3 font-serif text-gray-200 glassNav">
+        <header className="fixed flex justify-between items-center z-40 mb-40 w-full py-3 font-serif text-gray-200 glassNav top-0">
             <h2
                 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                 onClick={() => {
@@ -62,7 +62,7 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <button
-                            className="w-40 hover:bg-cyan-300 transition duration-300 hover:text-white text-xl p-2 text-black ml-6 bg-white rounded-full resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
+                            className="w-40 hover:bg-cyan-300 transition duration-300 hover:text-white text-xl p-2 text-black ml-6 bg-white rounded-full resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400 resp:dark:hover:text-gray-black resp:dark:hover:bg-gray-200"
                             onClick={() => {
                                 navigate("/login");
                             }}>
@@ -71,7 +71,7 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <button
-                            className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
+                            className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400 resp:dark:hover:text-gray-black resp:dark:hover:bg-gray-200"
                             onClick={() => {
                                 navigate("/signup");
                             }}>

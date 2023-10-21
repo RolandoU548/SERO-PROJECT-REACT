@@ -18,7 +18,7 @@ export const App = () => {
             <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white">
                 {t("title")}
             </h2>
-            <h2 className="mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-[0.5rem] tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-10 text-center text-white">
+            <h2 className="mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-xl tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-10 text-center text-white">
                 {t("subtitle")}
             </h2>
             <Link
@@ -65,10 +65,8 @@ export const App = () => {
                         Todo esto lo podrá hacer una vez se haya registrado o
                         iniciado sesión. ¡No espere más! Comience a organizar
                         sus datos hoy mismo{" "}
-                        <Link to="/signup">
-                            <u className="text-cyan-300">
-                                registrándose en SERØ.
-                            </u>
+                        <Link to="/signup" className="text-cyan-300 underline">
+                            registrándose en SERØ.
                         </Link>
                     </p>
                 </div>

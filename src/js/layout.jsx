@@ -10,7 +10,7 @@ import { BackArrow } from "./components/BackArrow.jsx";
 import { App } from "./views/app.jsx";
 import { Database } from "./views/database.jsx";
 import { Form } from "./views/form.jsx";
-import { Private } from "./views/private.jsx";
+import { PrivateHome } from "./views/privateHome.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
@@ -60,38 +60,18 @@ const Layout = () => {
                     <Route
                         path="/login"
                         transition="fade"
-                        element={
-                            <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
-                                <LoginSignupCard flip={true} />
-                            </>
-                        }
+                        element={<LoginSignupCard flip={true} />}
                     />
                     <Route
                         path="/signup"
                         transition="fade"
-                        element={
-                            <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
-                                <LoginSignupCard flip={false} />
-                            </>
-                        }
+                        element={<LoginSignupCard flip={false} />}
                     />
                     <Route
                         path="/database"
                         transition="fade"
                         element={
                             <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
                                 <PrivateNavbar />
                                 <Database />
                             </>
@@ -102,10 +82,6 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackArrow
-                                    to="/"
-                                    className="absolute top-2 left-2 md:hidden"
-                                />
                                 <PrivateNavbar />
                                 <Form />
                             </>
@@ -117,7 +93,7 @@ const Layout = () => {
                         element={
                             <>
                                 <PrivateNavbar />
-                                <Private />
+                                <PrivateHome />
                             </>
                         }
                     />

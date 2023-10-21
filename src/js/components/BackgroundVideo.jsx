@@ -7,7 +7,7 @@ export const BackgroundVideo = () => {
             loop
             muted
             playsInline
-            className="w-[100%] h-[100%] -z-50 fixed object-cover">
+            className="w-screen h-screen -z-50 fixed object-cover top-0 left-0">
             <source src="SERO_BG.mp4" type="video/mp4" />
         </video>
     );

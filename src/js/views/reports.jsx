@@ -10,12 +10,15 @@ export const Reports = () => {
     const navigate = useNavigate();
     return (
         <>
-            <div className="font-serif text-gray-200 min-h-screen bg-[url('ReportsBG.jpg')] bg-cover bg-bottom">
-                <div className="h-28"></div>
-                <h1 className="lg:px-36 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white">
+            <img
+                src="ReportsBG.jpg"
+                className="w-screen h-screen -z-50 fixed object-cover top-0 left-0"
+            />
+            <div className="font-serif text-gray-200 mt-28">
+                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
                     Reports
                 </h1>
-                <div className="glass p-10 w-11/12 mt-5 m-auto">REPORTS</div>
+                <div className="glass p-10 mt-5 m-auto w-11/12">REPORTS</div>
             </div>
         </>
     );
