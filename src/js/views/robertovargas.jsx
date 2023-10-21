@@ -17,7 +17,7 @@ export const RobertoVargas = () => {
             </h2>
             <div className="glass rounded-2xl w-9/12 ml-40 mt-20 mb-16 flex justify-between">
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url(RobertoVargasCard.png')] bg-center bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('RobertoVargasCard.jpg')] bg-left bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/RobertoVargas");
                     }}>
@@ -28,8 +28,8 @@ export const RobertoVargas = () => {
                         <h2>Mejor conocido como: EL PASTOR.</h2>
                         <p className="mt-10">
                             Se gana la vida con su empresa{" "}
-                            <b>{"Roberto Vargas Solutions"} (RVS)</b> y crea
-                            sistemas de administración de datos.
+                            <b>{'"Roberto Vargas Solutions"'} (RVS)</b> y crea
+                            sistemas de administración de datos. Es desarrollador Full-Stack, especializado tanto en Front-End como Back-End.
                         </p>
                         <p className="mt-10">
                             Busca crear soluciones sencillas que optimicen el
