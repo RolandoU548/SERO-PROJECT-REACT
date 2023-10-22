@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/app.css";
-import "../../css/glass.css";
-import "../../css/database.css";
+import "../../../css/app.css";
+import "../../../css/glass.css";
+import "../../../css/database.css";
 import { useTranslation } from "react-i18next";
 
 export const Database = () => {
