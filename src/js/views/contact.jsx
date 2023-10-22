@@ -14,30 +14,22 @@ export const Contact = () => {
                     to="SebastianLopez"
                     first="SE"
                     second="bastián López"
-                    img="SebastianLopezCard.jpg"
-                    bg="center"
                 />
                 <ContactCard
                     to="SebastianCastroRajbe"
                     first="SE"
                     second="bastián
                     Castro Rajbe"
-                    img="SebastianCastroRajbeCard.jpg"
-                    bg="center"
                 />
                 <ContactCard
                     to="RobertoVargas"
                     first="RØ"
                     second="berto Vargas"
-                    img="RobertoVargasCard.jpg"
-                    bg="left"
                 />
                 <ContactCard
                     to="RolandoUzcategui"
                     first="RØ"
                     second="lando Uzcátegui"
-                    img="RolandoUzcateguiCard.jpeg"
-                    bg="center"
                 />
             </div>
             <button

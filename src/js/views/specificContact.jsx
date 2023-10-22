@@ -1,6 +1,5 @@
 import React from "react";
 import { NotFound } from "./notfound";
-import PropTypes from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
@@ -70,9 +69,21 @@ export const SpecificContact = () => {
                 </h2>
                 <div className="glass rounded-2xl w-9/12 ml-40 mt-20 mb-16 flex justify-between">
                     <div
-                        className={`cursor-pointer transition ease-out duration-300 hover:scale-105 w-96 bg-[url('${data.img}')] bg-${data.bg} bg-cover rounded-2xl h-[23rem] border-2 border-white relative`}
+                        className={
+                            "cursor-pointer transition ease-out duration-300 hover:scale-105 w-96 bg-cover rounded-2xl h-[23rem] border-2 border-white relative" +
+                            " " +
+                            (contact === "SebastianCastroRajbe"
+                                ? "bg-[url('SebastianCastroRajbeCard.jpg')] bg-center"
+                                : contact === "SebastianLopez"
+                                ? "bg-[url('SebastianLopezCard.jpg')] bg-center"
+                                : contact === "RobertoVargas"
+                                ? "bg-[url('RobertoVargasCard.jpg')] bg-left"
+                                : contact === "RolandoUzcategui"
+                                ? "bg-[url('RolandoUzcateguiCard.jpeg')] bg-center"
+                                : "")
+                        }
                         onClick={() => {
-                            navigate("/contact/RobertoVargas");
+                            navigate(`/contact/${contact}`);
                         }}>
                         <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0 left-0 top-0"></div>
                     </div>
