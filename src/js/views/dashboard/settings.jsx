@@ -5,7 +5,7 @@ import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 
 export const Settings = () => {
-    const [t] = useTranslation("app");
+    const [t] = useTranslation("settings");
 
     const navigate = useNavigate();
     return (
@@ -16,9 +16,11 @@ export const Settings = () => {
             />
             <div className="font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
-                    Settings
+                    {t("settings")}
                 </h1>
-                <div className="glass p-10 mt-5 m-auto w-11/12">SETTINGS</div>
+                <div className="glass p-10 mt-5 m-auto w-11/12">
+                    {t("settings")}
+                </div>
             </div>
         </>
     );
