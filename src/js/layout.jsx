@@ -19,10 +19,7 @@ import { Clients } from "./views/clients.jsx";
 import { Reports } from "./views/reports.jsx";
 import { Payments } from "./views/payments.jsx";
 import { Settings } from "./views/settings.jsx";
-import { SebastianLopez } from "./views/sebastianlopez.jsx";
-import { SebastianCastroRajbe } from "./views/sebastiancastrorajbe.jsx";
-import { RobertoVargas } from "./views/robertovargas.jsx";
-import { RolandoUzcategui } from "./views/rolandouzcategui.jsx";
+import { SpecificContact } from "./views/specificContact.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -148,59 +145,16 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="contact/SebastianLopez"
+                        path="contact/:contact"
                         transition="fade"
                         element={
                             <>
                                 <BackgroundVideo />
-                                <Navbar />
-                                <SebastianLopez />
+                                <SpecificContact />
                             </>
                         }
                     />
-                    <Route
-                        path="contact/SebastianCastroRajbe"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <SebastianCastroRajbe />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="contact/RobertoVargas"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <RobertoVargas />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="contact/RolandoUzcategui"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <RolandoUzcategui />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="*"
-                        element={
-                            <>
-                                <LanguageButton className="absolute top-7 left-10 w-6 h-4" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                <NotFound />
-                            </>
-                        }
-                    />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </ScrollToTop>
         </BrowserRouter>
