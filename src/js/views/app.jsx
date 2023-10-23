@@ -25,7 +25,7 @@ export const App = () => {
                 to="/signup">
                 {t("getStarted")}
             </Link>
-            <div className="glass w-4/5 p-12 mt-40 mb-10 m-auto text-2xl text-center">
+            <div className="glass w-4/5 p-12 mt-40 mb-10 m-auto text-2xl">
                 <h2 className="text-5xl">{t("aboutUs")}</h2>
                 <p className="my-10">{t("whoWeAre")}</p>
                 <p className="mt-10">{t("description")}</p>
@@ -59,21 +59,12 @@ export const App = () => {
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-20 mt-20 mb-16 flex justify-between">
-<<<<<<< HEAD
                 <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBGCrop.jpg')] bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
                     <div
                         className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
                         onClick={() => {
                             navigate("/signup");
                         }}></div>
-=======
-                <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
-                    onClick={() => {
-                        navigate("/signup");
-                    }}>
-                    <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
->>>>>>> da882b8aeff778712a32b338b41bcb10bedabbf6
                     <h2 className="z-10 text-center">{t("databaseCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
@@ -83,21 +74,12 @@ export const App = () => {
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-64 mt-20 mb-16 flex justify-end">
-<<<<<<< HEAD
                 <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.jpg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
                     <div
                         className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
                         onClick={() => {
                             navigate("/signup");
                         }}></div>
-=======
-                <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
-                    onClick={() => {
-                        navigate("/signup");
-                    }}>
-                    <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
->>>>>>> da882b8aeff778712a32b338b41bcb10bedabbf6
                     <h2 className="z-10 text-center">{t("formCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">

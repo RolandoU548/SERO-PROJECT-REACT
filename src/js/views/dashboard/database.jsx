@@ -19,7 +19,7 @@ import {
     Tooltip
 } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
-import { data, states } from "./makeData";
+import { data, states } from "../makeData";
 
 export const Database = () => {
     const [t] = useTranslation("database");
@@ -69,28 +69,28 @@ export const Database = () => {
         cell => {
             return {
                 error: !!validationErrors[cell.id],
-                helperText: validationErrors[cell.id],
-                onBlur: event => {
-                    const isValid =
-                        cell.column.id === "email"
-                            ? validateEmail(event.target.value)
-                            : cell.column.id === "age"
-                            ? validateAge(+event.target.value)
-                            : validateRequired(event.target.value);
-                    if (!isValid) {
-                        // set validation error for cell if invalid
-                        setValidationErrors({
-                            ...validationErrors,
-                            [cell.id]: `${cell.column.columnDef.header} is required`
-                        });
-                    } else {
-                        // remove validation error for cell if valid
-                        delete validationErrors[cell.id];
-                        setValidationErrors({
-                            ...validationErrors
-                        });
-                    }
-                }
+                helperText: validationErrors[cell.id]
+                // onBlur: event => {
+                //     const isValid =
+                //         cell.column.id === "email"
+                //             ? validateEmail(event.target.value)
+                //             : cell.column.id === "age"
+                //             ? validateAge(+event.target.value)
+                //             : validateRequired(event.target.value);
+                //     if (!isValid) {
+                //         // set validation error for cell if invalid
+                //         setValidationErrors({
+                //             ...validationErrors,
+                //             [cell.id]: `${cell.column.columnDef.header} is required`
+                //         });
+                //     } else {
+                //         // remove validation error for cell if valid
+                //         delete validationErrors[cell.id];
+                //         setValidationErrors({
+                //             ...validationErrors
+                //         });
+                //     }
+                // }
             };
         },
         [validationErrors]
@@ -220,9 +220,9 @@ export const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
             return acc;
         }, {})
     );
-
+    const [t] = useTranslation("database");
     const handleSubmit = () => {
-        //put your validation logic here
+        // put your validation logic here
         onSubmit(values);
         onClose();
     };
