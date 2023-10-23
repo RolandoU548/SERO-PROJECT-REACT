@@ -30,7 +30,7 @@ export const App = () => {
                 <p className="my-10">{t("whoWeAre")}</p>
                 <p className="mt-10">{t("description")}</p>
             </div>
-            <h2 className="mix-blend-difference mt-28 lg:px-6 mt-8 text-lg minimum:text-[0.5rem] tiny:text-3xl sm:text-3xl md:text-6xl font-black z-10 flex justify-end text-white mr-20">
+            <h2 className="mix-blend-difference mt-28 lg:px-6 text-lg minimum:text-[0.5rem] tiny:text-3xl sm:text-3xl md:text-6xl font-black z-10 flex justify-end text-white mr-20">
                 {t("services")}
             </h2>
             <div className="flex justify-end">

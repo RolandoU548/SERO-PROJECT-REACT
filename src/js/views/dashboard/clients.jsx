@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaSearch } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "../../../css/app.css";
 import "../../../css/glass.css";
@@ -16,6 +16,10 @@ export const Clients = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [clientsPerPage] = useState(5);
     const [clients, setClients] = useState(store.clients);
+    const [sortOrder, setSortOrder] = useState({
+        column: "name",
+        ascending: true
+    });
 
     useEffect(() => {
         actions.getAllClients();
@@ -45,6 +49,34 @@ export const Clients = () => {
         )
         .slice(indexOfFirstClient, indexOfLastClient);
 
+    // Labels Filtrados
+    const sortClients = (clients, column, ascending) => {
+        return clients.sort((a, b) => {
+            const aValue = a[column];
+            const bValue = b[column];
+            if (aValue < bValue) {
+                return ascending ? -1 : 1;
+            } else if (aValue > bValue) {
+                return ascending ? 1 : -1;
+            } else {
+                return 0;
+            }
+        });
+    };
+
+    const handleSort = column => {
+        setSortOrder({
+            column,
+            ascending: sortOrder.column === column ? !sortOrder.ascending : true
+        });
+    };
+
+    const sortedClients = sortClients(
+        currentClients,
+        sortOrder.column,
+        sortOrder.ascending
+    );
+
     // Cambiar de Pagina
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -64,20 +96,12 @@ export const Clients = () => {
                             <input
                                 type="text"
                                 placeholder="Search clients"
-                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
+                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-96"
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
                             />
                             <span className="absolute top-0 right-0 mt-3 mr-4">
-                                <svg
-                                    className="h-4 w-4 fill-current text-gray-500"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        className="heroicon-ui"
-                                        d="M15.56 14.44a8 8 0 111.06-1.06l4.54 4.54a1 1 0 01-1.41 1.41l-4.54-4.54zm-8 0a6 6 0 101.06 1.06l-4.54 4.54a1 1 0 11-1.41-1.41l4.54-4.54zM12 14a2 2 0 100-4 2 2 0 000 4z"
-                                    />
-                                </svg>
+                                <FaSearch className="h-4 w-4 fill-current text-gray-500" />
                             </span>
                         </div>
                         <button
@@ -90,13 +114,57 @@ export const Clients = () => {
                         <table className="table w-full">
                             <thead>
                                 <tr>
-                                    <th className="px-4 py-2">Image</th>
-                                    <th className="px-4 py-2">Name</th>
-                                    <th className="px-4 py-2">Email</th>
-                                    <th className="px-4 py-2">Phone</th>
-                                    <th className="px-4 py-2">Business</th>
-                                    <th className="px-4 py-2">Description</th>
-                                    <th className="px-4 py-2">Status</th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() => handleSort("image")}>
+                                        Image{" "}
+                                        {sortOrder.column === "image" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() => handleSort("name")}>
+                                        Name{" "}
+                                        {sortOrder.column === "name" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() => handleSort("email")}>
+                                        Email{" "}
+                                        {sortOrder.column === "email" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() => handleSort("phone")}>
+                                        Phone{" "}
+                                        {sortOrder.column === "phone" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() => handleSort("business")}>
+                                        Business{" "}
+                                        {sortOrder.column === "business" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() =>
+                                            handleSort("description")
+                                        }>
+                                        Description{" "}
+                                        {sortOrder.column === "description" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
+                                        onClick={() => handleSort("status")}>
+                                        Status{" "}
+                                        {sortOrder.column === "status" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
                                     <th className="px-4 py-2">Actions</th>
                                 </tr>
                             </thead>
@@ -126,7 +194,14 @@ export const Clients = () => {
                                             {client.description}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.status}
+                                            <button
+                                                className={`px-4 py-2 rounded-lg ${
+                                                    client.status === "Active"
+                                                        ? "bg-green-600 text-white"
+                                                        : "bg-red-600 text-white"
+                                                }`}>
+                                                {client.status}
+                                            </button>
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             <ClientProfile

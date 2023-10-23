@@ -14,6 +14,7 @@ import {
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+// import { ClientImage } from "../../components/dashclients/clientimage.jsx";
 
 export const CreateClient = () => {
     const { actions } = useContext(Context);
@@ -263,6 +264,7 @@ export const CreateClient = () => {
                                         </div>
                                     )}
                                 </div>
+                                {/* <ClientImage /> */}
 
                                 <div></div>
 
