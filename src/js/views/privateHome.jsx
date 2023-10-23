@@ -35,7 +35,7 @@ export const PrivateHome = () => {
             </div>
             <div className="flex justify-evenly flex-wrap my-10 gap-5">
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBG.jpeg')] bg-right bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/DataBaseCardBGCrop.jpg')] bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/database");
                     }}>
@@ -43,7 +43,7 @@ export const PrivateHome = () => {
                     <h2 className="z-10">{t("databaseCard")}</h2>
                 </div>
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.webp')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/form");
                     }}>
@@ -51,7 +51,7 @@ export const PrivateHome = () => {
                     <h2 className="z-10">{t("formCard")}</h2>
                 </div>
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('../../../public/DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white"
                     onClick={() => {
                         navigate("/dashboard");
                     }}>

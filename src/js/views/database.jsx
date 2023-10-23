@@ -26,16 +26,17 @@ export const Database = () => {
                 <div className="">
                     <div className="flex justify-end mr-12">
                         <div
-                            className="flex justify-center items-center mr-5 w-10 h-10 text-2xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
+                            className="flex justify-center items-center mr-5 w-64 h-16 text-2xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
                             // onClick={() => {
                             //     setIsOpen(true);
                             // }}
                         >
-                            <i className="fa-solid fa-plus"></i>
+                            <p>New Column</p>
+                            <i className="ml-4 fa-solid fa-plus"></i>
                         </div>
                     </div>
                     <div className="flex justify-end ">
-                        <div className="glass p-10 w-11/12 h-[30rem] mt-5 m-auto table2">
+                        <div className="glass p-10 w-11/12 h-screen mt-5 mb-[10rem] m-auto table2">
                             <div className="relative force-overflow table1 shadow-md sm:rounded-lg">
                                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
