@@ -20,6 +20,7 @@ import { Clients } from "./views/dashboard/clients.jsx";
 import { Reports } from "./views/dashboard/reports.jsx";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
+import { CreateClient } from "./views/dashboard/createclient.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -111,6 +112,16 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Clients />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/createclient"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <CreateClient />
                             </>
                         }
                     />
