@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -20,27 +20,28 @@ import "../../css/glass.css";
 export const PrivateNavbar = () => {
     const { actions } = useContext(Context);
     const [t] = useTranslation("private");
+    const [t2] = useTranslation("privateNavbar");
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const menus = [
-        { name: "Home", link: "/private", icon: FiHome },
-        { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-        { name: "Clients", link: "/clients", icon: AiOutlineUser },
-        { name: "Database", link: "/database", icon: FiDatabase },
+        { name: t2("home"), link: "/private", icon: FiHome },
+        { name: t2("dashboard"), link: "/dashboard", icon: MdOutlineDashboard },
+        { name: t2("clients"), link: "/clients", icon: AiOutlineUser },
+        { name: t2("database"), link: "/database", icon: FiDatabase },
         {
-            name: "Fill Form",
+            name: t2("fillForm"),
             link: "/form",
             icon: TbReportAnalytics,
             margin: true
         },
-        { name: "Reports", link: "/reports", icon: FiFolder },
+        { name: t2("reports"), link: "/reports", icon: FiFolder },
         {
-            name: "Payments",
+            name: t2("payments"),
             link: "/payments",
             icon: FiDollarSign,
             margin: true
         },
-        { name: "Settings", link: "/settings", icon: RiSettings4Line }
+        { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
 
@@ -81,7 +82,7 @@ export const PrivateNavbar = () => {
                                     </div>
                                     <h2
                                         style={{
-                                            transitionDelay: `${i + 3}00ms`
+                                            transitionDelay: `${i + 1}00ms`
                                         }}
                                         className={`whitespace-pre duration-500 ${
                                             !open &&
@@ -92,7 +93,7 @@ export const PrivateNavbar = () => {
                                     <h2
                                         className={`${
                                             open && "hidden"
-                                        } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}>
+                                        } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>
                                         {menu?.name}
                                     </h2>
                                 </Link>

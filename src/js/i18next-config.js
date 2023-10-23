@@ -14,7 +14,27 @@ import loginformEn from "./translations/en/loginform.json";
 import signupformEs from "./translations/es/signupform.json";
 import signupformEn from "./translations/en/signupform.json";
 import loginsignupEs from "./translations/es/loginsignup.json";
-import loginsignupEn from "./translations/en/loginsignup.json"
+import loginsignupEn from "./translations/en/loginsignup.json";
+import specificContactEs from "./translations/es/specificContact.json";
+import specificContactEn from "./translations/en/specificContact.json";
+import contactEs from "./translations/es/contact.json";
+import contactEn from "./translations/en/contact.json";
+import privateNavbarEs from "./translations/es/dashboard/privateNavbar.json";
+import privateNavbarEn from "./translations/en/dashboard/privateNavbar.json";
+import dashboardEs from "./translations/es/dashboard/dashboard.json";
+import dashboardEn from "./translations/en/dashboard/dashboard.json";
+import clientsEs from "./translations/es/dashboard/clients.json";
+import clientsEn from "./translations/en/dashboard/clients.json";
+import databaseEs from "./translations/es/dashboard/database.json";
+import databaseEn from "./translations/en/dashboard/database.json";
+import formEs from "./translations/es/dashboard/form.json";
+import formEn from "./translations/en/dashboard/form.json";
+import reportsEs from "./translations/es/dashboard/reports.json";
+import reportsEn from "./translations/en/dashboard/reports.json";
+import paymentsEs from "./translations/es/dashboard/payments.json";
+import paymentsEn from "./translations/en/dashboard/payments.json";
+import settingsEs from "./translations/es/dashboard/settings.json";
+import settingsEn from "./translations/en/dashboard/settings.json";
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -29,7 +49,17 @@ i18next.init({
             private: privateEs,
             loginform: loginformEs,
             signupform: signupformEs,
-            loginsignup: loginsignupEs
+            loginsignup: loginsignupEs,
+            specificContact: specificContactEs,
+            contact: contactEs,
+            privateNavbar: privateNavbarEs,
+            dashboard: dashboardEs,
+            clients: clientsEs,
+            database: databaseEs,
+            form: formEs,
+            reports: reportsEs,
+            settings: settingsEs,
+            payments: paymentsEs
         },
         en: {
             app: appEn,
@@ -39,7 +69,17 @@ i18next.init({
             private: privateEn,
             loginform: loginformEn,
             signupform: signupformEn,
-            loginsignup: loginsignupEn
+            loginsignup: loginsignupEn,
+            specificContact: specificContactEn,
+            contact: contactEn,
+            privateNavbar: privateNavbarEn,
+            dashboard: dashboardEn,
+            clients: clientsEn,
+            database: databaseEn,
+            form: formEn,
+            reports: reportsEn,
+            payments: paymentsEn,
+            settings: settingsEn
         }
     }
 });

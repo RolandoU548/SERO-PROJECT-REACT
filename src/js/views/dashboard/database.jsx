@@ -1,8 +1,8 @@
 import { React, useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/app.css";
-import "../../css/glass.css";
-import "../../css/database.css";
+import "../../../css/app.css";
+import "../../../css/glass.css";
+import "../../../css/database.css";
 import { useTranslation } from "react-i18next";
 import { MaterialReactTable } from "material-react-table";
 import {
@@ -22,7 +22,7 @@ import { Delete, Edit } from "@mui/icons-material";
 import { data, states } from "./makeData";
 
 export const Database = () => {
-    const [t] = useTranslation("app");
+    const [t] = useTranslation("database");
 
     const navigate = useNavigate();
     const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -249,7 +249,7 @@ export const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
             </video>
             <div className="font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
-                    Database
+                    {t("database")}
                 </h1>
                 <div className="">
                     <div className="flex justify-end mr-12">

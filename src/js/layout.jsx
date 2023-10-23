@@ -8,21 +8,18 @@ import { LanguageButton } from "./components/LanguageButton.jsx";
 import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
-import { Database } from "./views/database.jsx";
-import { Form } from "./views/form.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
-import { Dashboard } from "./views/dashboard.jsx";
-import { Clients } from "./views/clients.jsx";
-import { Reports } from "./views/reports.jsx";
-import { Payments } from "./views/payments.jsx";
-import { Settings } from "./views/settings.jsx";
-import { SebastianLopez } from "./views/sebastianlopez.jsx";
-import { SebastianCastroRajbe } from "./views/sebastiancastrorajbe.jsx";
-import { RobertoVargas } from "./views/robertovargas.jsx";
-import { RolandoUzcategui } from "./views/rolandouzcategui.jsx";
+import { SpecificContact } from "./views/specificContact.jsx";
+import { Form } from "./views/dashboard/form.jsx";
+import { Database } from "./views/dashboard/database.jsx";
+import { Dashboard } from "./views/dashboard/dashboard.jsx";
+import { Clients } from "./views/dashboard/clients.jsx";
+import { Reports } from "./views/dashboard/reports.jsx";
+import { Payments } from "./views/dashboard/payments.jsx";
+import { Settings } from "./views/dashboard/settings.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -148,59 +145,16 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/SebastianLopez"
+                        path="contact/:contact"
                         transition="fade"
                         element={
                             <>
                                 <BackgroundVideo />
-                                <Navbar />
-                                <SebastianLopez />
+                                <SpecificContact />
                             </>
                         }
                     />
-                    <Route
-                        path="/SebastianCastroRajbe"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <SebastianCastroRajbe />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/RobertoVargas"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <RobertoVargas />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/RolandoUzcategui"
-                        transition="fade"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <RolandoUzcategui />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="*"
-                        element={
-                            <>
-                                <LanguageButton className="absolute top-7 left-10 w-6 h-4" />
-                                <Darkmode className="text-[10%] absolute top-2 right-2" />
-                                <NotFound />
-                            </>
-                        }
-                    />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </ScrollToTop>
         </BrowserRouter>
