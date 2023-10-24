@@ -1,11 +1,11 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 // import "../../../css/database.css";
 // import "../../../css/handsontable.css";
 import { useTranslation } from "react-i18next";
-import { HotTable } from "@handsontable/react";
+import { HotTable, HotColumn } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import "handsontable/dist/handsontable.full.min.css";
 
@@ -14,6 +14,7 @@ export const Database = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     registerAllModules();
+    const hotTableComponent = useRef(null);
 
     useEffect(() => {
         function getData() {
@@ -23,6 +24,18 @@ export const Database = () => {
         }
         getData();
     }, []);
+
+    const downloadFile = () => {
+        const downloadPlugin =
+            hotTableComponent.current.hotInstance.getPlugin("exportFile");
+
+        downloadPlugin.downloadFile("csv", {
+            filename: "DatabaseTable",
+            fileExtension: "csv",
+            mimeType: "text/csv",
+            columnHeaders: true
+        });
+    };
 
     return (
         <>
@@ -40,12 +53,14 @@ export const Database = () => {
                 </h1>
                 <div className="">
                     <div className="flex justify-end mr-12">
+                    <div
+                            className="flex justify-center items-center mr-5 w-36 h-8 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
+                            onClick={() => downloadFile()}>
+                            <p>Download File Here</p>
+                        </div>
                         <div
                             className="flex justify-center items-center mr-5 w-36 h-8 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
-                            // onClick={() => {
-                            //     setIsOpen(true);
-                            // }}
-                        >
+                            >
                             <p>New Column</p>
                             <i className="ml-4 fa-solid fa-plus"></i>
                         </div>
@@ -55,34 +70,24 @@ export const Database = () => {
                             <div className="relative text-xl text-white force-overflow table1 shadow-md sm:rounded-lg">
                                 {users && (
                                     <HotTable
-                                        data={[
-                                            [
-                                                "",
-                                                "Tesla",
-                                                "Nissan",
-                                                "Toyota",
-                                                "Honda",
-                                                "Mazda",
-                                                "Ford"
-                                            ],
-                                            ["2017", 10, 11, 12, 13, 15, 16],
-                                            ["2018", 10, 11, 12, 13, 15, 16],
-                                            ["2019", 10, 11, 12, 13, 15, 16],
-                                            ["2020", 10, 11, 12, 13, 15, 16],
-                                            ["2021", 10, 11, 12, 13, 15, 16]
-                                        ]}
+                                    ref={hotTableComponent}
+                                        data={users}
                                         licenseKey="non-commercial-and-evaluation"
                                         colHeaders={true}
                                         rowHeaders={true}
                                         columnSorting={true}
                                         contextMenu={true}>
-                                        {/* <HotColumn data="id" title="ID" readOnly={true}/>
+                                        <HotColumn
+                                            data="id"
+                                            title="ID"
+                                            readOnly={true}
+                                        />
                                         <HotColumn data="name" title="Name" />
                                         <HotColumn
                                             data="username"
                                             title="Username"
                                         />
-                                        <HotColumn data="email" title="Email" /> */}
+                                        <HotColumn data="email" title="Email" />
                                     </HotTable>
                                 )}
                             </div>
