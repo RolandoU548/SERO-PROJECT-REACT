@@ -5,7 +5,7 @@ import "../../../css/glass.css";
 // import "../../../css/database.css";
 // import "../../../css/handsontable.css";
 import { useTranslation } from "react-i18next";
-import { HotTable } from "@handsontable/react";
+import { HotTable, HotColumn } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import "handsontable/dist/handsontable.full.min.css";
 
@@ -14,6 +14,15 @@ export const Database = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     registerAllModules();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const [columns, setColumns] = useState([
+        { data: "id", title: "ID" },
+        { data: "name", title: "Name" },
+        { data: "username", title: "Username" },
+        { data: "email", title: "Email" },
+        { data: "REU", title: "REDUX" }
+    ]);
 
     useEffect(() => {
         function getData() {
@@ -34,6 +43,34 @@ export const Database = () => {
                 className="w-screen h-screen -z-50 fixed top-0 left-0 object-cover">
                 <source src="DatabaseBlackBG.mp4" type="video/mp4" />
             </video>
+            <div
+                className={
+                    "z-50 fixed h-screen w-screen top-0 left-0" +
+                    " " +
+                    (isOpen ? "" : "hidden")
+                }
+                onClick={() => {
+                    setIsOpen(false);
+                }}></div>
+            <form
+                className={
+                    "w-96 h-96 fixed z-50 top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 glass flex justify-center items-center flex-col gap-10" +
+                    " " +
+                    (isOpen ? "" : "hidden")
+                }
+                onSubmit={e => {
+                    e.preventDefault();
+                }}>
+                <label className="text-cyan-600">
+                    Data
+                    <input type="text" placeholder="data" className="block" />
+                </label>
+                <label className="text-cyan-600">
+                    Title
+                    <input type="text" placeholder="title" className="block" />
+                </label>
+                <button>Submit</button>
+            </form>
             <div className="font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
                     {t("database")}
@@ -42,10 +79,13 @@ export const Database = () => {
                     <div className="flex justify-end mr-12">
                         <div
                             className="flex justify-center items-center mr-5 w-36 h-8 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
-                            // onClick={() => {
-                            //     setIsOpen(true);
-                            // }}
-                        >
+                            onClick={() => {
+                                // setColumns([
+                                //     ...columns,
+                                //     { data: "hola", title: "HOLA" }
+                                // ]);
+                                setIsOpen(!isOpen);
+                            }}>
                             <p>New Column</p>
                             <i className="ml-4 fa-solid fa-plus"></i>
                         </div>
@@ -55,34 +95,21 @@ export const Database = () => {
                             <div className="relative text-xl text-white force-overflow table1 shadow-md sm:rounded-lg">
                                 {users && (
                                     <HotTable
-                                        data={[
-                                            [
-                                                "",
-                                                "Tesla",
-                                                "Nissan",
-                                                "Toyota",
-                                                "Honda",
-                                                "Mazda",
-                                                "Ford"
-                                            ],
-                                            ["2017", 10, 11, 12, 13, 15, 16],
-                                            ["2018", 10, 11, 12, 13, 15, 16],
-                                            ["2019", 10, 11, 12, 13, 15, 16],
-                                            ["2020", 10, 11, 12, 13, 15, 16],
-                                            ["2021", 10, 11, 12, 13, 15, 16]
-                                        ]}
+                                        data={users}
                                         licenseKey="non-commercial-and-evaluation"
                                         colHeaders={true}
                                         rowHeaders={true}
                                         columnSorting={true}
                                         contextMenu={true}>
-                                        {/* <HotColumn data="id" title="ID" readOnly={true}/>
-                                        <HotColumn data="name" title="Name" />
-                                        <HotColumn
-                                            data="username"
-                                            title="Username"
-                                        />
-                                        <HotColumn data="email" title="Email" /> */}
+                                        {columns.map((column, i) => {
+                                            return (
+                                                <HotColumn
+                                                    key={i}
+                                                    data={column.data}
+                                                    title={column.title}
+                                                />
+                                            );
+                                        })}
                                     </HotTable>
                                 )}
                             </div>
