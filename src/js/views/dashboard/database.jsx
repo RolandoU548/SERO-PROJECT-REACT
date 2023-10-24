@@ -2,11 +2,12 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
-import "../../../css/database.css";
+// import "../../../css/database.css";
+// import "../../../css/handsontable.css";
 import { useTranslation } from "react-i18next";
-import { HotTable, HotColumn } from "@handsontable/react";
+import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
-import "handsontable/dist/handsontable.full.css";
+import "handsontable/dist/handsontable.full.min.css";
 
 export const Database = () => {
     const [t] = useTranslation("database");
@@ -51,22 +52,37 @@ export const Database = () => {
                     </div>
                     <div className="flex justify-end ">
                         <div className="glass p-10 w-11/12 h-[30rem] mt-5 m-auto table2">
-                            <div className="relative flex justify-center m-auto text-xl force-overflow table1 shadow-md sm:rounded-lg">
+                            <div className="relative text-xl text-white force-overflow table1 shadow-md sm:rounded-lg">
                                 {users && (
                                     <HotTable
-                                        className="w-full h-full"
-                                        data={users}
+                                        data={[
+                                            [
+                                                "",
+                                                "Tesla",
+                                                "Nissan",
+                                                "Toyota",
+                                                "Honda",
+                                                "Mazda",
+                                                "Ford"
+                                            ],
+                                            ["2017", 10, 11, 12, 13, 15, 16],
+                                            ["2018", 10, 11, 12, 13, 15, 16],
+                                            ["2019", 10, 11, 12, 13, 15, 16],
+                                            ["2020", 10, 11, 12, 13, 15, 16],
+                                            ["2021", 10, 11, 12, 13, 15, 16]
+                                        ]}
                                         licenseKey="non-commercial-and-evaluation"
                                         colHeaders={true}
                                         rowHeaders={true}
-                                        columnSorting={true}>
-                                        <HotColumn data="id" title="ID" />
+                                        columnSorting={true}
+                                        contextMenu={true}>
+                                        {/* <HotColumn data="id" title="ID" readOnly={true}/>
                                         <HotColumn data="name" title="Name" />
                                         <HotColumn
                                             data="username"
                                             title="Username"
                                         />
-                                        <HotColumn data="email" title="Email" />
+                                        <HotColumn data="email" title="Email" /> */}
                                     </HotTable>
                                 )}
                             </div>
