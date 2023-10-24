@@ -65,8 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log(data);
                     setStore({
                         user: {
-                            name: data.name,
                             id: data.id,
+                            name: data.name,
                             lastname: data.lastname,
                             email: data.email
                         }

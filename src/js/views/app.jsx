@@ -59,12 +59,12 @@ export const App = () => {
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-20 mt-20 mb-16 flex justify-between">
-                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBGCrop.jpg')] bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
-                    <div
-                        className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
-                        onClick={() => {
-                            navigate("/signup");
-                        }}></div>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBGCrop.jpg')] bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
+                    onClick={() => {
+                        navigate("/signup");
+                    }}>
+                    <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10 text-center">{t("databaseCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
@@ -74,12 +74,12 @@ export const App = () => {
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-64 mt-20 mb-16 flex justify-end">
-                <div className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.jpg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white">
-                    <div
-                        className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0"
-                        onClick={() => {
-                            navigate("/signup");
-                        }}></div>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.jpg')] bg-center bg-cover rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
+                    onClick={() => {
+                        navigate("/signup");
+                    }}>
+                    <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10 text-center">{t("formCard")}</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
