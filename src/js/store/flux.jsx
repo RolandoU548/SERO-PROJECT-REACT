@@ -62,14 +62,17 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    setStore({
-                        user: {
-                            id: data.id,
-                            name: data.name,
-                            lastname: data.lastname,
-                            email: data.email
-                        }
-                    });
+                    if (resp.ok) {
+                        setStore({
+                            user: {
+                                id: data.id,
+                                name: data.name,
+                                lastname: data.lastname,
+                                email: data.email
+                            }
+                        });
+                    }
+
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -78,7 +81,12 @@ const getState = ({ getStore, getActions, setStore }) => {
             signOut: () => {
                 setStore({
                     token: null,
-                    user: { id: 0, name: "carlito", lastname: "corona", email: "carlito@4geeks.com" }
+                    user: {
+                        id: 0,
+                        name: " ",
+                        lastname: " ",
+                        email: " "
+                    }
                 });
                 localStorage.removeItem("token");
             }
