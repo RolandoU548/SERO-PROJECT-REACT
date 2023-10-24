@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: null, name: null, lastname: null, email: null }
+            user: { id: 0, name: " ", lastname: " ", email: " " }
         },
         actions: {
             createUser: async info => {
@@ -62,7 +62,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    console.log(data);
                     setStore({
                         user: {
                             id: data.id,
@@ -79,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             signOut: () => {
                 setStore({
                     token: null,
-                    user: { id: null, name: null, lastname: null, email: null }
+                    user: { id: 0, name: "carlito", lastname: "corona", email: "carlito@4geeks.com" }
                 });
                 localStorage.removeItem("token");
             }
