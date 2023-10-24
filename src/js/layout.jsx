@@ -14,7 +14,7 @@ import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
 import { SpecificContact } from "./views/specificContact.jsx";
 import { Form } from "./views/dashboard/form.jsx";
-import { Database } from "./views/dashboard/database.jsx";
+// import { Database } from "./views/dashboard/database.jsx";
 import { Dashboard } from "./views/dashboard/dashboard.jsx";
 import { Clients } from "./views/dashboard/clients.jsx";
 import { Reports } from "./views/dashboard/reports.jsx";
@@ -65,7 +65,7 @@ const Layout = () => {
                         transition="fade"
                         element={<LoginSignupCard flip={false} />}
                     />
-                    <Route
+                    {/* <Route
                         path="/database"
                         transition="fade"
                         element={
@@ -74,7 +74,7 @@ const Layout = () => {
                                 <Database />
                             </>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/form"
                         transition="fade"
