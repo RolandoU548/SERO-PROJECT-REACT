@@ -37,7 +37,9 @@
         }
     ],
     "dependencies": {
+        "@handsontable/react": "^13.1.0",
         "datamaker": "^0.11.1",
+        "handsontable": "^13.1.0",
         "i18next": "^23.5.1",
         "make-data": "^1.0.6",
         "material-react-table": "^1.15.1",

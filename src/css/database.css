@@ -2,6 +2,9 @@ table {
   border-collapse: separate;
   border: solid rgb(179, 179, 179) 1px;
   border-radius: 15px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+
 }
 
 td,
@@ -15,11 +18,11 @@ th {
 }
 
 th:first-child {
-  border-top-left-radius: 11px;
+  /* border-top-left-radius: 11px; */
 }
 
 th:last-child {
-  border-top-right-radius: 11px;
+  /* border-top-right-radius: 11px; */
 }
 
 .table1 {
