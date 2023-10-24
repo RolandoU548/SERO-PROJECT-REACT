@@ -12,7 +12,7 @@ export const Database = () => {
     const [t] = useTranslation("database");
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
-    registerAllModules()
+    registerAllModules();
 
     useEffect(() => {
         function getData() {
@@ -52,18 +52,23 @@ export const Database = () => {
                     <div className="flex justify-end ">
                         <div className="glass p-10 w-11/12 h-[30rem] mt-5 m-auto table2">
                             <div className="relative flex justify-center m-auto text-xl force-overflow table1 shadow-md sm:rounded-lg">
-                                {users && <HotTable
-                                className="w-full h-full"
-                                data={users}
-                                licenseKey="non-commercial-and-evaluation"
-                                colHeaders={true}
-                                rowHeaders={true}
-                                columnSorting={true}>
-                                    <HotColumn data="id" title="ID"/>
-                                    <HotColumn data="name" title="Name"/>
-                                    <HotColumn data="username" title="Username"/>
-                                    <HotColumn data="email" title="Email"/>
-                                </HotTable>}
+                                {users && (
+                                    <HotTable
+                                        className="w-full h-full"
+                                        data={users}
+                                        licenseKey="non-commercial-and-evaluation"
+                                        colHeaders={true}
+                                        rowHeaders={true}
+                                        columnSorting={true}>
+                                        <HotColumn data="id" title="ID" />
+                                        <HotColumn data="name" title="Name" />
+                                        <HotColumn
+                                            data="username"
+                                            title="Username"
+                                        />
+                                        <HotColumn data="email" title="Email" />
+                                    </HotTable>
+                                )}
                             </div>
                         </div>
                     </div>
