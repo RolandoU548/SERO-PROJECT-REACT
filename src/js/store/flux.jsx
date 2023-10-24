@@ -2,8 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: null, name: null, lastname: null, email: null },
-            clients: []
+            user: { id: 0, name: " ", lastname: " ", email: " " }
         },
         actions: {
             createUser: async info => {
@@ -63,15 +62,17 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    console.log(data);
-                    setStore({
-                        user: {
-                            id: data.id,
-                            name: data.name,
-                            lastname: data.lastname,
-                            email: data.email
-                        }
-                    });
+                    if (resp.ok) {
+                        setStore({
+                            user: {
+                                id: data.id,
+                                name: data.name,
+                                lastname: data.lastname,
+                                email: data.email
+                            }
+                        });
+                    }
+
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -80,7 +81,12 @@ const getState = ({ getStore, getActions, setStore }) => {
             signOut: () => {
                 setStore({
                     token: null,
-                    user: { id: null, name: null, lastname: null, email: null }
+                    user: {
+                        id: 0,
+                        name: " ",
+                        lastname: " ",
+                        email: " "
+                    }
                 });
                 localStorage.removeItem("token");
             },

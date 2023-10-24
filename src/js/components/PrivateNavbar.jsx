@@ -18,7 +18,7 @@ import {
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const [t] = useTranslation("private");
     const [t2] = useTranslation("privateNavbar");
     const navigate = useNavigate();
@@ -154,6 +154,20 @@ export const PrivateNavbar = () => {
                         SERØ.
                     </h2>
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
+                        <li>
+                            <div className="text-xl text-light">
+                                {store.user.name[0].toUpperCase() +
+                                    store.user.name.substr(1)}{" "}
+                                {store.user.lastname[0].toUpperCase() +
+                                    store.user.lastname.substr(1)}
+                                <Link to="/profile">
+                                    <i
+                                        className="fa-regular fa-circle-user text-2xl mx-4"
+                                        style={{ color: "#ffffff" }}
+                                    />
+                                </Link>
+                            </div>
+                        </li>
                         <li className="my-2.5">
                             <button
                                 className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
