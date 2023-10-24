@@ -89,6 +89,75 @@ const getState = ({ getStore, getActions, setStore }) => {
                     }
                 });
                 localStorage.removeItem("token");
+            },
+            getAllClients: async () => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/clients"
+                    );
+                    const data = await resp.json();
+                    setStore({ clients: data });
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            updateClient: async (id, client) => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/clients/${id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(client)
+                        }
+                    );
+                    const data = await response.json();
+                    client.name = data.name;
+                    client.email = data.email;
+                    client.phone = data.phone;
+                    client.business = data.business;
+                    client.description = data.description;
+                    client.status = data.status;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+
+            deleteClient: async id => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/clients/${id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            createClient: async client => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/clients",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(client)
+                        }
+                    );
+                    const data = await response.json();
+                    setStore({ clients: [...getStore().clients, data] });
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
             }
         }
     };
