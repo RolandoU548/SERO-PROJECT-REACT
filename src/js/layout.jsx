@@ -1,11 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import { Darkmode } from "./components/Darkmode.jsx";
 import { Navbar } from "./components/Navbar.jsx";
 import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
 import { LanguageButton } from "./components/LanguageButton.jsx";
-import { BackArrow } from "./components/BackArrow.jsx";
 
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
@@ -20,13 +18,13 @@ import { Clients } from "./views/dashboard/clients.jsx";
 import { Reports } from "./views/dashboard/reports.jsx";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
-import { Profile } from "./views/profile.jsx";
+import { Profile } from "./views/dashboard/profile.jsx";
+import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
-import { UserProfile } from "./views/userprofile.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain

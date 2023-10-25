@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LanguageButton } from "./LanguageButton";
+import { LanguageButton } from "./LanguageButton.jsx";
+import { Darkmode } from "./Darkmode.jsx";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
@@ -150,7 +151,7 @@ export const PrivateNavbar = () => {
                         " " +
                         (isOpen ? "resp:right-0" : "resp:-right-60")
                     }>
-                    <h2 className="text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden resp:block">
+                    <h2 className="text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden resp:block resp:mt-5">
                         SERØ.
                     </h2>
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
@@ -162,7 +163,7 @@ export const PrivateNavbar = () => {
                                     store.user.lastname.substr(1)}
                                 <Link to="/profile">
                                     <i
-                                        className="fa-regular fa-circle-user text-2xl mx-4"
+                                        className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
                                         style={{ color: "#ffffff" }}
                                     />
                                 </Link>
@@ -179,7 +180,10 @@ export const PrivateNavbar = () => {
                             </button>
                         </li>
                         <li className="my-2.5">
-                            <LanguageButton className="ml-7 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
+                            <LanguageButton className="ml-3 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
+                        </li>
+                        <li className="my-2.5">
+                            <Darkmode className="text-[10%] ml-3 resp:absolute resp:top-3 resp:left-3" />
                         </li>
                     </ul>
                 </nav>
