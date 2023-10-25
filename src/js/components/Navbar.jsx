@@ -11,7 +11,7 @@ export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="fixed flex justify-between items-center z-40 mb-40 w-full py-3 font-serif text-gray-200 glassNav top-0">
+        <header className="fixed flex justify-between items-center z-40 mb-40 w-full py-3 font-serif dark:text-gray-200 text-black glassNav top-0">
             <h2
                 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                 onClick={() => {
@@ -49,21 +49,20 @@ export const Navbar = () => {
                     <li className="my-2.5">
                         <NavLink
                             to="/"
-                            className="text-xl font-medium ml-6 text-gray-200 hover:text-cyan-300 transition duration-300 resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
+                            className="text-xl font-medium ml-6 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
                             {t("home")}
                         </NavLink>
                     </li>
                     <li className="my-2.5">
                         <NavLink
                             to="/contact"
-                            className="text-xl font-medium ml-7 text-gray-200 hover:text-cyan-300 transition duration-300
-                    resp:dark:text-gray-200 resp:text-gray-600 resp:m-0">
+                            className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
                             {t("contacts")}
                         </NavLink>
                     </li>
                     <li className="my-2.5">
                         <button
-                            className="w-40 hover:bg-cyan-300 transition duration-300 hover:text-white text-xl p-2 text-black ml-6 bg-white rounded-full resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400 resp:dark:hover:text-gray-black resp:dark:hover:bg-gray-200"
+                            className="w-40 hover:bg-cyan-300 dark:hover:bg-cyan-300 transition duration-300 dark:hover:text-white text-xl p-2 text-white dark:text-black ml-6 hover:text-black bg-black dark:bg-white rounded-full resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400 resp:dark:hover:text-gray-black resp:dark:hover:bg-gray-200"
                             onClick={() => {
                                 navigate("/login");
                             }}>
@@ -72,7 +71,7 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <button
-                            className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400 resp:dark:hover:text-gray-black resp:dark:hover:bg-gray-200"
+                            className="hover:bg-cyan-300 dark:hover:bg-cyan-300 transition duration-300 dark:hover:text-white hover:text-black w-40 text-xl p-2 text-white dark:text-black rounded-full bg-black dark:bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400 resp:dark:hover:text-gray-black resp:dark:hover:bg-gray-200"
                             onClick={() => {
                                 navigate("/signup");
                             }}>

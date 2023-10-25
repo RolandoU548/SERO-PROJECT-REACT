@@ -13,7 +13,7 @@ export const App = () => {
         }
     }, []);
     return (
-        <div className="font-serif text-gray-200">
+        <div className="font-serif dark:text-gray-200 text-black">
             <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white mt-48">
                 {t("title")}
             </h2>
@@ -21,7 +21,7 @@ export const App = () => {
                 {t("subtitle")}
             </h2>
             <Link
-                className="w-[250px] hover:bg-[#00f2ff80] transition duration-300 m-auto block mt-16 p-4 text-3xl text-center border border-white rounded-full"
+                className="w-[250px] hover:bg-[#00f2ff80] transition duration-300 m-auto block mt-16 p-4 text-3xl text-center border dark:border-white border-black rounded-full"
                 to="/signup">
                 {t("getStarted")}
             </Link>
@@ -52,7 +52,7 @@ export const App = () => {
                         {t("message1")}{" "}
                         <Link
                             to="/signup"
-                            className="text-cyan-400 underline hover:text-cyan-500">
+                            className="underline text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-500">
                             {t("message2")}
                         </Link>
                     </p>

@@ -32,15 +32,13 @@ export const PrivateNavbar = () => {
         {
             name: t2("fillForm"),
             link: "/form",
-            icon: TbReportAnalytics,
-            margin: true
+            icon: TbReportAnalytics
         },
         { name: t2("reports"), link: "/reports", icon: FiFolder },
         {
             name: t2("payments"),
             link: "/payments",
-            icon: FiDollarSign,
-            margin: true
+            icon: FiDollarSign
         },
         { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
@@ -56,26 +54,26 @@ export const PrivateNavbar = () => {
                 }>
                 <section className="flex gap-6">
                     <div
-                        className={`glassNav min-h-screen ${
+                        className={`glassNav h-screen bg-[rgba(200,200,200,0.6)] dark:bg-transparent ${
                             open ? "w-72" : "w-16"
                         } duration-500 text-gray-100 px-4`}>
                         <div className="flex justify-end">
                             <div
-                                className="ml-5 mt-3 flex justify-center items-center mr-5 w-14 h-14 text-3xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
+                                className="ml-5 mt-3 flex justify-center items-center mr-5 w-14 h-14 text-3xl dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.2)] text-black dark:text-white rounded-full cursor-pointer"
                                 onClick={() => {
                                     setOpen(!open);
                                 }}>
                                 <i className="fa-solid fa-bars"></i>
                             </div>
                         </div>
-                        <div className="mt-4 flex flex-col gap-4 relative">
+                        <div className="mt-4 flex flex-col gap-4 relative text-black dark:text-white dark:bg-transparent rounded-xl">
                             {menus?.map((menu, i) => (
                                 <Link
                                     to={menu?.link}
                                     key={i}
                                     className={` ${
                                         menu?.margin && "mt-5"
-                                    } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}>
+                                    } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md`}>
                                     <div>
                                         {React.createElement(menu?.icon, {
                                             size: "20"
@@ -103,11 +101,11 @@ export const PrivateNavbar = () => {
                     </div>
                 </section>
             </div>
-            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-full py-3 font-serif text-gray-200 bg-transparent">
+            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-full py-3 font-serif dark:text-gray-200 bg-transparent">
                 <div className="flex ml-10 items-center">
                     <div
                         className={
-                            "flex justify-center items-center mr-5 w-14 h-14 text-3xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer" +
+                            "flex justify-center items-center mr-5 w-14 h-14 text-3xl dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.2)] rounded-full cursor-pointer" +
                             " " +
                             (open ? "hidden" : "")
                         }
@@ -129,7 +127,7 @@ export const PrivateNavbar = () => {
                     </h2>
                 </div>
                 <div
-                    className="hidden resp:flex justify-center items-center mr-5 w-10 h-10 text-2xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
+                    className="hidden resp:flex justify-center items-center mr-5 w-10 h-10 text-2xl dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.2)] rounded-full cursor-pointer"
                     onClick={() => {
                         setIsOpen(true);
                     }}>
@@ -171,7 +169,7 @@ export const PrivateNavbar = () => {
                         </li>
                         <li className="my-2.5">
                             <button
-                                className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
+                                className="hover:bg-cyan-300 dark:hover:bg-cyan-300 hover:text-black transition duration-300 dark:hover:text-white w-40 text-xl p-2 dark:text-black rounded-full bg-black text-white dark:bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                                 onClick={() => {
                                     actions.signOut();
                                     navigate("/");
