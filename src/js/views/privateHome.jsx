@@ -33,30 +33,38 @@ export const PrivateHome = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-evenly flex-wrap my-10 gap-5">
+            <div className="flex justify-evenly flex-wrap my-10 gap-2">
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DataBaseCardBGCrop.jpg')] bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('DataBaseCardBGCrop.jpg')] bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
                     onClick={() => {
                         navigate("/database");
                     }}>
-                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <div className="bg-black absolute w-80 h-[25rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">{t("databaseCard")}</h2>
                 </div>
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('FormCardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('FormCardBG.jpg')] bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
                     onClick={() => {
                         navigate("/form");
                     }}>
-                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <div className="bg-black absolute w-80 h-[25rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     <h2 className="z-10">{t("formCard")}</h2>
                 </div>
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-96 bg-[url('DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[30rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('ClientsCardBG.jpg')] bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
+                    onClick={() => {
+                        navigate("/clients");
+                    }}>
+                    <div className="bg-black absolute w-80 h-[25rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10">Clients</h2>
+                </div>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-80 bg-[url('DashboardCardBG.jpg')] bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group"
                     onClick={() => {
                         navigate("/dashboard");
                     }}>
-                    <div className="bg-black absolute w-96 h-[30rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
-                    <h2 className="z-10">{t("dashboardCard")}</h2>
+                    <div className="bg-black absolute w-80 h-[25rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <h2 className="z-10 text-center">{t("dashboardCard")}</h2>
                 </div>
             </div>
         </>
