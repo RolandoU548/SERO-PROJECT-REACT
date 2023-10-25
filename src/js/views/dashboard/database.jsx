@@ -62,7 +62,7 @@ export const Database = () => {
                 muted
                 playsInline
                 className="w-screen h-screen -z-50 fixed top-0 left-0 object-cover">
-                <source src="DatabaseBlackBG.mp4" type="video/mp4" />
+                <source src="DatabaseBG.mp4" type="video/mp4" />
             </video>
             <div
                 className={
