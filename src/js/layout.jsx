@@ -26,6 +26,7 @@ import { CreateClient } from "./views/dashboard/createclient.jsx";
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
+import { UserProfile } from "./views/userprofile.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -122,6 +123,16 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Clients />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/userprofile"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <UserProfile />
                             </>
                         }
                     />
