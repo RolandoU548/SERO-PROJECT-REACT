@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
-import { FaTrash, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
-import { get } from "react-hook-form";
+import { DeleteModal } from "../../components/dashclients/deletemodal";
 
 export const Clients = () => {
     const { store, actions } = useContext(Context);
@@ -27,11 +27,11 @@ export const Clients = () => {
         setClients(store.clients);
     }, [clients]);
 
-    const handleClientDelete = id => {
-        actions.deleteClient(id);
-        const updatedClients = clients.filter(client => client.id !== id);
-        setClients(updatedClients);
-    };
+    // const handleClientDelete = id => {
+    //     actions.deleteClient(id);
+    //     const updatedClients = clients.filter(client => client.id !== id);
+    //     setClients(updatedClients);
+    // };
 
     // Usuario actual
     const indexOfLastClient = currentPage * clientsPerPage;
@@ -205,15 +205,10 @@ export const Clients = () => {
                                                 key={client.id}
                                                 client={client}
                                             />
-                                            <button
-                                                className="ml-2 px-2 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
-                                                onClick={() =>
-                                                    handleClientDelete(
-                                                        client.id
-                                                    )
-                                                }>
-                                                <FaTrash />
-                                            </button>
+                                            <DeleteModal
+                                                key={client.id}
+                                                client={client}
+                                            />
                                         </td>
                                     </tr>
                                 ))}
