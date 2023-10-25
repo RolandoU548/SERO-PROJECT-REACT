@@ -60,7 +60,6 @@ const Layout = () => {
                         path="/profile"
                         element={
                             <>
-                                <BackgroundVideo />
                                 <PrivateNavbar />
                                 <Profile />
                             </>

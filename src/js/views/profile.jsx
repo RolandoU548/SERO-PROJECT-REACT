@@ -9,6 +9,7 @@ export const Profile = () => {
     return (
 <>
 <div className="mt-64"></div>
+<img src="ProfileBG.jpg" className="fixed -z-50 top-0 left-0" />
     <div className="glass h-[22.2rem] container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2 ">
             <div className="w-full md:w-3/12 md:mx-2">
