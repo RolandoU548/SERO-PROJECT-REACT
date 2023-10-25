@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LanguageButton } from "./LanguageButton";
+import { LanguageButton } from "./LanguageButton.jsx";
+import { Darkmode } from "./Darkmode.jsx";
 import "../../css/glass.css";
 
 export const Navbar = () => {
@@ -41,7 +42,7 @@ export const Navbar = () => {
                     " " +
                     (isOpen ? "resp:right-0" : "resp:-right-60")
                 }>
-                <h2 className="text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden resp:block">
+                <h2 className="text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden resp:block resp:mt-5">
                     SERØ.
                 </h2>
                 <ul className="flex items-center resp:mt-5 resp:flex-col">
@@ -79,7 +80,10 @@ export const Navbar = () => {
                         </button>
                     </li>
                     <li className="my-2.5">
-                        <LanguageButton className="ml-7 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
+                        <LanguageButton className="ml-3 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
+                    </li>
+                    <li className="my-2.5">
+                        <Darkmode className="text-[10%] ml-3 resp:absolute resp:top-3 resp:left-3" />
                     </li>
                 </ul>
             </nav>
