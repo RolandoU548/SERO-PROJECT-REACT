@@ -21,7 +21,7 @@ export const PrivateHome = () => {
                 loop
                 muted
                 playsInline
-                className="w-screen h-screen -z-50 fixed object-cover top-0">
+                className="w-screen h-screen -z-50 fixed object-cover top-0 dark:invert-0 invert transition duration-500">
                 <source src="PrivateBG.mp4" type="video/mp4" />
             </video>
             <div className="font-serif text-gray-200">
