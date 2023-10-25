@@ -20,6 +20,7 @@ import { Clients } from "./views/dashboard/clients.jsx";
 import { Reports } from "./views/dashboard/reports.jsx";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
+import { Profile } from "./views/profile.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -51,6 +52,16 @@ const Layout = () => {
                                 <BackgroundVideo />
                                 <Navbar />
                                 <Contact />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <>
+                                <BackgroundVideo />
+                                <PrivateNavbar />
+                                <Profile />
                             </>
                         }
                     />
