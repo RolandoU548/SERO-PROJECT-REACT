@@ -7,6 +7,7 @@ import "../../../css/app.css";
 import "../../../css/glass.css";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
+import { get } from "react-hook-form";
 
 export const Clients = () => {
     const { store, actions } = useContext(Context);
@@ -25,14 +26,6 @@ export const Clients = () => {
         actions.getAllClients();
         setClients(store.clients);
     }, [clients]);
-
-    const handleClientSave = updatedClient => {
-        actions.updateClient(updatedClient);
-        const updatedClients = clients.map(client =>
-            client.id === updatedClient.id ? updatedClient : client
-        );
-        setClients(updatedClients);
-    };
 
     const handleClientDelete = id => {
         actions.deleteClient(id);
@@ -207,7 +200,6 @@ export const Clients = () => {
                                             <ClientProfile
                                                 key={client.id}
                                                 client={client}
-                                                onSave={handleClientSave}
                                             />
                                             <button
                                                 className="ml-2 px-2 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"

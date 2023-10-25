@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
 import { FaEdit } from "react-icons/fa";
 
@@ -6,8 +7,13 @@ import "../../../css/app.css";
 import "../../../css/glass.css";
 
 export const ClientProfile = ({ client }) => {
+    const { store, actions } = useContext(Context);
     const [isOpen, setIsOpen] = useState(false);
     const [editableClient, setEditableClient] = useState(client);
+
+    useEffect(() => {
+        actions.getAllClients();
+    }, [client]);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
@@ -20,23 +26,7 @@ export const ClientProfile = ({ client }) => {
 
     const handleSave = async () => {
         try {
-            const response = await fetch(
-                import.meta.env.VITE_BACKEND_URL + `/clients/${client.id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(editableClient)
-                }
-            );
-            const data = await response.json();
-            client.name = data.name;
-            client.email = data.email;
-            client.phone = data.phone;
-            client.business = data.business;
-            client.description = data.description;
-            client.status = data.status;
+            await actions.updateClient(client.id, editableClient);
             toggleModal();
         } catch (error) {
             console.error(error);

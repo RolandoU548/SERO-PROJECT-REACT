@@ -1,8 +1,11 @@
+import { set } from "react-hook-form";
+
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: 0, name: " ", lastname: " ", email: " " }
+            user: { id: 0, name: " ", lastname: " ", email: " " },
+            clients: []
         },
         actions: {
             createUser: async info => {
@@ -121,6 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     client.business = data.business;
                     client.description = data.description;
                     client.status = data.status;
+                    setStore({ clients: [...getStore().clients] });
                 } catch (error) {
                     console.error(error);
                 }
