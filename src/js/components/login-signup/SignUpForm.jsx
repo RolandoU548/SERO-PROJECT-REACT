@@ -24,7 +24,8 @@ export const SignUpForm = ({
         register,
         handleSubmit,
         reset,
-        formState: { errors }
+        formState: { errors },
+        watch
     } = useForm();
 
     const submit = async data => {
@@ -122,7 +123,7 @@ export const SignUpForm = ({
                     className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
                     placeholder={examplePassword}
                     type="password"
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     {...register("password", {
                         required: {
                             value: true,
@@ -141,6 +142,40 @@ export const SignUpForm = ({
                 {errors.password && (
                     <span className="text-sm text-red-500">
                         {errors.password.message}
+                    </span>
+                )}
+            </label>
+            <label className="dark:text-white text-xl">
+                {t("confirmPassword")}
+                <input
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    placeholder={t("confirmPassword")}
+                    type="password"
+                    autoComplete="new-password"
+                    {...register("confirmPassword", {
+                        required: {
+                            value: true,
+                            message: t("passwordRequired")
+                        },
+                        minLength: {
+                            value: 6,
+                            message: t("passwordMinLength")
+                        },
+                        maxLength: {
+                            value: 15,
+                            message: t("passwordMaxLength")
+                        },
+                        validate: value => {
+                            if (value === watch("password")) {
+                                return true;
+                            }
+                            return t("passwordsNotMatch");
+                        }
+                    })}
+                />
+                {errors.confirmPassword && (
+                    <span className="text-sm text-red-500">
+                        {errors.confirmPassword.message}
                     </span>
                 )}
             </label>

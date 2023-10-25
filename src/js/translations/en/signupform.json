@@ -7,5 +7,7 @@
     "invalidEmail": "Invalid Email",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 6 characters",
-    "passwordMaxLength": "Password must have a maximum of 15 characters"
+    "passwordMaxLength": "Password must have a maximum of 15 characters",
+    "confirmPassword": "Confirm Password",
+    "passwordsNotMatch": "Passwords don't match"
 }
