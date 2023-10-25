@@ -98,9 +98,18 @@ export const App = () => {
                     <h2 className="z-10 text-center">Clients</h2>
                 </div>
                 <div className="w-8/12 p-10 text-2xl items-center">
-                    <p>En la parte de clientes tendrá una tabla para agregar un listado de clientes con sus datos personales.</p>
-                    <p className="mt-10">De esta manera usted podrá también tener una lista de contactos de aquellos a quienes ofrece sus servicios.</p>
-                    <p className="mt-10">¡No espere más para agendar a todos los que necesitan de usted y de su organización como servicio requerido!</p>
+                    <p>
+                        En la parte de clientes tendrá una tabla para agregar un
+                        listado de clientes con sus datos personales.
+                    </p>
+                    <p className="mt-10">
+                        De esta manera usted podrá también tener una lista de
+                        contactos de aquellos a quienes ofrece sus servicios.
+                    </p>
+                    <p className="mt-10">
+                        ¡No espere más para agendar a todos los que necesitan de
+                        usted y de su organización como servicio requerido!
+                    </p>
                 </div>
             </div>
             <div className="glass rounded-2xl w-9/12 ml-64 mt-20 mb-16 flex justify-end">
