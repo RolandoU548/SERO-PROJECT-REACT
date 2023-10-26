@@ -24,8 +24,7 @@ export const Clients = () => {
 
     useEffect(() => {
         actions.getAllClients();
-        setClients(store.clients);
-    }, [clients]);
+    }, []);
 
     // const handleClientDelete = id => {
     //     actions.deleteClient(id);
