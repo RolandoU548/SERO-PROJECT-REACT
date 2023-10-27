@@ -162,6 +162,61 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.error(error);
                 }
+            },
+            sendRow: async object => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/row",
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                text: object
+                            })
+                        }
+                    );
+                    const data = await resp.json();
+                    console.log(data);
+                    if (!resp.ok) {
+                        alert(JSON.stringify(data.message));
+                    }
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getRow: async id => {
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/row/${id}`,
+                        {
+                            method: "GET",
+                            headers: { "Content-Type": "application/json" }
+                        }
+                    );
+                    const data = await resp.json();
+                    if (!resp.ok) {
+                        alert(JSON.stringify(data.message));
+                    }
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getRows: async () => {
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/rows`,
+                        {
+                            method: "GET",
+                            headers: { "Content-Type": "application/json" }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
             }
         }
     };

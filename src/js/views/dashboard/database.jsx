@@ -1,6 +1,7 @@
 /* eslint-disable no-unreachable-loop */
 /* eslint-disable no-undef */
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useRef, useContext } from "react";
+import { Context } from "../../store/appContext.jsx";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 // import "../../../css/database.css";
@@ -8,12 +9,18 @@ import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { HotTable, HotColumn } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
+import { registerLanguageDictionary, esMX } from "handsontable/i18n";
 import "handsontable/dist/handsontable.full.min.css";
 import { useForm } from "react-hook-form";
 
+registerAllModules();
+registerLanguageDictionary(esMX);
+
 export const Database = () => {
+    const { actions } = useContext(Context);
     const [t] = useTranslation("database");
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
+    const [rows, setRows] = useState([]);
     registerAllModules();
     const hotTableComponent = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +33,17 @@ export const Database = () => {
     const [columns, setColumns] = useState([{ data: "id", title: "ID" }]);
 
     useEffect(() => {
-        function getData() {
-            fetch("https://jsonplaceholder.typicode.com/users")
-                .then(response => response.json())
-                .then(data => setUsers(data));
-        }
-        getData();
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(response => response.json())
+            .then(data => setRows(data));
+        persistentStateSave();
+        // actions.getRows().then(rows => {
+        //     setRows(
+        //         rows.map(row => {
+        //             return Object.values(row);
+        //         })
+        //     );
+        // });
     }, []);
 
     const downloadFile = () => {
@@ -132,7 +144,7 @@ export const Database = () => {
                     <div
                         className="flex justify-center items-center mr-5 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3"
                         onClick={() => {
-                            setIsOpen(true);
+                            console.log(rows);
                         }}>
                         <p>New Column</p>
                         <i className="ml-4 fa-solid fa-plus"></i>
@@ -141,25 +153,35 @@ export const Database = () => {
                 <div className="flex justify-end ">
                     <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2">
                         <div className="relative text-xl text-white force-overflow table1 shadow-md sm:rounded-lg">
-                            {users && (
+                            {/* {rows && (
                                 <HotTable
                                     ref={hotTableComponent}
-                                    data={columns}
+                                    data={rows}
                                     licenseKey="non-commercial-and-evaluation"
                                     colHeaders={true}
                                     rowHeaders={true}
                                     columnSorting={true}
                                     contextMenu={true}>
-                                    {columns.map((column, i) => {
-                                        return (
-                                            <HotColumn
-                                                key={i}
-                                                data={column.data}
-                                                title={column.title}
-                                            />
-                                        );
+                                    {rows.map((row, i) => {
+                                        return 0;
                                     })}
                                 </HotTable>
+                            )} */}
+                            {rows.length > 0 && (
+                                <HotTable
+                                    ref={hotTableComponent}
+                                    data={rows}
+                                    language={esMX.languageCode}
+                                    licenseKey="non-commercial-and-evaluation"
+                                    colHeaders={Object.keys(rows[0])}
+                                    rowHeaders={true}
+                                    mergeCells={true}
+                                    columnSorting={true}
+                                    contextMenu={true}
+                                    dropdownMenu={true}
+                                    filters={true}
+                                    persistentState={true}
+                                />
                             )}
                         </div>
                     </div>
