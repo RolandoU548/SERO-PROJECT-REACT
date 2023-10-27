@@ -12,7 +12,7 @@ export const Reports = () => {
         <>
             <img
                 src="ReportsBG.jpg"
-                className="w-screen h-screen -z-50 fixed object-cover top-0 left-0"
+                className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">

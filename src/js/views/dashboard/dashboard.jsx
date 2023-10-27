@@ -25,9 +25,9 @@ export const Dashboard = () => {
 
     return (
         <>
-            <img src="DashboardBG.jpg" className="fixed -z-50 top-0 left-0" />
+            <img src="DashboardBG.jpg" className="invert fixed -z-50 top-0 left-0 dark:invert-0 transition duration-500" />
             <div className="font-serif text-gray-200 mt-28 flex flex-col items-center justify-center">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto text-center">
+                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto text-center">
                     {t("dashboard")}
                 </h1>
                 <div className="glass p-10 mt-5 m-auto w-11/12">
@@ -37,26 +37,26 @@ export const Dashboard = () => {
                             onClick={() => {
                                 handleClientClick();
                             }}>
-                            <div className="font-bold text-white">CLIENTS</div>
-                            <div className="font-bold text-blue-500 text-md sm:text-xl">
+                            <div className="font-bold text-black dark:text-white">CLIENTS</div>
+                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                 {numClients}
                             </div>
                         </div>
                         <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
-                            <div className="font-bold text-white">SERVICES</div>
-                            <div className="font-bold text-blue-500 text-md sm:text-xl">
+                            <div className="font-bold text-black dark:text-white">SERVICES</div>
+                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                 5
                             </div>
                         </div>
                         <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
-                            <div className="font-bold text-white">TASKS</div>
-                            <div className="font-bold text-blue-500 text-md sm:text-xl">
+                            <div className="font-bold text-black dark:text-white">TASKS</div>
+                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                 20
                             </div>
                         </div>
                         <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
-                            <div className="font-bold text-white">REPORTS</div>
-                            <div className="font-bold text-blue-500 text-md sm:text-xl">
+                            <div className="font-bold text-black dark:text-white">REPORTS</div>
+                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                 3
                             </div>
                         </div>

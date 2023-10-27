@@ -13,7 +13,7 @@ export const Form = () => {
                 loop
                 muted
                 playsInline
-                className="w-screen h-screen -z-50 fixed object-cover top-0 left-0">
+                className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500">
                 <source src="FormBlackBG.mp4" type="video/mp4" />
             </video>
             <div className="font-serif text-gray-200 mt-28">

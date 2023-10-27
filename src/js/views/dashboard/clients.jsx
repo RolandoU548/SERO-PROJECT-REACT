@@ -79,7 +79,7 @@ export const Clients = () => {
                 loop
                 muted
                 playsInline
-                className="w-screen h-screen -z-50 fixed top-0 left-0 object-cover">
+                className="w-screen h-screen -z-50 fixed top-0 left-0 object-cover invert dark:invert-0 transition duration-500">
                 <source src="ClientsBG.mp4" type="video/mp4" />
             </video>
             <div className="font-serif text-gray-200 mt-28">

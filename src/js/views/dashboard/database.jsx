@@ -61,7 +61,7 @@ export const Database = () => {
                 loop
                 muted
                 playsInline
-                className="w-screen h-screen -z-50 fixed top-0 left-0 object-cover">
+                className="invert w-screen h-screen -z-50 fixed top-0 left-0 object-cover dark:invert-0 transition duration-500">
                 <source src="DatabaseBG.mp4" type="video/mp4" />
             </video>
             <div
