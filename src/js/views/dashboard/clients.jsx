@@ -16,7 +16,7 @@ export const Clients = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [clientsPerPage] = useState(5);
-    const [clients, setClients] = useState(store.clients);
+    // const [clients, setClients] = useState(store.clients);
     const [sortOrder, setSortOrder] = useState({
         column: "name",
         ascending: true
@@ -26,33 +26,33 @@ export const Clients = () => {
         actions.getAllClients();
     }, []);
 
-    // const handleClientDelete = id => {
-    //     actions.deleteClient(id);
-    //     const updatedClients = clients.filter(client => client.id !== id);
-    //     setClients(updatedClients);
-    // };
-
     // Usuario actual
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
-    const currentClients = store.clients
-        .filter(client =>
-            client.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        .slice(indexOfFirstClient, indexOfLastClient);
+    const currentClients =
+        store.clients &&
+        store.clients
+            .filter(client =>
+                client.name.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .sort((a, b) =>
+                sortOrder.ascending
+                    ? a[sortOrder.column].localeCompare(b[sortOrder.column])
+                    : b[sortOrder.column].localeCompare(a[sortOrder.column])
+            )
+            .slice(indexOfFirstClient, indexOfLastClient);
+
+    // Cambiar de Pagina
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     // Labels Filtrados
     const sortClients = (clients, column, ascending) => {
         return clients.sort((a, b) => {
             const aValue = a[column];
             const bValue = b[column];
-            if (aValue < bValue) {
-                return ascending ? -1 : 1;
-            } else if (aValue > bValue) {
-                return ascending ? 1 : -1;
-            } else {
-                return 0;
-            }
+            return ascending
+                ? aValue.localeCompare(bValue)
+                : bValue.localeCompare(aValue);
         });
     };
 
@@ -68,9 +68,6 @@ export const Clients = () => {
         sortOrder.column,
         sortOrder.ascending
     );
-
-    // Cambiar de Pagina
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
         <>
