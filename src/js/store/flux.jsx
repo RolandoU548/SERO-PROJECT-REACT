@@ -22,9 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    if (!resp.ok) {
-                        alert(JSON.stringify(data.message));
-                    }
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);

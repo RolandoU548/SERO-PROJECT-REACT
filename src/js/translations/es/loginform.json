@@ -5,5 +5,8 @@
     "invalidEmail": "Correo no válido",
     "passwordRequired": "Contraseña requerida",
     "passwordMinLength": "Contraseña debe tener al menos 6 caracteres",
-    "passwordMaxLength": "Contraseña debe tener máximo 15 caracteres"
+    "passwordMaxLength": "Contraseña debe tener máximo 15 caracteres",
+    "incorrectPassword": "Contraseña incorrecta",
+    "userNotRegistered": "El usuario no está registrado",
+    "loggedIn": "Sesión iniciada"
 }

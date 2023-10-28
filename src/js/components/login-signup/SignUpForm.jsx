@@ -30,8 +30,10 @@ export const SignUpForm = ({
 
     const submit = async data => {
         const respuesta = await actions.createUser(data);
-        if (respuesta?.message === "A user has been created") {
-            alert("Usuario Creado");
+        if (respuesta?.message === `User ${data.email} already exists`) {
+            alert(`${data.email} ${t("userAlreadyExists")}`);
+        } else if (respuesta?.message === "A user has been created") {
+            alert(t("userCreated"));
             const token = await actions.generateToken(data);
             if (token.token) {
                 actions.identificateUser(token.token);
