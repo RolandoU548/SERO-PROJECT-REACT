@@ -20,7 +20,6 @@ function App() {
         <React.StrictMode>
             <I18nextProvider i18n={i18next}>
                 {showLoader ? <AppLoader /> : <Layout />}
-                {/* <Layout /> */}
             </I18nextProvider>
         </React.StrictMode>
     );

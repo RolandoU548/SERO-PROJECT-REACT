@@ -10,10 +10,10 @@
   0% {
     color: white;
   }
-  50% {
-    color: white;
+  70% {
+    color: cyan;
   }
   100% {
-    color: cyan;
+    color: white;
   }
 }/*# sourceMappingURL=apploader.css.map */

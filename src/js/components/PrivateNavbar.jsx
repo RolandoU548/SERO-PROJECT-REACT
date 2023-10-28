@@ -75,7 +75,7 @@ export const PrivateNavbar = () => {
                                         menu?.margin && "mt-5"
                                     } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md`}
                                     onClick={() => {
-                                        setOpen(!open)
+                                        setOpen(!open);
                                     }}>
                                     <div>
                                         {React.createElement(menu?.icon, {
@@ -162,10 +162,10 @@ export const PrivateNavbar = () => {
                                     store.user.name.substr(1)}{" "}
                                 {store.user.lastname[0].toUpperCase() +
                                     store.user.lastname.substr(1)}
-                                    <i
-                                        className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
-                                        style={{ color: "#ffffff" }}
-                                    />
+                                <i
+                                    className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
+                                    style={{ color: "#ffffff" }}
+                                />
                             </Link>
                         </li>
                         <li className="my-2.5">

@@ -27,12 +27,12 @@ export const LoginForm = ({
     const submit = async data => {
         const token = await actions.generateToken(data);
         if (token.message === "Incorrect password") {
-            alert("Contraseña incorrecta");
+            alert(t("incorrectPassword"));
         } else if (token.message === "User doesn't exist") {
-            alert("El usuario no está registrado");
+            alert(t("userNotRegistered"));
         } else if (token.token) {
             actions.identificateUser(token.token);
-            alert("Sesión Iniciada");
+            alert(t("loggedIn"));
             navigate("/private");
         }
         reset();

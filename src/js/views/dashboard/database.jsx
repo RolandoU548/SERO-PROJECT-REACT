@@ -1,38 +1,45 @@
 /* eslint-disable no-unreachable-loop */
 /* eslint-disable no-undef */
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useRef, useContext } from "react";
+import { Context } from "../../store/appContext.jsx";
 import "../../../css/app.css";
 import "../../../css/glass.css";
-// import "../../../css/database.css";
-// import "../../../css/handsontable.css";
 import { useTranslation } from "react-i18next";
-import { HotTable, HotColumn } from "@handsontable/react";
+import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
+import { registerLanguageDictionary, esMX, enUS } from "handsontable/i18n";
 import "handsontable/dist/handsontable.full.min.css";
-import { useForm } from "react-hook-form";
+
+registerAllModules();
+registerLanguageDictionary(enUS);
+registerLanguageDictionary(esMX);
 
 export const Database = () => {
+    const { actions } = useContext(Context);
     const [t] = useTranslation("database");
-    const [users, setUsers] = useState([]);
+    const i18n = useTranslation("global")[1];
+    const [rows, setRows] = useState([
+        ["ID", "Name", "Lastname"],
+        ["1", "Jose", "García"],
+        ["2", "Ramón", "Pérez"]
+    ]);
     registerAllModules();
     const hotTableComponent = useRef(null);
-    const [isOpen, setIsOpen] = useState(false);
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors }
-    } = useForm();
-    const [columns, setColumns] = useState([{ data: "id", title: "ID" }]);
 
     useEffect(() => {
-        function getData() {
-            fetch("https://jsonplaceholder.typicode.com/users")
-                .then(response => response.json())
-                .then(data => setUsers(data));
-        }
-        getData();
+        actions.getRows().then(rows => {
+            if (rows.info.text) {
+                setRows(rows.info.text);
+            }
+        });
     }, []);
+
+    const sendRow = async () => {
+        const data = await actions.sendRow(rows);
+        if (data.message === "Row created" || data.message === "Row updated") {
+            alert(t("savedTable"));
+        }
+    };
 
     const downloadFile = () => {
         const downloadPlugin =
@@ -41,17 +48,8 @@ export const Database = () => {
         downloadPlugin.downloadFile("csv", {
             filename: "DatabaseTable",
             fileExtension: "csv",
-            mimeType: "text/csv",
-            columnHeaders: true
+            mimeType: "text/csv"
         });
-    };
-
-    const submit = async data => {
-        setColumns([
-            ...columns,
-            { data: data.title.toLowerCase(), title: data.title }
-        ]);
-        reset();
     };
 
     return (
@@ -64,102 +62,43 @@ export const Database = () => {
                 className="invert w-screen h-screen -z-50 fixed top-0 left-0 object-cover dark:invert-0 transition duration-500">
                 <source src="DatabaseBG.mp4" type="video/mp4" />
             </video>
-            <div
-                className={
-                    "z-50 fixed h-screen w-screen top-0 left-0" +
-                    " " +
-                    (isOpen ? "" : "hidden")
-                }
-                onClick={() => {
-                    setIsOpen(false);
-                }}></div>
-            <form
-                className={
-                    "w-96 h-96 fixed z-50 top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 glass flex justify-center items-center flex-col gap-10" +
-                    " " +
-                    (isOpen !== true && "hidden")
-                }
-                onSubmit={handleSubmit(submit)}>
-                <label>
-                    <span className="font-bold text-cyan-600">Title</span>
-                    <input
-                        type="text"
-                        placeholder="title"
-                        className="block p-1"
-                        {...register("title", {
-                            required: {
-                                value: true,
-                                message: "Title required"
-                            },
-                            maxLength: {
-                                value: 30,
-                                message: "Title max-length"
-                            },
-                            pattern: {
-                                value: /^[a-z0-9A-ZÀ-ÿ\u00f1\u00d1_\-|']+$/,
-                                message: "Invalid title"
-                            },
-                            validate: value => {
-                                for (const column of columns) {
-                                    if (value.toLowerCase() === column.data) {
-                                        return "Repeated title";
-                                    }
-                                }
-                                return true;
-                            }
-                        })}
-                    />
-                    {errors.title && (
-                        <span className="text-sm text-red-500">
-                            {errors.title.message}
-                        </span>
-                    )}
-                </label>
-                <button className="bg-gray-100 rounded px-3 py-1 font-bold">
-                    Submit
-                </button>
-            </form>
             <div className="font-serif text-gray-200 mt-28">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
+                <h1 className="w-10/12 text-black dark:text-white text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
                     {t("database")}
                 </h1>
                 <div className="flex justify-end mr-12">
                     <div
-                        className="flex justify-center items-center mr-5 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3"
-                        onClick={() => downloadFile()}>
-                        <p>Download File Here</p>
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
+                        onClick={downloadFile}>
+                        <p>{t("downloadFile")}</p>
                     </div>
                     <div
-                        className="flex justify-center items-center mr-5 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3"
-                        onClick={() => {
-                            setIsOpen(true);
-                        }}>
-                        <p>New Column</p>
-                        <i className="ml-4 fa-solid fa-plus"></i>
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
+                        onClick={sendRow}>
+                        <p>{t("saveTable")}</p>
                     </div>
                 </div>
                 <div className="flex justify-end ">
                     <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2">
                         <div className="relative text-xl text-white force-overflow table1 shadow-md sm:rounded-lg">
-                            {users && (
+                            {rows.length > 0 && (
                                 <HotTable
                                     ref={hotTableComponent}
-                                    data={columns}
+                                    data={rows}
+                                    language={
+                                        i18n.language === "es"
+                                            ? esMX.languageCode
+                                            : enUS.languageCode
+                                    }
                                     licenseKey="non-commercial-and-evaluation"
                                     colHeaders={true}
                                     rowHeaders={true}
+                                    mergeCells={true}
                                     columnSorting={true}
-                                    contextMenu={true}>
-                                    {columns.map((column, i) => {
-                                        return (
-                                            <HotColumn
-                                                key={i}
-                                                data={column.data}
-                                                title={column.title}
-                                            />
-                                        );
-                                    })}
-                                </HotTable>
+                                    contextMenu={true}
+                                    dropdownMenu={true}
+                                    filters={true}
+                                />
                             )}
                         </div>
                     </div>

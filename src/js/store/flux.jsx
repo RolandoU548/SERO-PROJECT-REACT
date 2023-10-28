@@ -22,9 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    if (!resp.ok) {
-                        alert(JSON.stringify(data.message));
-                    }
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -166,6 +163,66 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return data;
                 } catch (error) {
                     console.error(error);
+                }
+            },
+            sendRow: async object => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/row",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify({
+                                text: object
+                            })
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getRow: async id => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/row/${id}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getRows: async () => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/user_rows`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
                 }
             }
         }
