@@ -26,7 +26,7 @@ export const LoginForm = ({
 
     const submit = async data => {
         const token = await actions.generateToken(data);
-        if (token.message === "Incorrect Password") {
+        if (token.message === "Incorrect password") {
             alert(t("incorrectPassword"));
         } else if (token.message === "User doesn't exist") {
             alert(t("userNotRegistered"));

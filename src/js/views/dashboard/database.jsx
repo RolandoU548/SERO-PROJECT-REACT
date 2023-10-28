@@ -28,11 +28,18 @@ export const Database = () => {
 
     useEffect(() => {
         actions.getRows().then(rows => {
-            if (rows.text) {
-                setRows(rows.text);
+            if (rows.info.text) {
+                setRows(rows.info.text);
             }
         });
     }, []);
+
+    const sendRow = async () => {
+        const data = await actions.sendRow(rows);
+        if (data.message === "Row created" || data.message === "Row updated") {
+            alert(t("savedTable"));
+        }
+    };
 
     const downloadFile = () => {
         const downloadPlugin =
@@ -62,14 +69,12 @@ export const Database = () => {
                 <div className="flex justify-end mr-12">
                     <div
                         className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                        onClick={() => downloadFile()}>
+                        onClick={downloadFile}>
                         <p>{t("downloadFile")}</p>
                     </div>
                     <div
                         className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                        onClick={() => {
-                            actions.sendRow(rows);
-                        }}>
+                        onClick={sendRow}>
                         <p>{t("saveTable")}</p>
                     </div>
                 </div>

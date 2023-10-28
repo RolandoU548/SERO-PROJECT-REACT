@@ -1,5 +1,6 @@
 {
     "database": "Database",
-    "downloadFile": "Download File",
-    "saveTable": "Save Table"
+    "downloadFile": "Download Table",
+    "saveTable": "Save Table",
+    "savedTable": "Saved table"
 }
