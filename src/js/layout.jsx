@@ -21,6 +21,7 @@ import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
+import { ClientCard } from "./components/dashclients/clientinside.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -141,6 +142,16 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <CreateClient />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/clientinside"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <ClientCard />
                             </>
                         }
                     />
