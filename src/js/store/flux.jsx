@@ -164,12 +164,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             sendRow: async object => {
+                const store = getStore();
                 try {
                     const resp = await fetch(
                         import.meta.env.VITE_BACKEND_URL + "/row",
                         {
                             method: "POST",
-                            headers: { "Content-Type": "application/json" },
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
                             body: JSON.stringify({
                                 text: object
                             })
@@ -186,12 +190,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             getRow: async id => {
+                const store = getStore();
                 try {
                     const resp = await fetch(
                         `${import.meta.env.VITE_BACKEND_URL}/row/${id}`,
                         {
                             method: "GET",
-                            headers: { "Content-Type": "application/json" }
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
                         }
                     );
                     const data = await resp.json();
@@ -204,12 +212,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             getRows: async () => {
+                const store = getStore();
                 try {
                     const resp = await fetch(
-                        `${import.meta.env.VITE_BACKEND_URL}/rows`,
+                        `${import.meta.env.VITE_BACKEND_URL}/user_rows`,
                         {
                             method: "GET",
-                            headers: { "Content-Type": "application/json" }
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
                         }
                     );
                     const data = await resp.json();

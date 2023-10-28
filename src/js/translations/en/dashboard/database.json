@@ -1,1 +1,5 @@
-{ "database": "Database" }
+{
+    "database": "Database",
+    "downloadFile": "Download File",
+    "saveTable": "Save Table"
+}

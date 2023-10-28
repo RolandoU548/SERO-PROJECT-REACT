@@ -32,30 +32,6 @@ const injectContext = PassedComponent => {
                 document.documentElement.classList.remove("dark");
             }
             state.actions.identificateUser(state.store.token);
-            const objeto = {
-                nombre: "Raul",
-                apellido: "Villegas",
-                direccion: "Hotel",
-                escuela: "Sorcesi",
-                abuela: "Micha"
-            };
-            // state.actions.sendRow(objeto);
-            // state.actions
-            //     .getRow(1)
-            //     .then(resp => {
-            //         console.log(resp);
-            //     })
-            //     .catch(error => {
-            //         console.error(error);
-            //     });
-            // state.actions
-            //     .getRows()
-            //     .then(resp => {
-            //         console.log(resp);
-            //     })
-            //     .catch(error => {
-            //         console.error(error);
-            //     });
         }, []);
 
         // The initial value for the context is not null anymore, but the current state of this component,
