@@ -1,13 +1,8 @@
 import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import firebase from "firebase/app";
 import { storage } from "../../components/firebase/firebase";
-import {
-    getDownloadURL,
-    ref as storageRef,
-    uploadBytes
-} from "firebase/storage";
-
 import {
     FaUser,
     FaEnvelope,
@@ -23,7 +18,6 @@ import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 
 export const CreateClient = () => {
-    const id = new Date();
     const { actions } = useContext(Context);
     const [t] = useTranslation("createClient");
     const navigate = useNavigate();
@@ -42,23 +36,16 @@ export const CreateClient = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleImageChange = async e => {
-        if (e.target.files[0]) {
-            const imageRef = storageRef(storage, `clients/${id}`);
-
-            try {
-                const uploadResp = await uploadBytes(
-                    imageRef,
-                    e.target.files[0]
-                );
-
-                const url = await getDownloadURL(uploadResp.ref);
-
-                setFormData({ ...formData, Image: url });
-            } catch (err) {
-                console.log(err);
-            }
-        }
+    const handleImageChange = event => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setFormData(prevState => ({
+                ...prevState,
+                Image: reader.result
+            }));
+        };
     };
 
     const handleButtonClick = () => {
@@ -67,19 +54,21 @@ export const CreateClient = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        try {
-            await actions.createClient(formData);
-
-            navigate("/clients");
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const handleDeleteImage = async () => {
-        const storageRef = storage.refFromURL(formData.Image);
-        await storageRef.delete();
-        setFormData(prevState => ({ ...prevState, Image: null }));
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(formData.Image.name);
+        await fileRef.put(formData.Image);
+        const downloadURL = await fileRef.getDownloadURL();
+        const clientData = {
+            Name: formData.Name,
+            Email: formData.Email,
+            Phone: formData.Phone,
+            Image: downloadURL,
+            Business: formData.Business,
+            Description: formData.Description,
+            Status: formData.Status
+        };
+        await actions.createClient(clientData);
+        navigate("/clients");
     };
 
     return (
@@ -254,6 +243,7 @@ export const CreateClient = () => {
                                                 name="Image"
                                                 type="file"
                                                 accept="image/*"
+                                                required
                                                 className="hidden"
                                                 ref={fileInputRef}
                                                 onChange={handleImageChange}
@@ -262,9 +252,7 @@ export const CreateClient = () => {
                                                 type="button"
                                                 className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
                                                 onClick={handleButtonClick}>
-                                                {formData.Image
-                                                    ? "Change Image"
-                                                    : "Select Image"}
+                                                Select The Image
                                             </button>
                                         </div>
                                     </div>
@@ -277,7 +265,14 @@ export const CreateClient = () => {
                                             <button
                                                 type="button"
                                                 className="absolute top-0 right-0 mt-2 mr-2 focus:outline-none"
-                                                onClick={handleDeleteImage}>
+                                                onClick={() => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        Image: null
+                                                    });
+                                                    fileInputRef.current.value =
+                                                        null;
+                                                }}>
                                                 <FaTimes className="h-5 w-5 text-red-500" />
                                             </button>
                                         </div>

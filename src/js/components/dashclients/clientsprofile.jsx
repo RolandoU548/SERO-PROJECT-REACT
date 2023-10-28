@@ -7,13 +7,13 @@ import "../../../css/app.css";
 import "../../../css/glass.css";
 
 export const ClientProfile = ({ client }) => {
-    const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
     const [isOpen, setIsOpen] = useState(false);
     const [editableClient, setEditableClient] = useState(client);
 
-    useEffect(() => {
-        actions.getAllClients();
-    }, [client]);
+    // useEffect(() => {
+    //     actions.getAllClients();
+    // }, [client]);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
