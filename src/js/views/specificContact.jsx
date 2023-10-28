@@ -63,7 +63,7 @@ export const SpecificContact = () => {
     return (
         <>
             <Navbar />
-            <div className="font-serif text-gray-200">
+            <div className="font-serif text-black dark:text-gray-200">
                 <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white mt-36">
                     {data.name}
                 </h2>

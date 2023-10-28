@@ -120,17 +120,17 @@ export const Database = () => {
                 </button>
             </form>
             <div className="font-serif text-gray-200 mt-28">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
+                <h1 className="w-10/12 text-black dark:text-white text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
                     {t("database")}
                 </h1>
                 <div className="flex justify-end mr-12">
                     <div
-                        className="flex justify-center items-center mr-5 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3"
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
                         onClick={() => downloadFile()}>
                         <p>Download File Here</p>
                     </div>
                     <div
-                        className="flex justify-center items-center mr-5 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3"
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
                         onClick={() => {
                             setIsOpen(true);
                         }}>
