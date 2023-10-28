@@ -21,6 +21,7 @@ import {
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { set } from "firebase/database";
 
 export const CreateClient = () => {
     const id = new Date();
@@ -41,6 +42,7 @@ export const CreateClient = () => {
 
     const handleChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        // setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleImageChange = async e => {
