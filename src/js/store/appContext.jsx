@@ -21,45 +21,6 @@ const injectContext = PassedComponent => {
             })
         );
 
-        async function usuario(info) {
-            try {
-                const resp = await fetch(
-                    import.meta.env.VITE_BACKEND_URL + "/row",
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            text: info
-                        })
-                    }
-                );
-                const data = await resp.json();
-                console.log(data);
-                if (!resp.ok) {
-                    alert(JSON.stringify(data.message));
-                }
-                return data;
-            } catch (error) {
-                console.log("There has been an error", error);
-            }
-        }
-        async function bien(id) {
-            try {
-                const resp = await fetch(
-                    `${import.meta.env.VITE_BACKEND_URL}/row/${id}`,
-                    {
-                        method: "GET",
-                        headers: { "Content-Type": "application/json" }
-                    }
-                );
-                const data = await resp.json();
-                const coche = JSON.parse(data);
-                console.log(coche);
-                return data;
-            } catch (error) {
-                console.log("There has been an error", error);
-            }
-        }
         useEffect(() => {
             if (
                 localStorage.theme === "dark" ||
@@ -71,12 +32,6 @@ const injectContext = PassedComponent => {
                 document.documentElement.classList.remove("dark");
             }
             state.actions.identificateUser(state.store.token);
-            const objeto = {
-                nombre: "Raul",
-                apellido: "Bien"
-            };
-            // usuario(objeto);
-            bien(1);
         }, []);
 
         // The initial value for the context is not null anymore, but the current state of this component,
