@@ -1,5 +1,3 @@
-import { set } from "react-hook-form";
-
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
@@ -118,13 +116,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await response.json();
-                    client.name = data.name;
-                    client.email = data.email;
-                    client.phone = data.phone;
-                    client.business = data.business;
-                    client.description = data.description;
-                    client.status = data.status;
-                    setStore({ clients: [...getStore().clients] });
+                    const updatedClients = getStore().clients.map(c => {
+                        if (c.id === id) {
+                            return data;
+                        }
+                        return c;
+                    });
+                    setStore({
+                        clients: updatedClients
+                    });
                 } catch (error) {
                     console.error(error);
                 }
@@ -139,6 +139,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
+                    setStore({
+                        clients: [
+                            ...getStore().clients.filter(x => x.id !== id)
+                        ]
+                    });
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);

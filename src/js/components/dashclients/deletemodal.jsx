@@ -9,17 +9,22 @@ export function DeleteModal({ client }) {
     const [isOpen, setIsOpen] = useState(false);
     const [deleteClient, setDeleteClient] = useState(client);
 
-    useEffect(() => {
-        actions.getAllClients();
-    }, [client]);
+    // useEffect(() => {
+    //     actions.getAllClients();
+    // }, [client]);
 
-    const handleClientDelete = id => {
-        actions.deleteClient(id);
-        setDeleteClient(prevState => {
-            const newState = { ...prevState };
-            delete newState[id];
-            return newState;
-        });
+    const handleClientDelete = async id => {
+        try {
+            await actions.deleteClient(id);
+            setDeleteClient(prevState => {
+                const newState = { ...prevState };
+                delete newState[id];
+                return newState;
+            });
+            setIsOpen(false);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

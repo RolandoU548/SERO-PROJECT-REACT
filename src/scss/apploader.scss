@@ -1,0 +1,19 @@
+.apploader {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    animation: colorchange 1.3s infinite alternate;
+}
+
+@keyframes colorchange {
+    0% {
+        color: white;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: cyan;
+    }
+}
