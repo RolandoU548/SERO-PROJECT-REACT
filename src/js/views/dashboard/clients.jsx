@@ -123,6 +123,13 @@ export const Clients = () => {
                                     </th>
                                     <th
                                         className="px-4 py-2"
+                                        onClick={() => handleSort("lastname")}>
+                                        Lastname{" "}
+                                        {sortOrder.column === "lastname" &&
+                                            (sortOrder.ascending ? "▲" : "▼")}
+                                    </th>
+                                    <th
+                                        className="px-4 py-2"
                                         onClick={() => handleSort("email")}>
                                         Email{" "}
                                         {sortOrder.column === "email" &&
@@ -173,6 +180,9 @@ export const Clients = () => {
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             {client.name}
+                                        </td>
+                                        <td className="px-4 py-2 text-center">
+                                            {client.lastname}
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             {client.email}

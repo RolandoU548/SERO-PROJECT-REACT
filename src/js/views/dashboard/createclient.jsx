@@ -30,6 +30,7 @@ export const CreateClient = () => {
     const fileInputRef = useRef(null);
     const [formData, setFormData] = useState({
         Name: "",
+        Lastname: "",
         Email: "",
         Phone: "",
         Image: null,
@@ -69,7 +70,6 @@ export const CreateClient = () => {
         e.preventDefault();
         try {
             await actions.createClient(formData);
-
             navigate("/clients");
         } catch (error) {
             console.log(error);
@@ -86,11 +86,11 @@ export const CreateClient = () => {
         <>
             <div className="font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
-                    {t("createClient")}
+                    {t("Create a Client")}
                 </h1>
-                <div className="glass p-10 mt-5 m-auto w-11/12">
+                <div className="glass p-20 mt-5 m-auto w-11/12">
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                             <div>
                                 <label htmlFor="Name" className="sr-only">
                                     {t("Name")}
@@ -105,9 +105,30 @@ export const CreateClient = () => {
                                         type="text"
                                         autoComplete="Name"
                                         required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
+                                        className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                         placeholder={t("Name")}
                                         value={formData.Name}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="Lastname" className="sr-only">
+                                    {t("Lastname")}
+                                </label>
+                                <div className="relative rounded-md shadow-sm">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <FaUser className="h-5 w-5 text-gray-400" />
+                                    </div>
+                                    <input
+                                        id="Lastname"
+                                        name="Lastname"
+                                        type="text"
+                                        autoComplete="Lastname"
+                                        required
+                                        className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                        placeholder={t("Last Name")}
+                                        value={formData.Lastname}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -127,10 +148,11 @@ export const CreateClient = () => {
                                         type="email"
                                         autoComplete="Email"
                                         required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
+                                        className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                         placeholder={t("Email")}
                                         value={formData.Email}
                                         onChange={handleChange}
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" // add this line for email validation
                                     />
                                 </div>
                             </div>
@@ -150,7 +172,7 @@ export const CreateClient = () => {
                                         type="tel"
                                         autoComplete="Phone"
                                         required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
+                                        className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                         placeholder={t("Phone")}
                                         value={formData.Phone}
                                         onChange={handleChange}
@@ -171,13 +193,20 @@ export const CreateClient = () => {
                                         name="Status"
                                         autoComplete="Status"
                                         required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 text-gray-400 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
+                                        className=" focus:ring-indigo-500 focus:border-indigo-500 text-gray-400 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                         value={formData.Status}
                                         onChange={handleChange}>
-                                        <option value="Active">
+                                        <option value="" className="text-black">
+                                            Select the status
+                                        </option>
+                                        <option
+                                            value="Active"
+                                            className="text-black">
                                             {t("Active")}
                                         </option>
-                                        <option value="Inactive">
+                                        <option
+                                            value="Inactive"
+                                            className="text-black">
                                             {t("Inactive")}
                                         </option>
                                     </select>
@@ -206,7 +235,7 @@ export const CreateClient = () => {
                                             type="text"
                                             autoComplete="Business"
                                             required
-                                            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                             placeholder={t("Business")}
                                             value={formData.Business}
                                             onChange={handleChange}
@@ -230,7 +259,7 @@ export const CreateClient = () => {
                                             type="text"
                                             autoComplete="Description"
                                             required
-                                            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                             placeholder={t("Description")}
                                             value={formData.Description}
                                             onChange={handleChange}
@@ -260,7 +289,7 @@ export const CreateClient = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
+                                                className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 mb-4 sm:text-md border-gray-300 rounded-md text-white bg-green-700"
                                                 onClick={handleButtonClick}>
                                                 {formData.Image
                                                     ? "Change Image"
@@ -269,7 +298,7 @@ export const CreateClient = () => {
                                         </div>
                                     </div>
                                     {formData.Image && (
-                                        <div className="relative">
+                                        <div className="relative w-64">
                                             <img
                                                 src={formData.Image}
                                                 alt="Uploaded image preview"
@@ -283,14 +312,13 @@ export const CreateClient = () => {
                                         </div>
                                     )}
                                 </div>
-                                {/* <ClientImage /> */}
 
                                 <div></div>
 
-                                <div className="col-span-2 mx-16 flex justify-center ">
+                                <div className="col-span-2 mx-16 flex justify-center items-center ">
                                     <button
                                         type="submit"
-                                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                             <svg
                                                 className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
@@ -310,7 +338,7 @@ export const CreateClient = () => {
                                                 />
                                             </svg>
                                         </span>
-                                        {t("createClient")}
+                                        {t("Submit")}
                                     </button>
                                 </div>
                             </div>
