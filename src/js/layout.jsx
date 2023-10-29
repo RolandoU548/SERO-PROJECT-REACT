@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import { Navbar } from "./components/Navbar.jsx";
 import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
-import { LanguageButton } from "./components/LanguageButton.jsx";
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
@@ -46,25 +46,6 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/contact"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <Contact />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/profile"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Profile />
-                            </>
-                        }
-                    />
-                    <Route
                         path="/login"
                         transition="fade"
                         element={<LoginSignupCard flip={true} />}
@@ -75,102 +56,12 @@ const Layout = () => {
                         element={<LoginSignupCard flip={false} />}
                     />
                     <Route
-                        path="/database"
-                        transition="fade"
+                        path="/contact"
                         element={
                             <>
-                                <PrivateNavbar />
-                                <Database />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/form"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Form />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/private"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <PrivateHome />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/dashboard"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Dashboard />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/clients"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Clients />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/userprofile"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <UserProfile />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/createclient"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <CreateClient />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/reports"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Reports />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/payments"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Payments />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/settings"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Settings />
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Contact />
                             </>
                         }
                     />
@@ -184,6 +75,119 @@ const Layout = () => {
                             </>
                         }
                     />
+
+                    <Route element={<ProtectedRoute />}>
+                        <Route
+                            path="/private"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <PrivateHome />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Profile />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/userprofile"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <UserProfile />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/dashboard"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Dashboard />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/clients"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Clients />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/createclient"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <CreateClient />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/database"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Database />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/form"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Form />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/reports"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Reports />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/payments"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Payments />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/settings"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Settings />
+                                </>
+                            }
+                        />
+                    </Route>
+
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </ScrollToTop>

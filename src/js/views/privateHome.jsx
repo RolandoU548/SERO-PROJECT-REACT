@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
@@ -7,12 +7,6 @@ import { useTranslation } from "react-i18next";
 export const PrivateHome = () => {
     const [t] = useTranslation("private");
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            navigate("/signup");
-        }
-    }, []);
 
     return (
         <>

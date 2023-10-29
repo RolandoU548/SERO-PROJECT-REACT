@@ -77,8 +77,8 @@ export const CreateClient = () => {
     };
 
     const handleDeleteImage = async () => {
-        const storageRef = storage.refFromURL(image);
-        await storageRef.delete();
+        const imageRef = storageRef(storage, image);
+        await deleteObject(imageRef);
         setImage(null);
     };
 
