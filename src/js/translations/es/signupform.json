@@ -11,5 +11,7 @@
     "confirmPassword": "Confirmar Contraseña",
     "passwordsNotMatch": "Las contraseñas no coinciden",
     "userAlreadyExists": "ya ha sido registrado",
-    "userCreated": "Usuario creado"
+    "userCreated": "Usuario creado",
+    "invalidName": "Nombre Inválido",
+    "invalidLastname": "Apellido Inválido"
 }
