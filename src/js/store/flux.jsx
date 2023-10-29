@@ -70,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                             }
                         });
                     }
-
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);

@@ -22,7 +22,6 @@ import {
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
-import { set } from "firebase/database";
 
 export const CreateClient = () => {
     const id = new Date();
@@ -78,8 +77,8 @@ export const CreateClient = () => {
     };
 
     const handleDeleteImage = async () => {
-        const storageRef = storage.refFromURL(image);
-        await storageRef.delete();
+        const imageRef = storageRef(storage, image);
+        await deleteObject(imageRef);
         setImage(null);
     };
 

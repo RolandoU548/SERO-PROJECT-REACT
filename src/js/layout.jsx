@@ -146,7 +146,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/clientcard"
+                        path="/clientcard/:id"
                         transition="fade"
                         element={
                             <>

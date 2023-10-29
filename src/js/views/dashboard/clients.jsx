@@ -8,6 +8,7 @@ import "../../../css/glass.css";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
 import { DeleteModal } from "../../components/dashclients/deletemodal";
+import { ClientCardButton } from "../../components/dashclients/clientcardbutton";
 
 export const Clients = () => {
     const { store, actions } = useContext(Context);
@@ -207,6 +208,10 @@ export const Clients = () => {
                                             </button>
                                         </td>
                                         <td className="px-4 py-2 text-center">
+                                            <ClientCardButton
+                                                key={client.id}
+                                                client={client}
+                                            />
                                             <ClientProfile
                                                 key={client.id}
                                                 client={client}
