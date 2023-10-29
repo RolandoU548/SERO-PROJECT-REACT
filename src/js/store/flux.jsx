@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: 0, name: " ", lastname: " ", email: " " },
+            user: { id: null, name: null, lastname: null, email: null },
             clients: []
         },
         actions: {
@@ -80,10 +80,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({
                     token: null,
                     user: {
-                        id: 0,
-                        name: " ",
-                        lastname: " ",
-                        email: " "
+                        id: null,
+                        name: null,
+                        lastname: null,
+                        email: null
                     }
                 });
                 localStorage.removeItem("token");

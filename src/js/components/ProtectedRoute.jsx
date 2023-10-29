@@ -5,8 +5,8 @@ import { Context } from "../store/appContext.jsx";
 
 export const ProtectedRoute = ({ children, redirectTo = "/login" }) => {
     const { store } = useContext(Context);
+    // Deberia decir store.token en lugar del localStorage
     if (!localStorage.getItem("token")) {
-        // Deberia decir store.token en lugar del localStorage
         return <Navigate to={redirectTo} />;
     }
     return children || <Outlet />;
