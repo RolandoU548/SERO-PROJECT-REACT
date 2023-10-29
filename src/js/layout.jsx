@@ -176,18 +176,17 @@ const Layout = () => {
                                 </>
                             }
                         />
-                        <Route
-                            path="/settings"
-                            transition="fade"
-                            element={
-                                <>
-                                    <PrivateNavbar />
-                                    <Settings />
-                                </>
-                            }
-                        />
                     </Route>
-
+                    <Route
+                        path="/settings"
+                        transition="fade"
+                        element={
+                            <ProtectedRoute roles={["admin"]}>
+                                <PrivateNavbar />
+                                <Settings />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </ScrollToTop>

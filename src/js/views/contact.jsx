@@ -34,15 +34,19 @@ export const Contact = () => {
                     second="lando Uzcátegui"
                 />
             </div>
-            <div
-                onClick={() => {
-                    localStorage.setItem("token", "sdfas2e");
-                    navigate("/private");
-                }}>
-                <button className="block dark:text-gray-200 text-black">
+            <div>
+                <button
+                    className="block dark:text-gray-200 text-black"
+                    onClick={() => {
+                        localStorage.setItem("token", "sdfas2e");
+                    }}>
                     token
                 </button>
-                <button className="text-4xl block dark:text-gray-200 text-black">
+                <button
+                    className="text-4xl block dark:text-gray-200 text-black"
+                    onClick={() => {
+                        navigate("/private");
+                    }}>
                     PRIVATE
                 </button>
             </div>
