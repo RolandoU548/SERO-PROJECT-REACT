@@ -84,8 +84,8 @@ export const CreateClient = () => {
 
     return (
         <>
-            <div className="font-serif text-gray-200 mt-28">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
+            <div className="font-serif dark:text-white mt-28">
+                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
                     {t("Create a Client")}
                 </h1>
                 <div className="glass p-20 mt-5 m-auto w-11/12">
@@ -401,7 +401,7 @@ export const CreateClient = () => {
                                 <div className="mt-5 col-span-2 flex justify-center items-center ">
                                     <button
                                         type="submit"
-                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-white text-md font-medium rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                             <svg
                                                 className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"

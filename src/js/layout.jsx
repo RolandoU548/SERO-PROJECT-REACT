@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import { Navbar } from "./components/Navbar.jsx";
 import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
+import { BackgroundClientsVideo } from "./components/BackgroundClientsVideo.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 import { App } from "./views/app.jsx";
@@ -122,6 +123,7 @@ const Layout = () => {
                             transition="fade"
                             element={
                                 <>
+                                    <BackgroundClientsVideo />
                                     <PrivateNavbar />
                                     <Clients />
                                 </>
@@ -132,6 +134,7 @@ const Layout = () => {
                             transition="fade"
                             element={
                                 <>
+                                    <BackgroundClientsVideo />
                                     <PrivateNavbar />
                                     <CreateClient />
                                 </>
@@ -142,6 +145,7 @@ const Layout = () => {
                             transition="fade"
                             element={
                                 <>
+                                    <BackgroundClientsVideo />
                                     <PrivateNavbar />
                                     <ClientCard />
                                 </>
