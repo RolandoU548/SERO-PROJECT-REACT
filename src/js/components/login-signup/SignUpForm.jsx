@@ -56,7 +56,7 @@ export const SignUpForm = ({
                         required: { value: true, message: t("nameRequired") },
                         pattern: {
                             value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                            message: "Invalid name"
+                            message: t("invalidName")
                         }
                     })}
                 />

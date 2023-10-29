@@ -156,7 +156,7 @@ export const ClientProfile = ({ client }) => {
                                             </label>
                                             <input
                                                 type="text"
-                                                name="name"
+                                                name="lastname"
                                                 value={editableClient.lastname}
                                                 onChange={handleInputChange}
                                                 className="rounded-md px-3 py-2 text-black text-center"
