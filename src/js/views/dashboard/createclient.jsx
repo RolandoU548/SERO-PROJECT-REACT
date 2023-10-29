@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { storage } from "../../components/firebase/firebase";
 import {
+    deleteObject,
     getDownloadURL,
     ref as storageRef,
     uploadBytes
@@ -100,11 +101,11 @@ export const CreateClient = () => {
                                             {...register("name", {
                                                 required: {
                                                     value: true,
-                                                    message: "Name required"
+                                                    message: t("nameRequired")
                                                 },
                                                 pattern: {
                                                     value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                                                    message: "Invalid name"
+                                                    message: t("invalidName")
                                                 }
                                             })}
                                         />
@@ -131,11 +132,13 @@ export const CreateClient = () => {
                                             {...register("lastname", {
                                                 required: {
                                                     value: true,
-                                                    message: "Lastname required"
+                                                    message:
+                                                        t("lastnameRequired")
                                                 },
                                                 pattern: {
                                                     value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                                                    message: "Invalid lastname"
+                                                    message:
+                                                        t("invalidLastname")
                                                 }
                                             })}
                                         />
@@ -166,17 +169,15 @@ export const CreateClient = () => {
                                                 },
                                                 minLength: {
                                                     value: 5,
-                                                    message:
-                                                        "Email debe tener al menos 5 caracteres"
+                                                    message: t("emailMinLength")
                                                 },
                                                 maxLength: {
                                                     value: 30,
-                                                    message:
-                                                        "Email debe tener maximo 30caracteres"
+                                                    message: t("emailMaxLength")
                                                 },
                                                 pattern: {
                                                     value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
-                                                    message: "email invalido"
+                                                    message: t("invalidEmail")
                                                 }
                                             })}
                                         />
@@ -209,15 +210,15 @@ export const CreateClient = () => {
                                                 },
                                                 minLength: {
                                                     value: 3,
-                                                    message: "Phone min-length"
+                                                    message: t("phoneMinLength")
                                                 },
                                                 maxLength: {
                                                     value: 20,
-                                                    message: "Phone max-length"
+                                                    message: t("phoneMaxLength")
                                                 },
                                                 pattern: {
                                                     value: /^[0-9]+$/,
-                                                    message: "Telefono invalido"
+                                                    message: t("invalidPhone")
                                                 }
                                             })}
                                         />
@@ -242,7 +243,7 @@ export const CreateClient = () => {
                                             {...register("status", {
                                                 required: {
                                                     value: true,
-                                                    message: "Status required"
+                                                    message: t("statusRequired")
                                                 }
                                             })}>
                                             <option
@@ -284,17 +285,23 @@ export const CreateClient = () => {
                                                     required: {
                                                         value: true,
                                                         message:
-                                                            "Business required"
+                                                            t(
+                                                                "businessRequired"
+                                                            )
                                                     },
                                                     minLength: {
                                                         value: 3,
                                                         message:
-                                                            "Business min-length"
+                                                            t(
+                                                                "businessMinLength"
+                                                            )
                                                     },
                                                     maxLength: {
                                                         value: 40,
                                                         message:
-                                                            "Business max-length"
+                                                            t(
+                                                                "businessMaxLength"
+                                                            )
                                                     }
                                                 })}
                                             />
@@ -321,18 +328,21 @@ export const CreateClient = () => {
                                                 {...register("description", {
                                                     required: {
                                                         value: true,
-                                                        message:
-                                                            "Description required"
+                                                        message: t(
+                                                            "descriptionRequired"
+                                                        )
                                                     },
                                                     minLength: {
                                                         value: 5,
-                                                        message:
-                                                            "Description min-length"
+                                                        message: t(
+                                                            "descriptionMinLength"
+                                                        )
                                                     },
                                                     maxLength: {
                                                         value: 120,
-                                                        message:
-                                                            "Description max-length"
+                                                        message: t(
+                                                            "descriptionMaxLength"
+                                                        )
                                                     }
                                                 })}
                                             />

@@ -80,7 +80,7 @@ export const SignUpForm = ({
                         },
                         pattern: {
                             value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                            message: "Invalid lastname"
+                            message: t("invalidLastname")
                         }
                     })}
                 />

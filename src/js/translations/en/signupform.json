@@ -12,5 +12,6 @@
     "passwordsNotMatch": "Passwords don't match",
     "userAlreadyExists": "has already been registered",
     "userCreated": "User created",
-    "invalidName": "Invalid Name"
+    "invalidName": "Invalid Name",
+    "invalidLastname": "Invalid Lastname"
 }
