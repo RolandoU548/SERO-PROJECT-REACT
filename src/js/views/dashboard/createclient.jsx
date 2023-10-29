@@ -62,13 +62,18 @@ export const CreateClient = () => {
 
     const submit = async data => {
         try {
-            data.image = image;
+            if (image !== null) {
+                data.image = image;
+            } else {
+                data.image = "noImage";
+            }
+            console.log(data);
             await actions.createClient(data);
-            navigate("/clients");
         } catch (error) {
             console.log(error);
         }
         reset();
+        navigate("/clients");
     };
 
     const handleDeleteImage = async () => {
