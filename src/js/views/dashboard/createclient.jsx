@@ -35,20 +35,7 @@ export const CreateClient = () => {
     } = useForm();
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
-    const [formData, setFormData] = useState({
-        Name: "",
-        Lastname: "",
-        Email: "",
-        Phone: "",
-        Image: null,
-        Business: "",
-        Description: "",
-        Status: ""
-    });
-
-    const handleChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const [image, setImage] = useState(null);
 
     const handleImageChange = async e => {
         if (e.target.files[0]) {
@@ -62,7 +49,7 @@ export const CreateClient = () => {
 
                 const url = await getDownloadURL(uploadResp.ref);
 
-                setFormData({ ...formData, Image: url });
+                setImage(url);
             } catch (err) {
                 console.log(err);
             }
@@ -73,19 +60,9 @@ export const CreateClient = () => {
         fileInputRef.current.click();
     };
 
-    const handleSubmitRoberto = async e => {
-        e.preventDefault();
-        try {
-            await actions.createClient(formData);
-            navigate("/clients");
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     const submit = async data => {
         try {
-            data.image = formData.Image;
+            data.image = image;
             await actions.createClient(data);
             navigate("/clients");
         } catch (error) {
@@ -95,9 +72,9 @@ export const CreateClient = () => {
     };
 
     const handleDeleteImage = async () => {
-        const storageRef = storage.refFromURL(formData.Image);
+        const storageRef = storage.refFromURL(image);
         await storageRef.delete();
-        setFormData(prevState => ({ ...prevState, Image: null }));
+        setImage(null);
     };
 
     return (
@@ -393,16 +370,16 @@ export const CreateClient = () => {
                                                 type="button"
                                                 className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 mb-4 sm:text-md border-gray-300 rounded-md text-white bg-green-700"
                                                 onClick={handleButtonClick}>
-                                                {formData.Image
+                                                {image
                                                     ? "Change Image"
                                                     : "Select Image"}
                                             </button>
                                         </div>
                                     </div>
-                                    {formData.Image && (
+                                    {image && (
                                         <div className="relative w-64">
                                             <img
-                                                src={formData.Image}
+                                                src={image}
                                                 alt="Uploaded image preview"
                                             />
                                             <button
