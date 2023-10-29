@@ -108,7 +108,7 @@ export const SignUpForm = ({
                             message: t("emailMaxLength")
                         },
                         pattern: {
-                            value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}/,
+                            value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
                             message: t("invalidEmail")
                         }
                     })}

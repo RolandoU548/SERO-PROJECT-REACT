@@ -1,0 +1,15 @@
+{
+    "name": "Name",
+    "lastname": "Lastname",
+    "email": "Email",
+    "phone": "Phone",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "business": "Business",
+    "description": "Description",
+    "image": "Image",
+    "selectImage": "Select Image",
+    "changeImage": "Change Image",
+    "createClient": "Create Client"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Nombre",
+    "lastname": "Apellido",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "status": "Estado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "business": "Negocio",
+    "description": "Descripción",
+    "image": "Imagen",
+    "selectImage": "Seleccionar Imagen",
+    "changeImage": "Cambiar Imagen",
+    "createClient": "Crear Cliente"
+}

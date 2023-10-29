@@ -8,7 +8,6 @@ import {
     uploadBytes
 } from "firebase/storage";
 import { useForm } from "react-hook-form";
-
 import {
     FaUser,
     FaEnvelope,
@@ -26,7 +25,7 @@ import { useTranslation } from "react-i18next";
 export const CreateClient = () => {
     const id = new Date();
     const { actions } = useContext(Context);
-    const [t] = useTranslation("createClient");
+    const [t] = useTranslation("createclient");
     const {
         register,
         handleSubmit,
@@ -88,7 +87,7 @@ export const CreateClient = () => {
                         <div className="grid grid-cols-1 gap-4">
                             <div>
                                 <label>
-                                    {t("Name")}
+                                    {t("name")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <FaUser className="h-5 w-5 text-gray-400" />
@@ -97,7 +96,7 @@ export const CreateClient = () => {
                                             type="text"
                                             autoComplete="name"
                                             className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                            placeholder={t("Name")}
+                                            placeholder={t("name")}
                                             {...register("name", {
                                                 required: {
                                                     value: true,
@@ -119,7 +118,7 @@ export const CreateClient = () => {
                             </div>
                             <div>
                                 <label>
-                                    {t("Lastname")}
+                                    {t("lastname")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <FaUser className="h-5 w-5 text-gray-400" />
@@ -128,7 +127,7 @@ export const CreateClient = () => {
                                             type="text"
                                             autoComplete="family-name"
                                             className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                            placeholder={t("Last Name")}
+                                            placeholder={t("lastname")}
                                             {...register("lastname", {
                                                 required: {
                                                     value: true,
@@ -150,7 +149,7 @@ export const CreateClient = () => {
                             </div>
                             <div>
                                 <label>
-                                    {t("Email")}
+                                    {t("email")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <FaEnvelope className="h-5 w-5 text-gray-400" />
@@ -159,7 +158,7 @@ export const CreateClient = () => {
                                             type="email"
                                             autoComplete="email"
                                             className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                            placeholder={t("Email")}
+                                            placeholder={t("email")}
                                             {...register("email", {
                                                 required: {
                                                     value: true,
@@ -176,7 +175,7 @@ export const CreateClient = () => {
                                                         "Email debe tener maximo 30caracteres"
                                                 },
                                                 pattern: {
-                                                    value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}/,
+                                                    value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
                                                     message: "email invalido"
                                                 }
                                             })}
@@ -193,7 +192,7 @@ export const CreateClient = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label>
-                                    {t("Phone")}
+                                    {t("phone")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <FaPhone className="h-5 w-5 text-gray-400" />
@@ -202,7 +201,7 @@ export const CreateClient = () => {
                                             type="tel"
                                             autoComplete="phone"
                                             className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                            placeholder={t("Phone")}
+                                            placeholder={t("phone")}
                                             {...register("phone", {
                                                 required: {
                                                     value: true,
@@ -215,6 +214,10 @@ export const CreateClient = () => {
                                                 maxLength: {
                                                     value: 20,
                                                     message: "Phone max-length"
+                                                },
+                                                pattern: {
+                                                    value: /^[0-9]+$/,
+                                                    message: "Telefono invalido"
                                                 }
                                             })}
                                         />
@@ -228,7 +231,7 @@ export const CreateClient = () => {
                             </div>
                             <div>
                                 <label>
-                                    {t("Status")}
+                                    {t("status")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <FaCheckCircle className="h-5 w-5 text-gray-400" />
@@ -243,19 +246,14 @@ export const CreateClient = () => {
                                                 }
                                             })}>
                                             <option
-                                                value=""
-                                                className="text-black">
-                                                Select the status
-                                            </option>
-                                            <option
                                                 value="Active"
                                                 className="text-black">
-                                                {t("Active")}
+                                                {t("active")}
                                             </option>
                                             <option
                                                 value="Inactive"
                                                 className="text-black">
-                                                {t("Inactive")}
+                                                {t("inactive")}
                                             </option>
                                         </select>
                                     </div>
@@ -272,7 +270,7 @@ export const CreateClient = () => {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label>
-                                        {t("Business")}
+                                        {t("business")}
                                         <div className="relative rounded-md shadow-sm">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <FaBuilding className="h-5 w-5 text-gray-400" />
@@ -281,7 +279,7 @@ export const CreateClient = () => {
                                                 type="text"
                                                 autoComplete="business"
                                                 className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                                placeholder={t("Business")}
+                                                placeholder={t("business")}
                                                 {...register("business", {
                                                     required: {
                                                         value: true,
@@ -294,7 +292,7 @@ export const CreateClient = () => {
                                                             "Business min-length"
                                                     },
                                                     maxLength: {
-                                                        value: 120,
+                                                        value: 40,
                                                         message:
                                                             "Business max-length"
                                                     }
@@ -310,7 +308,7 @@ export const CreateClient = () => {
                                 </div>
                                 <div>
                                     <label>
-                                        {t("Description")}
+                                        {t("description")}
                                         <div className="relative rounded-md shadow-sm">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <FaFileAlt className="h-5 w-5 text-gray-400" />
@@ -319,7 +317,7 @@ export const CreateClient = () => {
                                                 type="text"
                                                 autoComplete="description"
                                                 className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                                placeholder={t("Description")}
+                                                placeholder={t("description")}
                                                 {...register("description", {
                                                     required: {
                                                         value: true,
@@ -332,7 +330,7 @@ export const CreateClient = () => {
                                                             "Description min-length"
                                                     },
                                                     maxLength: {
-                                                        value: 30,
+                                                        value: 120,
                                                         message:
                                                             "Description max-length"
                                                     }
@@ -348,18 +346,12 @@ export const CreateClient = () => {
                                 </div>
                                 <div>
                                     <div>
-                                        <label
-                                            htmlFor="Image"
-                                            className="sr-only">
-                                            Image
-                                        </label>
+                                        <label>{t("image")}</label>
                                         <div className="relative rounded-md shadow-sm">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <FaImage className="h-5 w-5 text-gray-400" />
                                             </div>
                                             <input
-                                                id="Image"
-                                                name="Image"
                                                 type="file"
                                                 accept="image/*"
                                                 className="hidden"
@@ -371,8 +363,8 @@ export const CreateClient = () => {
                                                 className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 mb-4 sm:text-md border-gray-300 rounded-md text-white bg-green-700"
                                                 onClick={handleButtonClick}>
                                                 {image
-                                                    ? "Change Image"
-                                                    : "Select Image"}
+                                                    ? t("changeImage")
+                                                    : t("selectImage")}
                                             </button>
                                         </div>
                                     </div>
@@ -414,7 +406,7 @@ export const CreateClient = () => {
                                                 />
                                             </svg>
                                         </span>
-                                        {t("Submit")}
+                                        {t("createClient")}
                                     </button>
                                 </div>
                             </div>
