@@ -1,51 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { HiArrowCircleLeft } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import { storage } from "../firebase/firebase";
 import { Context } from "../../store/appContext.jsx";
 import { ClientProfile } from "./clientsprofile.jsx";
-import {
-    getDownloadURL,
-    ref as storageRef,
-    uploadBytes,
-    listAll
-} from "firebase/storage";
-import { FaFilePdf } from "react-icons/fa";
+import { ref as storageRef, uploadBytes } from "firebase/storage";
+import { GetFilesBucket } from "./getfilesbucket";
 
 export const ClientCard = () => {
     const { store } = useContext(Context);
     let { id } = useParams();
-
     id = parseInt(id);
     const navigate = useNavigate();
     const [t] = useTranslation("clientcard");
     const client = store.clients.find(client => client.id === id);
     const [fileList, setFileList] = useState([]);
-    const [bucket, setBucket] = useState([]);
-
-    const fetchFiles = async () => {
-        try {
-            const filesRef = storageRef(storage, "clientFiles");
-            const filesList = await listAll(filesRef);
-            const clientFiles = filesList.items.filter(item =>
-                item.name.startsWith(`clientFile_${id}`)
-            );
-            const urls = await Promise.all(
-                clientFiles.map(async file => {
-                    const url = await getDownloadURL(file);
-                    return { name: file.name, url };
-                })
-            );
-            setBucket(urls);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    useEffect(() => {
-        fetchFiles();
-    }, []);
 
     const handleFileChange = event => {
         const newFiles = Array.from(event.target.files);
@@ -92,7 +62,7 @@ export const ClientCard = () => {
                         className="h-12 w-12 text-gray-200 cursor-pointer"
                         onClick={() => navigate("/clients")}
                     />
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center flex-col sm:flex-row">
                         <div className="glass p-10 mt-5 m-auto w-11/12 shadow-lg overflow-hidden flex-1">
                             <div className="flex items-center justify-between mb-8">
                                 <h1 className="text-2xl font-bold text-white">
@@ -178,27 +148,7 @@ export const ClientCard = () => {
                                 )}
                             </div>
                             <div className="flex-1">
-                                <div className="glass p-10 mt-5 m-auto w-11/12">
-                                    <h2 className="text-2xl font-bold text-white">
-                                        List of Files
-                                    </h2>
-                                    <ul className="mt-4">
-                                        {bucket.map((file, index) => (
-                                            <li
-                                                key={index}
-                                                className="flex items-center text-white">
-                                                <FaFilePdf className="mr-2" />
-                                                <a
-                                                    href={file.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="hover:text-gray-400">
-                                                    {file.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                <GetFilesBucket />
                             </div>
                         </div>
                     </div>
