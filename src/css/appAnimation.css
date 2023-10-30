@@ -1,0 +1,83 @@
+.appAnimation {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.appAnimation .textContainer {
+  flex: 1;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+.appAnimation .textContainer p {
+  font-weight: 200;
+  font-size: 20px;
+  color: cyan;
+  text-align: right;
+}
+.appAnimation .textContainer hr {
+  width: 500px;
+  border: none;
+  border-top: 0.5px solid cyan;
+}
+.appAnimation .titleContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.appAnimation .titleContainer .title {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.appAnimation .titleContainer .title img {
+  width: 300px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+.appAnimation .titleContainer .title h1 {
+  font-size: 96px;
+  font-weight: 100;
+}
+.appAnimation .titleContainer .title button {
+  width: 300px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: cyan;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.appAnimation .listContainer {
+  flex: 2;
+  display: flex;
+  max-width: 1366px;
+  margin: auto;
+}
+.appAnimation .listContainer .box {
+  padding: 50px;
+  border: 0.5px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.appAnimation .listContainer .box ul {
+  display: flex;
+}
+.appAnimation .listContainer .box ul li {
+  list-style: none;
+  text-align: center;
+  align-self: center;
+}
+.appAnimation .listContainer .box button {
+  padding: 10px;
+  background-color: cyan;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  margin-top: 15px;
+}/*# sourceMappingURL=appAnimation.css.map */
