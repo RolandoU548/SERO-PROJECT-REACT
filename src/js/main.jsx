@@ -5,7 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import "./i18next-config.js";
 import { AppLoader } from "./views/apploader.jsx";
-import "../css/roundedMouse.css";
+import { Cursor } from "./components/cursor.jsx";
 
 function App() {
     const [showLoader, setShowLoader] = useState(true);
@@ -131,18 +131,16 @@ function App() {
     }, []);
 
     return (
-        <React.StrictMode>
-            <I18nextProvider i18n={i18next}>
-                <div className="js-cursor">
-                    <div className="c-cursor__inner c-cursor__inner--circle js-cursor-inner">
-                        <div className="c-cursor__side c-cursor__side--left js-cursor-right"></div>
-                        <div className="c-cursor__side c-cursor__side--right js-cursor-left"></div>
-                    </div>
-                </div>
-                {showLoader ? <AppLoader /> : <Layout />}
-                {/* <Layout /> */}
-            </I18nextProvider>
-        </React.StrictMode>
+        <>
+            <Cursor />
+            <React.StrictMode>
+                <I18nextProvider i18n={i18next}>
+                    
+                    {showLoader ? <AppLoader /> : <Layout />}
+                    {/* <Layout /> */}
+                </I18nextProvider>
+            </React.StrictMode>
+        </>
     );
 }
 
