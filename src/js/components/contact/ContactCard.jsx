@@ -11,13 +11,13 @@ export const ContactCard = ({ to, first, second }) => {
                 "cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-cover rounded-2xl h-[23rem] flex justify-center text-white text-3xl font-semibold border-2 border-white my-5 group relative" +
                 " " +
                 (to === "SebastianCastroRajbe"
-                    ? "bg-[url('SebastianCastroRajbeCard.jpg')] bg-center"
+                    ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianCastroRajbeCard.jpg?alt=media&token=232c13b9-a942-41cf-bdf8-7ada779fb8b8&_gl=1*13pgz92*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYzNi42MC4wLjA.')] bg-center"
                     : to === "SebastianLopez"
-                    ? "bg-[url('SebastianLopezCard.jpg')] bg-center"
+                    ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianLopezCard.jpg?alt=media&token=6ffaa8ad-d0c1-4dfb-a90a-2c0838830d7a&_gl=1*17dyvzc*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTY0NS41MS4wLjA.')] bg-center"
                     : to === "RobertoVargas"
-                    ? "bg-[url('RobertoVargasCard.jpg')] bg-left"
+                    ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRobertoVargasCard.jpg?alt=media&token=3ffe1fb7-69fd-4476-baa3-61a7673e5225&_gl=1*1y6d1f8*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYxMy4xNi4wLjA.')] bg-left"
                     : to === "RolandoUzcategui"
-                    ? "bg-[url('RolandoUzcateguiCard.jpeg')] bg-center"
+                    ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=47c07659-0be1-40d8-ad24-d7a29c2b5278&_gl=1*72se3q*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYyNy4yLjAuMA..')] bg-center"
                     : "")
             }
             onClick={() => {

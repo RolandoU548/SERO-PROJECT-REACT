@@ -1,6 +1,14 @@
 import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import { storage } from "../../components/firebase/firebase";
+import {
+    deleteObject,
+    getDownloadURL,
+    ref as storageRef,
+    uploadBytes
+} from "firebase/storage";
+import { useForm } from "react-hook-form";
 import {
     FaUser,
     FaEnvelope,
@@ -14,264 +22,386 @@ import {
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
-// import { ClientImage } from "../../components/dashclients/clientimage.jsx";
 
 export const CreateClient = () => {
+    const id = new Date();
     const { actions } = useContext(Context);
-    const [t] = useTranslation("createClient");
+    const [t] = useTranslation("createclient");
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm();
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
-    const [formData, setFormData] = useState({
-        Name: "",
-        Email: "",
-        Phone: "",
-        Image: null,
-        Business: "",
-        Description: "",
-        Status: ""
-    });
+    const [image, setImage] = useState(null);
 
-    const handleChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const handleImageChange = async e => {
+        if (e.target.files[0]) {
+            const imageRef = storageRef(storage, `clients/${id}`);
 
-    const handleImageChange = event => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setFormData(prevState => ({
-                ...prevState,
-                Image: reader.result
-            }));
-        };
+            try {
+                const uploadResp = await uploadBytes(
+                    imageRef,
+                    e.target.files[0]
+                );
+
+                const url = await getDownloadURL(uploadResp.ref);
+
+                setImage(url);
+            } catch (err) {
+                console.log(err);
+            }
+        }
     };
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
     };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        await actions.createClient(formData);
+    const submit = async data => {
+        try {
+            if (image !== null) {
+                data.image = image;
+            } else {
+                data.image = "noImage";
+            }
+            console.log(data);
+            await actions.createClient(data);
+        } catch (error) {
+            console.log(error);
+        }
+        reset();
         navigate("/clients");
+    };
+
+    const handleDeleteImage = async () => {
+        const imageRef = storageRef(storage, image);
+        await deleteObject(imageRef);
+        setImage(null);
     };
 
     return (
         <>
-            <div className="font-serif text-gray-200 mt-28">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-white m-auto">
-                    {t("createClient")}
+            <div className="font-serif dark:text-white mt-28">
+                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
+                    {t("Create a Client")}
                 </h1>
-                <div className="glass p-10 mt-5 m-auto w-11/12">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-2 gap-4">
+                <div className="glass p-20 mt-5 m-auto w-11/12">
+                    <form onSubmit={handleSubmit(submit)} className="space-y-6">
+                        <div className="grid grid-cols-1 gap-4">
                             <div>
-                                <label htmlFor="Name" className="sr-only">
-                                    {t("Name")}
-                                </label>
-                                <div className="relative rounded-md shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <FaUser className="h-5 w-5 text-gray-400" />
+                                <label>
+                                    {t("name")}
+                                    <div className="relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaUser className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            autoComplete="name"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                            placeholder={t("name")}
+                                            {...register("name", {
+                                                required: {
+                                                    value: true,
+                                                    message: t("nameRequired")
+                                                },
+                                                pattern: {
+                                                    value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                                                    message: t("invalidName")
+                                                }
+                                            })}
+                                        />
                                     </div>
-                                    <input
-                                        id="Name"
-                                        name="Name"
-                                        type="text"
-                                        autoComplete="Name"
-                                        required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder={t("Name")}
-                                        value={formData.Name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
+                                    {errors.name && (
+                                        <span className="text-sm text-red-500">
+                                            {errors.name.message}
+                                        </span>
+                                    )}
+                                </label>
                             </div>
-
                             <div>
-                                <label htmlFor="Email" className="sr-only">
-                                    {t("Email")}
-                                </label>
-                                <div className="relative rounded-md shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <FaEnvelope className="h-5 w-5 text-gray-400" />
+                                <label>
+                                    {t("lastname")}
+                                    <div className="relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaUser className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            autoComplete="family-name"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                            placeholder={t("lastname")}
+                                            {...register("lastname", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        t("lastnameRequired")
+                                                },
+                                                pattern: {
+                                                    value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                                                    message:
+                                                        t("invalidLastname")
+                                                }
+                                            })}
+                                        />
                                     </div>
-                                    <input
-                                        id="Email"
-                                        name="Email"
-                                        type="email"
-                                        autoComplete="Email"
-                                        required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder={t("Email")}
-                                        value={formData.Email}
-                                        onChange={handleChange}
-                                    />
-                                </div>
+                                    {errors.lastname && (
+                                        <span className="text-sm text-red-500">
+                                            {errors.lastname.message}
+                                        </span>
+                                    )}
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    {t("email")}
+                                    <div className="relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaEnvelope className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <input
+                                            type="email"
+                                            autoComplete="email"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                            placeholder={t("email")}
+                                            {...register("email", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Email Requerido"
+                                                },
+                                                minLength: {
+                                                    value: 5,
+                                                    message: t("emailMinLength")
+                                                },
+                                                maxLength: {
+                                                    value: 30,
+                                                    message: t("emailMaxLength")
+                                                },
+                                                pattern: {
+                                                    value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
+                                                    message: t("invalidEmail")
+                                                }
+                                            })}
+                                        />
+                                    </div>
+                                    {errors.email && (
+                                        <span className="text-sm text-red-500">
+                                            {errors.email.message}
+                                        </span>
+                                    )}
+                                </label>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="Phone" className="sr-only">
-                                    {t("Phone")}
-                                </label>
-                                <div className="relative rounded-md shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <FaPhone className="h-5 w-5 text-gray-400" />
+                                <label>
+                                    {t("phone")}
+                                    <div className="relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaPhone className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <input
+                                            type="tel"
+                                            autoComplete="phone"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                            placeholder={t("phone")}
+                                            {...register("phone", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Phone required"
+                                                },
+                                                minLength: {
+                                                    value: 3,
+                                                    message: t("phoneMinLength")
+                                                },
+                                                maxLength: {
+                                                    value: 20,
+                                                    message: t("phoneMaxLength")
+                                                },
+                                                pattern: {
+                                                    value: /^[0-9]+$/,
+                                                    message: t("invalidPhone")
+                                                }
+                                            })}
+                                        />
                                     </div>
-                                    <input
-                                        id="Phone"
-                                        name="Phone"
-                                        type="tel"
-                                        autoComplete="Phone"
-                                        required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder={t("Phone")}
-                                        value={formData.Phone}
-                                        onChange={handleChange}
-                                    />
-                                </div>
+                                    {errors.phone && (
+                                        <span className="text-sm text-red-500">
+                                            {errors.phone.message}
+                                        </span>
+                                    )}
+                                </label>
                             </div>
-
                             <div>
-                                <label htmlFor="Status" className="sr-only">
-                                    {t("Status")}
-                                </label>
-                                <div className="relative rounded-md shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <FaCheckCircle className="h-5 w-5 text-gray-400" />
+                                <label>
+                                    {t("status")}
+                                    <div className="relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaCheckCircle className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <select
+                                            autoComplete="status"
+                                            className=" focus:ring-indigo-500 focus:border-indigo-500 text-gray-400 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                            {...register("status", {
+                                                required: {
+                                                    value: true,
+                                                    message: t("statusRequired")
+                                                }
+                                            })}>
+                                            <option
+                                                value="Active"
+                                                className="text-black">
+                                                {t("active")}
+                                            </option>
+                                            <option
+                                                value="Inactive"
+                                                className="text-black">
+                                                {t("inactive")}
+                                            </option>
+                                        </select>
                                     </div>
-                                    <select
-                                        id="Status"
-                                        name="Status"
-                                        autoComplete="Status"
-                                        required
-                                        className="focus:ring-indigo-500 focus:border-indigo-500 text-gray-400 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
-                                        value={formData.Status}
-                                        onChange={handleChange}>
-                                        <option value="Active">
-                                            {t("Active")}
-                                        </option>
-                                        <option value="Inactive">
-                                            {t("Inactive")}
-                                        </option>
-                                    </select>
-                                </div>
+                                    {errors.status && (
+                                        <span className="text-sm text-red-500">
+                                            {errors.status.message}
+                                        </span>
+                                    )}
+                                </label>
                             </div>
                         </div>
 
                         <div>
-                            <label htmlFor="Business" className="sr-only">
-                                {t("Business")}
-                            </label>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label
-                                        htmlFor="Business"
-                                        className="sr-only">
-                                        {t("Business")}
-                                    </label>
-                                    <div className="relative rounded-md shadow-sm">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <FaBuilding className="h-5 w-5 text-gray-400" />
+                                    <label>
+                                        {t("business")}
+                                        <div className="relative rounded-md shadow-sm">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <FaBuilding className="h-5 w-5 text-gray-400" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                autoComplete="business"
+                                                className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                                placeholder={t("business")}
+                                                {...register("business", {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            t(
+                                                                "businessRequired"
+                                                            )
+                                                    },
+                                                    minLength: {
+                                                        value: 3,
+                                                        message:
+                                                            t(
+                                                                "businessMinLength"
+                                                            )
+                                                    },
+                                                    maxLength: {
+                                                        value: 40,
+                                                        message:
+                                                            t(
+                                                                "businessMaxLength"
+                                                            )
+                                                    }
+                                                })}
+                                            />
                                         </div>
-                                        <input
-                                            id="Business"
-                                            name="Business"
-                                            type="text"
-                                            autoComplete="Business"
-                                            required
-                                            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
-                                            placeholder={t("Business")}
-                                            value={formData.Business}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                        {errors.business && (
+                                            <span className="text-sm text-red-500">
+                                                {errors.business.message}
+                                            </span>
+                                        )}
+                                    </label>
                                 </div>
-
                                 <div>
-                                    <label
-                                        htmlFor="Description"
-                                        className="sr-only">
-                                        {t("Description")}
-                                    </label>
-                                    <div className="relative rounded-md shadow-sm">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <FaFileAlt className="h-5 w-5 text-gray-400" />
+                                    <label>
+                                        {t("description")}
+                                        <div className="relative rounded-md shadow-sm">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <FaFileAlt className="h-5 w-5 text-gray-400" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                autoComplete="description"
+                                                className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                                placeholder={t("description")}
+                                                {...register("description", {
+                                                    required: {
+                                                        value: true,
+                                                        message: t(
+                                                            "descriptionRequired"
+                                                        )
+                                                    },
+                                                    minLength: {
+                                                        value: 5,
+                                                        message: t(
+                                                            "descriptionMinLength"
+                                                        )
+                                                    },
+                                                    maxLength: {
+                                                        value: 120,
+                                                        message: t(
+                                                            "descriptionMaxLength"
+                                                        )
+                                                    }
+                                                })}
+                                            />
                                         </div>
-                                        <input
-                                            id="Description"
-                                            name="Description"
-                                            type="text"
-                                            autoComplete="Description"
-                                            required
-                                            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 sm:text-sm border-gray-300 rounded-md"
-                                            placeholder={t("Description")}
-                                            value={formData.Description}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                        {errors.description && (
+                                            <span className="text-sm text-red-500">
+                                                {errors.description.message}
+                                            </span>
+                                        )}
+                                    </label>
                                 </div>
-
                                 <div>
                                     <div>
-                                        <label
-                                            htmlFor="Image"
-                                            className="sr-only">
-                                            Image
-                                        </label>
+                                        <label>{t("image")}</label>
                                         <div className="relative rounded-md shadow-sm">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <FaImage className="h-5 w-5 text-gray-400" />
                                             </div>
                                             <input
-                                                id="Image"
-                                                name="Image"
                                                 type="file"
                                                 accept="image/*"
-                                                required
                                                 className="hidden"
                                                 ref={fileInputRef}
                                                 onChange={handleImageChange}
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
+                                                className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 mb-4 sm:text-md border-gray-300 rounded-md text-white bg-green-700"
                                                 onClick={handleButtonClick}>
-                                                Select The Image
+                                                {image
+                                                    ? t("changeImage")
+                                                    : t("selectImage")}
                                             </button>
                                         </div>
                                     </div>
-                                    {formData.Image && (
-                                        <div className="relative">
+                                    {image && (
+                                        <div className="relative w-64">
                                             <img
-                                                src={formData.Image}
+                                                src={image}
                                                 alt="Uploaded image preview"
                                             />
                                             <button
                                                 type="button"
                                                 className="absolute top-0 right-0 mt-2 mr-2 focus:outline-none"
-                                                onClick={() => {
-                                                    setFormData({
-                                                        ...formData,
-                                                        Image: null
-                                                    });
-                                                    fileInputRef.current.value =
-                                                        null;
-                                                }}>
+                                                onClick={handleDeleteImage}>
                                                 <FaTimes className="h-5 w-5 text-red-500" />
                                             </button>
                                         </div>
                                     )}
                                 </div>
-                                {/* <ClientImage /> */}
-
-                                <div></div>
-
-                                <div className="col-span-2 mx-16 flex justify-center ">
+                                <div className="mt-5 col-span-2 flex justify-center items-center ">
                                     <button
                                         type="submit"
-                                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-white text-md font-medium rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                             <svg
                                                 className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"

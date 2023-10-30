@@ -30,8 +30,10 @@ export const SignUpForm = ({
 
     const submit = async data => {
         const respuesta = await actions.createUser(data);
-        if (respuesta?.message === "A user has been created") {
-            alert("Usuario Creado");
+        if (respuesta?.message === `User ${data.email} already exists`) {
+            alert(`${data.email} ${t("userAlreadyExists")}`);
+        } else if (respuesta?.message === "A user has been created") {
+            alert(t("userCreated"));
             const token = await actions.generateToken(data);
             if (token.token) {
                 actions.identificateUser(token.token);
@@ -54,7 +56,7 @@ export const SignUpForm = ({
                         required: { value: true, message: t("nameRequired") },
                         pattern: {
                             value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                            message: "Invalid name"
+                            message: t("invalidName")
                         }
                     })}
                 />
@@ -78,7 +80,7 @@ export const SignUpForm = ({
                         },
                         pattern: {
                             value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                            message: "Invalid lastname"
+                            message: t("invalidLastname")
                         }
                     })}
                 />
@@ -106,7 +108,7 @@ export const SignUpForm = ({
                             message: t("emailMaxLength")
                         },
                         pattern: {
-                            value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}/,
+                            value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
                             message: t("invalidEmail")
                         }
                     })}

@@ -1,10 +1,8 @@
-import { set } from "react-hook-form";
-
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: 0, name: " ", lastname: " ", email: " " },
+            user: { id: null, name: null, lastname: null, email: null },
             clients: []
         },
         actions: {
@@ -24,9 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    if (!resp.ok) {
-                        alert(JSON.stringify(data.message));
-                    }
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -75,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                             }
                         });
                     }
-
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -85,10 +79,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({
                     token: null,
                     user: {
-                        id: 0,
-                        name: " ",
-                        lastname: " ",
-                        email: " "
+                        id: null,
+                        name: null,
+                        lastname: null,
+                        email: null
                     }
                 });
                 localStorage.removeItem("token");
@@ -118,13 +112,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await response.json();
-                    client.name = data.name;
-                    client.email = data.email;
-                    client.phone = data.phone;
-                    client.business = data.business;
-                    client.description = data.description;
-                    client.status = data.status;
-                    setStore({ clients: [...getStore().clients] });
+                    const updatedClients = getStore().clients.map(c => {
+                        if (c.id === id) {
+                            return data;
+                        }
+                        return c;
+                    });
+                    setStore({
+                        clients: updatedClients
+                    });
                 } catch (error) {
                     console.error(error);
                 }
@@ -139,6 +135,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
+                    setStore({
+                        clients: [
+                            ...getStore().clients.filter(x => x.id !== id)
+                        ]
+                    });
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -161,6 +162,66 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return data;
                 } catch (error) {
                     console.error(error);
+                }
+            },
+            sendRow: async object => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/row",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify({
+                                text: object
+                            })
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getRow: async id => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/row/${id}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getRows: async () => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/user_rows`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
                 }
             }
         }

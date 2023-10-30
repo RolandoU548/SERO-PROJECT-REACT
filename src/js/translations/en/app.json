@@ -4,7 +4,7 @@
     "services": "Services",
     "login": "Log In",
     "signup": "Sign Up",
-    "title": "Welcome to SERØ",
+    "title": "Welcome to SERØ.",
     "getStarted": "Get started",
     "subtitle": "Simplify your data management",
     "aboutUs": "About us",
@@ -31,6 +31,9 @@
     "form1": "You will have the possibility of creating your own forms to fill out your databases in a personalized, easy and fast way.",
     "form2": "This section will be very useful to you, since you will be able to send these forms to your clients so that they can fill out their own data for you, generating fluidity in the information system.",
     "form3": "Allow yourself and your respective clients to make life easier with these wonderful forms!",
+    "clients1": "In the clients section you will have a table to add a list of clients with their personal data.",
+    "clients2": "This way you can also have a contact list of those to whom you offer your services.",
+    "clients3": "Don't wait any longer to schedule everyone who needs you and your organization as a required service!",
     "dashboard1": "With the Control Panel you will be able to have a general summary of your data in a statistical manner, in this way you will be able to have extensive, easy and comfortable control of your databases, clients and payments.",
     "dashboard2": "You can set up custom summaries that are easy to understand for members of your organization or your customers.",
     "dashboard3": "It is important that you analyze your Dashboard to keep the progress of your organization in the best possible way"

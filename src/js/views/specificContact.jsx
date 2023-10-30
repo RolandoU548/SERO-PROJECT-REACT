@@ -19,7 +19,7 @@ export const SpecificContact = () => {
                 p1: t("p1BYNX"),
                 p2: t("p2BYNX"),
                 p3: t("p3BYNX"),
-                img: "SebastianCastroRajbeCard.jpg",
+                img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianCastroRajbeCard.jpg?alt=media&token=232c13b9-a942-41cf-bdf8-7ada779fb8b8&_gl=1*13pgz92*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYzNi42MC4wLjA.",
                 bg: "center"
             };
             break;
@@ -30,7 +30,7 @@ export const SpecificContact = () => {
                 p1: t("p1SEBAS"),
                 p2: t("p2SEBAS"),
                 p3: t("p3SEBAS"),
-                img: "SebastianLopezCard.jpg",
+                img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianLopezCard.jpg?alt=media&token=6ffaa8ad-d0c1-4dfb-a90a-2c0838830d7a&_gl=1*17dyvzc*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTY0NS41MS4wLjA.",
                 bg: "center"
             };
             break;
@@ -41,7 +41,7 @@ export const SpecificContact = () => {
                 p1: t("p1ROLANDO"),
                 p2: t("p2ROLANDO"),
                 p3: t("p3ROLANDO"),
-                img: "RolandoUzcateguiCard.jpeg",
+                img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=47c07659-0be1-40d8-ad24-d7a29c2b5278&_gl=1*72se3q*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYyNy4yLjAuMA..",
                 bg: "center"
             };
             break;
@@ -52,7 +52,7 @@ export const SpecificContact = () => {
                 p1: t("p1ROBERTO"),
                 p2: t("p2ROBERTO"),
                 p3: t("p3ROBERTO"),
-                img: "RobertoVargasCard.jpg",
+                img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRobertoVargasCard.jpg?alt=media&token=3ffe1fb7-69fd-4476-baa3-61a7673e5225&_gl=1*1y6d1f8*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYxMy4xNi4wLjA.",
                 bg: "left"
             };
             break;
@@ -63,8 +63,8 @@ export const SpecificContact = () => {
     return (
         <>
             <Navbar />
-            <div className="font-serif text-gray-200">
-                <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white mt-36">
+            <div className="font-serif text-black dark:text-gray-200">
+                <h2 className="mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white mt-36">
                     {data.name}
                 </h2>
                 <div className="glass rounded-2xl w-9/12 ml-40 mt-20 mb-16 flex justify-between relative flex-wrap lg:flex-nowrap">
@@ -73,13 +73,13 @@ export const SpecificContact = () => {
                             "cursor-pointer transition ease-out duration-300 hover:scale-105 lg:w-96 w-full bg-cover rounded-2xl h-[23rem] border-2 border-white relative" +
                             " " +
                             (contact === "SebastianCastroRajbe"
-                                ? "bg-[url('SebastianCastroRajbeCard.jpg')] bg-center"
+                                ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianCastroRajbeCard.jpg?alt=media&token=232c13b9-a942-41cf-bdf8-7ada779fb8b8&_gl=1*13pgz92*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYzNi42MC4wLjA.')] bg-center"
                                 : contact === "SebastianLopez"
-                                ? "bg-[url('SebastianLopezCard.jpg')] bg-center"
+                                ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianLopezCard.jpg?alt=media&token=6ffaa8ad-d0c1-4dfb-a90a-2c0838830d7a&_gl=1*17dyvzc*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTY0NS41MS4wLjA.')] bg-center"
                                 : contact === "RobertoVargas"
-                                ? "bg-[url('RobertoVargasCard.jpg')] bg-left"
+                                ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRobertoVargasCard.jpg?alt=media&token=3ffe1fb7-69fd-4476-baa3-61a7673e5225&_gl=1*1y6d1f8*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYxMy4xNi4wLjA.')] bg-left"
                                 : contact === "RolandoUzcategui"
-                                ? "bg-[url('RolandoUzcateguiCard.jpeg')] bg-center"
+                                ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=47c07659-0be1-40d8-ad24-d7a29c2b5278&_gl=1*72se3q*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYyNy4yLjAuMA..')] bg-center"
                                 : "")
                         }
                         onClick={() => {

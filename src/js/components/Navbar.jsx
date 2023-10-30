@@ -48,6 +48,9 @@ export const Navbar = () => {
                 <ul className="flex items-center resp:mt-5 resp:flex-col">
                     <li className="my-2.5">
                         <NavLink
+                            onClick={() => {
+                                setIsOpen(false);
+                            }}
                             to="/"
                             className="text-xl font-medium ml-6 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
                             {t("home")}
@@ -56,6 +59,9 @@ export const Navbar = () => {
                     <li className="my-2.5">
                         <NavLink
                             to="/contact"
+                            onClick={() => {
+                                setIsOpen(false);
+                            }}
                             className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
                             {t("contacts")}
                         </NavLink>

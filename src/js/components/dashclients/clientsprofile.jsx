@@ -1,19 +1,26 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaImage } from "react-icons/fa";
+import { storage } from "../../components/firebase/firebase";
+import {
+    getDownloadURL,
+    ref as storageRef,
+    uploadBytes
+} from "firebase/storage";
 
 import "../../../css/app.css";
 import "../../../css/glass.css";
 
 export const ClientProfile = ({ client }) => {
-    const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
+    const id = new Date();
+    const { actions } = useContext(Context);
     const [isOpen, setIsOpen] = useState(false);
     const [editableClient, setEditableClient] = useState(client);
-
-    useEffect(() => {
-        actions.getAllClients();
-    }, [client]);
+    const [imageUrl, setImageUrl] = useState(null);
+    const fileInputRef = useRef(null);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
@@ -24,19 +31,43 @@ export const ClientProfile = ({ client }) => {
         setEditableClient({ ...editableClient, [name]: value });
     };
 
-    const handleSave = async () => {
+    const handleImageChange = async e => {
+        if (e.target.files[0]) {
+            const imageRef = storageRef(storage, `clients/${id}`);
+
+            try {
+                const uploadResp = await uploadBytes(
+                    imageRef,
+                    e.target.files[0]
+                );
+
+                const url = await getDownloadURL(uploadResp.ref);
+
+                setEditableClient({ ...editableClient, image: url });
+                setImageUrl(url);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
+    const handleButtonClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleSubmit = async e => {
+        e.preventDefault();
         try {
-            await actions.updateClient(client.id, editableClient);
+            await actions.updateClient(editableClient.id, editableClient);
             toggleModal();
+            navigate("/clients");
         } catch (error) {
             console.error(error);
         }
     };
-
     return (
         <>
             <button
-                className="px-2 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                className="ml-2 px-2 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                 onClick={toggleModal}>
                 <FaEdit />
             </button>
@@ -68,6 +99,41 @@ export const ClientProfile = ({ client }) => {
                                 </h3>
                                 <div className="mt-5 flex justify-center items-center rounded-t-lg">
                                     <div className="flex flex-col space-y-2">
+                                        <div>
+                                            <div>
+                                                <label
+                                                    htmlFor="Image"
+                                                    className="sr-only">
+                                                    Image
+                                                </label>
+                                                <div className="relative rounded-md shadow-sm">
+                                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                        <FaImage className="h-5 w-5 text-gray-400" />
+                                                    </div>
+                                                    <input
+                                                        id="Image"
+                                                        name="Image"
+                                                        type="file"
+                                                        accept="image/*"
+                                                        className="hidden"
+                                                        ref={fileInputRef}
+                                                        onChange={
+                                                            handleImageChange
+                                                        }
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        className="text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
+                                                        onClick={
+                                                            handleButtonClick
+                                                        }>
+                                                        {editableClient.image
+                                                            ? "Select a different Image"
+                                                            : "Image Selected"}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div className="flex justify-between items-center">
                                             <label
                                                 htmlFor="name"
@@ -78,6 +144,20 @@ export const ClientProfile = ({ client }) => {
                                                 type="text"
                                                 name="name"
                                                 value={editableClient.name}
+                                                onChange={handleInputChange}
+                                                className="rounded-md px-3 py-2 text-black text-center"
+                                            />
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <label
+                                                htmlFor="lastname"
+                                                className="font-bold mr-6">
+                                                Last Name:
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="lastname"
+                                                value={editableClient.lastname}
                                                 onChange={handleInputChange}
                                                 className="rounded-md px-3 py-2 text-black text-center"
                                             />
@@ -165,7 +245,7 @@ export const ClientProfile = ({ client }) => {
                                 <button
                                     type="button"
                                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={handleSave}>
+                                    onClick={handleSubmit}>
                                     Save
                                 </button>
                                 <button
@@ -184,13 +264,5 @@ export const ClientProfile = ({ client }) => {
 };
 
 ClientProfile.propTypes = {
-    client: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
-        phone: PropTypes.string.isRequired,
-        business: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired
-    }).isRequired
+    client: PropTypes.object.isRequired
 };

@@ -73,7 +73,10 @@ export const PrivateNavbar = () => {
                                     key={i}
                                     className={` ${
                                         menu?.margin && "mt-5"
-                                    } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md`}>
+                                    } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md`}
+                                    onClick={() => {
+                                        setOpen(!open);
+                                    }}>
                                     <div>
                                         {React.createElement(menu?.icon, {
                                             size: "20"
@@ -154,18 +157,20 @@ export const PrivateNavbar = () => {
                     </h2>
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
                         <li>
-                            <div className="text-xl text-light">
-                                {store.user.name[0].toUpperCase() +
-                                    store.user.name.substr(1)}{" "}
-                                {store.user.lastname[0].toUpperCase() +
-                                    store.user.lastname.substr(1)}
-                                <Link to="/profile">
-                                    <i
-                                        className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
-                                        style={{ color: "#ffffff" }}
-                                    />
-                                </Link>
-                            </div>
+                            <Link to="/profile" className="text-xl text-light">
+                                {store.user.name
+                                    ? store.user.name[0].toUpperCase() +
+                                      store.user.name.substr(1)
+                                    : " "}{" "}
+                                {store.user.lastname
+                                    ? store.user.lastname[0].toUpperCase() +
+                                      store.user.lastname.substr(1)
+                                    : " "}
+                                <i
+                                    className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
+                                    style={{ color: "#ffffff" }}
+                                />
+                            </Link>
                         </li>
                         <li className="my-2.5">
                             <button
