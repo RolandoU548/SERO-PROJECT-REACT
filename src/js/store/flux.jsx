@@ -17,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 name: info.name,
                                 lastname: info.lastname,
                                 email: info.email,
-                                password: info.password
+                                password: info.password,
+                                roles: [1]
                             })
                         }
                     );
