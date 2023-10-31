@@ -196,7 +196,7 @@ const Layout = () => {
                         path="/settings"
                         transition="fade"
                         element={
-                            <ProtectedRoute roles={["admin"]}>
+                            <ProtectedRoute role={["admin"]}>
                                 <PrivateNavbar />
                                 <Settings />
                             </ProtectedRoute>
