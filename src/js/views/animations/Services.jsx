@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const variants = {
     initial: {
         x: -500,
-        y: 100,
+        y: -10,
         opacity: 0
     },
     animate: {
@@ -57,7 +57,7 @@ export const Services = () => {
                             .
                         </h1>
                         <button className="text-black bg-cyan-400 hover:bg-cyan-500 transition duration-300">
-                            QUE HACEMOS?
+                            ¿QUÉ HACEMOS?
                         </button>
                     </div>
                 </motion.div>
@@ -69,19 +69,7 @@ export const Services = () => {
                             color: "black"
                         }}>
                         <h2>¿Quiénes somos?</h2>
-                        <p>
-                            Somos un grupo de desarrolladores Full-Stack que
-                            creó SERØ para solventar problemas de organización
-                            de base de datos. Esta Web App se especializa en
-                            automatizar todo aquello relacionado a la
-                            información importante que contenga una empresa, una
-                            firma de abogados, o cualquier otra entidad que
-                            necesite simplicidad en su sistema. SERØ está
-                            diseñado para ser fácil de usar, incluso para
-                            usuarios sin conocimientos técnicos. La aplicación
-                            cuenta con una interfaz intuitiva que permite crear
-                            y gestionar bases de datos sin esfuerzo.
-                        </p>
+                        <p>...</p>
                         <button>Ir</button>
                     </motion.div>
                     <motion.div
@@ -92,21 +80,16 @@ export const Services = () => {
                         }}>
                         <h2>Servicios</h2>
                         <ul>
-                            <li>Organizar sus datos.</li>
-                            <li>Crear una base de datos personalizada.</li>
-                            <li>
-                                Crear formularios para rellenar su base de
-                                datos.
-                            </li>
-                            <li>Ver un resumen de sus datos.</li>
-                            <li>Tener un listado de clientes.</li>
-                            <li>
-                                Tener control sobre un historial de reportes
-                            </li>
-                            <li>Administrar sus pagos.</li>
-                            <li>Pertenecer a una Organización.</li>
+                            <li>...</li>
+                            <li>...</li>
+                            <li>...</li>
+                            <li>...</li>
+                            <li>...</li>
+                            <li>...</li>
+                            <li>...</li>
+                            <li>...</li>
                         </ul>
-                        <button>Ir</button>
+                        <button className="text-black">Ir</button>
                     </motion.div>
                 </motion.div>
             </motion.div>

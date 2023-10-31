@@ -40,12 +40,12 @@
   object-fit: cover;
 }
 .services .titleContainer .title h1 {
-  font-size: 96px;
+  font-size: 80px;
   font-weight: 100;
 }
 .services .titleContainer .title button {
-  width: 300px;
-  height: 100px;
+  width: 240px;
+  height: 80px;
   border-radius: 50px;
   border: none;
   font-size: 24px;
