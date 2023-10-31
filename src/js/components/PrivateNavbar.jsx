@@ -158,6 +158,11 @@ export const PrivateNavbar = () => {
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
                         <li>
                             <Link to="/profile" className="text-xl text-light">
+                                {store.user.role.includes("admin") && (
+                                    <span className="text-sm text-red-600 font-bold mr-1">
+                                        admin
+                                    </span>
+                                )}
                                 {store.user.name
                                     ? store.user.name[0].toUpperCase() +
                                       store.user.name.substr(1)

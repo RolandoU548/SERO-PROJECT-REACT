@@ -2,7 +2,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: null, name: null, lastname: null, email: null },
+            user: {
+                id: null,
+                name: null,
+                lastname: null,
+                email: null,
+                role: []
+            },
             clients: []
         },
         actions: {
@@ -18,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 lastname: info.lastname,
                                 email: info.email,
                                 password: info.password,
-                                roles: ["user"]
+                                role: ["user"]
                             })
                         }
                     );
@@ -67,7 +73,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 id: data.id,
                                 name: data.name,
                                 lastname: data.lastname,
-                                email: data.email
+                                email: data.email,
+                                role: data.role.map(role => {
+                                    return role.role;
+                                })
                             }
                         });
                     }
@@ -83,7 +92,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         id: null,
                         name: null,
                         lastname: null,
-                        email: null
+                        email: null,
+                        role: []
                     }
                 });
                 localStorage.removeItem("token");
