@@ -84,34 +84,22 @@ export const ClientCard = () => {
         });
     }, [fileList]);
 
-    const handleBucketDelete = async index => {
-        const fileUrl = filteredUrls[index];
-        const fileName = fileUrl.split("/").pop();
-        const fileRef = storageRef(storage, `clientFiles/${fileName}`);
-        try {
-            await deleteObject(fileRef);
-            const newBuckets = [...buckets];
-            newBuckets.splice(index, 1);
-            setBuckets(newBuckets);
-            const newFilteredUrls = [...filteredUrls];
-            newFilteredUrls.splice(index, 1);
-            setFilteredUrls(newFilteredUrls);
-        } catch (error) {
-            console.error("Error deleting file:", error);
-        }
+    const handleBucketDelete = async () => {
+        const promises = filteredUrls.map(url => {
+            const fileName = url.split("/").pop();
+            const fileRef = storageRef(
+                storage,
+                import.meta.env.VITE_CLIENTEFILE_DELETE_URL + `${fileName}`
+            );
+            return deleteObject(fileRef);
+        });
+        await Promise.all(promises);
+        setBuckets([]);
     };
 
     if (client) {
         return (
             <>
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-screen h-screen -z-50 fixed top-0 left-0 object-cover invert dark:invert-0 transition duration-500">
-                    <source src="ClientsBG.mp4" type="video/mp4" />
-                </video>
                 <div className="font-serif text-gray-200 mt-28">
                     <div className="flex items-center">
                         <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">

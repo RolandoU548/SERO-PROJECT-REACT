@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { Calendar } from "../../components/dashpanel/calendar";
 
 export const Dashboard = () => {
     const { actions } = useContext(Context);
@@ -17,7 +18,7 @@ export const Dashboard = () => {
             setNumClients(clients.length);
         };
         getClients();
-    }, [actions]);
+    }, []);
 
     const handleClientClick = () => {
         navigate("/clients");
@@ -71,6 +72,13 @@ export const Dashboard = () => {
                                 3
                             </div>
                         </div>
+                    </div>
+
+                    <div className="glass p-10 mt-5 m-auto w-11/12">
+                        <h1 className="w-10/12 mb-12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
+                            {t("Calendar")}
+                        </h1>
+                        <Calendar />
                     </div>
                 </div>
             </div>

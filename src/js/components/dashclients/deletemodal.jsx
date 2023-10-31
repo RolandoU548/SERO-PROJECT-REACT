@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../store/appContext";
 import { FaTrash } from "react-icons/fa";
 
@@ -8,10 +8,6 @@ export function DeleteModal({ client }) {
     const { actions } = useContext(Context);
     const [isOpen, setIsOpen] = useState(false);
     const [deleteClient, setDeleteClient] = useState(client);
-
-    // useEffect(() => {
-    //     actions.getAllClients();
-    // }, [client]);
 
     const handleClientDelete = async id => {
         try {
