@@ -88,22 +88,22 @@ export const Cursor = () => {
     //         this.lastScale = 0.4;
     //     }
 
-        // showArrows() {
-        //     TweenMax.to(Object.values(this.DOM.arrows), 1, {
-        //         ease: Expo.easeOut,
-        //         startAt: { x: i => (i ? 10 : -10) },
-        //         opacity: 1,
-        //         x: 0
-        //     });
-        // }
+    // showArrows() {
+    //     TweenMax.to(Object.values(this.DOM.arrows), 1, {
+    //         ease: Expo.easeOut,
+    //         startAt: { x: i => (i ? 10 : -10) },
+    //         opacity: 1,
+    //         x: 0
+    //     });
+    // }
 
-        // hideArrows() {
-        //     TweenMax.to(Object.values(this.DOM.arrows), 1, {
-        //         ease: Expo.easeOut,
-        //         x: i => (i ? 10 : -10),
-        //         opacity: 0
-        //     });
-        // }
+    // hideArrows() {
+    //     TweenMax.to(Object.values(this.DOM.arrows), 1, {
+    //         ease: Expo.easeOut,
+    //         x: i => (i ? 10 : -10),
+    //         opacity: 0
+    //     });
+    // }
     // }
 
     // Custom mouse cursor
@@ -117,30 +117,57 @@ export const Cursor = () => {
     //     link.addEventListener("mouseleave", () => cursor.leave());
     // });
 
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    // CURSOR BUENO -->
+    // const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    useEffect(() => {
-        const mouseMove = e => {
-            setPosition({ x: e.clientX, y: e.clientY });
-        };
-        window.addEventListener("mousemove", mouseMove);
+    // useEffect(() => {
+    //     const mouseMove = e => {
+    //         setPosition({ x: e.clientX, y: e.clientY });
+    //     };
+    //     window.addEventListener("mousemove", mouseMove);
 
-        return () => {
-            window.removeEventListener("mousemove", mouseMove);
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener("mousemove", mouseMove);
+    //     };
+    // }, []);
+
+    const innerCursor = document.querySelector(".c-cursor__inner");
+    const outerCursor = document.querySelector(".c-cursor__side");
+
+    document.addEventListener("mousemove", moveCursor);
+
+    function moveCursor(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        innerCursor.style.left = `${x}px`;
+        innerCursor.style.top = `${y}px`;
+        outerCursor.style.left = `${x}px`;
+        outerCursor.style.top = `${y}px`;
+    }
+
+    const links = Array.from(document.querySelectorAll("button", "a", "Link"));
+
+    links.forEach((link) => {
+        link.addEventListener("mouseover", () => {
+            innerCursor.classList.remove("c-cursor__side")
+        });
+        link.addEventListener("mouseleave", () => {
+            innerCursor.classList.add("c-cursor__side")
+        });
+    })
 
     return (
         <>
-            {/* <div className="js-cursor">
+            <div className="js-cursor">
                 <div className="c-cursor__inner c-cursor__inner--circle js-cursor-inner">
                     <div className="c-cursor__side c-cursor__side--left js-cursor-right"></div>
                     <div className="c-cursor__side c-cursor__side--right js-cursor-left"></div>
                 </div>
-            </div> */}
-            <motion.div
+            </div>
+            {/* <motion.div
                 className="cursor"
-                animate={{ x: position.x, y: position.y }}></motion.div>
+                animate={{ x: position.x, y: position.y }}></motion.div> */}
         </>
     );
 };
