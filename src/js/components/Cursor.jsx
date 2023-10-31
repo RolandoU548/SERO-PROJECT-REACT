@@ -148,14 +148,14 @@ export const Cursor = () => {
 
     const links = Array.from(document.querySelectorAll("button", "a", "Link"));
 
-    links.forEach((link) => {
+    links.forEach(link => {
         link.addEventListener("mouseover", () => {
-            innerCursor.classList.remove("c-cursor__side")
+            innerCursor.classList.remove("plus");
         });
         link.addEventListener("mouseleave", () => {
-            innerCursor.classList.add("c-cursor__side")
+            innerCursor.classList.add("plus");
         });
-    })
+    });
 
     return (
         <>
