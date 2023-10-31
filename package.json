@@ -39,7 +39,9 @@
     "dependencies": {
         "@google-cloud/storage": "^7.3.1",
         "@handsontable/react": "^13.1.0",
+        "@headlessui/react": "^1.7.17",
         "datamaker": "^0.11.1",
+        "dayjs": "^1.11.10",
         "esbuild": "^0.19.5",
         "firebase": "^10.5.2",
         "handsontable": "^13.1.0",
