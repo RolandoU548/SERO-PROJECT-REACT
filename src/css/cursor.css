@@ -1,3 +1,7 @@
+* {
+  cursor: none;
+}
+
 @media (any-pointer: fine) {
   .c-cursor {
     display: block;

@@ -25,11 +25,11 @@ export const Cursor = () => {
         const x = e.clientX;
         const y = e.clientY;
 
-        innerCursor.style.left = `${x}px`;
-        innerCursor.style.top = `${y}px`;
+        innerCursor.style.left = `${x - 12}px`;
+        innerCursor.style.top = `${y - 8}px`;
     }
 
-    const links = Array.from(document.querySelectorAll("a"));
+    const links = Array.from(document.querySelectorAll("button", "a", "Link"));
 
     links.forEach(link => {
         link.addEventListener("mouseover", () => {
