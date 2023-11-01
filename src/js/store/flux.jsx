@@ -4,10 +4,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             token: localStorage.getItem("token") || null,
             user: {
                 id: null,
-                name: null,
-                lastname: null,
+                name: "Carlito",
+                lastname: "Corona",
                 email: null,
-                role: []
+                role: ["user", "admin"]
             },
             clients: []
         },
