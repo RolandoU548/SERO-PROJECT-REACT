@@ -38,9 +38,9 @@ const paymentsData = [
         status: "Pending",
         method: "Bank Transfer",
         date: "2022-01-03",
-        customer: "Alexande De Matteo",
+        customer: "Alexander De Matteo",
         amount: 500.0,
-        invoice: "INV-004"
+        invoice: "ME DEBE"
     },
     {
         id: 5,
