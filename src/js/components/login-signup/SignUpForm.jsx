@@ -108,7 +108,7 @@ export const SignUpForm = ({
                             message: t("emailMinLength")
                         },
                         maxLength: {
-                            value: 30,
+                            value: 60,
                             message: t("emailMaxLength")
                         },
                         pattern: {

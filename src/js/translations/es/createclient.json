@@ -18,7 +18,7 @@
     "invalidLastname": "Apellido no válido",
     "emailRequired": "Correo Requerido",
     "emailMinLength": "Correo debe tener al menos 5 caracteres",
-    "emailMaxLength": "Correo debe tener máximo 30 caracteres",
+    "emailMaxLength": "Correo debe tener máximo 60 caracteres",
     "invalidEmail": "Correo no válido",
     "phoneRequired": "Teléfono requerido",
     "phoneMinLength": "Teléfono debe tener al menos 3 caracteres",
