@@ -1,6 +1,27 @@
 import React, { useRef } from "react";
 import "../../../css/functionalities.css";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import {
+    motion,
+    useScroll,
+    useSpring,
+    useTransform,
+    useInView
+} from "framer-motion";
+
+const variants = {
+    initial: {
+        y: 500,
+        opacity: 0
+    },
+    animate: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            staggerChildren: 0.1
+        }
+    }
+};
 
 const items = [
     {
@@ -40,20 +61,22 @@ const Single = ({ item }) => {
     const y = useTransform(scrollYProgress, [0, 1], [-400, 400]);
 
     return (
-        <section>
-            <div className="container">
-                <div className="wrapper">
-                    <div className="imageContainer" ref={ref}>
-                        <img src={item.img} alt="" />
+        <>
+            <section>
+                <div className="container">
+                    <div className="wrapper">
+                        <div className="imageContainer" ref={ref}>
+                            <img src={item.img} alt="" />
+                        </div>
+                        <motion.div className="textContainer" style={{ y }}>
+                            <h2>{item.title}</h2>
+                            <p>{item.desc}</p>
+                            <button>Detalles</button>
+                        </motion.div>
                     </div>
-                    <motion.div className="textContainer" style={{ y }}>
-                        <h2>{item.title}</h2>
-                        <p>{item.desc}</p>
-                        <button>Detalles</button>
-                    </motion.div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 };
 
@@ -74,7 +97,7 @@ export const Functionalities = () => {
         <>
             <div className="portfolio" ref={ref}>
                 <div className="progress">
-            <div className="h-12"></div>
+                    <div className="h-12"></div>
                     <h1>Servicios</h1>
                     <motion.div
                         style={{ scaleX }}
