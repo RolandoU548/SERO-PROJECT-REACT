@@ -8,6 +8,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
+import { Admin } from "./views/dashboard/admin.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
@@ -191,14 +192,24 @@ const Layout = () => {
                                 </>
                             }
                         />
+                        <Route
+                            path="/settings"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Settings />
+                                </>
+                            }
+                        />
                     </Route>
                     <Route
-                        path="/settings"
+                        path="/admin"
                         transition="fade"
                         element={
                             <ProtectedRoute role={["admin"]}>
                                 <PrivateNavbar />
-                                <Settings />
+                                <Admin />
                             </ProtectedRoute>
                         }
                     />

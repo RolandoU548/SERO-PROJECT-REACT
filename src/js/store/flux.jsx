@@ -86,6 +86,29 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
+            getAllUsers: async token => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/users",
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    if (resp.ok) {
+                        setStore({
+                            users: data
+                        });
+                        return true;
+                    }
+                    return false;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
             signOut: () => {
                 setStore({
                     token: null,
@@ -95,7 +118,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         lastname: null,
                         email: null,
                         role: []
-                    }
+                    },
+                    users: null
                 });
                 localStorage.removeItem("token");
             },
