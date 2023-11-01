@@ -5,6 +5,8 @@ import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { Calendar } from "../../components/dashpanel/calendar";
+import { PieChartPayment } from "../../components/dashpayments/piechartpayment";
+import { PieChartClient } from "../../components/dashclients/piechartclient";
 
 export const Dashboard = () => {
     const { actions } = useContext(Context);
@@ -74,6 +76,20 @@ export const Dashboard = () => {
                         </div>
                     </div>
 
+                    <div className="flex flex-row justify-center">
+                        <div className="glass p-10 mt-5 m-auto w-120 h-120 mx-5 text-center">
+                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                                {t("Payments Chart")}
+                            </h1>
+                            <PieChartPayment />
+                        </div>
+                        <div className="glass p-10 mt-5 m-auto w-120 h-120 mx-5 text-center">
+                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                                {t("Clients Chart")}
+                            </h1>
+                            <PieChartClient />
+                        </div>
+                    </div>
                     <div className="glass p-10 mt-5 m-auto w-11/12">
                         <h1 className="w-10/12 mb-12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
                             {t("Calendar")}

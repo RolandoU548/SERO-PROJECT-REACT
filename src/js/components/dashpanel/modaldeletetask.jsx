@@ -1,36 +1,21 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../../store/appContext";
+import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
-
 import PropTypes from "prop-types";
 
-export function DeleteModal({ client }) {
-    const { actions } = useContext(Context);
-    const [isOpen, setIsOpen] = useState(false);
-    const [deleteClient, setDeleteClient] = useState(client);
+export const ModalDeleteTask = ({ index, deleteTask }) => {
+    const [modalOpen, setModalOpen] = useState(false);
 
-    const handleClientDelete = async id => {
-        try {
-            await actions.deleteClient(id);
-            setDeleteClient(prevState => {
-                const newState = { ...prevState };
-                delete newState[id];
-                return newState;
-            });
-            setIsOpen(false);
-        } catch (error) {
-            console.error(error);
-        }
+    const handleDelete = () => {
+        deleteTask(index);
+        setModalOpen(false);
     };
 
     return (
         <>
-            <button
-                className="ml-2 px-2 py-1 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
-                onClick={() => setIsOpen(true)}>
-                <FaTrash />
+            <button onClick={() => setModalOpen(true)}>
+                <FaTrash className="h-4 w-4 text-red-600" />
             </button>
-            {isOpen && (
+            {modalOpen && (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div
@@ -49,7 +34,7 @@ export function DeleteModal({ client }) {
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
                                             aria-hidden="true"
-                                            onClick={() => setIsOpen(false)}>
+                                            onClick={() => setModalOpen(false)}>
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -78,16 +63,13 @@ export function DeleteModal({ client }) {
 
                                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                     <button
-                                        onClick={() => {
-                                            handleClientDelete(deleteClient.id);
-                                            setIsOpen(false);
-                                        }}
+                                        onClick={handleDelete}
                                         type="button"
                                         className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                                         Yes
                                     </button>
                                     <button
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={() => setModalOpen(false)}
                                         type="button"
                                         className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                         No
@@ -100,7 +82,10 @@ export function DeleteModal({ client }) {
             )}
         </>
     );
-}
-DeleteModal.propTypes = {
-    client: PropTypes.object.isRequired
+};
+ModalDeleteTask.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    setIsOpen: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    index: PropTypes.number.isRequired
 };
