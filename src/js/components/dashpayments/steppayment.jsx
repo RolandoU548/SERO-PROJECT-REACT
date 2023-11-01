@@ -11,7 +11,6 @@ export const StepPayment = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault();
-        // Send formData to backend
         setStep(2);
     };
 

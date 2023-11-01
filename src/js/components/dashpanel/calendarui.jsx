@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
 import { FaPlus } from "react-icons/fa";
@@ -12,6 +12,10 @@ export const CalendarDay = ({ day }) => {
         const storedTasks = localStorage.getItem("tasks");
         return storedTasks ? JSON.parse(storedTasks) : {};
     });
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     const addTask = () => {
         if (newTask.trim() !== "") {

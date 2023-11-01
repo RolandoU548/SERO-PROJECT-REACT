@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 lastname: info.lastname,
                                 email: info.email,
                                 password: info.password,
-                                role: ["user"]
+                                role: ["user", "admin"]
                             })
                         }
                     );
@@ -130,7 +130,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     );
                     const data = await resp.json();
                     setStore({ clients: data });
-                    return data;
+                    // return data;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
