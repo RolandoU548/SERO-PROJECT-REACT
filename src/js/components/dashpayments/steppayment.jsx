@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import PayPalButton from "./PayPalButton";
 
 export const StepPayment = () => {
     const [t] = useTranslation("steppayment");
@@ -40,7 +41,7 @@ export const StepPayment = () => {
                     {t("Make a Payment")}
                 </h1>
             </div>
-            <div className="glass px-10 mt-5 m-auto w-11/12">
+            <div className="px-10 mt-5 m-auto w-11/12">
                 <div className="font-serif text-black dark:text-white mt-16">
                     <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
                         <li
@@ -58,6 +59,7 @@ export const StepPayment = () => {
                                     viewBox="0 0 20 20">
                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                 </svg>
+                                <span className="mr-2">1</span>
                                 <span className="mr-2">1</span>
                                 Information
                             </span>
@@ -106,7 +108,7 @@ export const StepPayment = () => {
                                     <div className="w-full md:w-1/2 pr-10">
                                         <label
                                             htmlFor="name"
-                                            className="block text-whitefont-bold mb-2">
+                                            className="block text-white font-bold mb-2">
                                             Name
                                         </label>
                                         <input
@@ -257,7 +259,7 @@ export const StepPayment = () => {
                                             type="text"
                                             id="cardNumber"
                                             name="cardNumber"
-                                            className="text-black border border-gray-400 rounded-md py-2 px-3 mb-4"
+                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
                                             required
                                         />
                                         <label
@@ -269,7 +271,7 @@ export const StepPayment = () => {
                                             type="text"
                                             id="cardName"
                                             name="cardName"
-                                            className="text-black border border-gray-400 rounded-md py-2 px-3 mb-4"
+                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
                                             required
                                         />
                                         <label
@@ -281,7 +283,7 @@ export const StepPayment = () => {
                                             type="text"
                                             id="cardExpiration"
                                             name="cardExpiration"
-                                            className="text-black border border-gray-400 rounded-md py-2 px-3 mb-4"
+                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
                                             required
                                         />
                                         <label
@@ -293,26 +295,27 @@ export const StepPayment = () => {
                                             type="text"
                                             id="cardCvv"
                                             name="cardCvv"
-                                            className="text-black border border-gray-400 rounded-md py-2 px-3 mb-4"
+                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
                                             required
                                         />
                                     </div>
                                 )}
                                 {paymentMethod === "paypal" && (
-                                    <div className="flex flex-col">
-                                        <label
-                                            htmlFor="paypalEmail"
-                                            className="mb-2">
-                                            PayPal Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="paypalEmail"
-                                            name="paypalEmail"
-                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4"
-                                            required
-                                        />
-                                    </div>
+                                    // <div className="flex flex-col">
+                                    //     <label
+                                    //         htmlFor="paypalEmail"
+                                    //         className="mb-2">
+                                    //         PayPal Email
+                                    //     </label>
+                                    //     <input
+                                    //         type="email"
+                                    //         id="paypalEmail"
+                                    //         name="paypalEmail"
+                                    //         className="border border-gray-400 rounded-md py-2 px-3 mb-4"
+                                    //         required
+                                    //     />
+                                    // </div>
+                                    <PayPalButton />
                                 )}
                                 <div className="flex justify-between">
                                     <button
@@ -337,18 +340,24 @@ export const StepPayment = () => {
                             </h1>
                             <p>Name: {formData.name}</p>
                             <p>Email: {formData.email}</p>
-                            <p>Address: {formData.address}</p>
+                            <p>Amount: {formData.amount}</p>
                             <p>Payment Method: {paymentMethod}</p>
                             <div className="flex justify-between">
                                 <button
                                     type="button"
                                     className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
+                                    onClick={handleBack}>
+                                    Back
+                                </button>
+                                <button
+                                    type="button"
+                                    className="bg-red-500 text-white py-2 px-4 rounded-md mt-4"
                                     onClick={handleReset}>
                                     Start Over
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4">
+                                    className="bg-green-500 text-white py-2 px-4 rounded-md mt-4">
                                     Confirm
                                 </button>
                             </div>
