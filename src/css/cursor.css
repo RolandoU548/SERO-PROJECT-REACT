@@ -1,23 +1,16 @@
-.cursor {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid white;
-  position: fixed;
-}
-
 @media (any-pointer: fine) {
   .c-cursor {
     display: block;
   }
   .c-cursor__inner {
     pointer-events: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     mix-blend-mode: difference;
     border-radius: 50%;
     z-index: 50;
+    transition: width 0.5s, height 0.5s;
   }
   .c-cursor__side {
     position: absolute;
@@ -27,7 +20,7 @@
     background: #fff;
     opacity: 0;
   }
-  .c-cursor__side--left {
+  .c-cursor__side.left {
     right: calc(100% + 5px);
   }
   .c-cursor__side--right {
@@ -39,22 +32,40 @@
     border: 3px solid #fff;
   }
 }
-.links-wrapper {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.links-wrapper .link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.c-cursor__inner.plus {
+  right: calc(100% + 5px);
+  left: calc(100% + 5px);
+  width: 40px;
+  height: 40px;
   border: 3px solid #fff;
-  padding: 20px 40px;
-  transition: all 300ms ease-in-out;
-  margin: 0 15px;
+  z-index: 50;
+  transition: width 0.5s, height 0.5s;
 }
-.links-wrapper .link:hover {
-  background: #fff;
-  color: #000;
+
+div.clickEffect {
+  position: fixed;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: #ffffff;
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  animation: clickEffect 0.4s ease-out;
+  z-index: 99999;
+}
+
+@keyframes clickEffect {
+  0% {
+    opacity: 1;
+    width: 0.5em;
+    height: 0.5em;
+    margin: -0.25em;
+    border-width: 0.5em;
+  }
+  100% {
+    opacity: 0.2;
+    width: 15em;
+    height: 15em;
+    margin: -7.5em;
+    border-width: 0.03em;
+  }
 }/*# sourceMappingURL=cursor.css.map */
