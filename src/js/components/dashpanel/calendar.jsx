@@ -88,8 +88,8 @@ export const Calendar = () => {
                                 {day ? (
                                     <CalendarDay
                                         day={day}
-                                        tasks={tasks}
-                                        setTasks={setTasks}
+                                        // tasks={tasks}
+                                        // setTasks={setTasks}
                                     />
                                 ) : (
                                     <div className="border border-cyan-400 p-2"></div>

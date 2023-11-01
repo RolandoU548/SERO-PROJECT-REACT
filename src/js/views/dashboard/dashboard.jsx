@@ -9,17 +9,15 @@ import { PieChartPayment } from "../../components/dashpayments/piechartpayment";
 import { PieChartClient } from "../../components/dashclients/piechartclient";
 
 export const Dashboard = () => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const [t] = useTranslation("dashboard");
     const navigate = useNavigate();
     const [numClients, setNumClients] = useState(0);
 
     useEffect(() => {
-        const getClients = async () => {
-            const clients = await actions.getAllClients();
-            setNumClients(clients.length);
-        };
-        getClients();
+        actions.getAllClients().then(() => {
+            setNumClients(store.clients.length);
+        });
     }, []);
 
     const handleClientClick = () => {
@@ -87,7 +85,7 @@ export const Dashboard = () => {
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Clients Chart")}
                             </h1>
-                            <PieChartClient />
+                            <PieChartClient numClients={numClients} />
                         </div>
                     </div>
                     <div className="glass p-10 mt-5 m-auto w-11/12">

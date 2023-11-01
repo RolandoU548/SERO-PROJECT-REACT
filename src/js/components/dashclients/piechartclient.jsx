@@ -1,29 +1,28 @@
-import React, { useState, useContext, useEffect } from "react";
-import { VictoryPie } from "victory";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
+import { VictoryPie } from "victory";
 
 export const PieChartClient = () => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [data, setData] = useState([]);
 
     useEffect(() => {
-        const getStatus = async () => {
-            const status = await actions.getAllClients();
-            const activeClients = status.filter(
-                client => client.status === "Active"
-            );
-            const inactiveClients = status.filter(
-                client => client.status === "Inactive"
-            );
-            const data = [
-                { x: "Active", y: activeClients.length },
-                { x: "Inactive", y: inactiveClients.length }
-            ];
-            setData(data);
-        };
-        getStatus();
-    }, [actions]);
+        actions.getAllClients().then(() => {
+            setActiveIndex(store.clients);
+        });
+    }, []);
+
+    const activeClients = store.clients.filter(
+        client => client.status === "Active"
+    );
+    const inactiveClients = store.clients.filter(
+        client => client.status === "Inactive"
+    );
+
+    const data = [
+        { x: "Active", y: activeClients.length },
+        { x: "Inactive", y: inactiveClients.length }
+    ];
 
     const colors = {
         Active: "#008000",
