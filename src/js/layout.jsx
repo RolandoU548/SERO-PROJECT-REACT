@@ -29,6 +29,7 @@ import { NotFound } from "./views/notfound.jsx";
 import injectContext from "./store/appContext.jsx";
 import { ClientCard } from "./components/dashclients/clientcard.jsx";
 import { StepPayment } from "./components/dashpayments/steppayment.jsx";
+import PayPalButton from "./components/dashpayments/PayPalButton.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -200,6 +201,7 @@ const Layout = () => {
                                 <>
                                     <PrivateNavbar />
                                     <StepPayment />
+                                    <PayPalButton />
                                 </>
                             }
                         />
