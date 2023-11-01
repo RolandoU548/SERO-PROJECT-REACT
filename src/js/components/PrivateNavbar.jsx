@@ -44,6 +44,14 @@ export const PrivateNavbar = () => {
     ];
     const [open, setOpen] = useState(false);
 
+    if (store.user.role.includes("admin")) {
+        menus.splice(1, 0, {
+            name: t2("admin"),
+            link: "/admin",
+            icon: AiOutlineUser
+        });
+    }
+
     return (
         <>
             <div
@@ -158,6 +166,11 @@ export const PrivateNavbar = () => {
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
                         <li>
                             <Link to="/profile" className="text-xl text-light">
+                                {store.user.role.includes("admin") && (
+                                    <span className="text-sm text-cyan-400 font-bold mr-1">
+                                        admin
+                                    </span>
+                                )}
                                 {store.user.name
                                     ? store.user.name[0].toUpperCase() +
                                       store.user.name.substr(1)
