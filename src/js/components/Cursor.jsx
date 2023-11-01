@@ -17,7 +17,7 @@ export const Cursor = () => {
     document.addEventListener("click", clickEffect);
 
     // Cursor circular
-    const innerCursor = document.querySelector(".c-cursor__inner");
+    const cursor = document.querySelector(".c-cursor__inner");
 
     document.addEventListener("mousemove", moveCursor);
 
@@ -25,18 +25,26 @@ export const Cursor = () => {
         const x = e.clientX;
         const y = e.clientY;
 
-        innerCursor.style.left = `${x - 12}px`;
-        innerCursor.style.top = `${y - 8}px`;
+        cursor.style.left = `${x - 12}px`;
+        cursor.style.top = `${y - 8}px`;
     }
 
-    const links = Array.from(document.querySelectorAll("button", "a", "Link"));
+    const links = Array.from(document.querySelectorAll("a"));
 
     links.forEach(link => {
-        link.addEventListener("mouseover", () => {
-            innerCursor.classList.add("plus");
+        link.addEventListener("mouseover", (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursor.classList.add("plus");
+            cursor.style.left.add = `${x - 12}px`;
+            cursor.style.top.add = `${y - 8}px`;
         });
-        link.addEventListener("mouseleave", () => {
-            innerCursor.classList.remove("plus");
+        link.addEventListener("mouseleave", (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursor.classList.remove("plus");
+            cursor.style.left.remove = `${x - 12}px`;
+            cursor.style.top.remove = `${y - 8}px`;
         });
     });
 
