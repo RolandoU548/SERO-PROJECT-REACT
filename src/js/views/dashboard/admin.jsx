@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
-import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
@@ -8,8 +7,9 @@ import { useTranslation } from "react-i18next";
 export const Admin = () => {
     const [t] = useTranslation("admin");
     const { store, actions } = useContext(Context);
-    actions.getAllUsers(store.token);
-    const navigate = useNavigate();
+    useEffect(() => {
+        actions.getAllUsers(store.token);
+    }, []);
     return (
         <>
             <img
