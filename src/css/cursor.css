@@ -2,10 +2,11 @@ div.clickEffect {
   position: fixed;
   box-sizing: border-box;
   border-style: solid;
+  pointer-events: none;
   border-color: #ffffff;
   mix-blend-mode: difference;
   border-radius: 50%;
-  animation: clickEffect 0.4s ease-out;
+  animation: clickEffect 0.2s ease-out;
   z-index: 99999;
 }
 
@@ -19,9 +20,9 @@ div.clickEffect {
   }
   100% {
     opacity: 0.2;
-    width: 15em;
-    height: 15em;
-    margin: -7.5em;
+    width: 5em;
+    height: 5em;
+    margin: -2.5em;
     border-width: 0.03em;
   }
 }/*# sourceMappingURL=cursor.css.map */
