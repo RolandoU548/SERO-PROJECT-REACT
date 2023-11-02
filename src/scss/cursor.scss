@@ -1,64 +1,28 @@
-* {
-    cursor: none;
-}
-
-.cursor {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid white;
+div.clickEffect {
     position: fixed;
+    box-sizing: border-box;
+    border-style: solid;
+    pointer-events: none;
+    border-color: #ffffff;
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    animation: clickEffect 0.2s ease-out;
+    z-index: 99999;
 }
 
-@media (any-pointer: fine) {
-    .c-cursor {
-        display: block;
+@keyframes clickEffect {
+    0% {
+        opacity: 1;
+        width: 0.5em;
+        height: 0.5em;
+        margin: -0.25em;
+        border-width: 0.5em;
     }
-
-    .c-cursor__inner {
-        pointer-events: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        mix-blend-mode: difference;
-        border-radius: 50%;
-        z-index: 50;
-        transition:
-            width 0.5s,
-            height 0.5s;
+    100% {
+        opacity: 0.2;
+        width: 5em;
+        height: 5em;
+        margin: -2.5em;
+        border-width: 0.03em;
     }
-
-    .c-cursor__side {
-        position: absolute;
-        top: 50%;
-        width: 5px;
-        height: 1px;
-        background: #fff;
-        opacity: 0;
-    }
-
-    .c-cursor__side.left {
-        right: calc(100% + 5px);
-    }
-
-    .c-cursor__side--right {
-        left: calc(100% + 5px);
-    }
-
-    .c-cursor__inner--circle {
-        width: 25px;
-        height: 25px;
-        border: 3px solid #fff;
-    }
-}
-.c-cursor__inner.plus {
-    right: calc(100% + 5px);
-    left: calc(100% + 5px);
-    width: 30px;
-    height: 30px;
-    border: 2px solid #fff;
-    z-index: 50;
-    transition:
-        width 0.5s,
-        height 0.5s;
 }
