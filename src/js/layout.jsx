@@ -8,6 +8,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
+import { Admin } from "./views/dashboard/admin.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
@@ -27,6 +28,8 @@ import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
 import { ClientCard } from "./components/dashclients/clientcard.jsx";
+import { StepPayment } from "./components/dashpayments/steppayment.jsx";
+import PayPalButton from "./components/dashpayments/PayPalButton.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -191,14 +194,35 @@ const Layout = () => {
                                 </>
                             }
                         />
+                        <Route
+                            path="/steppayment"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <StepPayment />
+                                    <PayPalButton />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/settings"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Settings />
+                                </>
+                            }
+                        />
                     </Route>
                     <Route
-                        path="/settings"
+                        path="/admin"
                         transition="fade"
                         element={
-                            <ProtectedRoute roles={["admin"]}>
+                            <ProtectedRoute role={["admin"]}>
                                 <PrivateNavbar />
-                                <Settings />
+                                <Admin />
                             </ProtectedRoute>
                         }
                     />

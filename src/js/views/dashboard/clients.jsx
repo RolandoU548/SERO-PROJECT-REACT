@@ -191,7 +191,7 @@ export const Clients = () => {
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             <button
-                                                className={`px-4 py-2 rounded-lg ${
+                                                className={`px-4 py-2 rounded-full ${
                                                     client.status === "Active"
                                                         ? "bg-green-600 text-white"
                                                         : "bg-red-600 text-white"

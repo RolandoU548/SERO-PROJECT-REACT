@@ -31,9 +31,13 @@ export const LoginForm = ({
         } else if (token.message === "User doesn't exist") {
             alert(t("userNotRegistered"));
         } else if (token.token) {
-            actions.identificateUser(token.token);
-            alert(t("loggedIn"));
-            navigate("/private");
+            const userAuthenticated = await actions.identificateUser(
+                token.token
+            );
+            if (userAuthenticated) {
+                alert(t("loggedIn"));
+                navigate("/private");
+            }
         }
         reset();
     };
@@ -54,7 +58,7 @@ export const LoginForm = ({
                             message: t("emailMinLength")
                         },
                         maxLength: {
-                            value: 30,
+                            value: 60,
                             message: t("emailMaxLength")
                         },
                         pattern: {

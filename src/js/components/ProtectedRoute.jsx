@@ -6,17 +6,10 @@ import { Context } from "../store/appContext.jsx";
 export const ProtectedRoute = ({
     children,
     redirectTo = "/login",
-    roles = ["user"]
+    role = ["user"]
 }) => {
     const { store } = useContext(Context);
     // Este usuario deberia venir del Contexto
-    const user = {
-        id: null,
-        name: null,
-        lastname: null,
-        email: null,
-        roles: ["user", "admin"]
-    };
 
     // Deberia decir store.token en lugar del localStorage
     const verifyRoles = (lista1, lista2) => {
@@ -28,10 +21,10 @@ export const ProtectedRoute = ({
         return true;
     };
 
-    if (!localStorage.getItem("token") || !verifyRoles(roles, user.roles)) {
-        return <Navigate to={redirectTo} />;
+    if (localStorage.getItem("token") && verifyRoles(role, store.user.role)) {
+        return children || <Outlet />;
     }
-    return children || <Outlet />;
+    return <Navigate to={redirectTo} />;
 };
 
 ProtectedRoute.propTypes = {
@@ -41,5 +34,5 @@ ProtectedRoute.propTypes = {
         PropTypes.object
     ]),
     redirectTo: PropTypes.string,
-    roles: PropTypes.array
+    role: PropTypes.array
 };

@@ -36,8 +36,12 @@ export const SignUpForm = ({
             alert(t("userCreated"));
             const token = await actions.generateToken(data);
             if (token.token) {
-                actions.identificateUser(token.token);
-                navigate("/private");
+                const userAuthenticated = await actions.identificateUser(
+                    token.token
+                );
+                if (userAuthenticated) {
+                    navigate("/private");
+                }
             }
         }
         reset();
@@ -104,7 +108,7 @@ export const SignUpForm = ({
                             message: t("emailMinLength")
                         },
                         maxLength: {
-                            value: 30,
+                            value: 60,
                             message: t("emailMaxLength")
                         },
                         pattern: {

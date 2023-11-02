@@ -18,7 +18,7 @@
     "invalidLastname": "Invalid Lastname",
     "emailRequired": "Email is Required",
     "emailMinLength": "Email must be at least 5 characters",
-    "emailMaxLength": "Email must have a maximum of 30 characters",
+    "emailMaxLength": "Email must have a maximum of 60 characters",
     "invalidEmail": "Invalid Email",
     "phoneRequired": "Phone is Required",
     "phoneMinLength": "Phone must be at least 3 characters",

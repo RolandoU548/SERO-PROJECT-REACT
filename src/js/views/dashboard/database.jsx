@@ -80,7 +80,9 @@ export const Database = () => {
                 </div>
                 <div className="flex justify-end ">
                     <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2">
-                        <div className="relative text-xl text-white force-overflow table1 shadow-md sm:rounded-lg">
+                        <div
+                            className="h-full p-0 m-0"
+                            style={{ overflowX: "auto" }}>
                             {rows.length > 0 && (
                                 <HotTable
                                     ref={hotTableComponent}

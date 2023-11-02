@@ -6,6 +6,7 @@ import i18next from "i18next";
 import "./i18next-config.js";
 import { AppLoader } from "./views/apploader.jsx";
 import { Cursor } from "./components/Cursor.jsx";
+
 function App() {
     const [showLoader, setShowLoader] = useState(true);
 
@@ -17,15 +18,12 @@ function App() {
     }, []);
 
     return (
-        <>
-            <Cursor />
-            <React.StrictMode>
-                <I18nextProvider i18n={i18next}>
-                    {showLoader ? <AppLoader /> : <Layout />}
-                    {/* <Layout /> */}
-                </I18nextProvider>
-            </React.StrictMode>
-        </>
+        <React.StrictMode>
+            <I18nextProvider i18n={i18next}>
+                {/* {showLoader ? <AppLoader /> : <Layout />} */}
+                <Layout />
+            </I18nextProvider>
+        </React.StrictMode>
     );
 }
 

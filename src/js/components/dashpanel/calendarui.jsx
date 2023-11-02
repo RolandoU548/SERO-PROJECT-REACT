@@ -1,28 +1,47 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { ModalDeleteTask } from "./modaldeletetask";
 
-export const CalendarDay = ({ day, tasks, setTasks }) => {
+export const CalendarDay = ({ day }) => {
     const [showModal, setShowModal] = useState(false);
     const [newTask, setNewTask] = useState("");
 
+    const [tasks, setTasks] = useState(() => {
+        const storedTasks = localStorage.getItem("tasks");
+        return storedTasks ? JSON.parse(storedTasks) : {};
+    });
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
+
     const addTask = () => {
-        const dateKey = day.format("YYYY-MM-DD");
-        setTasks(prevTasks => ({
-            ...prevTasks,
-            [dateKey]: [...(prevTasks[dateKey] || []), { text: newTask }]
-        }));
-        setNewTask("");
-        setShowModal(false);
+        if (newTask.trim() !== "") {
+            setTasks(prevTasks => ({
+                ...prevTasks,
+                [day.format("YYYY-MM-DD")]: [
+                    ...(prevTasks[day.format("YYYY-MM-DD")] || []),
+                    { text: newTask.trim() }
+                ]
+            }));
+            setNewTask("");
+            setShowModal(false);
+        }
     };
 
     const deleteTask = index => {
-        const dateKey = day.format("YYYY-MM-DD");
-        setTasks(prevTasks => ({
-            ...prevTasks,
-            [dateKey]: prevTasks[dateKey].filter((_, i) => i !== index)
-        }));
+        setTasks(prevTasks => {
+            const updatedTasks = {
+                ...prevTasks,
+                [day.format("YYYY-MM-DD")]: prevTasks[
+                    day.format("YYYY-MM-DD")
+                ].filter((_, i) => i !== index)
+            };
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+            return updatedTasks;
+        });
     };
 
     return (
@@ -33,25 +52,30 @@ export const CalendarDay = ({ day, tasks, setTasks }) => {
             <div className="text-sm font-medium text-white">
                 {day.format("D")}
             </div>
-            <div className="mt-1">
+            <div className="mt-6">
                 {tasks[day.format("YYYY-MM-DD")]?.map((task, index) => (
                     <div
                         key={index}
-                        className="flex items-center justify-between">
-                        <div className="text-sm font-medium text-green-500">
+                        className="flex items-center justify-between px-2 py-1 bg-cyan-300 rounded-md mb-2">
+                        <div className="text-sm font-bold text-black overflow-hidden">
                             {task.text}
                         </div>
-                        <button onClick={() => deleteTask(index)}>
+                        {/* <button onClick={() => deleteTask(index)}>
                             <FaTrash className="h-4 w-4 text-red-600" />
-                        </button>
+                        </button> */}
+                        <ModalDeleteTask
+                            index={index}
+                            deleteTask={deleteTask}
+                        />
                     </div>
                 ))}
                 <button
                     onClick={() => setShowModal(true)}
-                    className="mt-6 flex items-center text-sm font-medium text-white">
+                    className="mt-2 flex items-center justify-center px-1 py-0.5 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <FaPlus className="h-4 w-4 mr-1" />
-                    Add task
+                    Task
                 </button>
+
                 <Transition appear show={showModal} as={Fragment}>
                     <Dialog
                         as="div"
@@ -95,17 +119,16 @@ export const CalendarDay = ({ day, tasks, setTasks }) => {
                                             onChange={e =>
                                                 setNewTask(e.target.value)
                                             }
-                                            className="border border-gray-300 rounded-md w-full px-3 py-2 mt-1 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            placeholder="Enter task"
+                                            className="block w-full border border-gray-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-cyan-300 sm:text-md px-4"
+                                            placeholder="Task description"
                                         />
                                     </div>
-
                                     <div className="mt-4">
                                         <button
                                             type="button"
                                             onClick={addTask}
                                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
-                                            Add
+                                            Add task
                                         </button>
                                         <button
                                             type="button"
@@ -123,6 +146,7 @@ export const CalendarDay = ({ day, tasks, setTasks }) => {
         </div>
     );
 };
+
 CalendarDay.propTypes = {
     day: PropTypes.object,
     tasks: PropTypes.object,

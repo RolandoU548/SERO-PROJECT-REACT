@@ -2,7 +2,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
-            user: { id: null, name: null, lastname: null, email: null },
+            user: {
+                id: null,
+                name: "Carlito",
+                lastname: "Corona",
+                email: null,
+                role: ["user", "admin"]
+            },
             clients: []
         },
         actions: {
@@ -17,7 +23,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 name: info.name,
                                 lastname: info.lastname,
                                 email: info.email,
-                                password: info.password
+                                password: info.password,
+                                role: ["user", "admin"]
                             })
                         }
                     );
@@ -66,11 +73,38 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 id: data.id,
                                 name: data.name,
                                 lastname: data.lastname,
-                                email: data.email
+                                email: data.email,
+                                role: data.role.map(role => {
+                                    return role.role;
+                                })
                             }
                         });
+                        return true;
                     }
-                    return data;
+                    return false;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getAllUsers: async token => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/users",
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    if (resp.ok) {
+                        setStore({
+                            users: data
+                        });
+                        return true;
+                    }
+                    return false;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
@@ -82,8 +116,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                         id: null,
                         name: null,
                         lastname: null,
-                        email: null
-                    }
+                        email: null,
+                        role: []
+                    },
+                    users: null
                 });
                 localStorage.removeItem("token");
             },
@@ -94,7 +130,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     );
                     const data = await resp.json();
                     setStore({ clients: data });
-                    return data;
+                    // return data;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
