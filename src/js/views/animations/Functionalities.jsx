@@ -7,6 +7,8 @@ import {
     useTransform,
     useInView
 } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 const variants = {
     initial: {
@@ -27,7 +29,7 @@ const items = [
     {
         id: 1,
         title: "Base de Datos",
-        img: "https://images.pexels.com/photos/5838235/pexels-photo-5838235.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
+        img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDataBaseCardBGCrop.jpg?alt=media&token=2e184e84-c061-4204-8a57-0ed23ad73790&_gl=1*17loil3*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDAwMS42MC4wLjA.",
         desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non fugit, impedit recusandae tempora consectetur ducimus perferendis maxime provident obcaecati quisquam, maiores voluptates dolor sequi eos ullam repudiandae officiis vero dignissimos."
     },
     {
@@ -62,20 +64,18 @@ const Single = ({ item }) => {
 
     return (
         <>
-            <section>
-                <div className="container">
-                    <div className="wrapper">
-                        <div className="imageContainer" ref={ref}>
-                            <img src={item.img} alt="" />
-                        </div>
-                        <motion.div className="textContainer" style={{ y }}>
-                            <h2>{item.title}</h2>
-                            <p>{item.desc}</p>
-                            <button>Detalles</button>
-                        </motion.div>
+            <div className="container">
+                <div className="wrapper">
+                    <div className="imageContainer" ref={ref}>
+                        <img src={item.img} alt="" />
                     </div>
+                    <motion.div className="textContainer" style={{ y }}>
+                        <h2>{item.title}</h2>
+                        <p>{item.desc}</p>
+                        <button>Detalles</button>
+                    </motion.div>
                 </div>
-            </section>
+            </div>
         </>
     );
 };

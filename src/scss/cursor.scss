@@ -6,10 +6,9 @@ div.clickEffect {
     border-color: #ffffff;
     mix-blend-mode: difference;
     border-radius: 50%;
-    animation: clickEffect 0.2s ease-out;
+    animation: clickEffect 0.4s ease-out;
     z-index: 99999;
 }
-
 @keyframes clickEffect {
     0% {
         opacity: 1;
@@ -20,9 +19,9 @@ div.clickEffect {
     }
     100% {
         opacity: 0.2;
-        width: 5em;
-        height: 5em;
-        margin: -2.5em;
+        width: 6em;
+        height: 6em;
+        margin: -3em;
         border-width: 0.03em;
     }
 }

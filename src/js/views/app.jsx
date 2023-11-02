@@ -15,8 +15,7 @@ export const App = () => {
     }
     return (
         <div className="font-serif dark:text-gray-200 text-black">
-            {/* {/* <section> */}
-            <h2 className="dark:mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center mt-48 text-black dark:text-white">
+            <h2 className="dark:mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center mt-64 text-black dark:text-white">
                 {t("title")}
             </h2>
             <h2 className="dark:mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-xl tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-[200] text-center text-black dark:text-white">
@@ -27,15 +26,10 @@ export const App = () => {
                 to="/signup">
                 {t("getStarted")}
             </Link>
-            {/* </section>
-            <section>
-                <Services />
-            </section>
+            <Services />
             <Functionalities />
-            <section>
-                <Contact />
-            </section> */}
-            <div className="glass w-4/5 p-12 mt-40 mb-10 m-auto text-2xl">
+            <Contact />
+            {/* <div className="glass w-4/5 p-12 mt-40 mb-10 m-auto text-2xl">
                 <h2 className="text-5xl">{t("aboutUs")}</h2>
                 <p className="my-10">{t("whoWeAre")}</p>
                 <p className="mt-10">{t("description")}</p>
@@ -127,7 +121,7 @@ export const App = () => {
                     <p className="mt-10">{t("dashboard2")}</p>
                     <p className="mt-10">{t("dashboard3")}</p>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -1,6 +1,9 @@
 import React from "react";
 import "../../../css/service.css";
+import "../../../css/glass.css";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 const variants = {
     initial: {
@@ -20,9 +23,11 @@ const variants = {
 };
 
 export const Services = () => {
+    const [t] = useTranslation("app");
+
     return (
         <>
-            <div className="h-24"></div>
+            <div className="h-48"></div>
             <motion.div
                 className="services"
                 variants={variants}
@@ -37,17 +42,17 @@ export const Services = () => {
                 </motion.div>
                 <motion.div className="titleContainer" variants={variants}>
                     <div className="title">
-                        <h1>
+                        <h2>
                             <motion.b
                                 className="transition duration-500"
                                 whileHover={{ color: "cyan" }}>
                                 <b>Sencillez</b>
                             </motion.b>{" "}
                             al
-                        </h1>
+                        </h2>
                     </div>
                     <div className="title">
-                        <h1>
+                        <h2>
                             Tacto de su{" "}
                             <motion.b
                                 className="transition duration-500"
@@ -55,41 +60,42 @@ export const Services = () => {
                                 <b>Mano</b>
                             </motion.b>
                             .
-                        </h1>
+                        </h2>
                         <button className="text-black bg-cyan-400 hover:bg-cyan-500 transition duration-300">
                             ¿QUÉ HACEMOS?
                         </button>
                     </div>
+                    
                 </motion.div>
-                <motion.div className="listContainer" variants={variants}>
-                    <motion.div
-                        className="box"
-                        whileHover={{
-                            background: "lightgray",
-                            color: "black"
-                        }}>
-                        <h2>¿Quiénes somos?</h2>
-                        <p>...</p>
-                        <button>Ir</button>
-                    </motion.div>
-                    <motion.div
-                        className="box"
-                        whileHover={{
-                            background: "lightgray",
-                            color: "black"
-                        }}>
-                        <h2>Servicios</h2>
+                <motion.div className="listContainer flex flex-col" variants={variants}>
+                    <motion.div className="box w-[80rem] glass mb-10">
+                        <h2 className="text-5xl">{t("aboutUs")}</h2><br/>
+                        <p className="my-10">{t("whoWeAre")}</p>
+                        <p className="mt-10">{t("description")}</p>
+                        <h2 className="text-5xl">
+                            {t("services")}
+                        </h2>
+                        <p>{t("description1")}</p>
+                        <p className="mt-10">{t("description2")}</p>
+                        <br></br>
                         <ul>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
+                            <li>{t("list1")}</li>
+                            <li>{t("list2")}</li>
+                            <li>{t("list3")}</li>
+                            <li>{t("list4")}</li>
+                            <li>{t("list5")}</li>
+                            <li>{t("list6")}</li>
+                            <li>{t("list7")}</li>
+                            <li>{t("list8")}</li>
                         </ul>
-                        <button className="text-black">Ir</button>
+                        <p className="mt-10">
+                            {t("message1")}{" "}
+                            <Link
+                                to="/signup"
+                                className="underline text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-500">
+                                {t("message2")}
+                            </Link>
+                        </p>
                     </motion.div>
                 </motion.div>
             </motion.div>

@@ -39,7 +39,7 @@
   border-radius: 50px;
   object-fit: cover;
 }
-.services .titleContainer .title h1 {
+.services .titleContainer .title h2 {
   font-size: 80px;
   font-weight: 100;
 }
