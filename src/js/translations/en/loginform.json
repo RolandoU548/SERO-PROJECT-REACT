@@ -3,9 +3,12 @@
     "lastNameRequired": "Last Name is required",
     "emailRequired": "Email is required",
     "emailMinLength": "Email must be at least 5 characters",
-    "emailMaxLength": "Email must have a maximum of 30 characters",
+    "emailMaxLength": "Email must have a maximum of 60 characters",
     "invalidEmail": "Invalid Email",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 6 characters",
-    "passwordMaxLength": "Password must have a maximum of 15 characters"
+    "passwordMaxLength": "Password must have a maximum of 15 characters",
+    "incorrectPassword": "Incorrect Password",
+    "userNotRegistered": "The user is not registered",
+    "loggedIn": "Logged In"
 }

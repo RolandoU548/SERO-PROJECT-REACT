@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import { Darkmode } from "./components/Darkmode.jsx";
 import { Navbar } from "./components/Navbar.jsx";
 import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
-import { LanguageButton } from "./components/LanguageButton.jsx";
-import { BackArrow } from "./components/BackArrow.jsx";
+import { BackgroundClientsVideo } from "./components/BackgroundClientsVideo.jsx";
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
+import { Admin } from "./views/dashboard/admin.jsx";
 import { Contact } from "./views/contact.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
@@ -20,11 +20,16 @@ import { Clients } from "./views/dashboard/clients.jsx";
 import { Reports } from "./views/dashboard/reports.jsx";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
-import { Profile } from "./views/profile.jsx";
+import { Profile } from "./views/dashboard/profile.jsx";
+import { UserProfile } from "./views/dashboard/userprofile.jsx";
+import { CreateClient } from "./views/dashboard/createclient.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
 import injectContext from "./store/appContext.jsx";
+import { ClientCard } from "./components/dashclients/clientcard.jsx";
+import { StepPayment } from "./components/dashpayments/steppayment.jsx";
+import PayPalButton from "./components/dashpayments/PayPalButton.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -46,26 +51,6 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/contact"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <Navbar />
-                                <Contact />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/profile"
-                        element={
-                            <>
-                                <BackgroundVideo />
-                                <PrivateNavbar />
-                                <Profile />
-                            </>
-                        }
-                    />
-                    <Route
                         path="/login"
                         transition="fade"
                         element={<LoginSignupCard flip={true} />}
@@ -76,82 +61,12 @@ const Layout = () => {
                         element={<LoginSignupCard flip={false} />}
                     />
                     <Route
-                        path="/database"
-                        transition="fade"
+                        path="/contact"
                         element={
                             <>
-                                <PrivateNavbar />
-                                <Database />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/form"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Form />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/private"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <PrivateHome />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/dashboard"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Dashboard />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/clients"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Clients />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/reports"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Reports />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/payments"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Payments />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/settings"
-                        transition="fade"
-                        element={
-                            <>
-                                <PrivateNavbar />
-                                <Settings />
+                                <BackgroundVideo />
+                                <Navbar />
+                                <Contact />
                             </>
                         }
                     />
@@ -163,6 +78,152 @@ const Layout = () => {
                                 <BackgroundVideo />
                                 <SpecificContact />
                             </>
+                        }
+                    />
+
+                    <Route element={<ProtectedRoute />}>
+                        <Route
+                            path="/private"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <PrivateHome />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Profile />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/userprofile"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <UserProfile />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/dashboard"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Dashboard />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/clients"
+                            transition="fade"
+                            element={
+                                <>
+                                    <BackgroundClientsVideo />
+                                    <PrivateNavbar />
+                                    <Clients />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/createclient"
+                            transition="fade"
+                            element={
+                                <>
+                                    <BackgroundClientsVideo />
+                                    <PrivateNavbar />
+                                    <CreateClient />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/clientcard/:id"
+                            transition="fade"
+                            element={
+                                <>
+                                    <BackgroundClientsVideo />
+                                    <PrivateNavbar />
+                                    <ClientCard />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/database"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Database />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/form"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Form />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/reports"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Reports />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/payments"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Payments />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/steppayment"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <StepPayment />
+                                    <PayPalButton />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/settings"
+                            transition="fade"
+                            element={
+                                <>
+                                    <PrivateNavbar />
+                                    <Settings />
+                                </>
+                            }
+                        />
+                    </Route>
+                    <Route
+                        path="/admin"
+                        transition="fade"
+                        element={
+                            <ProtectedRoute role={["admin"]}>
+                                <PrivateNavbar />
+                                <Admin />
+                            </ProtectedRoute>
                         }
                     />
                     <Route path="*" element={<NotFound />} />

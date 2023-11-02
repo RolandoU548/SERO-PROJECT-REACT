@@ -31,6 +31,7 @@ const injectContext = PassedComponent => {
             } else {
                 document.documentElement.classList.remove("dark");
             }
+            state.actions.identificateUser(state.store.token);
         }, []);
 
         // The initial value for the context is not null anymore, but the current state of this component,

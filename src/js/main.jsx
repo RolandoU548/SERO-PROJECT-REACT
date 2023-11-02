@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./layout.jsx";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import "./i18next-config.js";
+import { AppLoader } from "./views/apploader.jsx";
+import { Cursor } from "./components/Cursor.jsx";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <I18nextProvider i18n={i18next}>
-            <Layout />
-        </I18nextProvider>
-    </React.StrictMode>
-);
+function App() {
+    const [showLoader, setShowLoader] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowLoader(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <React.StrictMode>
+            <Cursor />
+            <I18nextProvider i18n={i18next}>
+                {/* {showLoader ? <AppLoader /> : <Layout />} */}
+                <Layout />
+            </I18nextProvider>
+        </React.StrictMode>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);

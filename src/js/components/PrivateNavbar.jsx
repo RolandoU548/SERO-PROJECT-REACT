@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LanguageButton } from "./LanguageButton";
+import { LanguageButton } from "./LanguageButton.jsx";
+import { Darkmode } from "./Darkmode.jsx";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
@@ -18,7 +19,7 @@ import {
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const [t] = useTranslation("private");
     const [t2] = useTranslation("privateNavbar");
     const navigate = useNavigate();
@@ -31,19 +32,25 @@ export const PrivateNavbar = () => {
         {
             name: t2("fillForm"),
             link: "/form",
-            icon: TbReportAnalytics,
-            margin: true
+            icon: TbReportAnalytics
         },
         { name: t2("reports"), link: "/reports", icon: FiFolder },
         {
             name: t2("payments"),
             link: "/payments",
-            icon: FiDollarSign,
-            margin: true
+            icon: FiDollarSign
         },
         { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
+
+    if (store.user.role.includes("admin")) {
+        menus.splice(1, 0, {
+            name: t2("admin"),
+            link: "/admin",
+            icon: AiOutlineUser
+        });
+    }
 
     return (
         <>
@@ -55,26 +62,29 @@ export const PrivateNavbar = () => {
                 }>
                 <section className="flex gap-6">
                     <div
-                        className={`glassNav min-h-screen ${
+                        className={`glassNav h-screen bg-[rgba(200,200,200,0.6)] dark:bg-transparent ${
                             open ? "w-72" : "w-16"
                         } duration-500 text-gray-100 px-4`}>
                         <div className="flex justify-end">
                             <div
-                                className="ml-5 mt-3 flex justify-center items-center mr-5 w-14 h-14 text-3xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
+                                className="ml-5 mt-3 flex justify-center items-center mr-5 w-14 h-14 text-3xl dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.2)] text-black dark:text-white rounded-full cursor-pointer"
                                 onClick={() => {
                                     setOpen(!open);
                                 }}>
                                 <i className="fa-solid fa-bars"></i>
                             </div>
                         </div>
-                        <div className="mt-4 flex flex-col gap-4 relative">
+                        <div className="mt-4 flex flex-col gap-4 relative text-black dark:text-white dark:bg-transparent rounded-xl">
                             {menus?.map((menu, i) => (
                                 <Link
                                     to={menu?.link}
                                     key={i}
                                     className={` ${
                                         menu?.margin && "mt-5"
-                                    } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}>
+                                    } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md`}
+                                    onClick={() => {
+                                        setOpen(!open);
+                                    }}>
                                     <div>
                                         {React.createElement(menu?.icon, {
                                             size: "20"
@@ -102,11 +112,11 @@ export const PrivateNavbar = () => {
                     </div>
                 </section>
             </div>
-            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-full py-3 font-serif text-gray-200 bg-transparent">
+            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-full py-3 font-serif dark:text-gray-200 bg-transparent">
                 <div className="flex ml-10 items-center">
                     <div
                         className={
-                            "flex justify-center items-center mr-5 w-14 h-14 text-3xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer" +
+                            "flex justify-center items-center mr-5 w-14 h-14 text-3xl dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.2)] rounded-full cursor-pointer" +
                             " " +
                             (open ? "hidden" : "")
                         }
@@ -128,7 +138,7 @@ export const PrivateNavbar = () => {
                     </h2>
                 </div>
                 <div
-                    className="hidden resp:flex justify-center items-center mr-5 w-10 h-10 text-2xl bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer"
+                    className="hidden resp:flex justify-center items-center mr-5 w-10 h-10 text-2xl dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.2)] rounded-full cursor-pointer"
                     onClick={() => {
                         setIsOpen(true);
                     }}>
@@ -150,13 +160,34 @@ export const PrivateNavbar = () => {
                         " " +
                         (isOpen ? "resp:right-0" : "resp:-right-60")
                     }>
-                    <h2 className="text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden resp:block">
+                    <h2 className="text-gray-600 dark:text-gray-100 text-center text-4xl font-semibold hidden resp:block resp:mt-5">
                         SERØ.
                     </h2>
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
+                        <li>
+                            <Link to="/profile" className="text-xl text-light">
+                                {store.user.role.includes("admin") && (
+                                    <span className="text-sm text-cyan-400 font-bold mr-1">
+                                        admin
+                                    </span>
+                                )}
+                                {store.user.name
+                                    ? store.user.name[0].toUpperCase() +
+                                      store.user.name.substr(1)
+                                    : " "}{" "}
+                                {store.user.lastname
+                                    ? store.user.lastname[0].toUpperCase() +
+                                      store.user.lastname.substr(1)
+                                    : " "}
+                                <i
+                                    className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
+                                    style={{ color: "#ffffff" }}
+                                />
+                            </Link>
+                        </li>
                         <li className="my-2.5">
                             <button
-                                className="hover:bg-cyan-300 transition duration-300 hover:text-white w-40 text-xl p-2 text-black rounded-full bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
+                                className="hover:bg-cyan-300 dark:hover:bg-cyan-300 hover:text-black transition duration-300 dark:hover:text-white w-40 text-xl p-2 dark:text-black rounded-full bg-black text-white dark:bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                                 onClick={() => {
                                     actions.signOut();
                                     navigate("/");
@@ -165,7 +196,10 @@ export const PrivateNavbar = () => {
                             </button>
                         </li>
                         <li className="my-2.5">
-                            <LanguageButton className="ml-7 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
+                            <LanguageButton className="ml-3 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
+                        </li>
+                        <li className="my-2.5">
+                            <Darkmode className="text-[10%] ml-3 resp:absolute resp:top-3 resp:left-3" />
                         </li>
                     </ul>
                 </nav>

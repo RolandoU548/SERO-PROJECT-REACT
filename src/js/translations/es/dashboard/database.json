@@ -1,1 +1,6 @@
-{ "database": "Base de Datos" }
+{
+    "database": "Base de Datos",
+    "downloadFile": "Descargar Tabla",
+    "saveTable": "Guardar Tabla",
+    "savedTable": "Tabla guardada"
+}

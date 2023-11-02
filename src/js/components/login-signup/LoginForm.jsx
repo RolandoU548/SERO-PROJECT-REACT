@@ -27,13 +27,17 @@ export const LoginForm = ({
     const submit = async data => {
         const token = await actions.generateToken(data);
         if (token.message === "Incorrect password") {
-            alert("Contraseña incorrecta");
+            alert(t("incorrectPassword"));
         } else if (token.message === "User doesn't exist") {
-            alert("El usuario no está registrado");
+            alert(t("userNotRegistered"));
         } else if (token.token) {
-            actions.identificateUser(token.token);
-            alert("Sesión Iniciada");
-            navigate("/private");
+            const userAuthenticated = await actions.identificateUser(
+                token.token
+            );
+            if (userAuthenticated) {
+                alert(t("loggedIn"));
+                navigate("/private");
+            }
         }
         reset();
     };
@@ -54,11 +58,11 @@ export const LoginForm = ({
                             message: t("emailMinLength")
                         },
                         maxLength: {
-                            value: 30,
+                            value: 60,
                             message: t("emailMaxLength")
                         },
                         pattern: {
-                            value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}/,
+                            value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
                             message: t("invalidEmail")
                         }
                     })}

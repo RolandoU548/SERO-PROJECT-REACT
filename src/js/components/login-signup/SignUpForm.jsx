@@ -24,17 +24,24 @@ export const SignUpForm = ({
         register,
         handleSubmit,
         reset,
-        formState: { errors }
+        formState: { errors },
+        watch
     } = useForm();
 
     const submit = async data => {
         const respuesta = await actions.createUser(data);
-        if (respuesta?.message === "A user has been created") {
-            alert("Usuario Creado");
+        if (respuesta?.message === `User ${data.email} already exists`) {
+            alert(`${data.email} ${t("userAlreadyExists")}`);
+        } else if (respuesta?.message === "A user has been created") {
+            alert(t("userCreated"));
             const token = await actions.generateToken(data);
             if (token.token) {
-                actions.identificateUser(token.token);
-                navigate("/private");
+                const userAuthenticated = await actions.identificateUser(
+                    token.token
+                );
+                if (userAuthenticated) {
+                    navigate("/private");
+                }
             }
         }
         reset();
@@ -50,7 +57,11 @@ export const SignUpForm = ({
                     type="text"
                     autoComplete="name"
                     {...register("name", {
-                        required: { value: true, message: t("nameRequired") }
+                        required: { value: true, message: t("nameRequired") },
+                        pattern: {
+                            value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                            message: t("invalidName")
+                        }
                     })}
                 />
                 {errors.name && (
@@ -70,6 +81,10 @@ export const SignUpForm = ({
                         required: {
                             value: true,
                             message: t("lastNameRequired")
+                        },
+                        pattern: {
+                            value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                            message: t("invalidLastname")
                         }
                     })}
                 />
@@ -93,11 +108,11 @@ export const SignUpForm = ({
                             message: t("emailMinLength")
                         },
                         maxLength: {
-                            value: 30,
+                            value: 60,
                             message: t("emailMaxLength")
                         },
                         pattern: {
-                            value: /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}/,
+                            value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
                             message: t("invalidEmail")
                         }
                     })}
@@ -114,7 +129,7 @@ export const SignUpForm = ({
                     className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
                     placeholder={examplePassword}
                     type="password"
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     {...register("password", {
                         required: {
                             value: true,
@@ -133,6 +148,40 @@ export const SignUpForm = ({
                 {errors.password && (
                     <span className="text-sm text-red-500">
                         {errors.password.message}
+                    </span>
+                )}
+            </label>
+            <label className="dark:text-white text-xl">
+                {t("confirmPassword")}
+                <input
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    placeholder={t("confirmPassword")}
+                    type="password"
+                    autoComplete="new-password"
+                    {...register("confirmPassword", {
+                        required: {
+                            value: true,
+                            message: t("passwordRequired")
+                        },
+                        minLength: {
+                            value: 6,
+                            message: t("passwordMinLength")
+                        },
+                        maxLength: {
+                            value: 15,
+                            message: t("passwordMaxLength")
+                        },
+                        validate: value => {
+                            if (value === watch("password")) {
+                                return true;
+                            }
+                            return t("passwordsNotMatch");
+                        }
+                    })}
+                />
+                {errors.confirmPassword && (
+                    <span className="text-sm text-red-500">
+                        {errors.confirmPassword.message}
                     </span>
                 )}
             </label>
