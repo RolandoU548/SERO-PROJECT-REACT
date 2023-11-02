@@ -45,7 +45,7 @@ const Layout = () => {
                         path="/"
                         element={
                             <>
-                                <Cursor/>
+                                <Cursor />
                                 <BackgroundVideo />
                                 <Navbar />
                                 <App />
@@ -55,17 +55,28 @@ const Layout = () => {
                     <Route
                         path="/login"
                         transition="fade"
-                        element={<LoginSignupCard flip={true} />}
+                        element={
+                            <>
+                                <Cursor />
+                                <LoginSignupCard flip={true} />
+                            </>
+                        }
                     />
                     <Route
                         path="/signup"
                         transition="fade"
-                        element={<LoginSignupCard flip={false} />}
+                        element={
+                            <>
+                                <Cursor />
+                                <LoginSignupCard flip={false} />
+                            </>
+                        }
                     />
                     <Route
                         path="/contact"
                         element={
                             <>
+                                <Cursor />
                                 <BackgroundVideo />
                                 <Navbar />
                                 <Contact />
@@ -77,6 +88,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
+                                <Cursor />
                                 <BackgroundVideo />
                                 <SpecificContact />
                             </>
