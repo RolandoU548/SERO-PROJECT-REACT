@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { ContactCard } from "../components/contact/ContactCard.jsx";
 import { useNavigate } from "react-router-dom";
 import "../../css/glass.css";
-import "../../css/tadaAnimation.css"
+import "../../css/tadaAnimation.css";
+import { Background } from "victory";
 
 export const Contact = () => {
     const [t] = useTranslation("contact");
@@ -36,91 +37,98 @@ export const Contact = () => {
                     second="lando Uzcátegui"
                 />
             </div>
-            <div className="flex gap-30 justify-center">
-                <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 ml-30 text-white mt-36">
-                    Tecnologías de Front-End
-                </h2>
-                <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 ml-30 text-white mt-36">
-                    Tecnologías de Front-End
-                </h2>
-            </div>
-            <div className="flex gap-[25rem] justify-center">
-                <div className="flex flex-col gap-7 glass w-[40rem] p-5 mt-12 items-center">
-                    <div className="flex gap-40 m-5">
-                        <div className="invert rounded-full p-1 w-36 logo animated tada">
-                            <img
-                                src="html5-logo.jpg"
-                                className="rounded-full w-40"
-                            />
-                        </div>
-                        <div className="invert rounded-full p-1 w-36 logo animated tada">
-                            <img
-                                src="css3-logo.jpeg"
-                                className="rounded-full w-40"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex gap-40">
-                        <div className="logo animated tada">
-                            <img src="sass-logo.png" className="w-36 mt-3" />
-                        </div>
-                        <div className="logo animated tada">
-                            <img
-                                src="javascript-logo.png"
-                                className="w-36 rounded-lg"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex gap-40 my-10">
-                        <div className="logo animated tada">
-                            <img
-                                src="react-logo.png"
-                                className="w-36 rounded-lg"
-                            />
-                        </div>
-                        <div className="logo animated tada">
-                            <img src="vite-logo.png" className="w-36" />
-                        </div>
-                    </div>
+            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-24">
+                Tecnologías de Front-End
+            </h2>
+            <div className="flex gap-7 glass w-[70rem] p-5 mt-12 justify-evenly items-center m-auto">
+                <div className="rounded-full p-1 w-36 logo animated tada">
+                    <img src="html5-logo.jpg" className="rounded-full w-40" />
                 </div>
-
-                <div className="flex flex-col gap-7 glass w-[27rem] p-5 ml-32 mt-12 items-center">
-                    <div className="flex gap-7">
-                        <div className="invert rounded-full p-1 w-36">
-                            <img
-                                src="html5-logo.jpg"
-                                className="rounded-full w-40"
-                            />
-                        </div>
-                        <div className="invert rounded-full p-1 w-36">
-                            <img
-                                src="css3-logo.jpeg"
-                                className="rounded-full w-40"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex gap-7">
-                        <div>
-                            <img src="sass-logo.png" className="w-36 mt-3" />
-                        </div>
-                        <div>
-                            <img
-                                src="javascript-logo.png"
-                                className="w-36 rounded-lg"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex gap-7">
-                        <div>
-                            <img
-                                src="react-logo.png"
-                                className="w-36 rounded-lg"
-                            />
-                        </div>
-                        <div>
-                            <img src="vite-logo.png" className="w-36" />
-                        </div>
-                    </div>
+                <div className="rounded-full p-1 w-36 logo animated tada">
+                    <img src="css3-logo.jpeg" className="rounded-full w-40" />
+                </div>
+                <div className="logo animated tada">
+                    <img src="sass-logo.png" className="w-36 mt-3" />
+                </div>
+                <div className="logo animated tada">
+                    <img
+                        src="javascript-logo.png"
+                        className="w-36 rounded-lg"
+                    />
+                </div>
+                <div className="logo animated tada">
+                    <img src="react-logo.png" className="w-36 rounded-lg" />
+                </div>
+                <div className="logo animated tada">
+                    <img src="vite-logo.png" className="w-36" />
+                </div>
+            </div>
+            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
+                Librerías/Frameworks de Front-End
+            </h2>
+            <div className="flex gap-7 glass w-[90rem] p-5 mt-12 justify-evenly m-auto items-center">
+                <div className="p-3 flex items-center w-48 bg-white rounded-lg logo animated tada border-2 border-cyan-300">
+                    <img src="tailwind-logo.png" className="rounded-lg w-40" />
+                </div>
+                <div className="invert rounded-lg p-1 bg-white w-48 h-28 logo animated tada flex items-center justify-center">
+                    <img
+                        src="handsontable-logo.png"
+                        className="rounded-lg w-40"
+                    />
+                </div>
+                <div
+                    className="logo animated tada w-40 h-28 flex items-center justify-center rounded-lg"
+                    style={{ backgroundColor: "rgba(7, 18, 42, 255)" }}>
+                    <img
+                        src="react-hook-form-logo.png"
+                        className="w-48 rounded-lg"
+                    />
+                </div>
+                <div className="logo animated tada">
+                    <img src="i18next.webp" className="w-40 rounded-lg" />
+                </div>
+                <div className="logo animated tada">
+                    <img src="dayjs-logo.png" className="w-36" />
+                </div>
+                <div className="logo animated tada w-48">
+                    <img
+                        src="framer-motion-logo.png"
+                        className="w-64 rounded-lg"
+                    />
+                </div>
+                <div className="logo animated tada">
+                    <img src="victoryjs-logo.png" className="rounded-lg w-52" />
+                </div>
+            </div>
+            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
+                Tecnologías de Back-End
+            </h2>
+            <div className="flex gap-7 glass w-[60rem] p-5 mt-12 justify-evenly m-auto items-center">
+                <div className="p-3 flex items-center logo animated tada">
+                    <img src="nodejs-logo.png" className="rounded-lg w-48" />
+                </div>
+                <div className="dark:invert transition duration-300 rounded-lg p-1 h-28 logo animated tada flex items-center justify-center">
+                    <img src="flask-logo.png" className="rounded-lg w-20" />
+                </div>
+                <div className="logo animated tada w-40 h-28 flex items-center justify-center rounded-lg">
+                    <img src="python-logo.png" className="w-36" />
+                </div>
+                <div className="bg-white p-5 rounded-lg logo animated tada">
+                    <img src="sqlalchemy-logo.jpg" className="w-40 rounded-lg" />
+                </div>
+                <div className="bg-white flex items-center justify-center p-4 w-48 h-24 rounded-lg logo animated tada">
+                    <img src="firebase-logo.jpg" className="w-36" />
+                </div>
+            </div>
+            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
+                Librerías/Frameworks de Back-End
+            </h2>
+            <div className="flex gap-7 glass w-[30rem] p-5 mt-12 justify-evenly m-auto items-center">
+                <div className="p-3 flex items-center logo animated tada">
+                    <img src="jwt-logo.png" className="rounded-lg w-48" />
+                </div>
+                <div className="bg-white p-5 rounded-lg logo animated tada">
+                    <img src="bcrypt-logo.png" className="w-24 rounded-lg" />
                 </div>
             </div>
             <div>
