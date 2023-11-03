@@ -22,7 +22,7 @@ export const Contact = () => {
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
-        <div className="mb-36">
+        <div className="mb-28 mt-24">
             <motion.div
                 ref={ref}
                 className="contact w-[90%]"
@@ -46,7 +46,7 @@ export const Contact = () => {
                 </motion.div>
                 <motion.div className="formContainer">
                     <motion.div
-                        className="phoneSvg"
+                        className="phoneSvg -z-50"
                         initial={{ opacity: 1 }}
                         whileInView={{ opacity: 0 }}
                         transition={{ delay: 3, duration: 1 }}>
@@ -70,10 +70,10 @@ export const Contact = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}>
-                        <input type="text" required placeholder="Nombre" />
+                        <input type="text" required placeholder="Nombre y Apellido" />
                         <input type="email" required placeholder="Email" />
                         <textarea rows={8} placeholder="Mensaje" />
-                        <button>Enviar</button>
+                        <button className="text-black">Enviar</button>
                     </motion.form>
                 </motion.div>
             </motion.div>
