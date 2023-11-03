@@ -54,6 +54,7 @@ const items = [
 
 const Single = ({ item }) => {
     const ref = useRef();
+    const navigate = useNavigate();
 
     const { scrollYProgress } = useScroll({
         target: ref

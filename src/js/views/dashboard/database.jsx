@@ -4,11 +4,12 @@ import { React, useState, useEffect, useRef, useContext } from "react";
 import { Context } from "../../store/appContext.jsx";
 import "../../../css/app.css";
 import "../../../css/glass.css";
+import "../../../css/handsontable.css"
 import { useTranslation } from "react-i18next";
 import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import { registerLanguageDictionary, esMX, enUS } from "handsontable/i18n";
-import "handsontable/dist/handsontable.full.min.css";
+// import "handsontable/dist/handsontable.full.min.css";
 
 registerAllModules();
 registerLanguageDictionary(enUS);
