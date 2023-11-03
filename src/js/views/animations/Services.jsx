@@ -61,11 +61,10 @@ export const Services = () => {
                             </motion.b>
                             .
                         </h2>
-                        <button className="text-black bg-cyan-400 hover:bg-cyan-500 transition duration-300">
+                        {/* <button className="text-black bg-cyan-400 hover:bg-cyan-500 transition duration-300">
                             ¿QUÉ HACEMOS?
-                        </button>
+                        </button> */}
                     </div>
-                    
                 </motion.div>
                 <motion.div className="listContainer flex flex-col" variants={variants}>
                     <motion.div className="box w-[80rem] glass">
@@ -73,7 +72,7 @@ export const Services = () => {
                         <p className="my-10">{t("whoWeAre")}</p>
                         <p className="">{t("description")}</p>
                         <br></br>
-                        <h2 className="text-5xl mt-5">
+                        {/* <h2 className="text-5xl mt-5">
                             {t("services")}
                         </h2>
                         <p className="my-10">{t("description1")}</p>
@@ -88,7 +87,7 @@ export const Services = () => {
                             <li>{t("list6")}</li>
                             <li>{t("list7")}</li>
                             <li>{t("list8")}</li>
-                        </ul>
+                        </ul> */}
                         <p className="mt-10">
                             {t("message1")}{" "}
                             <Link

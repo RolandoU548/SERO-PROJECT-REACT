@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 // Renders errors or successfull transactions on the screen.
-function Message({ content }) {
-  return <p>{content}</p>;
-}
+// function Message({ content }) {
+//   return <p>{content}</p>;
+// }
 
 function PayPalButton() {
   const initialOptions = {
@@ -112,7 +112,7 @@ function PayPalButton() {
           }}
         />
       </PayPalScriptProvider>
-      <Message content={message} />
+      {/* <Message content={message} /> */}
     </div>
   );
 }
