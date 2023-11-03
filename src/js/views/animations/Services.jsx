@@ -68,15 +68,16 @@ export const Services = () => {
                     
                 </motion.div>
                 <motion.div className="listContainer flex flex-col" variants={variants}>
-                    <motion.div className="box w-[80rem] glass mb-10">
-                        <h2 className="text-5xl">{t("aboutUs")}</h2><br/>
+                    <motion.div className="box w-[80rem] glass">
+                        <h2 className="text-5xl">{t("aboutUs")}</h2>
                         <p className="my-10">{t("whoWeAre")}</p>
-                        <p className="mt-10">{t("description")}</p>
-                        <h2 className="text-5xl">
+                        <p className="">{t("description")}</p>
+                        <br></br>
+                        <h2 className="text-5xl mt-5">
                             {t("services")}
                         </h2>
-                        <p>{t("description1")}</p>
-                        <p className="mt-10">{t("description2")}</p>
+                        <p className="my-10">{t("description1")}</p>
+                        <p className="">{t("description2")}</p>
                         <br></br>
                         <ul>
                             <li>{t("list1")}</li>

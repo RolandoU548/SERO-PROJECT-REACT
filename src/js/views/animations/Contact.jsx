@@ -22,6 +22,7 @@ export const Contact = () => {
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
+        <div className="mb-36">
             <motion.div
                 ref={ref}
                 className="contact w-[90%]"
@@ -76,5 +77,6 @@ export const Contact = () => {
                     </motion.form>
                 </motion.div>
             </motion.div>
+        </div>
     );
 };
