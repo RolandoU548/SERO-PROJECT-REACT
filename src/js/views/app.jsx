@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { Services } from "./animations/Services";
+import { Contact } from "./animations/Contact";
+import { Functionalities } from "./animations/Functionalities";
 
 export const App = () => {
     const [t] = useTranslation("app");
@@ -12,7 +15,7 @@ export const App = () => {
     }
     return (
         <div className="font-serif dark:text-gray-200 text-black">
-            <h2 className="dark:mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center mt-48 text-black dark:text-white">
+            <h2 className="dark:mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center mt-80 text-black dark:text-white">
                 {t("title")}
             </h2>
             <h2 className="dark:mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-xl tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-[200] text-center text-black dark:text-white">
@@ -23,7 +26,10 @@ export const App = () => {
                 to="/signup">
                 {t("getStarted")}
             </Link>
-            <div className="glass w-4/5 p-12 mt-40 mb-10 m-auto text-2xl">
+            <Services />
+            <Functionalities />
+            <Contact />
+            {/* <div className="glass w-4/5 p-12 mt-40 mb-10 m-auto text-2xl">
                 <h2 className="text-5xl">{t("aboutUs")}</h2>
                 <p className="my-10">{t("whoWeAre")}</p>
                 <p className="mt-10">{t("description")}</p>
@@ -115,7 +121,7 @@ export const App = () => {
                     <p className="mt-10">{t("dashboard2")}</p>
                     <p className="mt-10">{t("dashboard3")}</p>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

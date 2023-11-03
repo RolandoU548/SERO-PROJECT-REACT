@@ -34,7 +34,7 @@ export const Dashboard = () => {
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto text-center">
                     {t("dashboard")}
                 </h1>
-                <div className="glass p-10 mt-5 m-auto w-11/12">
+                <div className="p-10 mt-5 m-auto w-11/12">
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                         <div
                             className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer"

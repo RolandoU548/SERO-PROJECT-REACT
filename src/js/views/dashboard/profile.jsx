@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Context } from "../../store/appContext";
 
 export const Profile = () => {
     const [t] = useTranslation("profile");
     const navigate = useNavigate();
+    const { store, actions } = useContext(Context);
 
     return (
         <>
@@ -24,14 +26,14 @@ export const Profile = () => {
                                 />
                             </div>
                             <h1 className="font-bold text-xl leading-8 my-1">
-                                Sebita
+                                {store.user.name}
                             </h1>
-                            <h3 className="font-lg text-semibold leading-6">
+                            {/* <h3 className="font-lg text-semibold leading-6">
                                 EL GOAT
                             </h3>
                             <p className="text-sm hover:text-cyan-300 leading-6">
                                 Soy el mejor del mundo
-                            </p>
+                            </p> */}
                             <ul className="glass hover:text-cyan-400 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
                                     <span>Status</span>
@@ -76,14 +78,14 @@ export const Profile = () => {
                                             First Name
                                         </div>
                                         <div className="px-4 py-2">
-                                            Sebastian
+                                            {store.user.name}
                                         </div>
                                     </div>
                                     <div className="flex flex-row">
                                         <div className="px-4 py-2 font-semibold">
                                             Last Name
                                         </div>
-                                        <div className="px-4 py-2">Lopez</div>
+                                        <div className="px-4 py-2">{store.user.lastname}</div>
                                     </div>
                                     <div className="flex flex-row">
                                         <div className="px-4 py-2 font-semibold">
@@ -115,7 +117,7 @@ export const Profile = () => {
                                             <a
                                                 className="ææææææææææææææææææææææ"
                                                 href="mailto:jane@example.com">
-                                                sebita@example.com
+                                                {store.user.email}
                                             </a>
                                         </div>
                                     </div>

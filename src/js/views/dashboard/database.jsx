@@ -78,13 +78,14 @@ export const Database = () => {
                         <p>{t("saveTable")}</p>
                     </div>
                 </div>
-                <div className="flex justify-end ">
-                    <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2">
-                        <div
+                {/* <div className="flex justify-end "> */}
+                    {/* <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2"> */}
+                        {/* <div
                             className="h-full p-0 m-0"
-                            style={{ overflowX: "auto" }}>
+                            style={{ overflowX: "auto" }}> */}
                             {rows.length > 0 && (
                                 <HotTable
+                                className="my-5 ml-32"
                                     ref={hotTableComponent}
                                     data={rows}
                                     language={
@@ -102,9 +103,9 @@ export const Database = () => {
                                     filters={true}
                                 />
                             )}
-                        </div>
-                    </div>
-                </div>
+                        {/* </div> */}
+                    {/* </div> */}
+                {/* </div> */}
             </div>
         </>
     );

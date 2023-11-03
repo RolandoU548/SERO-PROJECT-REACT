@@ -23,6 +23,7 @@ import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
+import { Cursor } from "./components/Cursor.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -44,6 +45,7 @@ const Layout = () => {
                         path="/"
                         element={
                             <>
+                                <Cursor />
                                 <BackgroundVideo />
                                 <Navbar />
                                 <App />
@@ -53,17 +55,28 @@ const Layout = () => {
                     <Route
                         path="/login"
                         transition="fade"
-                        element={<LoginSignupCard flip={true} />}
+                        element={
+                            <>
+                                <Cursor />
+                                <LoginSignupCard flip={true} />
+                            </>
+                        }
                     />
                     <Route
                         path="/signup"
                         transition="fade"
-                        element={<LoginSignupCard flip={false} />}
+                        element={
+                            <>
+                                <Cursor />
+                                <LoginSignupCard flip={false} />
+                            </>
+                        }
                     />
                     <Route
                         path="/contact"
                         element={
                             <>
+                                <Cursor />
                                 <BackgroundVideo />
                                 <Navbar />
                                 <Contact />
@@ -75,6 +88,7 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
+                                <Cursor />
                                 <BackgroundVideo />
                                 <SpecificContact />
                             </>
