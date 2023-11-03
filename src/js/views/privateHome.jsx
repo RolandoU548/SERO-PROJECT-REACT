@@ -21,14 +21,8 @@ export const PrivateHome = () => {
                     type="video/mp4"
                 />
             </video>
-            <div className="font-serif text-gray-200">
-                <div className="mb-10 mt-32">
-                    <div className="mix-blend-difference mx-auto w-4/5 h-14">
-                        <h2 className="text-5xl text-center">
-                            {t("cardMessage")}
-                        </h2>
-                    </div>
-                </div>
+            <div className="font-serif text-black dark:text-white text-5xl text-center mb-10 mt-32 mx-auto w-4/5 h-14">
+                {t("cardMessage")}
             </div>
             <div className="flex justify-evenly flex-wrap my-10 gap-5">
                 <div

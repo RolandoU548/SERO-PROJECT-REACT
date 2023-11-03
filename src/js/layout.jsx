@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar.jsx";
 import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
 import { BackgroundClientsVideo } from "./components/BackgroundClientsVideo.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
+import { Cursor } from "./components/Cursor.jsx";
 
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
@@ -47,6 +48,7 @@ const Layout = () => {
                                 <BackgroundVideo />
                                 <Navbar />
                                 <App />
+                                <Cursor />
                             </>
                         }
                     />
