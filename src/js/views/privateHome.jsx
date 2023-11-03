@@ -32,7 +32,7 @@ export const PrivateHome = () => {
             </div>
             <div className="flex justify-evenly flex-wrap my-10 gap-5">
                 <div
-                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDataBaseCardBGCrop.jpg?alt=media&token=2e184e84-c061-4204-8a57-0ed23ad73790&_gl=1*17loil3*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDAwMS42MC4wLjA.')] bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=121e9b31-e173-4df5-9c05-620aefbc88e0.')] bg-cover bg-center rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                     onClick={() => {
                         navigate("/database");
                     }}>
