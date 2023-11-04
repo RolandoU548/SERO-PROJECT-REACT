@@ -9,6 +9,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
+import { BsKey } from 'react-icons/bs';
 import {
     FiDatabase,
     FiFolder,
@@ -45,10 +46,10 @@ export const PrivateNavbar = () => {
     const [open, setOpen] = useState(false);
 
     if (store.user.role.includes("admin")) {
-        menus.splice(1, 0, {
+        menus.push({
             name: t2("admin"),
             link: "/admin",
-            icon: AiOutlineUser
+            icon: BsKey
         });
     }
 

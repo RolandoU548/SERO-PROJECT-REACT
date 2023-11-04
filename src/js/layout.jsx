@@ -24,7 +24,6 @@ import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
-import { Cursor } from "./components/Cursor.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
