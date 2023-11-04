@@ -37,7 +37,7 @@ export const Contact = () => {
                     second="lando Uzcátegui"
                 />
             </div>
-            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-[4vw] sm:text-5xl">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
                 Tecnologías de Front-End
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
@@ -63,7 +63,7 @@ export const Contact = () => {
                     <img src="vite-logo.png" className="w-36" />
                 </div>
             </div>
-            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-[4vw] sm:text-6xl">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-6xl">
                 Librerías/Frameworks de Front-End
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
@@ -106,7 +106,7 @@ export const Contact = () => {
                     />
                 </div>
             </div>
-            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-[4vw] sm:text-7xl">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-7xl">
                 Tecnologías de Back-End
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
@@ -129,7 +129,7 @@ export const Contact = () => {
                     <img src="firebase-logo.jpg" className="w-36" />
                 </div>
             </div>
-            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-[4vw] sm:text-4xl">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-4xl">
                 Librerías/Frameworks de Back-End
             </h2>
             <div className="flex flex-wrap gap-2 glass max-w-[30rem] w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
