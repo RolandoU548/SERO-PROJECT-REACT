@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const variants = {
     initial: {
-        y: 500,
+        y: 300,
         opacity: 0
     },
     animate: {
@@ -24,7 +24,7 @@ export const Contact = () => {
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
-        <div className="mb-20">
+        <div className="mb-10">
             <motion.div
                 ref={ref}
                 className="contact w-[90%]"

@@ -48,7 +48,7 @@ export const Functionalities = () => {
                     </h2>
                     <motion.div
                         style={{ scaleX }}
-                        className="h-2.5 rounded bg-gray-500 dark:bg-white"></motion.div>
+                        className="h-2.5 rounded bg-gray-500 dark:bg-white mx-5"></motion.div>
                 </div>
                 {/* Base de Datos */}
                 <div className="flex resp:flex-col-reverse my-20 w-10/12 resp:w-[98%] m-auto">
