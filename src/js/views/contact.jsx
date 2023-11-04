@@ -10,8 +10,8 @@ export const Contact = () => {
     const [t] = useTranslation("contact");
     const navigate = useNavigate();
     return (
-        <div className="font-serif text-gray-200">
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center text-white mt-36">
+        <div className="font-serif text-white">
+            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center mt-36">
                 {t("founders")}
             </h2>
             <div className="flex justify-evenly flex-wrap mt-20">
@@ -37,10 +37,10 @@ export const Contact = () => {
                     second="lando Uzcátegui"
                 />
             </div>
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-24">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
                 Tecnologías de Front-End
             </h2>
-            <div className="flex gap-7 glass w-[70rem] p-5 mt-12 justify-evenly items-center m-auto">
+            <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="rounded-full p-1 w-36 logo animated tada">
                     <img src="html5-logo.jpg" className="rounded-full w-40" />
                 </div>
@@ -63,47 +63,53 @@ export const Contact = () => {
                     <img src="vite-logo.png" className="w-36" />
                 </div>
             </div>
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
-                Librerías/Frameworks de Front-End
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
+                Librerías / Frameworks de Front-End
             </h2>
-            <div className="flex gap-7 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
-                <div className="p-3 flex items-center w-48 bg-white rounded-lg logo animated tada border-2 border-cyan-300">
-                    <img src="tailwind-logo.png" className="rounded-lg w-40" />
+            <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
+                <div className="flex items-center w-36 h-28 bg-white rounded-lg logo animated tada border-2 border-cyan-300">
+                    <img
+                        src="tailwind-logo.png"
+                        className="rounded-lg w-full"
+                    />
                 </div>
-                <div className="invert rounded-lg p-1 bg-white w-48 h-28 logo animated tada flex items-center justify-center">
+                <div className="invert rounded-lg bg-white w-36 h-28 logo animated tada flex items-center justify-center">
                     <img
                         src="handsontable-logo.png"
-                        className="rounded-lg w-40"
+                        className="rounded-lg w-full"
                     />
                 </div>
                 <div
-                    className="logo animated tada w-40 h-28 flex items-center justify-center rounded-lg"
+                    className="logo animated tada w-36 h-28 flex items-center justify-center rounded-lg"
                     style={{ backgroundColor: "rgba(7, 18, 42, 255)" }}>
                     <img
                         src="react-hook-form-logo.png"
-                        className="w-48 rounded-lg"
+                        className="w-full rounded-lg"
                     />
                 </div>
-                <div className="logo animated tada">
-                    <img src="i18next.webp" className="w-40 rounded-lg" />
+                <div className="logo animated tada w-36 h-28 flex items-center">
+                    <img src="i18next.webp" className=" rounded-lg" />
                 </div>
-                <div className="logo animated tada">
-                    <img src="dayjs-logo.png" className="w-36" />
+                <div className="logo animated tada w-36 h-28 flex items-center">
+                    <img src="dayjs-logo.png" className="w-full" />
                 </div>
-                <div className="logo animated tada w-48">
+                <div className="logo animated tada w-36 h-28 flex items-center">
                     <img
                         src="framer-motion-logo.png"
-                        className="w-64 rounded-lg"
+                        className="w-full rounded-lg"
                     />
                 </div>
-                <div className="logo animated tada">
-                    <img src="victoryjs-logo.png" className="rounded-lg w-52" />
+                <div className="logo animated tada w-36 h-20 object-cover">
+                    <img
+                        src="victoryjs-logo.png"
+                        className="rounded-lg w-full h-full"
+                    />
                 </div>
             </div>
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
                 Tecnologías de Back-End
             </h2>
-            <div className="flex gap-7 glass w-[60rem] p-5 mt-12 justify-evenly m-auto items-center">
+            <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="p-3 flex items-center logo animated tada">
                     <img src="nodejs-logo.png" className="rounded-lg w-48" />
                 </div>
@@ -123,10 +129,10 @@ export const Contact = () => {
                     <img src="firebase-logo.jpg" className="w-36" />
                 </div>
             </div>
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
-                Librerías/Frameworks de Back-End
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
+                Librerías / Frameworks de Back-End
             </h2>
-            <div className="flex gap-7 glass w-[30rem] p-5 mt-12 justify-evenly m-auto items-center">
+            <div className="flex flex-wrap gap-2 glass max-w-[30rem] w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="p-3 flex items-center logo animated tada">
                     <img src="jwt-logo.png" className="rounded-lg w-48" />
                 </div>
