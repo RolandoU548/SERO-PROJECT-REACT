@@ -27,7 +27,7 @@ export const Services = () => {
 
     return (
         <>
-            <div className="h-48"></div>
+            <div className="h-64"></div>
             <motion.div
                 className="services"
                 variants={variants}

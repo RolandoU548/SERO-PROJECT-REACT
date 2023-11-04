@@ -110,114 +110,117 @@ export const Functionalities = () => {
     return (
         <>
             <div className="portfolio" ref={ref}>
-                <div className="progress">
+                <div className="progress z-10">
                     <div className="h-12"></div>
                     <h2>{t("services")}</h2>
                     <motion.div
                         style={{ scaleX }}
-                        className="progressBar"
-                    ></motion.div>
+                        className="progressBar"></motion.div>
                 </div>
 
                 {/* Base de Datos */}
-                <div className="container">
+                <div className="container m-auto">
                     <div className="wrapper">
                         <div
-                            className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                            className="my-40 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=1f987d91-e459-4705-b95e-7edb47bfb442')`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center'
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
                             }}
                             onClick={() => {
                                 navigate("/signup");
-                            }}
-                        >
+                            }}>
                             <div className="bg-black absolute w-full h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                         </div>
                         <motion.div className="textContainer">
-                            <div>
+                            <div className="mb-56">
                                 <h2>{t("databaseCard")}</h2>
                                 <p>{t("database1")}</p>
-                                <button>{t("details")}</button>
+                                <button className="text-black text-xl mt-10">
+                                    {t("Try it")}
+                                </button>
                             </div>
                         </motion.div>
                     </div>
                 </div>
 
                 {/* Formularios */}
-                <div className="container">
+                <div className="container m-auto">
                     <div className="wrapper">
                         <div
                             className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8')`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center'
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
                             }}
                             onClick={() => {
                                 navigate("/signup");
-                            }}
-                        >
+                            }}>
                             <div className="bg-black absolute w-full h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                         </div>
                         <motion.div className="textContainer">
-                            <div>
+                            <div className="mb-56">
                                 <h2>{t("formCard")}</h2>
                                 <p>{t("form1")}</p>
-                                <button>{t("details")}</button>
+                                <button className="text-black text-xl mt-10">
+                                    {t("Try it")}
+                                </button>
                             </div>
                         </motion.div>
                     </div>
                 </div>
 
                 {/* Clientes */}
-                <div className="container">
+                <div className="container m-auto">
                     <div className="wrapper">
                         <div
                             className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a')`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center'
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
                             }}
                             onClick={() => {
                                 navigate("/signup");
-                            }}
-                        >
-                            <div className="bg-black absolute w-full h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                            }}>
+                            <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                         </div>
                         <motion.div className="textContainer">
-                            <div>
+                            <div className="mb-56">
                                 <h2>{t("clientsCard")}</h2>
                                 <p>{t("clients1")}</p>
-                                <button>{t("details")}</button>
+                                <button className="text-black text-xl mt-10">
+                                    {t("Try it")}
+                                </button>
                             </div>
                         </motion.div>
                     </div>
                 </div>
 
                 {/* Panel de Control */}
-                <div className="container">
+                <div className="container m-auto">
                     <div className="wrapper">
                         <div
                             className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703')`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center'
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
                             }}
                             onClick={() => {
                                 navigate("/signup");
-                            }}
-                        >
-                            <div className="bg-black absolute w-full h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                            }}>
+                            <div className="bg-black absolute w-96 h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                         </div>
                         <motion.div className="textContainer">
-                            <div>
+                            <div className="mb-56">
                                 <h2>{t("dashboardCard")}</h2>
                                 <p>{t("dashboard1")}</p>
-                                <button>{t("details")}</button>
+                                <button className="text-black text-xl mt-10">
+                                    {t("Try it")}
+                                </button>
                             </div>
                         </motion.div>
                     </div>
