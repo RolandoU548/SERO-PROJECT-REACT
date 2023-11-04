@@ -41,7 +41,7 @@ export const SpecificContact = () => {
                 p1: t("p1ROLANDO"),
                 p2: t("p2ROLANDO"),
                 p3: t("p3ROLANDO"),
-                img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=47c07659-0be1-40d8-ad24-d7a29c2b5278&_gl=1*72se3q*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYyNy4yLjAuMA..",
+                img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=b3cdf13d-9e45-456e-8a61-3fbd34489c0f&_gl=1*huv6mq*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5OTA2MjA4NC42LjEuMTY5OTA2MjI1Ni4zOS4wLjA.",
                 bg: "center"
             };
             break;
@@ -79,7 +79,7 @@ export const SpecificContact = () => {
                                 : contact === "RobertoVargas"
                                 ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRobertoVargasCard.jpg?alt=media&token=3ffe1fb7-69fd-4476-baa3-61a7673e5225&_gl=1*1y6d1f8*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYxMy4xNi4wLjA.')] bg-left"
                                 : contact === "RolandoUzcategui"
-                                ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=47c07659-0be1-40d8-ad24-d7a29c2b5278&_gl=1*72se3q*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYyNy4yLjAuMA..')] bg-center"
+                                ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=b3cdf13d-9e45-456e-8a61-3fbd34489c0f&_gl=1*huv6mq*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5OTA2MjA4NC42LjEuMTY5OTA2MjI1Ni4zOS4wLjA.')] bg-center"
                                 : "")
                         }
                         onClick={() => {

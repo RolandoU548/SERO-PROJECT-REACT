@@ -64,7 +64,7 @@ export const Contact = () => {
                 </div>
             </div>
             <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
-                Librerías/Frameworks de Front-End
+                Librerías / Frameworks de Front-End
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="flex items-center w-36 h-28 bg-white rounded-lg logo animated tada border-2 border-cyan-300">
