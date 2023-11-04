@@ -17,10 +17,11 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
     const submit = async data => {
         const info = data;
         info.id = user.id;
-        console.log(data.role);
-        actions.updateUser(info);
-        actions.getAllUsers(store.token);
+        const updateResult = await actions.updateUser(info);
         setIsOpen(false);
+        if (updateResult.message === "A user has been updated") {
+            actions.getAllUsers(store.token);
+        }
         reset();
     };
 
@@ -55,131 +56,120 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             id="modal-headline">
                             USER DATA
                         </h3>
-                        <div className="mt-5 flex justify-center items-center">
-                            <div className="flex flex-col space-y-2">
-                                <div className="flex justify-between items-center">
-                                    <label
-                                        htmlFor="name"
-                                        className="font-bold mr-6">
-                                        Name:
+                        <div className="m-auto mt-5 flex flex-col space-y-2 items-around w-8/12">
+                            <div className="flex justify-between items-center">
+                                <label htmlFor="name" className="font-bold">
+                                    Name:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    className="rounded-md px-3 py-2 text-black text-center"
+                                    autoComplete="name"
+                                    defaultValue={user.name}
+                                    {...register("name", {
+                                        required: {
+                                            value: true,
+                                            message: t("nameRequired")
+                                        },
+                                        pattern: {
+                                            value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                                            message: t("invalidName")
+                                        }
+                                    })}
+                                />
+                                {errors.name && (
+                                    <span className="text-sm text-red-500">
+                                        {errors.name.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <label htmlFor="lastname" className="font-bold">
+                                    Lastname:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="lastname"
+                                    className="rounded-md px-3 py-2 text-black text-center"
+                                    autoComplete="family-name"
+                                    defaultValue={user.lastname}
+                                    {...register("lastname", {
+                                        required: {
+                                            value: true,
+                                            message: t("lastNameRequired")
+                                        },
+                                        pattern: {
+                                            value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                                            message: t("invalidLastname")
+                                        }
+                                    })}
+                                />
+                                {errors.lastname && (
+                                    <span className="text-sm text-red-500">
+                                        {errors.lastname.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <label htmlFor="email" className="font-bold">
+                                    Email:
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    autoComplete="email"
+                                    className="rounded-md px-3 py-2 text-black text-center"
+                                    defaultValue={user.email}
+                                    {...register("email", {
+                                        required: {
+                                            value: true,
+                                            message: t("emailRequired")
+                                        },
+                                        minLength: {
+                                            value: 5,
+                                            message: t("emailMinLength")
+                                        },
+                                        maxLength: {
+                                            value: 60,
+                                            message: t("emailMaxLength")
+                                        },
+                                        pattern: {
+                                            value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
+                                            message: t("invalidEmail")
+                                        }
+                                    })}
+                                />
+                                {errors.email && (
+                                    <span className="text-sm text-red-500">
+                                        {errors.email.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <label className="font-bold">Role:</label>
+                                <fieldset>
+                                    <label style={{ pointerEvents: "none" }}>
+                                        <input
+                                            type="checkbox"
+                                            name="role"
+                                            value="user"
+                                            readOnly
+                                            {...register("role")}
+                                        />
+                                        User
                                     </label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        className="rounded-md px-3 py-2 text-black text-center"
-                                        autoComplete="name"
-                                        defaultValue={user.name}
-                                        {...register("name", {
-                                            required: {
-                                                value: true,
-                                                message: t("nameRequired")
-                                            },
-                                            pattern: {
-                                                value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                                                message: t("invalidName")
-                                            }
-                                        })}
-                                    />
-                                    {errors.name && (
-                                        <span className="text-sm text-red-500">
-                                            {errors.name.message}
-                                        </span>
-                                    )}
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <label
-                                        htmlFor="lastname"
-                                        className="font-bold mr-6">
-                                        Lastname:
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="lastname"
-                                        className="rounded-md px-3 py-2 text-black text-center"
-                                        autoComplete="family-name"
-                                        defaultValue={user.lastname}
-                                        {...register("lastname", {
-                                            required: {
-                                                value: true,
-                                                message: t("lastNameRequired")
-                                            },
-                                            pattern: {
-                                                value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
-                                                message: t("invalidLastname")
-                                            }
-                                        })}
-                                    />
-                                    {errors.lastname && (
-                                        <span className="text-sm text-red-500">
-                                            {errors.lastname.message}
-                                        </span>
-                                    )}
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <label
-                                        htmlFor="email"
-                                        className="font-bold mt-6 mr-6">
-                                        Email:
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        autoComplete="email"
-                                        className="rounded-md px-3 py-2 text-black text-center"
-                                        defaultValue={user.email}
-                                        {...register("email", {
-                                            required: {
-                                                value: true,
-                                                message: t("emailRequired")
-                                            },
-                                            minLength: {
-                                                value: 5,
-                                                message: t("emailMinLength")
-                                            },
-                                            maxLength: {
-                                                value: 60,
-                                                message: t("emailMaxLength")
-                                            },
-                                            pattern: {
-                                                value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
-                                                message: t("invalidEmail")
-                                            }
-                                        })}
-                                    />
-                                    {errors.email && (
-                                        <span className="text-sm text-red-500">
-                                            {errors.email.message}
-                                        </span>
-                                    )}
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <label className="font-bold mt-6 mr-6">
-                                        Role:
-                                    </label>
-                                    <fieldset>
-                                        <label
-                                            style={{ pointerEvents: "none" }}>
-                                            <input
-                                                type="checkbox"
-                                                name="role"
-                                                value="user"
-                                                readOnly
-                                                {...register("role")}
-                                            />
-                                            User
-                                        </label>
 
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                name="role"
-                                                value="admin"
-                                                {...register("role")}
-                                            />
-                                            Admin
-                                        </label>
-                                    </fieldset>
-                                </div>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="role"
+                                            value="admin"
+                                            {...register("role")}
+                                        />
+                                        Admin
+                                    </label>
+                                </fieldset>
                             </div>
                         </div>
                     </div>
