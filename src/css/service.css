@@ -1,73 +1,29 @@
-.services {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.services .textContainer {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-.services .textContainer p {
-  font-weight: bold;
-  font-size: 20px;
-  margin: 0;
-  text-align: center;
-}
-.services .textContainer hr {
-  margin: 0;
-  width: 500px;
-}
-.services .titleContainer {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.services .titleContainer .title {
+.title {
   display: flex;
   align-items: center;
   gap: 50px;
 }
-.services .titleContainer .title img {
-  width: 300px;
-  height: 100px;
-  border-radius: 50px;
-  object-fit: cover;
-}
-.services .titleContainer .title h2 {
-  font-size: 80px;
-  font-weight: 100;
-}
-.services .titleContainer .title button {
-  width: 240px;
-  height: 80px;
-  border-radius: 50px;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-.services .listContainer {
+
+.listContainer {
   flex: 2;
   display: flex;
 }
-.services .listContainer .box {
+.listContainer .box {
   padding: 50px;
   border: 0.5px solid gray;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.services .listContainer .box ul {
+.listContainer .box ul {
   display: flex;
 }
-.services .listContainer .box ul li {
+.listContainer .box ul li {
   list-style: none;
   text-align: center;
   align-self: center;
 }
-.services .listContainer .box button {
+.listContainer .box button {
   padding: 10px;
   background-color: cyan;
   border: none;

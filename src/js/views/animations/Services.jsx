@@ -28,42 +28,45 @@ export const Services = () => {
     return (
         <>
             <motion.div
-                className="services mt-36"
+                className="h-full flex flex-col justify-between mt-36"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
-                <motion.div className="textContainer" variants={variants}>
-                    <hr className="border border-cyan-300 dark:border-cyan-500" />
-                    <p className="text-cyan-500 dark:text-cyan-300">
-                        Solucionamos todos sus problemas
+                <motion.div className="flex items-center" variants={variants}>
+                    <hr className="border border-cyan-300 dark:border-cyan-500 w-2/5" />
+                    <p className="text-cyan-500 dark:text-cyan-300 font-bold text-center text-xl w-1/5">
+                        {t("weSolveProblems")}
                     </p>
-                    <hr className="border border-cyan-300 dark:border-cyan-500" />
+                    <hr className="border border-cyan-300 dark:border-cyan-500 w-2/5" />
                 </motion.div>
-                <motion.div className="titleContainer" variants={variants}>
-                    <div className="title">
-                        <h2>
-                            <motion.b className="transition duration-500">
-                                <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
-                                    Sencillez
-                                </b>
-                            </motion.b>{" "}
-                            al
-                        </h2>
-                    </div>
-                    <div className="title">
-                        <h2>
-                            Tacto de su{" "}
-                            <motion.b className="transition duration-500">
-                                <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
-                                    Mano
-                                </b>
-                            </motion.b>
-                            .
-                        </h2>
-                        {/* <button className="text-black bg-cyan-400 hover:bg-cyan-500 transition duration-300">
+                <motion.div
+                    className="flex flex-col items-center"
+                    variants={variants}>
+                    <h2 className="text-7xl my-3 text-center">
+                        <motion.b className="transition duration-500">
+                            <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
+                                {t("simplicity")}
+                            </b>
+                        </motion.b>{" "}
+                        {t("to")}
+                    </h2>
+                    <h2 className="text-7xl my-3 text-center">
+                        <motion.b className="transition duration-500">
+                            <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
+                                {t("touch")}{" "}
+                            </b>
+                        </motion.b>
+                        {t("ofYour")}{" "}
+                        <motion.b className="transition duration-500">
+                            <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
+                                {t("hand")}
+                            </b>
+                        </motion.b>
+                        .
+                    </h2>
+                    {/* <button className="text-black bg-cyan-400 hover:bg-cyan-500 transition duration-300">
                             ¿QUÉ HACEMOS?
                         </button> */}
-                    </div>
                 </motion.div>
                 <motion.div
                     className="listContainer flex flex-col"
