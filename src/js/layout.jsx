@@ -10,10 +10,10 @@ import { Cursor } from "./components/Cursor.jsx";
 import { App } from "./views/app.jsx";
 import { PrivateHome } from "./views/privateHome.jsx";
 import { Admin } from "./views/dashboard/admin.jsx";
-import { Contact } from "./views/contact.jsx";
+import { Founder } from "./views/founders.jsx";
 import { LoginSignupCard } from "./views/login-signup.jsx";
 import { PrivateNavbar } from "./components/PrivateNavbar.jsx";
-import { SpecificContact } from "./views/specificContact.jsx";
+import { SpecificFounder } from "./views/specificFounder.jsx";
 import { Form } from "./views/dashboard/form.jsx";
 import { Database } from "./views/dashboard/database.jsx";
 import { Dashboard } from "./views/dashboard/dashboard.jsx";
@@ -74,24 +74,24 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/contact"
+                        path="/founders"
                         element={
                             <>
                                 <Cursor />
                                 <BackgroundVideo />
                                 <Navbar />
-                                <Contact />
+                                <Founder />
                             </>
                         }
                     />
                     <Route
-                        path="contact/:contact"
+                        path="founders/:founder"
                         transition="fade"
                         element={
                             <>
                                 <Cursor />
                                 <BackgroundVideo />
-                                <SpecificContact />
+                                <SpecificFounder />
                             </>
                         }
                     />

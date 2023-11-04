@@ -1,13 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ContactCard } from "../components/contact/ContactCard.jsx";
+import { FounderCard } from "../components/founders/FounderCard.jsx";
 import { useNavigate } from "react-router-dom";
 import "../../css/glass.css";
 import "../../css/tadaAnimation.css";
 import { Background } from "victory";
 
-export const Contact = () => {
-    const [t] = useTranslation("contact");
+export const Founder = () => {
+    const [t] = useTranslation("founders");
     const navigate = useNavigate();
     return (
         <div className="font-serif text-white">
@@ -15,23 +15,23 @@ export const Contact = () => {
                 {t("founders")}
             </h2>
             <div className="flex justify-evenly flex-wrap mt-20">
-                <ContactCard
+                <FounderCard
                     to="SebastianLopez"
                     first="SE"
                     second="bastián López"
                 />
-                <ContactCard
+                <FounderCard
                     to="SebastianCastroRajbe"
                     first="SE"
                     second="bastián
                     Castro Rajbe"
                 />
-                <ContactCard
+                <FounderCard
                     to="RobertoVargas"
                     first="RØ"
                     second="berto Vargas"
                 />
-                <ContactCard
+                <FounderCard
                     to="RolandoUzcategui"
                     first="RØ"
                     second="lando Uzcátegui"

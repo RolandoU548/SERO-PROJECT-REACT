@@ -7,11 +7,11 @@ import { Navbar } from "../components/Navbar";
 import { useTranslation } from "react-i18next";
 import { BackArrow } from "../components/BackArrow";
 
-export const SpecificContact = () => {
-    const [t] = useTranslation("specificContact");
-    const { contact } = useParams();
+export const SpecificFounder = () => {
+    const [t] = useTranslation("specificFounder");
+    const { founder } = useParams();
     let data;
-    switch (contact) {
+    switch (founder) {
         case "SebastianCastroRajbe":
             data = {
                 name: "Sebastián Castro Rajbe",
@@ -72,18 +72,18 @@ export const SpecificContact = () => {
                         className={
                             "cursor-pointer transition ease-out duration-300 hover:scale-105 lg:w-96 w-full bg-cover rounded-2xl h-[23rem] border-2 border-white relative" +
                             " " +
-                            (contact === "SebastianCastroRajbe"
+                            (founder === "SebastianCastroRajbe"
                                 ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianCastroRajbeCard.jpg?alt=media&token=232c13b9-a942-41cf-bdf8-7ada779fb8b8&_gl=1*13pgz92*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYzNi42MC4wLjA.')] bg-center"
-                                : contact === "SebastianLopez"
+                                : founder === "SebastianLopez"
                                 ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FSebastianLopezCard.jpg?alt=media&token=6ffaa8ad-d0c1-4dfb-a90a-2c0838830d7a&_gl=1*17dyvzc*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTY0NS41MS4wLjA.')] bg-center"
-                                : contact === "RobertoVargas"
+                                : founder === "RobertoVargas"
                                 ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRobertoVargasCard.jpg?alt=media&token=3ffe1fb7-69fd-4476-baa3-61a7673e5225&_gl=1*1y6d1f8*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTYxMy4xNi4wLjA.')] bg-left"
-                                : contact === "RolandoUzcategui"
+                                : founder === "RolandoUzcategui"
                                 ? "bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fcontact%2FRolandoUzcateguiCard.jpeg?alt=media&token=b3cdf13d-9e45-456e-8a61-3fbd34489c0f&_gl=1*huv6mq*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5OTA2MjA4NC42LjEuMTY5OTA2MjI1Ni4zOS4wLjA.')] bg-center"
                                 : "")
                         }
                         onClick={() => {
-                            navigate(`/contact/${contact}`);
+                            navigate(`/founders/${founder}`);
                         }}>
                         <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0 left-0 top-0"></div>
                     </div>
@@ -97,7 +97,7 @@ export const SpecificContact = () => {
                             <p className="mt-10">{data.p3}</p>
                         </div>
                     </div>
-                    <BackArrow className="absolute right-5" to="/contact" />
+                    <BackArrow className="absolute right-5" to="/founders" />
                 </div>
             </div>
         </>

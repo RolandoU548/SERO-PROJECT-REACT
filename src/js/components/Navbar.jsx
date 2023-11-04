@@ -58,12 +58,12 @@ export const Navbar = () => {
                     </li>
                     <li className="my-2.5">
                         <NavLink
-                            to="/contact"
+                            to="/founders"
                             onClick={() => {
                                 setIsOpen(false);
                             }}
                             className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
-                            {t("contacts")}
+                            {t("founders")}
                         </NavLink>
                     </li>
                     <li className="my-2.5">

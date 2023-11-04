@@ -15,10 +15,10 @@ import signupformEs from "./translations/es/signupform.json";
 import signupformEn from "./translations/en/signupform.json";
 import loginsignupEs from "./translations/es/loginsignup.json";
 import loginsignupEn from "./translations/en/loginsignup.json";
-import specificContactEs from "./translations/es/specificContact.json";
-import specificContactEn from "./translations/en/specificContact.json";
-import contactEs from "./translations/es/contact.json";
-import contactEn from "./translations/en/contact.json";
+import specificFounderEs from "./translations/es/specificFounder.json";
+import specificFounderEn from "./translations/en/specificFounder.json";
+import foundersEs from "./translations/es/founders.json";
+import foundersEn from "./translations/en/founders.json";
 import privateNavbarEs from "./translations/es/dashboard/privateNavbar.json";
 import privateNavbarEn from "./translations/en/dashboard/privateNavbar.json";
 import dashboardEs from "./translations/es/dashboard/dashboard.json";
@@ -52,8 +52,8 @@ i18next.init({
             loginform: loginformEs,
             signupform: signupformEs,
             loginsignup: loginsignupEs,
-            specificContact: specificContactEs,
-            contact: contactEs,
+            specificFounder: specificFounderEs,
+            founders: foundersEs,
             privateNavbar: privateNavbarEs,
             dashboard: dashboardEs,
             clients: clientsEs,
@@ -73,8 +73,8 @@ i18next.init({
             loginform: loginformEn,
             signupform: signupformEn,
             loginsignup: loginsignupEn,
-            specificContact: specificContactEn,
-            contact: contactEn,
+            specificFounder: specificFounderEn,
+            founders: foundersEn,
             privateNavbar: privateNavbarEn,
             dashboard: dashboardEn,
             clients: clientsEn,

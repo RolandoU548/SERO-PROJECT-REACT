@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-export const ContactCard = ({ to, first, second }) => {
+export const FounderCard = ({ to, first, second }) => {
     const navigate = useNavigate();
 
     return (
@@ -32,7 +32,7 @@ export const ContactCard = ({ to, first, second }) => {
     );
 };
 
-ContactCard.propTypes = {
+FounderCard.propTypes = {
     to: PropTypes.string.isRequired,
     first: PropTypes.string.isRequired,
     second: PropTypes.string.isRequired
