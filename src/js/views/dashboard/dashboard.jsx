@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
-import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { Calendar } from "../../components/dashpanel/calendar";

@@ -18,6 +18,7 @@ import {
     FiHome
 } from "react-icons/fi";
 import "../../css/glass.css";
+import { truncate } from "fs/promises";
 
 export const PrivateNavbar = () => {
     const { store, actions } = useContext(Context);
@@ -49,7 +50,8 @@ export const PrivateNavbar = () => {
         menus.push({
             name: t2("admin"),
             link: "/admin",
-            icon: BsKey
+            icon: BsKey,
+            margin: true
         });
     }
 

@@ -3,7 +3,6 @@ import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import "../../../css/app.css";
 import "../../../css/glass.css";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
