@@ -66,7 +66,7 @@ export const Contact = () => {
             <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
                 Librerías/Frameworks de Front-End
             </h2>
-            <div className="flex gap-7 glass w-[90rem] p-5 mt-12 justify-evenly m-auto items-center">
+            <div className="flex gap-7 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="p-3 flex items-center w-48 bg-white rounded-lg logo animated tada border-2 border-cyan-300">
                     <img src="tailwind-logo.png" className="rounded-lg w-40" />
                 </div>
@@ -114,7 +114,10 @@ export const Contact = () => {
                     <img src="python-logo.png" className="w-36" />
                 </div>
                 <div className="bg-white p-5 rounded-lg logo animated tada">
-                    <img src="sqlalchemy-logo.jpg" className="w-40 rounded-lg" />
+                    <img
+                        src="sqlalchemy-logo.jpg"
+                        className="w-40 rounded-lg"
+                    />
                 </div>
                 <div className="bg-white flex items-center justify-center p-4 w-48 h-24 rounded-lg logo animated tada">
                     <img src="firebase-logo.jpg" className="w-36" />

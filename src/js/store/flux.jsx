@@ -34,6 +34,45 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
+            updateUser: async info => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/user/${info.id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify(info)
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            deleteUser: async id => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/user/${id}`,
+                        {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
             generateToken: async info => {
                 try {
                     const resp = await fetch(
@@ -161,7 +200,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error(error);
                 }
             },
-
             deleteClient: async id => {
                 try {
                     const resp = await fetch(

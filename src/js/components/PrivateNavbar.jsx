@@ -112,7 +112,7 @@ export const PrivateNavbar = () => {
                     </div>
                 </section>
             </div>
-            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-full py-3 font-serif dark:text-gray-200 bg-transparent">
+            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-screen py-3 font-serif dark:text-gray-200 bg-transparent">
                 <div className="flex ml-10 items-center">
                     <div
                         className={
