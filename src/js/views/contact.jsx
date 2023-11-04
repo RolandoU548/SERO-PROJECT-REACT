@@ -10,8 +10,8 @@ export const Contact = () => {
     const [t] = useTranslation("contact");
     const navigate = useNavigate();
     return (
-        <div className="font-serif text-gray-200">
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center text-white mt-36">
+        <div className="font-serif text-white">
+            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center mt-36">
                 {t("founders")}
             </h2>
             <div className="flex justify-evenly flex-wrap mt-20">
@@ -129,7 +129,7 @@ export const Contact = () => {
                     <img src="firebase-logo.jpg" className="w-36" />
                 </div>
             </div>
-            <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-5xl font-black z-10 text-center text-white mt-16">
+            <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-[4vw]">
                 Librerías/Frameworks de Back-End
             </h2>
             <div className="flex flex-wrap gap-2 glass max-w-[30rem] w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
