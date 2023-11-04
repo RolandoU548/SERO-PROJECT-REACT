@@ -7,20 +7,17 @@
 .services .textContainer {
   flex: 1;
   display: flex;
-  align-self: flex-end;
   align-items: center;
-  gap: 20px;
 }
 .services .textContainer p {
-  font-weight: 200;
+  font-weight: bold;
   font-size: 20px;
-  color: cyan;
-  text-align: right;
+  margin: 0;
+  text-align: center;
 }
 .services .textContainer hr {
+  margin: 0;
   width: 500px;
-  border: none;
-  border-top: 0.5px solid cyan;
 }
 .services .titleContainer {
   flex: 2;
@@ -54,8 +51,6 @@
 .services .listContainer {
   flex: 2;
   display: flex;
-  max-width: 1366px;
-  margin: auto;
 }
 .services .listContainer .box {
   padding: 50px;

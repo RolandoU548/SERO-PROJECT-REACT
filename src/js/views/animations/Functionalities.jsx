@@ -111,17 +111,19 @@ export const Functionalities = () => {
         <>
             <div className="portfolio" ref={ref}>
                 <div className="progress z-10">
-                    <h2 className="m-12">{t("services")}</h2>
+                    <h2 className="m-12 text-cyan-500 dark:text-cyan-300">
+                        {t("services")}
+                    </h2>
                     <motion.div
                         style={{ scaleX }}
-                        className="progressBar"></motion.div>
+                        className="progressBar rounded bg-gray-500 dark:bg-white"></motion.div>
                 </div>
 
                 {/* Base de Datos */}
                 <div className="container m-auto">
                     <div className="wrapper">
                         <div
-                            className="my-40 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                            className="my-20 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=1f987d91-e459-4705-b95e-7edb47bfb442')`,
                                 backgroundSize: "cover",
@@ -135,7 +137,7 @@ export const Functionalities = () => {
                         <motion.div className="textContainer">
                             <div className="mb-56">
                                 <h2>{t("databaseCard")}</h2>
-                                <p>{t("database1")}</p>
+                                <p>{t("database1")}asd</p>
                                 <button className="text-black text-xl mt-10">
                                     {t("Try it")}
                                 </button>
@@ -148,7 +150,7 @@ export const Functionalities = () => {
                 <div className="container m-auto">
                     <div className="wrapper">
                         <div
-                            className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                            className="my-20 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8')`,
                                 backgroundSize: "cover",
@@ -175,7 +177,7 @@ export const Functionalities = () => {
                 <div className="container m-auto">
                     <div className="wrapper">
                         <div
-                            className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                            className="my-20 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a')`,
                                 backgroundSize: "cover",
@@ -202,7 +204,7 @@ export const Functionalities = () => {
                 <div className="container m-auto">
                     <div className="wrapper">
                         <div
-                            className="mt-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                            className="my-20 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703')`,
                                 backgroundSize: "cover",

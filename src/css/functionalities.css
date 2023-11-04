@@ -12,7 +12,6 @@
 }
 .portfolio .progress .progressBar {
   height: 10px;
-  background-color: white;
 }
 .portfolio .container {
   display: flex;
@@ -48,7 +47,6 @@
   font-size: 72px;
 }
 .portfolio .container .wrapper .textContainer p {
-  color: gray;
   font-size: 20px;
 }
 .portfolio .container .wrapper .textContainer button {

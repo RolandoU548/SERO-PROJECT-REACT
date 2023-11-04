@@ -33,19 +33,19 @@ export const Services = () => {
                 initial="initial"
                 whileInView="animate">
                 <motion.div className="textContainer" variants={variants}>
-                    <p>
-                        Solucionamos todos
-                        <br /> sus problemas
+                    <hr className="border border-cyan-300 dark:border-cyan-500" />
+                    <p className="text-cyan-500 dark:text-cyan-300">
+                        Solucionamos todos sus problemas
                     </p>
-                    <hr />
+                    <hr className="border border-cyan-300 dark:border-cyan-500" />
                 </motion.div>
                 <motion.div className="titleContainer" variants={variants}>
                     <div className="title">
                         <h2>
-                            <motion.b
-                                className="transition duration-500"
-                                whileHover={{ color: "cyan" }}>
-                                <b>Sencillez</b>
+                            <motion.b className="transition duration-500">
+                                <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
+                                    Sencillez
+                                </b>
                             </motion.b>{" "}
                             al
                         </h2>
@@ -53,10 +53,10 @@ export const Services = () => {
                     <div className="title">
                         <h2>
                             Tacto de su{" "}
-                            <motion.b
-                                className="transition duration-500"
-                                whileHover={{ color: "cyan" }}>
-                                <b>Mano</b>
+                            <motion.b className="transition duration-500">
+                                <b className="text-black dark:text-white hover:text-cyan-500 dark:hover:text-cyan-300">
+                                    Mano
+                                </b>
                             </motion.b>
                             .
                         </h2>
@@ -68,7 +68,7 @@ export const Services = () => {
                 <motion.div
                     className="listContainer flex flex-col"
                     variants={variants}>
-                    <motion.div className="box w-[80rem] glass">
+                    <motion.div className="box w-[98%] md:w-11/12 m-auto glass">
                         <h2 className="text-5xl">{t("aboutUs")}</h2>
                         <p className="my-10">{t("whoWeAre")}</p>
                         <p className="">{t("description")}</p>

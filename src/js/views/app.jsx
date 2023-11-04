@@ -21,11 +21,13 @@ export const App = () => {
             <h2 className="dark:mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-xl tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-[200] text-center text-black dark:text-white">
                 {t("subtitle")}
             </h2>
-            <Link
-                className="w-[250px] hover:bg-[#00f2ff80] transition duration-300 m-auto block mt-16 p-4 text-3xl text-center border dark:border-white border-black rounded-full"
-                to="/signup">
-                {t("getStarted")}
-            </Link>
+            <div className="flex justify-center mt-10">
+                <Link
+                    className="hover:bg-[#00f2ff80] transition duration-300 py-[1vw] px-[2vw] resp:py-[2vw] resp:px-[4vw] text-md minimum:text-lg tiny:text-xl sm:text-2xl md:text-3xl text-center border dark:border-white border-black rounded-full"
+                    to="/signup">
+                    {t("getStarted")}
+                </Link>
+            </div>
             <Services />
             <Functionalities />
             <Contact />

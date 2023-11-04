@@ -140,7 +140,7 @@ export const Founder = () => {
                     <img src="bcrypt-logo.png" className="w-24 rounded-lg" />
                 </div>
             </div>
-            <div>
+            <div className="mt-5">
                 <button
                     className="block dark:text-gray-200 text-black"
                     onClick={() => {

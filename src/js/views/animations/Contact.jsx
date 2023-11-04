@@ -22,7 +22,7 @@ export const Contact = () => {
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
-        <div className="mb-28">
+        <div className="mb-20">
             <motion.div
                 ref={ref}
                 className="contact w-[90%]"
@@ -66,7 +66,7 @@ export const Contact = () => {
                         </svg>
                     </motion.div>
                     <motion.form
-                        className="mt-40"
+                        className="mt-20"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}>

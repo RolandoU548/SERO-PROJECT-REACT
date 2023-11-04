@@ -1,7 +1,7 @@
-.portfolio{
+.portfolio {
     position: relative;
 
-    .progress{
+    .progress {
         position: sticky;
         top: 0;
         left: 0;
@@ -9,14 +9,13 @@
         text-align: center;
         color: cyan;
         font-size: 36px;
-        
-        .progressBar{
+
+        .progressBar {
             height: 10px;
-            background-color: white;
         }
     }
 
-    .container{
+    .container {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -24,7 +23,7 @@
         height: 100%;
         overflow: hidden;
 
-        .wrapper{
+        .wrapper {
             // max-width: 1366px;
             height: 100%;
             margin: auto;
@@ -33,33 +32,32 @@
             justify-content: center;
             gap: 50px;
 
-            .imageContainer{
+            .imageContainer {
                 flex: 1;
                 height: 50%;
 
-                img{
+                img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                 }
             }
-            
-            .textContainer{
+
+            .textContainer {
                 flex: 1;
                 display: flex;
                 // flex-direction: column;
                 gap: 30px;
 
-                h2{
+                h2 {
                     font-size: 72px;
                 }
 
-                p{
-                    color: gray;
+                p {
                     font-size: 20px;
                 }
 
-                button{
+                button {
                     background-color: cyan;
                     border: none;
                     border-radius: 10px;

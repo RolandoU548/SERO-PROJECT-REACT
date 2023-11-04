@@ -1,56 +1,49 @@
-.services{
+.services {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .textContainer{
+    .textContainer {
         flex: 1;
         display: flex;
-        align-self: flex-end;
         align-items: center;
-        gap: 20px;
-
-        p{
-            font-weight: 200;
+        p {
+            font-weight: bold;
             font-size: 20px;
-            color: cyan;
-            text-align: right;
+            margin: 0;
+            text-align: center;
         }
 
-    hr{
-        width: 500px;
-        border: none;
-        border-top: 0.5px solid cyan;
+        hr {
+            margin: 0;
+            width: 500px;
+        }
     }
-
-    }
-    .titleContainer{
+    .titleContainer {
         flex: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
 
-
-
-        .title{
+        .title {
             display: flex;
             align-items: center;
             gap: 50px;
 
-            img{
+            img {
                 width: 300px;
                 height: 100px;
                 border-radius: 50px;
                 object-fit: cover;
             }
 
-            h2{
+            h2 {
                 font-size: 80px;
                 font-weight: 100;
             }
 
-            button{
+            button {
                 width: 240px;
                 height: 80px;
                 border-radius: 50px;
@@ -61,31 +54,27 @@
             }
         }
     }
-    .listContainer{
+    .listContainer {
         flex: 2;
         display: flex;
-        max-width: 1366px;
-        margin: auto;
-
-        .box{
+        .box {
             padding: 50px;
             border: 0.5px solid gray;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
 
-            ul{
+            ul {
                 display: flex;
-                
 
-                li{
+                li {
                     list-style: none;
                     text-align: center;
                     align-self: center;
                 }
             }
 
-            button{
+            button {
                 padding: 10px;
                 background-color: cyan;
                 border: none;
