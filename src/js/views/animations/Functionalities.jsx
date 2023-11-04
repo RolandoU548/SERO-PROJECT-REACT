@@ -111,8 +111,7 @@ export const Functionalities = () => {
         <>
             <div className="portfolio" ref={ref}>
                 <div className="progress z-10">
-                    <div className="h-12"></div>
-                    <h2>{t("services")}</h2>
+                    <h2 className="m-12">{t("services")}</h2>
                     <motion.div
                         style={{ scaleX }}
                         className="progressBar"></motion.div>
@@ -203,7 +202,7 @@ export const Functionalities = () => {
                 <div className="container m-auto">
                     <div className="wrapper">
                         <div
-                            className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
+                            className="mt-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                             style={{
                                 backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703')`,
                                 backgroundSize: "cover",

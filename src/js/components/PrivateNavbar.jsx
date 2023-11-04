@@ -4,19 +4,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton.jsx";
 import { Darkmode } from "./Darkmode.jsx";
-import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { BsKey } from 'react-icons/bs';
-import {
-    FiDatabase,
-    FiFolder,
-    FiShoppingCart,
-    FiDollarSign,
-    FiHome
-} from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
+import { BsKey } from "react-icons/bs";
+import { FiDatabase, FiFolder, FiDollarSign, FiHome } from "react-icons/fi";
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
@@ -169,7 +162,7 @@ export const PrivateNavbar = () => {
                         <li>
                             <Link to="/profile" className="text-xl text-light">
                                 {store.user.role.includes("admin") && (
-                                    <span className="text-sm text-cyan-300 font-bold mr-1">
+                                    <span className="text-sm text-cyan-400 font-bold mr-1">
                                         admin
                                     </span>
                                 )}

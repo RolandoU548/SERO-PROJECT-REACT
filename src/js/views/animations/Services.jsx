@@ -27,9 +27,8 @@ export const Services = () => {
 
     return (
         <>
-            <div className="h-64"></div>
             <motion.div
-                className="services"
+                className="services mt-36"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
@@ -66,7 +65,9 @@ export const Services = () => {
                         </button> */}
                     </div>
                 </motion.div>
-                <motion.div className="listContainer flex flex-col" variants={variants}>
+                <motion.div
+                    className="listContainer flex flex-col"
+                    variants={variants}>
                     <motion.div className="box w-[80rem] glass">
                         <h2 className="text-5xl">{t("aboutUs")}</h2>
                         <p className="my-10">{t("whoWeAre")}</p>

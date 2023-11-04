@@ -1,10 +1,7 @@
-/* eslint-disable no-unreachable-loop */
-/* eslint-disable no-undef */
 import { React, useState, useEffect, useRef, useContext } from "react";
 import { Context } from "../../store/appContext.jsx";
 import "../../../css/app.css";
 import "../../../css/glass.css";
-// import "../../../css/handsontable.css";
 import { useTranslation } from "react-i18next";
 import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
@@ -64,51 +61,48 @@ export const Database = () => {
                 <source src="DatabaseBG.mp4" type="video/mp4" />
             </video>
             <div className="font-serif text-gray-200 mt-28">
-                <div className="flex m-auto justify-between md:px-32">
-                    <h1 className="w-10/12 text-black dark:text-white text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
-                        {t("database")}
-                    </h1>
-                    <div className="flex justify-end">
+                <h1 className="w-10/12 text-black dark:text-white text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
+                    {t("database")}
+                </h1>
+                <div className="flex justify-end mr-12">
+                    <div
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
+                        onClick={downloadFile}>
+                        <p>{t("downloadFile")}</p>
+                    </div>
+                    <div
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
+                        onClick={sendRow}>
+                        <p>{t("saveTable")}</p>
+                    </div>
+                </div>
+                <div className="flex justify-end ">
+                    <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2">
                         <div
-                            className="flex justify-center w-40 text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                            onClick={downloadFile}>
-                            <p>{t("downloadFile")}</p>
-                        </div>
-                        <div
-                            className="flex justify-center w-40 text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                            onClick={sendRow}>
-                            <p>{t("saveTable")}</p>
+                            className="h-full p-0 m-0"
+                            style={{ overflowX: "auto" }}>
+                            {rows.length > 0 && (
+                                <HotTable
+                                    ref={hotTableComponent}
+                                    data={rows}
+                                    language={
+                                        i18n.language === "es"
+                                            ? esMX.languageCode
+                                            : enUS.languageCode
+                                    }
+                                    licenseKey="non-commercial-and-evaluation"
+                                    colHeaders={true}
+                                    rowHeaders={true}
+                                    mergeCells={true}
+                                    columnSorting={true}
+                                    contextMenu={true}
+                                    dropdownMenu={true}
+                                    filters={true}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
-                {/* <div className="flex justify-end "> */}
-                {/* <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2"> */}
-                {/* <div
-                            className="h-full p-0 m-0"
-                            style={{ overflowX: "auto" }}> */}
-                {rows.length > 0 && (
-                    <HotTable
-                        className="my-5 ml-32"
-                        ref={hotTableComponent}
-                        data={rows}
-                        language={
-                            i18n.language === "es"
-                                ? esMX.languageCode
-                                : enUS.languageCode
-                        }
-                        licenseKey="non-commercial-and-evaluation"
-                        colHeaders={true}
-                        rowHeaders={true}
-                        mergeCells={true}
-                        columnSorting={true}
-                        contextMenu={true}
-                        dropdownMenu={true}
-                        filters={true}
-                    />
-                )}
-                {/* </div> */}
-                {/* </div> */}
-                {/* </div> */}
             </div>
         </>
     );

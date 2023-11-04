@@ -22,7 +22,7 @@ export const Contact = () => {
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
-        <div className="mb-28 mt-24">
+        <div className="mb-28">
             <motion.div
                 ref={ref}
                 className="contact w-[90%]"
@@ -70,7 +70,11 @@ export const Contact = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}>
-                        <input type="text" required placeholder="Nombre y Apellido" />
+                        <input
+                            type="text"
+                            required
+                            placeholder="Nombre y Apellido"
+                        />
                         <input type="email" required placeholder="Email" />
                         <textarea rows={8} placeholder="Mensaje" />
                         <button className="text-black">Enviar</button>

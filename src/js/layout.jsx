@@ -56,22 +56,12 @@ const Layout = () => {
                     <Route
                         path="/login"
                         transition="fade"
-                        element={
-                            <>
-                                <Cursor />
-                                <LoginSignupCard flip={true} />
-                            </>
-                        }
+                        element={<LoginSignupCard flip={true} />}
                     />
                     <Route
                         path="/signup"
                         transition="fade"
-                        element={
-                            <>
-                                <Cursor />
-                                <LoginSignupCard flip={false} />
-                            </>
-                        }
+                        element={<LoginSignupCard flip={false} />}
                     />
                     <Route
                         path="/founders"
