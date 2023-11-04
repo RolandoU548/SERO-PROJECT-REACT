@@ -24,73 +24,6 @@ const variants = {
     }
 };
 
-// const items = [
-
-//     {
-//         id: 1,
-//         title: "Base de Datos",
-//         img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=1f987d91-e459-4705-b95e-7edb47bfb442",
-//         desc: "epale"
-//     },
-//     {
-//         id: 2,
-//         title: "Formularios",
-//         img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8&_gl=1*1eaq0ks*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDUzNy41NS4wLjA",
-//         desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non fugit, impedit recusandae tempora consectetur ducimus perferendis maxime provident obcaecati quisquam, maiores voluptates dolor sequi eos ullam repudiandae officiis vero dignissimos."
-//     },
-//     {
-//         id: 3,
-//         title: "Clientes",
-//         img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a&_gl=1*1odl6qd*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDkwNC41My4wLjA",
-//         desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non fugit, impedit recusandae tempora consectetur ducimus perferendis maxime provident obcaecati quisquam, maiores voluptates dolor sequi eos ullam repudiandae officiis vero dignissimos."
-//     },
-//     {
-//         id: 4,
-//         title: "Panel de Control",
-//         img: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703&_gl=1*15ykx8a*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTg1NS4zMy4wLjA",
-//         desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non fugit, impedit recusandae tempora consectetur ducimus perferendis maxime provident obcaecati quisquam, maiores voluptates dolor sequi eos ullam repudiandae officiis vero dignissimos."
-//     }
-// ];
-
-// const Single = ({ item }) => {
-//     const ref = useRef();
-
-//     const { scrollYProgress } = useScroll({
-//         target: ref
-//         // offset: ["start start", "end start"]
-//     });
-
-//     const y = useTransform(scrollYProgress, [0, 1], [-400, 400]);
-
-//     return (
-//         <>
-//             <div className="container">
-//                 <div className="wrapper">
-//                     <div
-//                         className="my-40 ml-24 cursor-pointer ease-out duration-300 hover:scale-105 w-96 rounded-2xl h-[28rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
-//                         style={{
-//                             backgroundImage: "https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=1f987d91-e459-4705-b95e-7edb47bfb442",
-//                             backgroundSize: 'cover',
-//                             backgroundPosition: 'center'
-//                         }}
-//                         onClick={() => {
-//                             navigate("/signup");
-//                         }}>
-//                         <div className="bg-black absolute w-full h-[28rem] rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
-//                     </div>
-//                     <motion.div className="textContainer">
-//                         <div>
-//                             <h2>{t("databaseCard")}</h2>
-//                             <p>{t("database1")}</p>
-//                             <button>Detalles</button>
-//                         </div>
-//                     </motion.div>
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-
 export const Functionalities = () => {
     const ref = useRef();
     const [t] = useTranslation("app");
@@ -118,9 +51,9 @@ export const Functionalities = () => {
                         className="h-2.5 rounded bg-gray-500 dark:bg-white"></motion.div>
                 </div>
                 {/* Base de Datos */}
-                <div className="flex my-20 w-10/12 resp:w-[98%] m-auto">
+                <div className="flex resp:flex-col-reverse my-20 w-10/12 resp:w-[98%] m-auto">
                     <div
-                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group resp:hidden"
+                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group m-auto resp:mt-10 resp:w-[26rem] resp:max-w-[75%]"
                         style={{
                             backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=1f987d91-e459-4705-b95e-7edb47bfb442')`,
                             backgroundSize: "cover",
@@ -131,22 +64,24 @@ export const Functionalities = () => {
                         }}>
                         <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     </div>
-                    <motion.div className="w-[60%]">
+                    <motion.div className="md:w-[60%] resp:text-center">
                         <div className="px-10">
-                            <h2 className="text-2xl minimum:text-[1.5rem] tiny:text-5xl sm:text-6xl md:text-7xl">
+                            <h2 className="text-2xl/10 minimum:text-[2.5rem]/10 tiny:text-5xl/10 sm:text-6xl/10 md:text-7xl">
                                 {t("databaseCard")}
                             </h2>
                             <p className="text-lg mt-3">{t("database1")}</p>
-                            <button className="text-black text-2xl mt-10 bg-cyan-400 hover:bg-cyan-500 transition duration-300 py-2 px-16 rounded-2xl">
+                            <Link
+                                className="text-black text-2xl mt-10 bg-cyan-400 hover:bg-cyan-500 transition duration-300 py-2 px-16 rounded-2xl inline-block"
+                                to="/login">
                                 {t("tryIt")}
-                            </button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>
                 {/* Formularios */}
-                <div className="flex justify-between my-20 w-10/12 resp:w-[98%] m-auto">
+                <div className="flex resp:flex-col-reverse justify-between my-20 w-10/12 resp:w-[98%] m-auto">
                     <div
-                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group resp:hidden"
+                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group m-auto resp:mt-10 resp:w-[26rem] resp:max-w-[75%]"
                         style={{
                             backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8')`,
                             backgroundSize: "cover",
@@ -157,9 +92,9 @@ export const Functionalities = () => {
                         }}>
                         <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     </div>
-                    <motion.div className="w-[60%]">
+                    <motion.div className="md:w-[60%] resp:text-center">
                         <div className="px-10">
-                            <h2 className="text-2xl minimum:text-[1.5rem] tiny:text-5xl sm:text-6xl md:text-7xl">
+                            <h2 className="text-2xl minimum:text-[2.5rem] tiny:text-5xl sm:text-6xl md:text-7xl">
                                 {t("formCard")}
                             </h2>
                             <p className="text-lg mt-3">{t("form1")}</p>
@@ -170,9 +105,9 @@ export const Functionalities = () => {
                     </motion.div>
                 </div>
                 {/* Clientes */}
-                <div className="flex justify-between my-20 w-10/12 resp:w-[98%] m-auto">
+                <div className="flex resp:flex-col-reverse justify-between my-20 w-10/12 resp:w-[98%] m-auto">
                     <div
-                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group resp:hidden"
+                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group m-auto resp:mt-10 resp:w-[26rem] resp:max-w-[75%]"
                         style={{
                             backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a')`,
                             backgroundSize: "cover",
@@ -183,9 +118,9 @@ export const Functionalities = () => {
                         }}>
                         <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     </div>
-                    <motion.div className="w-[60%]">
+                    <motion.div className="md:w-[60%] resp:text-center">
                         <div className="px-10">
-                            <h2 className="text-2xl minimum:text-[1.5rem] tiny:text-5xl sm:text-6xl md:text-7xl">
+                            <h2 className="text-2xl minimum:text-[2.5rem] tiny:text-5xl sm:text-6xl md:text-7xl">
                                 {t("clientsCard")}
                             </h2>
                             <p className="text-lg mt-3">{t("clients1")}</p>
@@ -197,9 +132,9 @@ export const Functionalities = () => {
                 </div>
 
                 {/* Panel de Control */}
-                <div className="flex justify-between mt-20 w-10/12 resp:w-[98%] m-auto">
+                <div className="flex resp:flex-col-reverse my-20 w-10/12 resp:w-[98%] m-auto">
                     <div
-                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group resp:hidden"
+                        className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group m-auto resp:mt-10 resp:w-[26rem] resp:max-w-[75%]"
                         style={{
                             backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703')`,
                             backgroundSize: "cover",
@@ -210,15 +145,17 @@ export const Functionalities = () => {
                         }}>
                         <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
                     </div>
-                    <motion.div className="w-[60%]">
+                    <motion.div className="md:w-[60%] resp:text-center">
                         <div className="px-10">
-                            <h2 className="text-2xl minimum:text-[1.5rem] tiny:text-5xl sm:text-6xl md:text-7xl">
+                            <h2 className="text-2xl/10 minimum:text-[2.5rem]/10 tiny:text-5xl/10 sm:text-6xl/10 md:text-7xl">
                                 {t("dashboardCard")}
                             </h2>
                             <p className="text-lg mt-3">{t("dashboard1")}</p>
-                            <button className="text-black text-2xl mt-10 bg-cyan-400 hover:bg-cyan-500 transition duration-300 py-2 px-16 rounded-2xl">
+                            <Link
+                                className="text-black text-2xl mt-10 bg-cyan-400 hover:bg-cyan-500 transition duration-300 py-2 px-16 rounded-2xl inline-block"
+                                to="/login">
                                 {t("tryIt")}
-                            </button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>

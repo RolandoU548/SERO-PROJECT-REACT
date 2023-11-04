@@ -4,7 +4,6 @@ import { FounderCard } from "../components/founders/FounderCard.jsx";
 import { useNavigate } from "react-router-dom";
 import "../../css/glass.css";
 import "../../css/tadaAnimation.css";
-import { Background } from "victory";
 
 export const Founder = () => {
     const [t] = useTranslation("founders");

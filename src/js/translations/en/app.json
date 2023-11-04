@@ -44,5 +44,12 @@
     "to": "at the",
     "touch": "Touch",
     "ofYour": "of your",
-    "hand": "Hand"
+    "hand": "Hand",
+    "contactUs": "Contact Us",
+    "email": "Email",
+    "address": "Address",
+    "phoneNumber": "Phone Number",
+    "nameAndLastname": "Name and Lastname",
+    "message": "Message",
+    "send": "Send"
 }

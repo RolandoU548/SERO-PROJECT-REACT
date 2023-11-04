@@ -44,5 +44,12 @@
     "to": "al",
     "touch": "Tacto",
     "ofYour": "de su",
-    "hand": "Mano"
+    "hand": "Mano",
+    "contactUs": "Contáctanos",
+    "email": "Correo Electrónico",
+    "address": "Dirección",
+    "phoneNumber": "Número de Teléfono",
+    "nameAndLastname": "Nombre y Apellido",
+    "message": "Mensaje",
+    "send": "Enviar"
 }

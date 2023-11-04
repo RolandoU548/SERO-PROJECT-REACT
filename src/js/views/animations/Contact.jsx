@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "../../../css/contact.css";
 import { motion, useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const variants = {
     initial: {
@@ -19,6 +20,7 @@ const variants = {
 
 export const Contact = () => {
     const ref = useRef();
+    const [t] = useTranslation("app");
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
@@ -30,17 +32,17 @@ export const Contact = () => {
                 initial="initial"
                 whileInView="animate">
                 <motion.div className="textContainer" variants={variants}>
-                    <motion.h1 variants={variants}>Contáctanos</motion.h1>
+                    <motion.h1 variants={variants}>{t("contactUs")}</motion.h1>
                     <motion.div className="item" variants={variants}>
-                        <h2>Email</h2>
+                        <h2>{t("email")}</h2>
                         <span>sero@gmail.com</span>
                     </motion.div>
                     <motion.div className="item" variants={variants}>
-                        <h2>Direccion</h2>
+                        <h2>{t("address")}</h2>
                         <span>Venezuela, Panama, USA</span>
                     </motion.div>
                     <motion.div className="item" variants={variants}>
-                        <h2>Numero de telefono</h2>
+                        <h2>{t("phoneNumber")}</h2>
                         <span>+58 4124020391</span>
                     </motion.div>
                 </motion.div>
@@ -73,11 +75,11 @@ export const Contact = () => {
                         <input
                             type="text"
                             required
-                            placeholder="Nombre y Apellido"
+                            placeholder={t("nameAndLastname")}
                         />
-                        <input type="email" required placeholder="Email" />
-                        <textarea rows={8} placeholder="Mensaje" />
-                        <button className="text-black">Enviar</button>
+                        <input type="email" required placeholder={t("email")} />
+                        <textarea rows={8} placeholder={t("message")} />
+                        <button className="text-black">{t("send")}</button>
                     </motion.form>
                 </motion.div>
             </motion.div>
