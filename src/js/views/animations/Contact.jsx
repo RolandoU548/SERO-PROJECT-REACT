@@ -29,7 +29,7 @@ export const Contact = () => {
         <div className="dark:text-white">
             <motion.div
                 ref={ref}
-                className="h-full w-[90%] m-auto flex resp:flex-col lg:gap-16 md:gap-0 items-center justify-center mb-10"
+                className="h-full w-[90%] m-auto flex resp:flex-col lg:gap-16 md:gap-0 resp:gap-20 items-center justify-center mb-10"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
@@ -75,7 +75,10 @@ export const Contact = () => {
                         className="flex flex-col md:w-full tiny:w-[80%] w-full m-auto gap-5"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ delay: 4, duration: 1 }}>
+                        transition={{ delay: 4, duration: 1 }}
+                        onSubmit={e => {
+                            e.preventDefault();
+                        }}>
                         <input
                             className={
                                 "p-5 bg-transparent border border-black dark:border-white rounded input-" +
@@ -100,6 +103,7 @@ export const Contact = () => {
                                 (store.theme === "dark" ? "dark" : "light")
                             }
                             rows={6}
+                            required
                             placeholder={t("message")}
                         />
                         <button className="text-black bg-cyan-400 hover:bg-cyan-500 rounded-lg p-2">
