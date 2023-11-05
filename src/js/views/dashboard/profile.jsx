@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Context } from "../../store/appContext";
 
 export const Profile = () => {
     const [t] = useTranslation("profile");
-    const navigate = useNavigate();
-    const { store, actions } = useContext(Context);
+    const { store } = useContext(Context);
 
     return (
         <>
@@ -85,7 +83,9 @@ export const Profile = () => {
                                         <div className="px-4 py-2 font-semibold">
                                             Last Name
                                         </div>
-                                        <div className="px-4 py-2">{store.user.lastname}</div>
+                                        <div className="px-4 py-2">
+                                            {store.user.lastname}
+                                        </div>
                                     </div>
                                     <div className="flex flex-row">
                                         <div className="px-4 py-2 font-semibold">

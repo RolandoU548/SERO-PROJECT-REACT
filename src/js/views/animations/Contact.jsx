@@ -1,7 +1,9 @@
 import React, { useRef, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext.jsx";
 import "../../../css/contact.css";
 import { motion, useInView } from "framer-motion";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 const variants = {
@@ -25,6 +27,23 @@ export const Contact = () => {
     const [t] = useTranslation("app");
 
     const isInView = useInView(ref, { margin: "-100px" });
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm();
+
+    const submit = async data => {
+        const sendForm = document.getElementById("sendForm");
+        sendForm.setAttribute(
+            "href",
+            `mailTo:rolandou548@gmail.com?subject=SERØ&body=Nombre: ${data.nameAndLastname}. Email: ${data.email}. Mensaje: ${data.message}.`
+        );
+        sendForm.click();
+        reset();
+    };
+
     return (
         <div className="dark:text-white">
             <motion.div
@@ -76,42 +95,97 @@ export const Contact = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}
-                        onSubmit={e => {
-                            e.preventDefault();
-                        }}>
+                        onSubmit={handleSubmit(submit)}>
                         <input
                             className={
                                 "p-5 bg-transparent border border-black dark:border-white rounded input-" +
                                 (store.theme === "dark" ? "dark" : "light")
                             }
                             type="text"
-                            required
                             placeholder={t("nameAndLastname")}
+                            {...register("nameAndLastname", {
+                                required: {
+                                    value: true,
+                                    message: t("nameAndLastnameRequired")
+                                },
+                                pattern: {
+                                    value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,
+                                    message: t("invalidNameAndLastname")
+                                }
+                            })}
                         />
+                        {errors.nameAndLastname && (
+                            <span className="text-sm text-red-500">
+                                {errors.nameAndLastname.message}
+                            </span>
+                        )}
                         <input
                             className={
                                 "p-5 bg-transparent border border-black dark:border-white rounded input-" +
                                 (store.theme === "dark" ? "dark" : "light")
                             }
                             type="email"
-                            required
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: t("emailRequired")
+                                },
+                                minLength: {
+                                    value: 5,
+                                    message: t("emailMinLength")
+                                },
+                                maxLength: {
+                                    value: 60,
+                                    message: t("emailMaxLength")
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
+                                    message: t("invalidEmail")
+                                }
+                            })}
                             placeholder={t("email")}
                         />
+                        {errors.email && (
+                            <span className="text-sm text-red-500">
+                                {errors.email.message}
+                            </span>
+                        )}
                         <textarea
                             className={
                                 "p-5 bg-transparent border border-black dark:border-white rounded input-" +
                                 (store.theme === "dark" ? "dark" : "light")
                             }
                             rows={6}
-                            required
+                            {...register("message", {
+                                required: {
+                                    value: true,
+                                    message: t("messageRequired")
+                                },
+                                minLength: {
+                                    value: 5,
+                                    message: t("messageMinLength")
+                                },
+                                maxLength: {
+                                    value: 400,
+                                    message: t("messageMaxLength")
+                                }
+                            })}
                             placeholder={t("message")}
                         />
+                        {errors.message && (
+                            <span className="text-sm text-red-500">
+                                {errors.message.message}
+                            </span>
+                        )}
                         <button className="text-black bg-cyan-400 hover:bg-cyan-500 rounded-lg p-2">
                             {t("send")}
                         </button>
                     </motion.form>
                 </motion.div>
             </motion.div>
+            <Link
+                to="mailTo:rolandou548@gmail.com?subject=todoBien&body=Fino"
+                id="sendForm"></Link>
         </div>
     );
 };

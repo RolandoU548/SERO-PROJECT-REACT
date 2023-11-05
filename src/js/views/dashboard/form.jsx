@@ -1,11 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import { useTranslation } from "react-i18next";
 
 export const Form = () => {
     const [t] = useTranslation("form");
-    const navigate = useNavigate();
     return (
         <>
             <video

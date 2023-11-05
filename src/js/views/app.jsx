@@ -13,6 +13,7 @@ export const App = () => {
     if (localStorage.getItem("token")) {
         navigate("/private");
     }
+
     return (
         <div className="font-serif dark:text-gray-200 text-black">
             <h2 className="dark:mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center mt-48 text-black dark:text-white">

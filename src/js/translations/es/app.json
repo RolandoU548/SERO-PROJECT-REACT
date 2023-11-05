@@ -51,5 +51,14 @@
     "phoneNumber": "Número de Teléfono",
     "nameAndLastname": "Nombre y Apellido",
     "message": "Mensaje",
-    "send": "Enviar"
+    "send": "Enviar",
+    "nameAndLastnameRequired": "Nombre y Apellido requeridos",
+    "invalidNameAndLastname": "Nombre y Apellido inválidos",
+    "emailRequired": "Correo requerido",
+    "emailMinLength": "Correo debe tener al menos 5 caracteres",
+    "emailMaxLength": "Correo debe tener máximo 60 caracteres",
+    "invalidEmail": "Correo no válido",
+    "messageRequired": "Mensaje requerido",
+    "messageMinLength": "El mensaje debe tener al menos 5 caracteres",
+    "messageMaxLength": "El mensaje debe tener máximo 400 caracteres"
 }
