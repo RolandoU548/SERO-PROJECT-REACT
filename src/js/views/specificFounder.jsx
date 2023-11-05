@@ -3,7 +3,6 @@ import { NotFound } from "./notfound";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
-import { Navbar } from "../components/Navbar";
 import { useTranslation } from "react-i18next";
 import { BackArrow } from "../components/BackArrow";
 
