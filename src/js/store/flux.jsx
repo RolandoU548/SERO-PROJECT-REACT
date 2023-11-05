@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             token: localStorage.getItem("token") || null,
+            theme: null,
             user: {
                 id: null,
                 name: "Carlito",
@@ -12,6 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             clients: []
         },
         actions: {
+            changeTheme: theme => {
+                setStore({ theme });
+            },
             createUser: async info => {
                 try {
                     const resp = await fetch(

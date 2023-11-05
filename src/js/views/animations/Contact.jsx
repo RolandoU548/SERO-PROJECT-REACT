@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+import { Context } from "../../store/appContext.jsx";
 import "../../../css/contact.css";
 import { motion, useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -19,6 +20,7 @@ const variants = {
 };
 
 export const Contact = () => {
+    const { store } = useContext(Context);
     const ref = useRef();
     const [t] = useTranslation("app");
 
@@ -27,40 +29,38 @@ export const Contact = () => {
         <div className="dark:text-white">
             <motion.div
                 ref={ref}
-                className="h-full w-[90%] m-auto flex items-center border border-white"
+                className="h-full w-[90%] m-auto flex resp:flex-col gap-20 items-center justify-center mb-10"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
                 <motion.div
                     variants={variants}
-                    className="border border-red-600 mb-auto">
-                    <motion.h1 className="text-7xl" variants={variants}>
+                    className="flex flex-col gap-8 mb-auto md:w-[40%] w-full] md:px-10">
+                    <motion.h1
+                        className="text-4xl minimum:text-[2.5rem] tiny:text-5xl sm:text-6xl md:text-7xl text-center"
+                        variants={variants}>
                         {t("contactUs")}
                     </motion.h1>
                     <motion.div className="item" variants={variants}>
-                        <h2>{t("email")}</h2>
+                        <h2 className="font-bold">{t("email")}</h2>
                         <span>sero@gmail.com</span>
                     </motion.div>
                     <motion.div className="item" variants={variants}>
-                        <h2>{t("address")}</h2>
+                        <h2 className="font-bold">{t("address")}</h2>
                         <span>Venezuela, Panama, USA</span>
                     </motion.div>
                     <motion.div className="item" variants={variants}>
-                        <h2>{t("phoneNumber")}</h2>
+                        <h2 className="font-bold">{t("phoneNumber")}</h2>
                         <span>+58 4124020391</span>
                     </motion.div>
                 </motion.div>
-                <motion.div className="flex relative">
+                <motion.div className="flex relative md:w-[40%] w-full">
                     <motion.div
-                        className="absolute m-auto stroke-cyan-300 -z-50"
+                        className="absolute top-0 left-0 stroke-cyan-500 dark:stroke-cyan-300 -z-50 w-full h-full"
                         initial={{ opacity: 1 }}
                         whileInView={{ opacity: 0 }}
                         transition={{ delay: 3, duration: 1 }}>
-                        <svg
-                            className="mt-32"
-                            width="500px"
-                            height="500px"
-                            viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" className="w-full h-full">
                             <motion.path
                                 strokeWidth={0.2}
                                 fill="none"
@@ -72,34 +72,39 @@ export const Contact = () => {
                         </svg>
                     </motion.div>
                     <motion.form
-                        className="flex flex-col"
+                        className="flex flex-col md:w-full tiny:w-[80%] w-full m-auto gap-5"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}>
                         <input
                             className={
-                                document
-                                    .querySelector("html")
-                                    .classList.contains("dark")
-                                    ? "dark"
-                                    : "light"
+                                "p-5 bg-transparent border border-black dark:border-white rounded input-" +
+                                (store.theme === "dark" ? "dark" : "light")
                             }
                             type="text"
                             required
-                            placeholder={t("nameAndLastname") + "asdasd"}
+                            placeholder={t("nameAndLastname")}
                         />
                         <input
-                            className="p-5 bg-transparent border border-white rounded"
+                            className={
+                                "p-5 bg-transparent border border-black dark:border-white rounded input-" +
+                                (store.theme === "dark" ? "dark" : "light")
+                            }
                             type="email"
                             required
                             placeholder={t("email")}
                         />
                         <textarea
-                            className="p-5 bg-transparent border border-white rounded"
-                            rows={8}
+                            className={
+                                "p-5 bg-transparent border border-black dark:border-white rounded input-" +
+                                (store.theme === "dark" ? "dark" : "light")
+                            }
+                            rows={6}
                             placeholder={t("message")}
                         />
-                        <button className="text-black">{t("send")}</button>
+                        <button className="text-black bg-cyan-400 hover:bg-cyan-500 rounded-lg p-2">
+                            {t("send")}
+                        </button>
                     </motion.form>
                 </motion.div>
             </motion.div>
