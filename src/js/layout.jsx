@@ -80,6 +80,7 @@ const Layout = () => {
                     transition="fade"
                     element={
                         <>
+                            <Navbar />
                             <Cursor />
                             <BackgroundVideo />
                             <SpecificFounder />

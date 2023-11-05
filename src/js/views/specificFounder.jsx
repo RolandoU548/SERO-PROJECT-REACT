@@ -62,12 +62,11 @@ export const SpecificFounder = () => {
     const navigate = useNavigate();
     return (
         <>
-            <Navbar />
-            <div className="font-serif text-black dark:text-gray-200">
-                <h2 className="mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white mt-36">
+            <div className="font-serif dark:text-white">
+                <h2 className="mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-10 text-center text-white mt-32">
                     {data.name}
                 </h2>
-                <div className="glass rounded-2xl w-9/12 h-[25rem] ml-40 mt-20 mb-16 flex justify-between relative flex-wrap lg:flex-nowrap">
+                <div className="glass rounded-2xl w-9/12 h-[25rem] my-16 m-auto flex justify-between relative">
                     <div
                         className={
                             "cursor-pointer transition ease-out duration-300 hover:scale-105 lg:w-96 w-full bg-cover rounded-2xl h-[25rem] border-2 border-white relative" +
@@ -85,9 +84,9 @@ export const SpecificFounder = () => {
                         onClick={() => {
                             navigate(`/founders/${founder}`);
                         }}>
-                        <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 z-0 left-0 top-0"></div>
+                        <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 left-0 top-0"></div>
                     </div>
-                    <div className="lg:w-[50rem] w-full p-10 text-lg flex items-center">
+                    <div className="md:w-[50rem] w-full p-10 text-lg flex items-center">
                         <div>
                             <h2>
                                 {t("aka")} {data.nickname}.
@@ -97,7 +96,6 @@ export const SpecificFounder = () => {
                             <p className="mt-10">{data.p3}</p>
                         </div>
                     </div>
-                    <BackArrow className="absolute right-5" to="/founders" />
                 </div>
             </div>
         </>
