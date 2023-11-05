@@ -29,15 +29,15 @@ export const Contact = () => {
         <div className="dark:text-white">
             <motion.div
                 ref={ref}
-                className="h-full w-[90%] m-auto flex resp:flex-col gap-20 items-center justify-center mb-10"
+                className="h-full w-[90%] m-auto flex resp:flex-col lg:gap-16 md:gap-0 items-center justify-center mb-10"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
                 <motion.div
                     variants={variants}
-                    className="flex flex-col gap-8 mb-auto md:w-[40%] w-full] md:px-10">
+                    className="flex flex-col gap-8 mb-auto md:w-[55%] lg:w-[45%] w-full] md:px-10">
                     <motion.h1
-                        className="text-4xl minimum:text-[2.5rem] tiny:text-5xl sm:text-6xl md:text-7xl text-center"
+                        className="text-4xl minimum:text-[2.5rem] tiny:text-5xl sm:text-6xl resp:text-center"
                         variants={variants}>
                         {t("contactUs")}
                     </motion.h1>
