@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { OpacityBackground } from "../../components/OpacityBackground.jsx";
 
 export const FounderCard = ({ to, first, second }) => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const FounderCard = ({ to, first, second }) => {
             onClick={() => {
                 navigate(to);
             }}>
-            <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+            <OpacityBackground className="rounded-2xl" />
             <h2 className="w-4/5 z-10 relative top-72 h-10 text-center">
                 <b className="text-cyan-300">{first}</b>
                 {second}

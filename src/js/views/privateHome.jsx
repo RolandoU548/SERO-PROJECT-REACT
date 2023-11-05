@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { OpacityBackground } from "../components/OpacityBackground.jsx";
 
 export const PrivateHome = () => {
     const [t] = useTranslation("private");
@@ -21,16 +22,16 @@ export const PrivateHome = () => {
                     type="video/mp4"
                 />
             </video>
-            <div className="font-serif text-black dark:text-white text-5xl text-center mb-10 mt-32 mx-auto w-4/5 h-14">
+            <h2 className="font-serif dark:text-white text-5xl text-center mb-10 mt-32 mx-auto w-4/5 h-14">
                 {t("cardMessage")}
-            </div>
+            </h2>
             <div className="flex justify-evenly flex-wrap my-10 gap-5">
                 <div
                     className="cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=121e9b31-e173-4df5-9c05-620aefbc88e0.')] bg-cover bg-center rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white group relative"
                     onClick={() => {
                         navigate("/database");
                     }}>
-                    <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <OpacityBackground className="rounded-2xl" />
                     <h2 className="z-10 text-center">{t("databaseCard")}</h2>
                 </div>
                 <div
@@ -38,7 +39,7 @@ export const PrivateHome = () => {
                     onClick={() => {
                         navigate("/form");
                     }}>
-                    <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <OpacityBackground className="rounded-2xl" />
                     <h2 className="z-10">{t("formCard")}</h2>
                 </div>
                 <div
@@ -46,7 +47,7 @@ export const PrivateHome = () => {
                     onClick={() => {
                         navigate("/clients");
                     }}>
-                    <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <OpacityBackground className="rounded-2xl" />
                     <h2 className="z-10">Clients</h2>
                 </div>
                 <div
@@ -54,7 +55,7 @@ export const PrivateHome = () => {
                     onClick={() => {
                         navigate("/dashboard");
                     }}>
-                    <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                    <OpacityBackground className="rounded-2xl" />
                     <h2 className="z-10 text-center">{t("dashboardCard")}</h2>
                 </div>
             </div>

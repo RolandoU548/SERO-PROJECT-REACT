@@ -4,7 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
-import { BackArrow } from "../components/BackArrow";
+import { BackArrow } from "../components/BackArrow.jsx";
+import { OpacityBackground } from "../components/OpacityBackground.jsx";
 
 export const SpecificFounder = () => {
     const [t] = useTranslation("specificFounder");
@@ -87,12 +88,12 @@ export const SpecificFounder = () => {
                         onClick={() => {
                             navigate(`/founders/${founder}`);
                         }}>
-                        <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 hover:opacity-30 opacity-50 left-0 top-0"></div>
+                        <OpacityBackground className="rounded-2xl" />
                     </div>
                     <div className="lg:1/5 w-full p-5 sm:p-10 lg:pt-0 sm:text-lg tiny:text-base minimum:text-md text-sm flex items-center">
                         <div>
                             <h2>
-                                {t("aka")} {data.nickname}.
+                                {t("aka")} <b>{data.nickname}</b>.
                             </h2>
                             <p className="mt-10">{data.p1}</p>
                             <p className="mt-10">{data.p2}</p>

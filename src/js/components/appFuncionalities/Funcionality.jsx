@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { OpacityBackground } from "../../components/OpacityBackground.jsx";
 
 export const Funcionality = ({ title, paragraph, image }) => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ export const Funcionality = ({ title, paragraph, image }) => {
                 onClick={() => {
                     navigate("/signup");
                 }}>
-                <div className="bg-black absolute w-full h-full rounded-2xl ease-out duration-300 group-hover:opacity-30 opacity-50 z-0"></div>
+                <OpacityBackground className="rounded-2xl" />
             </div>
             <motion.div className="md:w-[60%] resp:text-center">
                 <div className="px-10">
