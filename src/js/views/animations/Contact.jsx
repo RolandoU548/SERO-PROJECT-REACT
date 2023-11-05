@@ -72,17 +72,33 @@ export const Contact = () => {
                         </svg>
                     </motion.div>
                     <motion.form
-                        className="dark:text-white"
+                        className="flex flex-col"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}>
                         <input
+                            className={
+                                document
+                                    .querySelector("html")
+                                    .classList.contains("dark")
+                                    ? "dark"
+                                    : "light"
+                            }
                             type="text"
                             required
-                            placeholder={t("nameAndLastname")}
+                            placeholder={t("nameAndLastname") + "asdasd"}
                         />
-                        <input type="email" required placeholder={t("email")} />
-                        <textarea rows={8} placeholder={t("message")} />
+                        <input
+                            className="p-5 bg-transparent border border-white rounded"
+                            type="email"
+                            required
+                            placeholder={t("email")}
+                        />
+                        <textarea
+                            className="p-5 bg-transparent border border-white rounded"
+                            rows={8}
+                            placeholder={t("message")}
+                        />
                         <button className="text-black">{t("send")}</button>
                     </motion.form>
                 </motion.div>
