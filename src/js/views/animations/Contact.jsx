@@ -24,15 +24,19 @@ export const Contact = () => {
 
     const isInView = useInView(ref, { margin: "-100px" });
     return (
-        <div className="mb-10">
+        <div className="dark:text-white">
             <motion.div
                 ref={ref}
-                className="contact w-[90%]"
+                className="h-full w-[90%] m-auto flex items-center border border-white"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
-                <motion.div className="textContainer" variants={variants}>
-                    <motion.h1 variants={variants}>{t("contactUs")}</motion.h1>
+                <motion.div
+                    variants={variants}
+                    className="border border-red-600 mb-auto">
+                    <motion.h1 className="text-7xl" variants={variants}>
+                        {t("contactUs")}
+                    </motion.h1>
                     <motion.div className="item" variants={variants}>
                         <h2>{t("email")}</h2>
                         <span>sero@gmail.com</span>
@@ -46,9 +50,9 @@ export const Contact = () => {
                         <span>+58 4124020391</span>
                     </motion.div>
                 </motion.div>
-                <motion.div className="formContainer">
+                <motion.div className="flex relative">
                     <motion.div
-                        className="phoneSvg -z-50"
+                        className="absolute m-auto stroke-cyan-300 -z-50"
                         initial={{ opacity: 1 }}
                         whileInView={{ opacity: 0 }}
                         transition={{ delay: 3, duration: 1 }}>
@@ -68,7 +72,7 @@ export const Contact = () => {
                         </svg>
                     </motion.div>
                     <motion.form
-                        className="mt-20"
+                        className="dark:text-white"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 4, duration: 1 }}>
