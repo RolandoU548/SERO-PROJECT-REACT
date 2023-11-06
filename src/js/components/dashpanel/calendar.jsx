@@ -8,6 +8,7 @@ import {
     FaFastBackward,
     FaFastForward
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 dayjs.extend(customParseFormat);
 dayjs.locale("es"); //
@@ -15,6 +16,7 @@ dayjs.locale("es"); //
 export const Calendar = () => {
     const [tasks, setTasks] = useState([]);
     const [currentMonth, setCurrentMonth] = useState(dayjs());
+    const [t] = useTranslation("dashboard");
 
     const daysInMonth = currentMonth.daysInMonth();
     const firstDayOfMonth = currentMonth.startOf("month").day();
@@ -48,30 +50,35 @@ export const Calendar = () => {
 
     return (
         <>
-            <div className="text-sm font-medium text-white flex justify-end mb-12">
-                <button
-                    onClick={handlePrevYear}
-                    className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
-                    <FaFastBackward />
-                </button>
-                <button
-                    onClick={handlePrevMonth}
-                    className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
-                    <FaChevronLeft />
-                </button>
-                <div className="text-md font-bold">
-                    {currentMonth.format("MMMM YYYY")}
+            <div className="text-sm font-medium text-white items-end flex justify-between mb-12">
+                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
+                    {t("Calendar")}
+                </h1>
+                <div className="w-96 items-center flex h-10">
+                    <button
+                        onClick={handlePrevYear}
+                        className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
+                        <FaFastBackward />
+                    </button>
+                    <button
+                        onClick={handlePrevMonth}
+                        className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
+                        <FaChevronLeft />
+                    </button>
+                    <div className="text-md font-bold">
+                        {currentMonth.format("MMMM YYYY")}
+                    </div>
+                    <button
+                        onClick={handleNextMonth}
+                        className="ml-2 px-3 bg-cyan-300 text-black rounded-full">
+                        <FaChevronRight />
+                    </button>
+                    <button
+                        onClick={handleNextYear}
+                        className="ml-2 px-3 bg-cyan-300 text-black rounded-full">
+                        <FaFastForward />
+                    </button>
                 </div>
-                <button
-                    onClick={handleNextMonth}
-                    className="ml-2 px-3 bg-cyan-300 text-black rounded-full">
-                    <FaChevronRight />
-                </button>
-                <button
-                    onClick={handleNextYear}
-                    className="ml-2 px-3 bg-cyan-300 text-black rounded-full">
-                    <FaFastForward />
-                </button>
             </div>
             <div className="grid grid-cols-7 gap-2">
                 <div className="text-sm font-bold text-white">Domingo</div>

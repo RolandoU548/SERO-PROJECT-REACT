@@ -87,12 +87,9 @@ export const Dashboard = () => {
                             <PieChartClient numClients={numClients} />
                         </div>
                     </div>
-                    <div className="glass p-10 mt-5 m-auto w-11/12">
-                        <h1 className="w-10/12 mb-12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
-                            {t("Calendar")}
-                        </h1>
-                        <Calendar />
-                    </div>
+                </div>
+                <div className="glass p-10 m-auto w-11/12">
+                    <Calendar />
                 </div>
             </div>
         </>
