@@ -6,6 +6,7 @@ import { Base } from "../components/login-signup/Base";
 import { SignUpForm } from "../components/login-signup/SignUpForm";
 import { LoginForm } from "../components/login-signup/LoginForm";
 import { Buttons } from "../components/login-signup/Buttons";
+import { BackArrow } from "../components/BackArrow.jsx";
 import PropTypes from "prop-types";
 
 export const LoginSignupCard = props => {
@@ -20,11 +21,15 @@ export const LoginSignupCard = props => {
             <div className="mt-24"></div>
             <ReactCardFlip isFlipped={flip} flipDirection="vertical">
                 {/* SIGNUP */}
-                <div className="m-auto flex justify-center w-[50%] resp:w-[80%] items-center glass mb-24">
-                    <div className="w-[100%] resp:w-[100%] p-6 my-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-3">
-                            {t("signupMessage")}
-                        </h2>
+                <div className="m-auto w-[50%] resp:w-[80%] glass mb-24 relative">
+                    <div className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-3 flex justify-center mt-8">
+                        <h2 className="m-auto">{t("signupMessage")}</h2>
+                        <BackArrow
+                            className="md:hidden leading-[20px] mr-1"
+                            to="/"
+                        />
+                    </div>
+                    <div className="px-8 pb-8">
                         <SignUpForm
                             name={t("name")}
                             exampleName={t("exampleName")}
@@ -59,11 +64,15 @@ export const LoginSignupCard = props => {
                     </div>
                 </div>
                 {/* LOGIN */}
-                <div className="m-auto flex justify-center w-[50%] resp:w-[80%] items-center glass mt-[13%] mb-12">
-                    <div className="w-[100%] resp:w-[100%] p-6 my-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5">
-                            {t("loginMessage")}
-                        </h2>
+                <div className="m-auto w-[50%] resp:w-[80%] glass mt-[13%] mb-12 relative">
+                    <div className="text-3xl font-bold text-center text-gray-700 dark:text-white mt-2 mb-5 flex justify-center mt-8">
+                        <h2 className="m-auto">{t("loginMessage")}</h2>
+                        <BackArrow
+                            className="md:hidden leading-[20px] mr-1"
+                            to="/"
+                        />
+                    </div>
+                    <div className="px-8 pb-8">
                         <LoginForm
                             email={t("email")}
                             exampleEmail={t("exampleEmail")}
