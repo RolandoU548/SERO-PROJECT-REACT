@@ -48,7 +48,7 @@ export const Contact = () => {
         <div className="dark:text-white">
             <motion.div
                 ref={ref}
-                className="h-full w-[90%] m-auto flex resp:flex-col lg:gap-16 md:gap-0 resp:gap-20 items-center justify-center mb-10"
+                className="h-full w-[90%] m-auto flex resp:flex-col lg:gap-16 md:gap-0 resp:gap-10 items-center justify-center mb-10"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
