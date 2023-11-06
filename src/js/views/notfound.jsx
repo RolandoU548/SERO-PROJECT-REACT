@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export const NotFound = () => {
     const [t] = useTranslation("notfound");
+
     return (
         <>
             <LanguageButton className="absolute top-7 left-10 w-6 h-4" />

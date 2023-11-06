@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../../css/cursor.css";
 
 export const Cursor = () => {
@@ -12,5 +13,10 @@ export const Cursor = () => {
             d.parentElement.removeChild(d);
         });
     }
-    document.addEventListener("click", clickEffect);
+    useEffect(() => {
+        document.addEventListener("click", clickEffect);
+        return () => {
+            document.removeEventListener("click", clickEffect);
+        };
+    }, []);
 };

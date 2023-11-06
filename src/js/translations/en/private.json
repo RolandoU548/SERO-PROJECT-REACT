@@ -7,7 +7,6 @@
     "databaseCard": "Database",
     "formCard": "Form",
     "dashboardCard": "Dashboard",
+    "clientsCard": "Clients",
     "logout": "Logout"
-
-
 }

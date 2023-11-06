@@ -28,8 +28,10 @@ const injectContext = PassedComponent => {
                     window.matchMedia("(prefers-color-scheme: dark)").matches)
             ) {
                 document.documentElement.classList.add("dark");
+                state.actions.changeTheme("dark");
             } else {
                 document.documentElement.classList.remove("dark");
+                state.actions.changeTheme("light");
             }
             state.actions.identificateUser(state.store.token);
         }, []);

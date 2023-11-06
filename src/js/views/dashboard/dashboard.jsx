@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
-import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { Calendar } from "../../components/dashpanel/calendar";
@@ -34,7 +33,7 @@ export const Dashboard = () => {
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto text-center">
                     {t("dashboard")}
                 </h1>
-                <div className="glass p-10 mt-5 m-auto w-11/12">
+                <div className="p-10 m-auto w-11/12">
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                         <div
                             className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer"
@@ -74,26 +73,23 @@ export const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-row justify-center">
-                        <div className="glass p-10 mt-5 m-auto w-120 h-120 mx-5 text-center">
+                    <div className="flex flex-row justify-end">
+                        <div className="glass p-10 mt-5 m-auto w-80 h-80 mx-5 text-center flex flex-col">
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Payments Chart")}
                             </h1>
                             <PieChartPayment />
                         </div>
-                        <div className="glass p-10 mt-5 m-auto w-120 h-120 mx-5 text-center">
+                        <div className="glass p-10 mt-5 m-auto w-80 h-80 mx-5 text-center flex flex-col">
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Clients Chart")}
                             </h1>
                             <PieChartClient numClients={numClients} />
                         </div>
                     </div>
-                    <div className="glass p-10 mt-5 m-auto w-11/12">
-                        <h1 className="w-10/12 mb-12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
-                            {t("Calendar")}
-                        </h1>
-                        <Calendar />
-                    </div>
+                </div>
+                <div className="glass p-10 m-auto w-11/12">
+                    <Calendar />
                 </div>
             </div>
         </>

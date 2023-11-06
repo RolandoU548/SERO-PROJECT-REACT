@@ -4,18 +4,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton.jsx";
 import { Darkmode } from "./Darkmode.jsx";
-import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import {
-    FiDatabase,
-    FiFolder,
-    FiShoppingCart,
-    FiDollarSign,
-    FiHome
-} from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
+import { BsKey } from "react-icons/bs";
+import { FiDatabase, FiFolder, FiDollarSign, FiHome } from "react-icons/fi";
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
@@ -45,10 +39,11 @@ export const PrivateNavbar = () => {
     const [open, setOpen] = useState(false);
 
     if (store.user.role.includes("admin")) {
-        menus.splice(1, 0, {
+        menus.push({
             name: t2("admin"),
             link: "/admin",
-            icon: AiOutlineUser
+            icon: BsKey,
+            margin: true
         });
     }
 
@@ -112,7 +107,7 @@ export const PrivateNavbar = () => {
                     </div>
                 </section>
             </div>
-            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-full py-3 font-serif dark:text-gray-200 bg-transparent">
+            <header className="glassNav fixed flex justify-between items-center z-40 top-0 w-screen py-3 font-serif dark:text-gray-200 bg-transparent">
                 <div className="flex ml-10 items-center">
                     <div
                         className={
@@ -167,7 +162,7 @@ export const PrivateNavbar = () => {
                         <li>
                             <Link to="/profile" className="text-xl text-light">
                                 {store.user.role.includes("admin") && (
-                                    <span className="text-sm text-cyan-400 font-bold mr-1">
+                                    <span className="text-sm text-cyan-500 dark:text-cyan-400 font-bold mr-1">
                                         admin
                                     </span>
                                 )}

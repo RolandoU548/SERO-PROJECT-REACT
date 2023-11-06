@@ -11,7 +11,7 @@ export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="fixed flex justify-between items-center z-40 mb-40 w-full py-3 font-serif dark:text-gray-200 text-black glassNav top-0">
+        <header className="fixed flex justify-between items-center z-40 mb-40 w-screen py-3 font-serif dark:text-gray-200 text-black glassNav top-0 left-0">
             <h2
                 className="text-4xl font-semibold ml-10 lg:ml-32 cursor-pointer"
                 onClick={() => {
@@ -52,18 +52,18 @@ export const Navbar = () => {
                                 setIsOpen(false);
                             }}
                             to="/"
-                            className="text-xl font-medium ml-6 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
+                            className="text-xl font-medium ml-6 hover:text-cyan-300 hover:transition-all duration-300 resp:m-0">
                             {t("home")}
                         </NavLink>
                     </li>
                     <li className="my-2.5">
                         <NavLink
-                            to="/contact"
+                            to="/founders"
                             onClick={() => {
                                 setIsOpen(false);
                             }}
-                            className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
-                            {t("contacts")}
+                            className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 resp:m-0">
+                            {t("founders")}
                         </NavLink>
                     </li>
                     <li className="my-2.5">

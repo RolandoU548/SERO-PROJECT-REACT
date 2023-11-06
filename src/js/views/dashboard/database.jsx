@@ -1,5 +1,3 @@
-/* eslint-disable no-unreachable-loop */
-/* eslint-disable no-undef */
 import { React, useState, useEffect, useRef, useContext } from "react";
 import { Context } from "../../store/appContext.jsx";
 import "../../../css/app.css";
@@ -54,14 +52,10 @@ export const Database = () => {
 
     return (
         <>
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="invert w-screen h-screen -z-50 fixed top-0 left-0 object-cover dark:invert-0 transition duration-500">
-                <source src="DatabaseBG.mp4" type="video/mp4" />
-            </video>
+            <img
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fdatabase%2FDatabaseBG.jpg?alt=media&token=3bf525b3-764b-4ff8-b1ec-e22c672f52d4"
+                className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
+            />
             <div className="font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-black dark:text-white text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
                     {t("database")}

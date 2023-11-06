@@ -3,7 +3,6 @@ import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import "../../../css/app.css";
 import "../../../css/glass.css";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
@@ -72,6 +71,10 @@ export const Clients = () => {
 
     return (
         <>
+            <img
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fclients%2FClientsBG.jpeg?alt=media&token=2d8c8c81-a447-480b-b66b-087811f4cb1c"
+                className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
+            />
             <div className=" font-serif text-gray-200 mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("Clients")}

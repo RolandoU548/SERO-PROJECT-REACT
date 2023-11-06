@@ -1,25 +1,4 @@
 @charset "UTF-8";
-/*!
-(The MIT License)
-Copyright (c) 2012-2014 Marcin Warpechowski
-Copyright (c) 2015 Handsoncode sp. z o.o. <hello@handsoncode.net>
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
 .handsontable {
   position: relative;
 }
@@ -132,6 +111,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .handsontable th:first-child.htNoFrame,
 .handsontable th.htNoFrame {
   border-left-width: 0;
+  background-color: white;
   border-color: #FFF;
 }
 
@@ -164,7 +144,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 }
 
 .handsontable th {
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   font-weight: normal;
   white-space: nowrap;
@@ -175,7 +155,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 }
 
 .handsontable th.active {
-  background-color: #00ffff;
+  background-color: #CCC;
 }
 
 .handsontable thead th .relative {
@@ -226,7 +206,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .handsontable .manualColumnMover.active,
 .handsontable .manualRowMover:hover,
 .handsontable .manualRowMover.active {
-  background-color: rgb(0, 255, 255);
+  background-color: #88F;
 }
 
 /* row + column resizer*/
@@ -379,7 +359,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   font-family: inherit;
   line-height: 21px;
   font-size: inherit;
-  box-shadow: 0 0 0 2px #00ffff inset;
+  box-shadow: 0 0 0 2px #5292F7 inset;
   resize: none;
   /*below are needed to overwrite stuff added by jQuery UI Bootstrap theme*/
   display: inline-block;
@@ -618,7 +598,7 @@ Comment For Cell
 
 .handsontable.listbox tr td.current,
 .handsontable.listbox tr:hover td {
-  background: #00ffff;
+  background: #eee;
 }
 
 .ht_clone_top {
@@ -1095,7 +1075,7 @@ thead .htCollapseButton:after {
 }
 
 .htContextMenu table tbody tr td {
-  background: white;
+  background: rgb(0, 0, 0);
   border-width: 0;
   padding: 4px 6px 0 6px;
   cursor: pointer;
@@ -1126,7 +1106,7 @@ thead .htCollapseButton:after {
 }
 
 .htContextMenu table tbody tr td.htDisabled {
-  color: #999;
+  color: #999999;
 }
 
 .htContextMenu table tbody tr td.htDisabled:hover {
@@ -1162,7 +1142,8 @@ thead .htCollapseButton:after {
   z-index: 9999;
   display: block;
   position: relative;
-  color: #fff;
+  color: #333;
+  background: #fff;
   border: 1px solid #ccc;
   border-bottom-color: #bbb;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -51,7 +51,7 @@ export const PieChartPayment = () => {
                     style={{
                         labels: {
                             fill: "white",
-                            fontSize: 14,
+                            fontSize: 18,
                             fontFamily: "sans-serif",
                             fontWeight: "bold"
                         },

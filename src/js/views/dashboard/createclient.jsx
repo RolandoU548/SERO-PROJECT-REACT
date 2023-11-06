@@ -19,7 +19,6 @@ import {
     FaCheckCircle,
     FaTimes
 } from "react-icons/fa";
-import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 

@@ -28,7 +28,7 @@ export const Base = ({ children }) => {
                 }>
                 SERØ.
             </Link>
-            <div className="overflow-hidden">{children}</div>
+            {children}
         </>
     );
 };

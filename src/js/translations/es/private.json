@@ -7,5 +7,6 @@
     "databaseCard": "Base de Datos",
     "formCard": "Formularios",
     "dashboardCard": "Panel de Control",
+    "clientsCard": "Clientes",
     "logout": "Cerrar Sesión"
 }
