@@ -1,7 +1,7 @@
 {
     "loginMessage": "Ingrese a su cuenta",
     "email": "Correo Electrónico",
-    "option": "O inicia sesión con tu cuenta Google",
+    "loginOption": "O inicia sesión con tu cuenta Google",
     "exampleEmail": "nombre@correoelectrónico.com",
     "password": "Contraseña",
     "examplePassword": "Contraseña",
