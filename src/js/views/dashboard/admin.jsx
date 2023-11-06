@@ -29,7 +29,7 @@ export const Admin = () => {
                 <DeleteUserModal setIsOpen={setIsOpenDelete} user={user} />
             )}
             <img
-                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fsettings%2FSettingsBG.jpg?alt=media&token=d9fc16d3-d17e-493a-8687-66a510db7e2b&_gl=1*c2g6eh*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MTM1Mi4xNi4wLjA."
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fadmin%2FAdminBG.jpeg?alt=media&token=bb862525-094d-4ea4-bd01-ad4ed93518fe"
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="font-serif text-black dark:text-white mt-28">
