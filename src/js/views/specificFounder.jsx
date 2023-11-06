@@ -90,7 +90,7 @@ export const SpecificFounder = () => {
                         }}>
                         <OpacityBackground className="rounded-2xl" />
                     </div>
-                    <div className="lg:1/5 w-full p-5 sm:p-10 lg:pt-0 sm:text-lg tiny:text-base minimum:text-md text-sm flex items-center">
+                    <div className="lg:1/5 w-full p-5 sm:p-10 lg:pt-0 sm:text-lg tiny:text-base minimum:text-md text-sm flex items-center text-justify lg:text-left">
                         <div>
                             <h2>
                                 {t("aka")} <b>{data.nickname}</b>.
