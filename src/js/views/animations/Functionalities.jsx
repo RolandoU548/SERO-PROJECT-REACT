@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Funcionality } from "../../components/appFuncionalities/Funcionality";
+import { Funcionality } from "../../components/appView/Funcionality";
 
 export const Functionalities = () => {
     const ref = useRef();

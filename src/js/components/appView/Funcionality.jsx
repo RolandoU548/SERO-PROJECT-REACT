@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { OpacityBackground } from "../../components/OpacityBackground.jsx";
+import { OpacityBackground } from "../OpacityBackground.jsx";
 
 export const Funcionality = ({ title, paragraph, image }) => {
     const navigate = useNavigate();

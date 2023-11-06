@@ -162,7 +162,7 @@ export const PrivateNavbar = () => {
                         <li>
                             <Link to="/profile" className="text-xl text-light">
                                 {store.user.role.includes("admin") && (
-                                    <span className="text-sm text-cyan-400 font-bold mr-1">
+                                    <span className="text-sm text-cyan-500 dark:text-cyan-400 font-bold mr-1">
                                         admin
                                     </span>
                                 )}
