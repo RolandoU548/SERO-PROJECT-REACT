@@ -16,7 +16,7 @@ export const App = () => {
 
     return (
         <div className="font-serif dark:text-white">
-            <div className="flex flex-col justify-center items-center h-screen gap-10">
+            <div className="flex flex-col justify-center items-center h-screen gap-10 mt-10">
                 <h2 className="dark:mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center">
                     {t("title")}
                 </h2>

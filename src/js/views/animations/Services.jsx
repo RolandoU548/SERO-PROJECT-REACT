@@ -27,7 +27,7 @@ export const Services = () => {
     return (
         <>
             <motion.div
-                className="h-full flex flex-col justify-between mt-36"
+                className="h-full flex flex-col justify-between"
                 variants={variants}
                 initial="initial"
                 whileInView="animate">
