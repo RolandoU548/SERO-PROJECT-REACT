@@ -52,7 +52,7 @@ export const Navbar = () => {
                                 setIsOpen(false);
                             }}
                             to="/"
-                            className="text-xl font-medium ml-6 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
+                            className="text-xl font-medium ml-6 hover:text-cyan-300 hover:transition-all duration-300 resp:m-0">
                             {t("home")}
                         </NavLink>
                     </li>
@@ -62,7 +62,7 @@ export const Navbar = () => {
                             onClick={() => {
                                 setIsOpen(false);
                             }}
-                            className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 dark:resp:text-gray-200 resp:m-0">
+                            className="text-xl font-medium ml-7 hover:text-cyan-300 hover:transition-all duration-300 resp:m-0">
                             {t("founders")}
                         </NavLink>
                     </li>
