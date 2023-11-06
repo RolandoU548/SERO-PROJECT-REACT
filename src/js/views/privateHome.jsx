@@ -27,26 +27,46 @@ export const PrivateHome = () => {
                 {t("cardMessage")}
             </h2>
             <div className="flex justify-evenly flex-wrap my-10 gap-5">
-                <FuncionalityCard
-                    title={t("databaseCard")}
-                    image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=121e9b31-e173-4df5-9c05-620aefbc88e0."
-                    to="/database"
-                />
-                <FuncionalityCard
-                    title={t("formCard")}
-                    image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8&_gl=1*1eaq0ks*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDUzNy41NS4wLjA."
-                    to="/form"
-                />
-                <FuncionalityCard
-                    title={t("clientsCard")}
-                    image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a&_gl=1*1odl6qd*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDkwNC41My4wLjA."
-                    to="/clients"
-                />
-                <FuncionalityCard
-                    title={t("dashboardCard")}
-                    image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703&_gl=1*15ykx8a*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTg1NS4zMy4wLjA."
-                    to="/dashboard"
-                />
+                <div
+                    className={`cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white relative bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDatabaseCardBG.jpg?alt=media&token=121e9b31-e173-4df5-9c05-620aefbc88e0.')] `}
+                    onClick={() => {
+                        navigate("/database");
+                    }}>
+                    <OpacityBackground className="rounded-2xl" />
+                    <h2 className="z-10 pointer-events-none text-center">
+                        {t("databaseCard")}
+                    </h2>
+                </div>
+                <div
+                    className={`cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white relative bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8&_gl=1*1eaq0ks*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDUzNy41NS4wLjA.')] `}
+                    onClick={() => {
+                        navigate("/form");
+                    }}>
+                    <OpacityBackground className="rounded-2xl" />
+                    <h2 className="z-10 pointer-events-none text-center">
+                        {t("formCard")}
+                    </h2>
+                </div>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white relative bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a&_gl=1*1odl6qd*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDkwNC41My4wLjA.')]"
+                    onClick={() => {
+                        navigate("/clients");
+                    }}>
+                    <OpacityBackground className="rounded-2xl" />
+                    <h2 className="z-10 pointer-events-none text-center">
+                        {t("clientsCard")}
+                    </h2>
+                </div>
+                <div
+                    className="cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white relative bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703&_gl=1*15ykx8a*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTg1NS4zMy4wLjA.')]"
+                    onClick={() => {
+                        navigate("/dashboard");
+                    }}>
+                    <OpacityBackground className="rounded-2xl" />
+                    <h2 className="z-10 pointer-events-none text-center">
+                        {t("dashboardCard")}
+                    </h2>
+                </div>
             </div>
         </>
     );
