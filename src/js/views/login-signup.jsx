@@ -23,7 +23,7 @@ export const LoginSignupCard = props => {
                 {/* SIGNUP */}
                 <div className="m-auto lg:my-4 my-20 w-[35rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative">
                     <BackArrow
-                        className="absolute top-1 right-4 md:hidden"
+                        className="absolute top-3 right-4 md:hidden"
                         to="/"
                     />
                     <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-8">
@@ -64,7 +64,7 @@ export const LoginSignupCard = props => {
                 {/* LOGIN */}
                 <div className="m-auto lg:my-4 my-20 w-[35rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative">
                     <BackArrow
-                        className="absolute top-2 right-5 md:hidden"
+                        className="absolute top-4 right-5 md:hidden"
                         to="/"
                     />
                     <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white mb-8">

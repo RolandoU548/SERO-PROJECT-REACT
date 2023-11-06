@@ -9,22 +9,22 @@ export const Profile = () => {
     return (
         <>
             <img
-                src="ProfileBG.jpg"
-                className="invert fixed -z-50 top-0 left-0 dark:invert-0 transition duration-500"
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fprofile%2FProfileBG.jpeg?alt=media&token=c90a4f9c-9ae6-4ce2-a4b2-0bb4af67e72e"
+                className="invert fixed -z-50 -top-20 left-0 dark:invert-0 transition duration-500"
             />
-            <div className="glass h-[22.2rem] dark:text-white mt-40 container mx-auto mb-5 p-5">
+            <div className="h-[22.2rem] dark:text-white mt-32 container mx-auto mb-5 p-5">
                 <div className="md:flex no-wrap md:-mx-2 ">
                     <div className="w-full md:w-3/12 md:mx-2">
-                        <div className="glass p-3 border-t-4 border-cyan-400">
+                        <div className="glass p-3">
                             <div className="image overflow-hidden">
                                 <img
-                                    className="h-16 w-16 rounded-full mx-auto"
+                                    className="h-48 w-48 rounded-full mx-auto"
                                     src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
                                     alt=""
                                 />
                             </div>
-                            <h1 className="font-bold text-xl leading-8 my-1">
-                                {store.user.name}
+                            <h1 className="font-bold text-xl text-center leading-8 my-1">
+                                {store.user.name} {store.user.lastname}
                             </h1>
                             {/* <h3 className="font-lg text-semibold leading-6">
                                 EL GOAT
@@ -32,7 +32,7 @@ export const Profile = () => {
                             <p className="text-sm hover:text-cyan-300 leading-6">
                                 Soy el mejor del mundo
                             </p> */}
-                            <ul className="glass hover:text-cyan-400 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                            <ul className="hover:text-cyan-400 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
                                     <span>Status</span>
                                     <span className="ml-auto">
@@ -50,7 +50,7 @@ export const Profile = () => {
                         <div className="my-4"></div>
                     </div>
                     <div className="w-full md:w-9/12 mx-2 h-64">
-                        <div className="glass p-3 border-t-4 border-cyan-400">
+                        <div className="glass p-3">
                             <div className="flex items-center space-x-2 font-semibold leading-8">
                                 <span className="text-cyan-300">
                                     <svg
@@ -67,7 +67,9 @@ export const Profile = () => {
                                         />
                                     </svg>
                                 </span>
-                                <span className="tracking-wide">About</span>
+                                <span className="tracking-wide text-xl">
+                                    About
+                                </span>
                             </div>
                             <div>
                                 <div className="grid text-sm">

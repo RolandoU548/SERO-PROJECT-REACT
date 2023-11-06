@@ -68,7 +68,7 @@ export const SpecificFounder = () => {
                 </h2>
                 <div className="glass rounded-2xl md:w-9/12 w-10/12 my-16 m-auto flex justify-between relative flex-col lg:flex-row">
                     <BackArrow
-                        className="absolute right-5 lg:text-black text-white"
+                        className="absolute top-4 right-5 lg:text-black text-white"
                         to="/founders"
                     />
                     <div
