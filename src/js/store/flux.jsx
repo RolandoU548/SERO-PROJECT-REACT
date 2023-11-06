@@ -1,3 +1,5 @@
+import { set } from "react-hook-form";
+
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
@@ -10,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 email: null,
                 role: ["user", "admin"]
             },
-            clients: []
+            clients: [],
+            payments: []
         },
         actions: {
             changeTheme: theme => {
@@ -237,9 +240,85 @@ const getState = ({ getStore, getActions, setStore }) => {
                     );
                     const data = await response.json();
                     setStore({ clients: [...getStore().clients, data] });
+                    localStorage.setItem("client", JSON.stringify(data));
                     return data;
                 } catch (error) {
                     console.error(error);
+                }
+            },
+            getAllPayments: async () => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/payments"
+                    );
+                    const data = await resp.json();
+                    setStore({ payments: data });
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            createPayment: async FormData => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/payments",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(FormData)
+                        }
+                    );
+                    const data = await response.json();
+                    setStore({ payments: [...getStore().payments, data] });
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            updatePayment: async (id, payment) => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/payments/${id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(payment)
+                        }
+                    );
+                    const data = await response.json();
+                    const updatedPayments = getStore().payments.map(p => {
+                        if (p.id === id) {
+                            return data;
+                        }
+                        return p;
+                    });
+                    setStore({
+                        payments: updatedPayments
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            deletePayment: async id => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/payments/${id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+                    const data = await resp.json();
+                    setStore({
+                        payments: [
+                            ...getStore().payments.filter(x => x.id !== id)
+                        ]
+                    });
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
                 }
             },
             sendRow: async object => {

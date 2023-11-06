@@ -73,7 +73,7 @@ export const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-row justify-end">
+                    <div className="flex flex-row justify-center">
                         <div className="glass p-10 mt-5 m-auto w-80 h-80 mx-5 text-center flex flex-col">
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Payments Chart")}

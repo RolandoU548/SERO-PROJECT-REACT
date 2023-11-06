@@ -1,14 +1,27 @@
-import React, { useState } from "react";
-import "../../../css/app.css";
-import "../../../css/glass.css";
+import React, { useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Context } from "../../store/appContext";
+import { FaCreditCard, FaFileInvoice } from "react-icons/fa";
+import { MdDateRange } from "react-icons/md";
+import { AiOutlineDollar } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import PayPalButton from "./PayPalButton";
 
 export const StepPayment = () => {
+    const { id } = useParams();
+    const { store, actions } = useContext(Context);
+    const clients = store.clients;
+    const client = clients.find(c => c.id === id);
     const [t] = useTranslation("steppayment");
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
+    const [invoiceNumber, setInvoiceNumber] = useState("");
+    const [currentDate, setCurrentDate] = useState("");
+
+    useEffect(() => {
+        actions.getAllClients();
+    }, []);
 
     const handleFormSubmit = e => {
         e.preventDefault();
@@ -19,8 +32,8 @@ export const StepPayment = () => {
         setPaymentMethod(method);
     };
 
-    const handlePaymentSubmit = e => {
-        e.preventDefault();
+    const handlePaymentSubmit = () => {
+        actions.createPayment(formData);
         setStep(3);
     };
 
@@ -32,6 +45,48 @@ export const StepPayment = () => {
         setStep(1);
         setFormData({});
         setPaymentMethod("creditCard");
+    };
+
+    const handleInvoiceNumber = () => {
+        setInvoiceNumber(
+            "INV" +
+                Math.floor(Math.random() * 100)
+                    .toString()
+                    .padStart(4, "0")
+        );
+    };
+
+    const handleCurrentDate = () => {
+        setCurrentDate(new Date().toLocaleDateString());
+    };
+
+    const handleServiceChange = e => {
+        setFormData({
+            ...formData,
+            service: e.target.value
+        });
+    };
+
+    const handleDescriptionChange = e => {
+        setFormData({
+            ...formData,
+            description: e.target.value
+        });
+    };
+
+    const handleClientChange = e => {
+        setFormData({
+            ...formData,
+            client: e.target.value
+        });
+    };
+
+    const handleAmountChange = e => {
+        const amount = parseFloat(e.target.value).toFixed(2);
+        setFormData({
+            ...formData,
+            amount: amount
+        });
     };
 
     return (
@@ -59,7 +114,6 @@ export const StepPayment = () => {
                                     viewBox="0 0 20 20">
                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                 </svg>
-                                <span className="mr-2">1</span>
                                 <span className="mr-2">1</span>
                                 Information
                             </span>
@@ -107,43 +161,27 @@ export const StepPayment = () => {
                                 <div className="flex flex-col-2 flex-row justify-center">
                                     <div className="w-full md:w-1/2 pr-10">
                                         <label
-                                            htmlFor="name"
+                                            htmlFor="client"
                                             className="block text-white font-bold mb-2">
-                                            Name
+                                            Client
                                         </label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
+                                        <select
+                                            id="client"
+                                            name="client"
                                             className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                             required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    name: e.target.value
-                                                })
-                                            }
-                                        />
-                                        <label
-                                            htmlFor="email"
-                                            className="block text-white font-bold mb-2">
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
-                                            required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    email: e.target.value
-                                                })
-                                            }
-                                        />
-                                    </div>
-                                    <div className="w-full md:w-1/2 px-2">
+                                            onChange={handleClientChange}>
+                                            <option value="">
+                                                Select a client
+                                            </option>
+                                            {clients.map(client => (
+                                                <option
+                                                    key={client.id}
+                                                    value={client.name}>
+                                                    {client.name}
+                                                </option>
+                                            ))}
+                                        </select>
                                         <label
                                             htmlFor="services"
                                             className="block text-white font-bold mb-2">
@@ -154,12 +192,7 @@ export const StepPayment = () => {
                                             name="services"
                                             className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                             required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    services: e.target.value
-                                                })
-                                            }>
+                                            onChange={handleServiceChange}>
                                             <option value="">
                                                 Select a service
                                             </option>
@@ -183,36 +216,81 @@ export const StepPayment = () => {
                                             name="description"
                                             className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                             required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    description: e.target.value
-                                                })
+                                            onChange={
+                                                handleDescriptionChange
                                             }></textarea>
+                                    </div>
+                                    <div className="w-full md:w-1/2 px-2">
                                         <label
                                             htmlFor="amount"
                                             className="block text-white font-bold mb-2">
                                             Amount
                                         </label>
-                                        <input
-                                            type="number"
-                                            id="amount"
-                                            name="amount"
-                                            className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
-                                            required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    amount: e.target.value
-                                                })
-                                            }
-                                        />
+                                        <div className="relative">
+                                            <input
+                                                type="number"
+                                                id="amount"
+                                                name="amount"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                required
+                                                onChange={handleAmountChange}
+                                            />
+                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <AiOutlineDollar className="h-5 w-5 text-gray-400" />
+                                            </span>
+                                        </div>
+                                        <label
+                                            htmlFor="invoice"
+                                            className="block text-white font-bold mb-2">
+                                            Invoice
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                id="invoice"
+                                                name="invoice"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                required
+                                                value={invoiceNumber}
+                                                readOnly
+                                            />
+                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <FaFileInvoice className="h-5 w-5 text-gray-400" />
+                                            </span>
+                                        </div>
+                                        <label
+                                            htmlFor="date"
+                                            className="block text-white font-bold mb-2">
+                                            Date
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                id="date"
+                                                name="date"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                required
+                                                value={currentDate}
+                                                readOnly
+                                            />
+                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <MdDateRange className="h-5 w-5 text-gray-400" />
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4">
+                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
+                                        onClick={() => {
+                                            handleInvoiceNumber();
+                                            handleCurrentDate();
+                                            setFormData({
+                                                ...formData,
+                                                status: "Paid"
+                                            });
+                                        }}>
                                         Next
                                     </button>
                                 </div>
@@ -233,6 +311,7 @@ export const StepPayment = () => {
                                         onClick={() =>
                                             handlePaymentMethod("creditCard")
                                         }>
+                                        <FaCreditCard className="h-5 w-5 mr-2" />
                                         Credit Card
                                     </button>
                                     <button
@@ -245,7 +324,7 @@ export const StepPayment = () => {
                                         onClick={() =>
                                             handlePaymentMethod("paypal")
                                         }>
-                                        PayPal
+                                        <PayPalButton />
                                     </button>
                                 </div>
                                 {paymentMethod === "creditCard" && (
@@ -300,23 +379,6 @@ export const StepPayment = () => {
                                         />
                                     </div>
                                 )}
-                                {paymentMethod === "paypal" && (
-                                    // <div className="flex flex-col">
-                                    //     <label
-                                    //         htmlFor="paypalEmail"
-                                    //         className="mb-2">
-                                    //         PayPal Email
-                                    //     </label>
-                                    //     <input
-                                    //         type="email"
-                                    //         id="paypalEmail"
-                                    //         name="paypalEmail"
-                                    //         className="border border-gray-400 rounded-md py-2 px-3 mb-4"
-                                    //         required
-                                    //     />
-                                    // </div>
-                                    <PayPalButton />
-                                )}
                                 <div className="flex justify-between">
                                     <button
                                         type="button"
@@ -338,9 +400,9 @@ export const StepPayment = () => {
                             <h1 className="text-2xl font-bold mb-4">
                                 Payment Summary
                             </h1>
-                            <p>Name: {formData.name}</p>
-                            <p>Email: {formData.email}</p>
+                            <p>Service: {formData.service}</p>
                             <p>Amount: {formData.amount}</p>
+                            <p>Client: {formData.client}</p>
                             <p>Payment Method: {paymentMethod}</p>
                             <div className="flex justify-between">
                                 <button
@@ -357,7 +419,10 @@ export const StepPayment = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-green-500 text-white py-2 px-4 rounded-md mt-4">
+                                    className="bg-green-500 text-white py-2 px-4 rounded-md mt-4"
+                                    onClick={() => {
+                                        handlePaymentSubmit();
+                                    }}>
                                     Confirm
                                 </button>
                             </div>

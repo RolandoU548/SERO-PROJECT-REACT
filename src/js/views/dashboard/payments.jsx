@@ -1,74 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { FaPlus, FaSearch } from "react-icons/fa";
 
-const paymentsData = [
-    {
-        id: 1,
-        status: "Paid",
-        method: "Credit Card",
-        date: "2022-01-01",
-        customer: "Samuel Carmona",
-        amount: 5000.0,
-        invoice: "INV-001"
-    },
-    {
-        id: 2,
-        status: "Paid",
-        method: "Paypal",
-        date: "2022-01-02",
-        customer: "Rolando Uzcátegui",
-        amount: 600.0,
-        invoice: "INV-002"
-    },
-    {
-        id: 3,
-        status: "Paid",
-        method: "Bank Transfer",
-        date: "2022-01-03",
-        customer: "Roberto Vargas",
-        amount: 50.0,
-        invoice: "INV-003"
-    },
-    {
-        id: 4,
-        status: "Pending",
-        method: "Bank Transfer",
-        date: "2022-01-03",
-        customer: "Alexander De Matteo",
-        amount: 500.0,
-        invoice: "ME DEBE"
-    },
-    {
-        id: 5,
-        status: "Paid",
-        method: "Bank Transfer",
-        date: "2022-01-03",
-        customer: "Sebastian Castro",
-        amount: 20000000.0,
-        invoice: "INV-005"
-    },
-    {
-        id: 6,
-        status: "Paid",
-        method: "Paypal",
-        date: "2022-01-03",
-        customer: "Sebastian Lopez",
-        amount: 300.0,
-        invoice: "INV-006"
-    }
-];
-
 export const Payments = () => {
+    const { store, actions } = useContext(Context);
     const [t] = useTranslation("payments");
     const navigate = useNavigate();
     const [customerFilter, setCustomerFilter] = useState("");
     const [fromDateFilter, setFromDateFilter] = useState("");
     const [toDateFilter, setToDateFilter] = useState("");
     const [invoiceFilter, setInvoiceFilter] = useState("");
+    const [paymentsData, setPaymentData] = useState([]);
+
+    useEffect(() => {
+        const Data = async () => {
+            const data = await actions.getAllPayment();
+            setPaymentData(data);
+        };
+        Data();
+    }, []);
 
     const filteredPaymentsData = paymentsData.filter(payment => {
         return (

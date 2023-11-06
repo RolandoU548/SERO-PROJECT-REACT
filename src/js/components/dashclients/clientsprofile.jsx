@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { FaEdit, FaImage } from "react-icons/fa";
 import { storage } from "../../components/firebase/firebase";
 import {
+    deleteObject,
     getDownloadURL,
     ref as storageRef,
     uploadBytes
@@ -41,10 +42,23 @@ export const ClientProfile = ({ client }) => {
                     e.target.files[0]
                 );
 
-                const url = await getDownloadURL(uploadResp.ref);
+                const imageUrl = await getDownloadURL(uploadResp.ref);
 
-                setEditableClient({ ...editableClient, image: url });
-                setImageUrl(url);
+                // Delete existing image
+                if (editableClient.image) {
+                    const existingImageRef = storageRef(
+                        storage,
+                        `clients/${editableClient.id}`
+                    );
+                    try {
+                        await deleteObject(existingImageRef);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+
+                setEditableClient({ ...editableClient, image: imageUrl });
+                setImageUrl(imageUrl);
             } catch (err) {
                 console.log(err);
             }
@@ -73,7 +87,7 @@ export const ClientProfile = ({ client }) => {
             </button>
             {isOpen && (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
-                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div className="flex items-end justify-center min-h-screen pt-1 px-4 pb-20 text-center sm:block sm:p-0">
                         <div
                             className="fixed inset-0 transition-opacity"
                             aria-hidden="true">
@@ -91,7 +105,7 @@ export const ClientProfile = ({ client }) => {
                             role="dialog"
                             aria-modal="true"
                             aria-labelledby="modal-headline">
-                            <div className="glass px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded-t-lg">
+                            <div className="glass px-4 sm:p-6 sm:pb-4 rounded-t-lg">
                                 <h3
                                     className="text-xl text-center leading-6 text-white font-bold"
                                     id="modal-headline">
