@@ -363,7 +363,6 @@ export const ClientForm = () => {
                                         <label>{t("image")}</label>
                                         <div className="relative rounded-md shadow-sm">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <FaImage className="h-5 w-5 text-gray-400" />
                                             </div>
                                             <input
                                                 type="file"
@@ -374,8 +373,9 @@ export const ClientForm = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 mb-4 sm:text-md border-gray-300 rounded-md text-white bg-green-700"
+                                                className=" text-start focus:ring-cyan-400 flex items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-300 hover:text-black transition duration-300"
                                                 onClick={handleButtonClick}>
+                                                    <FaImage className="h-5 w-5" />
                                                 {image
                                                     ? t("changeImage")
                                                     : t("selectImage")}
@@ -400,26 +400,7 @@ export const ClientForm = () => {
                                 <div className="mt-5 col-span-2 flex justify-center items-center ">
                                     <button
                                         type="submit"
-                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-white text-md font-medium rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                                            <svg
-                                                className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                                aria-hidden="true">
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M3.293 6.707a1 1 0 010-1.414l7-7a1 1 0 011.414 0l7 7a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7z"
-                                                    clipRule="evenodd"
-                                                />
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9 18a1 1 0 01-1-1v-5a1 1 0 112 0v5a1 1 0 01-1 1zM9 7a1 1 0 00-1 1v5a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                        </span>
+                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-300 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         {t("createClient")}
                                     </button>
                                 </div>
