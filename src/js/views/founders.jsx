@@ -13,7 +13,7 @@ export const Founder = () => {
             <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center mt-36">
                 {t("founders")}
             </h2>
-            <div className="flex justify-evenly flex-wrap mt-20">
+            <div className="flex justify-evenly flex-wrap mt-10">
                 <FounderCard
                     to="SebastianLopez"
                     first="SE"
