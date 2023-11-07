@@ -1,9 +1,12 @@
 import React from "react";
 import "../../../css/app.css";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export const Form = () => {
     const [t] = useTranslation("form");
+    const navigate = useNavigate();
+
     return (
         <>
             <video
@@ -20,7 +23,11 @@ export const Form = () => {
                 </h2>
             </div>
             <div className="w-11/12 flex justify-center gap-4 mx-16 mt-8 h-36">
-                <div className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
+                <div
+                    className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer text-2xl"
+                    onClick={() => {
+                        navigate("/clientForm");
+                    }}>
                     <div className="font-bold text-black dark:text-white flex gap-2 items-center">
                         CLIENTS
                         <div className="font-bold dark:text-cyan-300 text-cyan-500">
@@ -28,7 +35,7 @@ export const Form = () => {
                         </div>
                     </div>
                 </div>
-                <div className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
+                <div className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer text-2xl">
                     <div className="font-bold text-black dark:text-white flex gap-2 items-center">
                         DATABASE
                         <div className="font-bold dark:text-cyan-300 text-cyan-500">

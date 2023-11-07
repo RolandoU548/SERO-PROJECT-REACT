@@ -236,7 +236,7 @@ export const Clients = () => {
                                     style={{ gap: 0 }}>
                                     <li>
                                         <button
-                                            className="relative block py-2 px-3 leading-tight text-orange-300 hover:text-orange-400 dark:text-cyan-300 border-r-0 ml-0 rounded-l bg-black dark:hover:text-cyan-400 transition duration-300 border border-black focus:outline-none"
+                                            className="relative block py-2 px-3 leading-tight text-orange-300 hover:text-orange-400 dark:text-black border-r-0 ml-0 rounded-l bg-cyan-300 dark:hover:text-cyan-400 transition duration-300 border border-black focus:outline-none"
                                             onClick={() =>
                                                 paginate(currentPage - 1)
                                             }
@@ -254,9 +254,9 @@ export const Clients = () => {
                                         (_, i) => (
                                             <li key={i}>
                                                 <button
-                                                    className={`relative block py-2 px-3 leading-tight bg-w text-blue-700 border-r-0 hover:bg-gray-200 focus:outline-none ${
+                                                    className={`relative block py-2 px-3 leading-tight bg-w text-cyan-300 border-r-0 hover:bg-gray-200 focus:outline-none ${
                                                         currentPage === i + 1
-                                                            ? "z-10 bg-blue-500 text-white"
+                                                            ? "z-10 bg-white text-cyan-500"
                                                             : ""
                                                     }`}
                                                     onClick={() =>
