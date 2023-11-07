@@ -56,6 +56,7 @@ export const Database = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fdatabase%2FDatabaseBG.jpg?alt=media&token=3bf525b3-764b-4ff8-b1ec-e22c672f52d4"
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
+<<<<<<< HEAD
             <div className="font-serif text-gray-200 mt-28">
                 <div className="flex m-auto justify-between">
                     <h1 className="w-11/12 ml-16 text-black dark:text-white text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
@@ -72,6 +73,22 @@ export const Database = () => {
                             onClick={sendRow}>
                             <p>{t("saveTable")}</p>
                         </div>
+=======
+            <div className="font-serif mt-28">
+                <h2 className="w-10/12 dark:text-white text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
+                    {t("database")}
+                </h2>
+                <div className="flex justify-end mr-12">
+                    <div
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
+                        onClick={downloadFile}>
+                        <p>{t("downloadFile")}</p>
+                    </div>
+                    <div
+                        className="flex justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
+                        onClick={sendRow}>
+                        <p>{t("saveTable")}</p>
+>>>>>>> 6a6840bdffa0123f7c235181cd42956ca3bd9a99
                     </div>
                 </div>
                 <div className="flex justify-end ">
@@ -91,7 +108,6 @@ export const Database = () => {
                                     licenseKey="non-commercial-and-evaluation"
                                     colHeaders={true}
                                     rowHeaders={true}
-                                    mergeCells={true}
                                     columnSorting={true}
                                     contextMenu={true}
                                     dropdownMenu={true}
