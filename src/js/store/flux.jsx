@@ -7,8 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             theme: null,
             user: {
                 id: null,
-                name: "Carlito",
-                lastname: "Corona",
+                name: "Prueba",
+                lastname: "Sero",
                 email: null,
                 role: ["user", "admin"]
             },
@@ -253,6 +253,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     );
                     const data = await resp.json();
                     setStore({ payments: data });
+                    // return data;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
@@ -270,7 +271,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await response.json();
-                    setStore({ payments: [...getStore().payments, data] });
+                    setStore({ payments: [...getStore().payments, data] }); // save data in payments array
                     return data;
                 } catch (error) {
                     console.error(error);
@@ -297,7 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
                     setStore({
                         payments: updatedPayments
-                    });
+                    }); // save data in payments array
                 } catch (error) {
                     console.error(error);
                 }

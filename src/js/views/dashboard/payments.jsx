@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
-import { FaPlus, FaSearch } from "react-icons/fa";
+import { FaPlus, FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 
 export const Payments = () => {
     const { store, actions } = useContext(Context);
@@ -17,30 +17,20 @@ export const Payments = () => {
     const [paymentsData, setPaymentData] = useState([]);
 
     useEffect(() => {
-        const Data = async () => {
-            const data = await actions.getAllPayment();
-            setPaymentData(data);
-        };
-        Data();
-    }, []);
-
-    const filteredPaymentsData = paymentsData.filter(payment => {
-        return (
-            payment.customer
-                .toLowerCase()
-                .includes(customerFilter.toLowerCase()) &&
-            payment.invoice
-                .toLowerCase()
-                .includes(invoiceFilter.toLowerCase()) &&
-            (fromDateFilter === "" ||
-                new Date(payment.date) >= new Date(fromDateFilter)) &&
-            (toDateFilter === "" ||
-                new Date(payment.date) <= new Date(toDateFilter))
-        );
-    });
+        actions.getAllPayments();
+        setPaymentData(store.payments);
+    }, [store.payments]);
 
     const handleAddPayment = () => {
         navigate("/steppayment");
+    };
+
+    const handleEditPayment = id => {
+        navigate(`/editpayment/${id}`);
+    };
+
+    const handleDeletePayment = id => {
+        actions.deletePayment(id);
     };
 
     return (
@@ -98,8 +88,6 @@ export const Payments = () => {
                                 className="border border-gray-400 rounded py-1 px-2 text-gray-400"
                             />
                         </div>
-                        {/* <div className="flex items-center">
-                        </div> */}
                         <div className="flex items-center">
                             <label htmlFor="invoiceFilter">Invoice:</label>
                             <div className="relative">
@@ -145,37 +133,65 @@ export const Payments = () => {
                                 <th className="px-4 py-4 text-lg font-bold">
                                     Invoice
                                 </th>
+                                <th className="px-4 py-4 text-lg font-bold">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredPaymentsData.map(payment => (
-                                <tr
-                                    key={payment.id}
-                                    className="border-b-2 border-gray-400 text-center">
-                                    <td className="px-4 py-4 text-md font-bold">
-                                        <button
-                                            className={`rounded-full ${
-                                                payment.status === "Paid"
-                                                    ? "bg-green-500"
-                                                    : "bg-red-500"
-                                            } text-white font-bold py-2 px-4 rounded`}>
+                            {paymentsData.map(payment => (
+                                <tr key={payment.id}>
+                                    <td className="px-4 py-4">
+                                        <span
+                                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                                payment.status === "paid"
+                                                    ? "bg-green-100 text-green-800"
+                                                    : "bg-red-100 text-red-800"
+                                            }`}>
                                             {payment.status}
-                                        </button>
+                                        </span>
                                     </td>
-                                    <td className="px-4 py-4 text-md">
+                                    <td className="px-4 py-4">
                                         {payment.method}
                                     </td>
-                                    <td className="px-4 py-4 text-md">
+                                    <td className="px-4 py-4">
                                         {payment.date}
                                     </td>
-                                    <td className="px-4 py-4 text-md">
-                                        {payment.customer}
+                                    <td className="px-4 py-4">
+                                        {
+                                            store.clients.find(
+                                                client =>
+                                                    client.id === payment.client
+                                            )?.name
+                                        }{" "}
+                                        {
+                                            store.clients.find(
+                                                client =>
+                                                    client.id === payment.client
+                                            )?.lastname
+                                        }
                                     </td>
-                                    <td className="px-4 py-4 text-md">
+                                    <td className="px-4 py-4">
                                         {payment.amount}
                                     </td>
-                                    <td className="px-4 py-4 text-md">
+                                    <td className="px-4 py-4">
                                         {payment.invoice}
+                                    </td>
+                                    <td className="px-4 py-4">
+                                        <button
+                                            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full mr-2"
+                                            onClick={() =>
+                                                handleEditPayment(payment.id)
+                                            }>
+                                            <FaEdit />
+                                        </button>
+                                        <button
+                                            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full"
+                                            onClick={() =>
+                                                handleDeletePayment(payment.id)
+                                            }>
+                                            <FaTrash />
+                                        </button>
                                     </td>
                                 </tr>
                             ))}

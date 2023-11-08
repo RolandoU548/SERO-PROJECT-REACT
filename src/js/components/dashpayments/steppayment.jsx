@@ -16,8 +16,6 @@ export const StepPayment = () => {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
-    const [invoiceNumber, setInvoiceNumber] = useState("");
-    const [currentDate, setCurrentDate] = useState("");
 
     useEffect(() => {
         actions.getAllClients();
@@ -29,11 +27,22 @@ export const StepPayment = () => {
     };
 
     const handlePaymentMethod = method => {
-        setPaymentMethod(method);
+        const paymentMethod = method === "paypal" ? "Paypal" : "Credit Card";
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            method: paymentMethod
+        }));
     };
 
+    useEffect(() => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            method: "Credit Card"
+        }));
+    }, []);
+
     const handlePaymentSubmit = () => {
-        actions.createPayment(formData);
+        actions.createPayment({ ...formData, status: "Paid" });
         setStep(3);
     };
 
@@ -47,17 +56,20 @@ export const StepPayment = () => {
         setPaymentMethod("creditCard");
     };
 
-    const handleInvoiceNumber = () => {
-        setInvoiceNumber(
-            "INV" +
-                Math.floor(Math.random() * 100)
-                    .toString()
-                    .padStart(4, "0")
-        );
+    const generateInvoiceNumber = () => {
+        const invoiceNumber = `INV-${Math.floor(Math.random() * 1000000)}`;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            invoice: invoiceNumber
+        }));
     };
 
-    const handleCurrentDate = () => {
-        setCurrentDate(new Date().toLocaleDateString());
+    const generateCurrentDate = () => {
+        const currentDate = new Date().toLocaleDateString();
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            date: currentDate
+        }));
     };
 
     const handleServiceChange = e => {
@@ -75,10 +87,14 @@ export const StepPayment = () => {
     };
 
     const handleClientChange = e => {
-        setFormData({
-            ...formData,
-            client: e.target.value
-        });
+        const selectedClientId = e.target.value;
+        const selectedClient = clients.find(
+            client => client.name === selectedClientId
+        );
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            client: selectedClient.id
+        }));
     };
 
     const handleAmountChange = e => {
@@ -251,7 +267,7 @@ export const StepPayment = () => {
                                                 name="invoice"
                                                 className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                                 required
-                                                value={invoiceNumber}
+                                                value={formData.invoice}
                                                 readOnly
                                             />
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -270,7 +286,7 @@ export const StepPayment = () => {
                                                 name="date"
                                                 className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                                 required
-                                                value={currentDate}
+                                                value={formData.date}
                                                 readOnly
                                             />
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -282,16 +298,17 @@ export const StepPayment = () => {
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
-                                        onClick={() => {
-                                            handleInvoiceNumber();
-                                            handleCurrentDate();
-                                            setFormData({
-                                                ...formData,
-                                                status: "Paid"
-                                            });
-                                        }}>
+                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4">
                                         Next
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="bg-green-500 ml-2 text-white py-2 px-4 rounded-md mt-4"
+                                        onClick={() => {
+                                            generateInvoiceNumber();
+                                            generateCurrentDate();
+                                        }}>
+                                        Generate
                                     </button>
                                 </div>
                             </form>
@@ -400,10 +417,12 @@ export const StepPayment = () => {
                             <h1 className="text-2xl font-bold mb-4">
                                 Payment Summary
                             </h1>
+                            <p>Invoice: {formData.invoice}</p>
+                            <p>Date: {formData.date}</p>
                             <p>Service: {formData.service}</p>
                             <p>Amount: {formData.amount}</p>
                             <p>Client: {formData.client}</p>
-                            <p>Payment Method: {paymentMethod}</p>
+                            <p>Payment Method: {formData.method}</p>
                             <div className="flex justify-between">
                                 <button
                                     type="button"
