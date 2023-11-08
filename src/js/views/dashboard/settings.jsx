@@ -277,11 +277,11 @@ export const Settings = () => {
                                             {Array.from(
                                                 {
                                                     length: Math.ceil(
-                                                        store.clients.length /
+                                                        clients.length /
                                                             clientsPerPage
                                                     )
                                                 },
-                                                (_, i) => (
+                                                i => (
                                                     <li key={i}>
                                                         <button
                                                             className={`relative block py-2 px-3 leading-tight bg-w text-blue-700 border-r-0 hover:bg-gray-200 focus:outline-none ${
@@ -309,8 +309,7 @@ export const Settings = () => {
                                                     disabled={
                                                         currentPage ===
                                                         Math.ceil(
-                                                            store.clients
-                                                                .length /
+                                                            clients.length /
                                                                 clientsPerPage
                                                         )
                                                     }>

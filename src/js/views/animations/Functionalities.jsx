@@ -20,12 +20,12 @@ export const Functionalities = () => {
     return (
         <div className="relative" ref={ref}>
             <div className="sticky top-0 left-0 pt-12 text-center text-cyan-300 text-4xl z-10">
-                <h2 className="m-12 text-cyan-500 dark:text-cyan-300">
+                <h2 className="mt-12 text-cyan-500 dark:text-cyan-300">
                     {t("services")}
                 </h2>
                 <motion.div
                     style={{ scaleX }}
-                    className="h-2.5 rounded bg-gray-500 dark:bg-white mx-5"></motion.div>
+                    className="h-2.5 mt-3 rounded bg-gray-500 dark:bg-white mx-5"></motion.div>
             </div>
             {/* Base de Datos */}
             <Funcionality
