@@ -12,10 +12,14 @@ export const Dashboard = () => {
     const [t] = useTranslation("dashboard");
     const navigate = useNavigate();
     const [numClients, setNumClients] = useState(0);
+    const [numPayments, setNumPayments] = useState(0);
 
     useEffect(() => {
         actions.getAllClients().then(() => {
             setNumClients(store.clients.length);
+        });
+        actions.getAllPayments().then(() => {
+            setNumPayments(store.payments.length);
         });
     }, []);
 
@@ -49,10 +53,10 @@ export const Dashboard = () => {
                         </div>
                         <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
                             <div className="font-bold text-black dark:text-white">
-                                SERVICES
+                                PAYMENTS
                             </div>
                             <div className="font-bold text-cyan-300 text-md sm:text-xl">
-                                5
+                                {numPayments}
                             </div>
                         </div>
                         <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
@@ -78,7 +82,7 @@ export const Dashboard = () => {
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Payments Chart")}
                             </h1>
-                            <PieChartPayment />
+                            <PieChartPayment numPayments={numPayments} />
                         </div>
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">

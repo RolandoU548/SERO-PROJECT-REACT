@@ -271,7 +271,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await response.json();
-                    setStore({ payments: [...getStore().payments, data] }); // save data in payments array
+                    setStore({ payments: [...getStore().payments, data] });
                     return data;
                 } catch (error) {
                     console.error(error);
@@ -298,7 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
                     setStore({
                         payments: updatedPayments
-                    }); // save data in payments array
+                    });
                 } catch (error) {
                     console.error(error);
                 }

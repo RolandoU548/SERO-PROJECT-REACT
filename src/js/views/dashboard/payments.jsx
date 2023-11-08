@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
-import { FaPlus, FaSearch, FaEdit, FaTrash } from "react-icons/fa";
+import { FaPlus, FaSearch, FaEdit } from "react-icons/fa";
+import { ModalDeletePayment } from "../../components/dashpayments/deletepaymentmodal";
+import { set } from "firebase/database";
 
 export const Payments = () => {
     const { store, actions } = useContext(Context);
@@ -14,10 +16,14 @@ export const Payments = () => {
     const [fromDateFilter, setFromDateFilter] = useState("");
     const [toDateFilter, setToDateFilter] = useState("");
     const [invoiceFilter, setInvoiceFilter] = useState("");
-    const [paymentsData, setPaymentData] = useState([]);
+    const [paymentsData, setPaymentData] = useState(store.payments);
 
     useEffect(() => {
         actions.getAllPayments();
+        actions.getAllClients();
+    }, []);
+
+    useEffect(() => {
         setPaymentData(store.payments);
     }, [store.payments]);
 
@@ -29,7 +35,11 @@ export const Payments = () => {
         navigate(`/editpayment/${id}`);
     };
 
-    const handleDeletePayment = id => {
+    const deletePayment = id => {
+        const updatedPayments = paymentsData.filter(
+            payment => payment.id !== id
+        );
+        setPaymentData(updatedPayments);
         actions.deletePayment(id);
     };
 
@@ -112,28 +122,26 @@ export const Payments = () => {
                             Add
                         </button>
                     </div>
-                    <table className="table-auto w-full">
+                    <table className="table-auto w-full text-center">
                         <thead>
                             <tr className="border-b-4 border-y-blue-300">
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className=" py-4 text-lg font-bold">
                                     Status
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Method
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
-                                    Date
-                                </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">Date</th>
+                                <th className="py-4 text-lg font-bold">
                                     Customer
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Amount
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Invoice
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Actions
                                 </th>
                             </tr>
@@ -141,23 +149,19 @@ export const Payments = () => {
                         <tbody>
                             {paymentsData.map(payment => (
                                 <tr key={payment.id}>
-                                    <td className="px-4 py-4">
+                                    <td className=" py-4">
                                         <span
                                             className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                                                 payment.status === "paid"
-                                                    ? "bg-green-100 text-green-800"
-                                                    : "bg-red-100 text-red-800"
+                                                    ? "bg-red-700 text-white font-bold"
+                                                    : "bg-green-700 text-white font-bold"
                                             }`}>
                                             {payment.status}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-4">
-                                        {payment.method}
-                                    </td>
-                                    <td className="px-4 py-4">
-                                        {payment.date}
-                                    </td>
-                                    <td className="px-4 py-4">
+                                    <td className="py-4">{payment.method}</td>
+                                    <td className="py-4">{payment.date}</td>
+                                    <td className="py-4">
                                         {
                                             store.clients.find(
                                                 client =>
@@ -171,27 +175,20 @@ export const Payments = () => {
                                             )?.lastname
                                         }
                                     </td>
-                                    <td className="px-4 py-4">
-                                        {payment.amount}
-                                    </td>
-                                    <td className="px-4 py-4">
-                                        {payment.invoice}
-                                    </td>
-                                    <td className="px-4 py-4">
+                                    <td className="py-4">{payment.amount}</td>
+                                    <td className="py-4">{payment.invoice}</td>
+                                    <td className="py-4">
                                         <button
-                                            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full mr-2"
+                                            className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                             onClick={() =>
                                                 handleEditPayment(payment.id)
                                             }>
                                             <FaEdit />
                                         </button>
-                                        <button
-                                            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full"
-                                            onClick={() =>
-                                                handleDeletePayment(payment.id)
-                                            }>
-                                            <FaTrash />
-                                        </button>
+                                        <ModalDeletePayment
+                                            id={payment.id}
+                                            deletePayment={deletePayment}
+                                        />
                                     </td>
                                 </tr>
                             ))}

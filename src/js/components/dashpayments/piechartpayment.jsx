@@ -1,29 +1,38 @@
-import React, { useState } from "react";
-import { VictoryChart, VictoryPie, VictoryLabel } from "victory";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../../store/appContext";
+import { VictoryPie } from "victory";
 
 export const PieChartPayment = () => {
+    const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+        actions.getAllPayments().then(() => {
+            setActiveIndex(store.payments);
+        });
+    }, []);
+
+    const activePayments = store.payments.filter(
+        payment => payment.status === "Paid"
+    );
+    const inactivePayments = store.payments.filter(
+        payment => payment.status === "Unpaid"
+    );
+
     const data = [
-        { x: "Paid", y: 75 },
-        { x: "Pending", y: 25 }
+        { x: "Paid", y: activePayments.length },
+        { x: "Unpaid", y: inactivePayments.length }
     ];
 
     const colors = {
         Paid: "#008000",
-        Pending: "#ff0000"
+        Unpaid: "#ff0000"
     };
 
     return (
         <div className="flex justify-center items-center">
             <div className="w-120 h-120 mx-auto">
                 <div className="flex flex-row"></div>
-                {/* <VictoryLabel
-                    textAnchor="middle"
-                    style={{ fontSize: 20 }}
-                    x={175}
-                    y={175}
-                    text="Payment Status"
-                /> */}
                 <VictoryPie
                     data={data}
                     innerRadius={70}
