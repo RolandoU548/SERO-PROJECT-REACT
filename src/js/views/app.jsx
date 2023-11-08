@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Services } from "./animations/Services";
 import { Contact } from "./animations/Contact";
 import { Functionalities } from "./animations/Functionalities";
+import { Footer } from "./animations/Footer";
 
 export const App = () => {
     const [t] = useTranslation("app");
@@ -32,6 +33,7 @@ export const App = () => {
             <Services />
             <Functionalities />
             <Contact />
+            <Footer />
         </div>
     );
 };
