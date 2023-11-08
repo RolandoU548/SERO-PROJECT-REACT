@@ -13,7 +13,7 @@ export const Base = ({ children }) => {
                 loop
                 muted
                 playsInline
-                className="w-[100%] h-[100%] -z-50 fixed object-cover dark:invert-0 invert transition duration-500">
+                className="top-0 left-0 w-[100%] h-[100%] -z-50 fixed object-cover dark:invert-0 invert transition duration-500">
                 <source
                     src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/videos%2FLoginSignupBG.mp4?alt=media&token=bf97e688-0963-4997-80e2-f6da6d0fe924&_gl=1*vqd1fh*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU1OTI2OC42MC4wLjA."
                     type="video/mp4"

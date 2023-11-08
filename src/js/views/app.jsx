@@ -15,14 +15,14 @@ export const App = () => {
     }
 
     return (
-        <div className="font-serif dark:text-gray-200 text-black">
-            <h2 className="dark:mix-blend-difference text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-8xl font-black z-[200] text-center mt-48 text-black dark:text-white">
-                {t("title")}
-            </h2>
-            <h2 className="dark:mix-blend-difference lg:px-6 mt-8 text-lg minimum:text-xl tiny:text-2xl sm:text-3xl md:text-[45px] font-black z-[200] text-center text-black dark:text-white">
-                {t("subtitle")}
-            </h2>
-            <div className="flex justify-center mt-10">
+        <div className="font-serif dark:text-white">
+            <div className="flex flex-col justify-center items-center gap-10 h-screen md:mt-10">
+                <h2 className="dark:mix-blend-difference text-3xl minimum:text-6xl tiny:text-6xl sm:text-7xl md:text-8xl font-black text-center">
+                    {t("title")}
+                </h2>
+                <h2 className="dark:mix-blend-difference lg:px-6 text-lg minimum:text-xl tiny:text-2xl sm:text-3xl md:text-[45px] font-black text-center">
+                    {t("subtitle")}
+                </h2>
                 <Link
                     className="hover:bg-[#00f2ff80] transition duration-300 py-[1vw] px-[2vw] resp:py-[2vw] resp:px-[4vw] text-md minimum:text-lg tiny:text-xl sm:text-2xl md:text-3xl text-center border dark:border-white border-black rounded-full"
                     to="/signup">

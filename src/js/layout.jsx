@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "./components/ScrollToTop.jsx";
 import { Navbar } from "./components/Navbar.jsx";
 import { BackgroundVideo } from "./components/BackgroundVideo.jsx";
-import { BackgroundClientsVideo } from "./components/BackgroundClientsVideo.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { Cursor } from "./components/Cursor.jsx";
 
@@ -25,6 +24,7 @@ import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
+import { ClientForm } from "./views/dashboard/clientForm.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -133,7 +133,6 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackgroundClientsVideo />
                                 <PrivateNavbar />
                                 <Clients />
                             </>
@@ -144,7 +143,6 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackgroundClientsVideo />
                                 <PrivateNavbar />
                                 <CreateClient />
                             </>
@@ -155,7 +153,6 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <BackgroundClientsVideo />
                                 <PrivateNavbar />
                                 <ClientCard />
                             </>
@@ -231,6 +228,16 @@ const Layout = () => {
                             <PrivateNavbar />
                             <Admin />
                         </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/clientForm"
+                    transition="fade"
+                    element={
+                        <>
+                            <PrivateNavbar />
+                            <ClientForm />
+                        </>
                     }
                 />
                 <Route path="*" element={<NotFound />} />

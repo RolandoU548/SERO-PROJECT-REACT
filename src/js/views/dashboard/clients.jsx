@@ -76,16 +76,16 @@ export const Clients = () => {
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className=" font-serif text-gray-200 mt-28">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
+                <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("Clients")}
-                </h1>
+                </h2>
                 <div className="glass p-10 mt-5 m-auto w-11/12">
                     <div className="flex justify-between items-center mb-5">
                         <div className="relative">
                             <input
                                 type="text"
                                 placeholder="Search clients"
-                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-96"
+                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:bg-white w-96"
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
                             />
@@ -94,7 +94,7 @@ export const Clients = () => {
                             </span>
                         </div>
                         <button
-                            className="bg-orange-300 hover:bg-orange-400 px-4 py-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
+                            className="bg-orange-300 hover:bg-orange-400 px-4 py-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-cyan-200 focus:ring-opacity-50"
                             onClick={() => navigate("/createclient")}>
                             Add Client
                         </button>
@@ -196,8 +196,8 @@ export const Clients = () => {
                                             <button
                                                 className={`px-4 py-2 rounded-full ${
                                                     client.status === "Active"
-                                                        ? "bg-green-600 text-white"
-                                                        : "bg-red-600 text-white"
+                                                        ? "bg-green-500 text-black"
+                                                        : "bg-red-600 text-black"
                                                 }`}>
                                                 {client.status}
                                             </button>
@@ -223,7 +223,7 @@ export const Clients = () => {
                     </div>
                     <div className="flex justify-between items-center mt-5">
                         <div>
-                            <span className=" text-gray-700 dark:text-gray-600">
+                            <span className="text-gray-700 dark:text-gray-600">
                                 Showing {indexOfFirstClient + 1} to{" "}
                                 {indexOfLastClient} of {store.clients.length}{" "}
                                 entries
@@ -232,11 +232,11 @@ export const Clients = () => {
                         <div>
                             <nav className="block">
                                 <ul
-                                    className="flex pl-0 rounded list-none flex-wrap"
+                                    className="flex pl-0 rounded list-none flex-wrap items-center"
                                     style={{ gap: 0 }}>
                                     <li>
                                         <button
-                                            className="relative block py-2 px-3 leading-tight text-orange-300 hover:text-orange-400 dark:text-cyan-300 border-r-0 ml-0 rounded-l bg-black dark:hover:text-cyan-400 transition duration-300 border border-black focus:outline-none"
+                                            className="relative block py-2 px-3 leading-tight text-black border-r-0 ml-0 rounded-l bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
                                             onClick={() =>
                                                 paginate(currentPage - 1)
                                             }
@@ -254,9 +254,9 @@ export const Clients = () => {
                                         (_, i) => (
                                             <li key={i}>
                                                 <button
-                                                    className={`relative block py-2 px-3 leading-tight bg-w text-blue-700 border-r-0 hover:bg-gray-200 focus:outline-none ${
+                                                    className={`relative block py-2 px-3 leading-tight text-cyan-300 border-r-0 bg-slate-200 hover:bg-cyan-300 focus:outline-none ${
                                                         currentPage === i + 1
-                                                            ? "z-10 bg-blue-500 text-white"
+                                                            ? "z-10 bg-neutral-800 text-cyan-500"
                                                             : ""
                                                     }`}
                                                     onClick={() =>
@@ -269,7 +269,7 @@ export const Clients = () => {
                                     )}
                                     <li>
                                         <button
-                                            className="bg-orange-300 hover:bg-orange-400 relative block py-2 px-3 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 transition duration-300 border border-black focus:outline-none"
+                                            className="bg-orange-300 hover:bg-orange-400 relative block py-2 px-3 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
                                             onClick={() =>
                                                 paginate(currentPage + 1)
                                             }
