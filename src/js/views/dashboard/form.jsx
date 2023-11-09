@@ -26,7 +26,7 @@ export const Form = () => {
                 <div
                     className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer text-2xl"
                     onClick={() => {
-                        navigate("/clientForm");
+                        navigate("/inviteClientForm");
                     }}>
                     <div className="font-bold text-black dark:text-white flex gap-2 items-center">
                         CLIENTS
