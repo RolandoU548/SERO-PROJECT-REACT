@@ -76,7 +76,7 @@ export const Clients = () => {
                 <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("clients")}
                 </h2>
-                <div className="glass p-[3vw] mt-5 m-auto tiny:w-11/12 w-[98%]">
+                <div className="glass p-[3vw] my-5 m-auto tiny:w-11/12 w-[98%]">
                     <div className="flex justify-between items-center mb-5">
                         <div className="relative w-96 max-w-[65%]">
                             <input
