@@ -81,7 +81,7 @@ export const ClientProfile = ({ client }) => {
     return (
         <>
             <button
-                className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                className="m-1 p-1.5 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                 onClick={toggleModal}>
                 <FaEdit />
             </button>

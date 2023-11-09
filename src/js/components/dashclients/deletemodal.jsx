@@ -26,7 +26,7 @@ export function DeleteModal({ client }) {
     return (
         <>
             <button
-                className="ml-2 px-2 py-1 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
+                className="p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
                 onClick={() => setIsOpen(true)}>
                 <FaTrash />
             </button>
