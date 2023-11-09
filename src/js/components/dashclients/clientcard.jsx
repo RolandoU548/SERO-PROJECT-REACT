@@ -12,12 +12,12 @@ import {
     uploadBytes,
     listAll
 } from "firebase/storage";
-import { FaFilePdf } from "react-icons/fa";
+import { FaFilePdf, FaEdit } from "react-icons/fa";
 
 export const ClientCard = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
-
+    const [isOpen, setIsOpen] = useState(false);
     // SELECCION DE FILES
     let { id } = useParams();
     id = parseInt(id);
@@ -100,9 +100,12 @@ export const ClientCard = () => {
     if (client) {
         return (
             <>
+                {isOpen && (
+                    <ClientProfile setIsOpen={setIsOpen} client={client} />
+                )}
                 <div className="font-serif text-gray-200 mt-28">
                     <div className="flex items-center">
-                        <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
+                        <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black text-black dark:text-white m-auto">
                             {t("Client Profile")}
                         </h1>
                     </div>
@@ -111,11 +114,15 @@ export const ClientCard = () => {
                             className="h-12 w-12 text-gray-200 cursor-pointer"
                             onClick={() => navigate("/clients")}
                         />
-                        <div className="flex justify-center items-center">
-                            <ClientProfile key={client.id} client={client} />
-                        </div>
                         <div className="flex justify-center items-center flex-col sm:flex-row">
                             <div className="glass p-8 mt-5 m-auto w-700 shadow-lg overflow-hidden flex-1">
+                                <button
+                                    className="m-1 p-3 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                    onClick={() => {
+                                        setIsOpen(true);
+                                    }}>
+                                    <FaEdit />
+                                </button>
                                 <div className="flex items-center justify-between mb-8">
                                     <h1 className="text-2xl font-bold text-white">
                                         {client.name} {client.lastname}

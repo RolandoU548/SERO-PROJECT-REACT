@@ -21,9 +21,11 @@ export const StepPayment = () => {
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
     const [fileList, setFileList] = useState([]);
+    const [filesUploaded, setFilesUploaded] = useState(false);
 
     useEffect(() => {
         actions.getAllClients();
+        generateCurrentDate();
     }, []);
 
     const handleFormSubmit = e => {
@@ -61,14 +63,6 @@ export const StepPayment = () => {
         setPaymentMethod("creditCard");
     };
 
-    const generateInvoiceNumber = () => {
-        const invoiceNumber = `INV-${Math.floor(Math.random() * 1000000)}`;
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            invoice: invoiceNumber
-        }));
-    };
-
     const generateCurrentDate = () => {
         const currentDate = new Date().toLocaleDateString();
         setFormData(prevFormData => ({
@@ -96,6 +90,7 @@ export const StepPayment = () => {
         const selectedClient = clients.find(
             client => client.name === selectedClientId
         );
+
         setFormData(prevFormData => ({
             ...prevFormData,
             client: selectedClient.id
@@ -107,6 +102,14 @@ export const StepPayment = () => {
         setFormData({
             ...formData,
             amount: amount
+        });
+    };
+
+    const handleInvoiceChange = e => {
+        const invoice = e.target.value.toUppercase();
+        setFormData({
+            ...formData,
+            invoice: invoice
         });
     };
 
@@ -133,6 +136,7 @@ export const StepPayment = () => {
             archives.push(uploadTask);
         }
         await Promise.all(archives);
+        setFilesUploaded(true);
         alert("Files uploaded successfully!");
         setFileList([]);
     };
@@ -144,16 +148,16 @@ export const StepPayment = () => {
                     {t("Make a Payment")}
                 </h1>
             </div>
-            <div className="px-10 mt-5 m-auto w-11/12">
+            <div className="px-10 mt-5 m-auto w-3/4">
                 <div className="font-serif text-black dark:text-white mt-16">
                     <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
                         <li
                             className={`flex md:w-full items-center ${
                                 step >= 1
-                                    ? "text-blue-600 dark:text-blue-500 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
+                                    ? "text-cyan-300 dark:text-cyan-300 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
                                     : ""
                             }`}>
-                            <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+                            <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-cyan-300 dark:after:text-cyan-300">
                                 <svg
                                     className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
                                     aria-hidden="true"
@@ -169,10 +173,10 @@ export const StepPayment = () => {
                         <li
                             className={`flex md:w-full items-center ${
                                 step >= 2
-                                    ? "text-blue-600 dark:text-blue-500 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
+                                    ? "text-cyan-300 dark:text-cyan-300 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
                                     : ""
                             }`}>
-                            <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+                            <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-cyan-300 dark:after:text-cyan-300">
                                 <svg
                                     className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
                                     aria-hidden="true"
@@ -188,7 +192,7 @@ export const StepPayment = () => {
                         <li
                             className={`flex items-center ${
                                 step >= 3
-                                    ? "text-blue-600 dark:text-blue-500"
+                                    ? "text-cyan-300 dark:text-cyan-300"
                                     : ""
                             }`}>
                             <svg
@@ -208,6 +212,25 @@ export const StepPayment = () => {
                             <form onSubmit={handleFormSubmit}>
                                 <div className="flex flex-col-2 flex-row justify-center">
                                     <div className="w-full md:w-1/2 pr-10">
+                                        <label
+                                            htmlFor="date"
+                                            className="block text-white font-bold mb-2">
+                                            Date
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                id="date"
+                                                name="date"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                required
+                                                value={formData.date}
+                                                readOnly
+                                            />
+                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <MdDateRange className="h-5 w-5 text-cyan-400 " />
+                                            </span>
+                                        </div>
                                         <label
                                             htmlFor="client"
                                             className="block text-white font-bold mb-2">
@@ -254,55 +277,9 @@ export const StepPayment = () => {
                                                 Service 3
                                             </option>
                                         </select>
-                                        <label
-                                            htmlFor="description"
-                                            className="block text-white font-bold mb-2">
-                                            Description
-                                        </label>
-                                        <textarea
-                                            id="description"
-                                            name="description"
-                                            className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
-                                            required
-                                            onChange={
-                                                handleDescriptionChange
-                                            }></textarea>
-                                        <label
-                                            htmlFor="amount"
-                                            className="block text-white font-bold mb-2">
-                                            Amount
-                                        </label>
-                                        <div className="relative">
-                                            <input
-                                                type="number"
-                                                id="amount"
-                                                name="amount"
-                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
-                                                required
-                                                onChange={handleAmountChange}
-                                            />
-                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <AiOutlineDollar className="h-5 w-5 text-gray-400" />
-                                            </span>
-                                        </div>
                                     </div>
                                     <div className="w-full md:w-1/2 px-2">
                                         <div>
-                                            <div className="flex">
-                                                <h2 className="text-lg font-bold m-5 text-cyan-400">
-                                                    Click in Generate for
-                                                    Invoice and Date
-                                                </h2>
-                                                <button
-                                                    type="button"
-                                                    className="bg-green-500 ml-2 text-white px-4 rounded-md mt-4"
-                                                    onClick={() => {
-                                                        generateInvoiceNumber();
-                                                        generateCurrentDate();
-                                                    }}>
-                                                    Generate
-                                                </button>
-                                            </div>
                                             <label
                                                 htmlFor="invoice"
                                                 className="block text-white font-bold mb-2">
@@ -313,41 +290,56 @@ export const StepPayment = () => {
                                                     type="text"
                                                     id="invoice"
                                                     name="invoice"
-                                                    className="border bg-gray-600 border-gray-400 text-white rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                    className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                                     required
-                                                    value={formData.invoice}
-                                                    readOnly
+                                                    onChange={
+                                                        handleInvoiceChange
+                                                    }
                                                 />
                                                 <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                                                     <FaFileInvoice className="h-5 w-5 text-cyan-400" />
                                                 </span>
                                             </div>
                                             <label
-                                                htmlFor="date"
+                                                htmlFor="amount"
                                                 className="block text-white font-bold mb-2">
-                                                Date
+                                                Amount
                                             </label>
                                             <div className="relative">
                                                 <input
-                                                    type="text"
-                                                    id="date"
-                                                    name="date"
-                                                    className="border bg-gray-600 border-gray-400 text-white rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                    type="number"
+                                                    id="amount"
+                                                    name="amount"
+                                                    className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                                     required
-                                                    value={formData.date}
-                                                    readOnly
+                                                    onChange={
+                                                        handleAmountChange
+                                                    }
                                                 />
                                                 <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                    <MdDateRange className="h-5 w-5 text-cyan-400 " />
+                                                    <AiOutlineDollar className="h-6 w-6 text-cyan-400" />
                                                 </span>
                                             </div>
+                                            <label
+                                                htmlFor="description"
+                                                className="block text-white font-bold mb-2">
+                                                Description
+                                            </label>
+                                            <textarea
+                                                id="description"
+                                                name="description"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
+                                                required
+                                                onChange={
+                                                    handleDescriptionChange
+                                                }></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4">
+                                        className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4">
                                         Next
                                     </button>
                                 </div>
@@ -362,7 +354,7 @@ export const StepPayment = () => {
                                         type="button"
                                         className={`${
                                             paymentMethod === "creditCard"
-                                                ? "bg-blue-500 text-white"
+                                                ? "bg-black text-cyan-300 border border-cyan-300"
                                                 : "bg-gray-200 text-gray-700"
                                         } py-2 px-4 rounded-l-lg`}
                                         onClick={() =>
@@ -375,13 +367,14 @@ export const StepPayment = () => {
                                         type="button"
                                         className={`${
                                             paymentMethod === "paypal"
-                                                ? "bg-blue-500 text-white"
-                                                : "bg-gray-200 text-gray-700"
+                                                ? "bg-black text-cyan-300 border border-cyan-300"
+                                                : "bg-black text-cyan-300 border border-cyan-300"
                                         } py-2 px-4 rounded-r-lg`}
                                         onClick={() =>
-                                            handlePaymentMethod("paypal")
+                                            navigate("/PayPalButton")
                                         }>
-                                        <PayPalButton />
+                                        <FaCreditCard className="h-5 w-5 mr-2" />
+                                        Paypal
                                     </button>
                                 </div>
                                 {paymentMethod === "creditCard" && (
@@ -445,7 +438,7 @@ export const StepPayment = () => {
                                     </button>
                                     <button
                                         type="button"
-                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
+                                        className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4"
                                         onClick={() => setStep(3)}>
                                         Pay
                                     </button>
@@ -454,39 +447,55 @@ export const StepPayment = () => {
                         </div>
                     )}
                     {step === 3 && (
-                        <div className="glass p-10 mt-5 m-auto w-11/12">
-                            <div className="glass p-10 mt-5 m-auto w-11/12">
+                        <div className="glass p-10 mt-5 m-auto w-3/4">
+                            <div className="p-10 mt-5 m-auto w-15/12">
                                 <h1 className="text-2xl font-bold mb-5 text-center">
                                     Payment Summary
                                 </h1>
-                                <div className="grid grid-cols-2 gap-2 justify-items-center">
-                                    <p className="font-bold">Invoice:</p>
-                                    <p>{formData.invoice}</p>
-                                    <p className="font-bold">Date:</p>
-                                    <p>{formData.date}</p>
-                                    <p className="font-bold">Service:</p>
-                                    <p>{formData.service}</p>
-                                    <p className="font-bold">Amount:</p>
-                                    <p>{formData.amount}</p>
-                                    <p className="font-bold">Client:</p>
-                                    <p>
-                                        {
-                                            store.clients.find(
-                                                client =>
-                                                    client.id ===
-                                                    formData.client
-                                            )?.name
-                                        }{" "}
-                                        {
-                                            store.clients.find(
-                                                client =>
-                                                    client.id ===
-                                                    formData.client
-                                            )?.lastname
-                                        }
-                                    </p>
-                                    <p className="font-bold">Payment Method:</p>
-                                    <p>{formData.method}</p>
+                                <div className="grid grid-cols-2 justify-items-center">
+                                    <div>
+                                        <p className="font-bold text-lg">
+                                            Invoice:
+                                        </p>
+                                        <p className="font-bold text-lg">
+                                            Date:
+                                        </p>
+                                        <p className="font-bold text-lg">
+                                            Service:
+                                        </p>
+                                        <p className="font-bold text-lg">
+                                            Amount:
+                                        </p>
+                                        <p className="font-bold text-lg">
+                                            Client:
+                                        </p>
+                                        <p className="font-bold text-lg">
+                                            Payment Method:
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>{formData.invoice}</p>
+                                        <p>{formData.date}</p>
+                                        <p>{formData.service}</p>
+                                        <p>{formData.amount}</p>
+                                        <p>
+                                            {
+                                                store.clients.find(
+                                                    client =>
+                                                        client.id ===
+                                                        formData.client
+                                                )?.name
+                                            }{" "}
+                                            {
+                                                store.clients.find(
+                                                    client =>
+                                                        client.id ===
+                                                        formData.client
+                                                )?.lastname
+                                            }
+                                        </p>
+                                        <p>{formData.method}</p>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col items-center justify-center mt-6">
                                     <input
@@ -535,10 +544,17 @@ export const StepPayment = () => {
                                             </button>
                                         </div>
                                     )}
+                                    {filesUploaded && (
+                                        <div className="mt-2 flex justify-center">
+                                            <p className="glass text-white font-bold py-2 px-4 rounded">
+                                                Files Uploaded!
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
-                            <div className="flex justify-between">
+                            <div className="flex justify-evenly">
                                 <button
                                     type="button"
                                     className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
