@@ -12,7 +12,11 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
         handleSubmit,
         reset,
         formState: { errors }
-    } = useForm({ defaultValues: { role: ["user"] } });
+    } = useForm({
+        defaultValues: {
+            role: user.role
+        }
+    });
 
     const submit = async data => {
         const info = data;

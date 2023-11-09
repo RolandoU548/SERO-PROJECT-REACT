@@ -1,5 +1,3 @@
-import { set } from "react-hook-form";
-
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
@@ -147,7 +145,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                     const data = await resp.json();
                     if (resp.ok) {
                         setStore({
-                            users: data
+                            users: data.map(user => {
+                                user.role = user.role.map(role => {
+                                    return role.role;
+                                });
+                                return user;
+                            })
                         });
                         return true;
                     }
