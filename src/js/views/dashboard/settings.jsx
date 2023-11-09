@@ -255,8 +255,9 @@ export const Settings = () => {
                                         disabled={
                                             currentPage ===
                                             Math.ceil(
-                                                store.clients.length /
-                                                    clientsPerPage
+                                                clients.length /
+                                                    clientsPerPage ||
+                                                    clients.length < 1
                                             )
                                         }>
                                         <span>Next</span>
