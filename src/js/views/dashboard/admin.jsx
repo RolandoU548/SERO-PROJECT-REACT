@@ -38,8 +38,18 @@ export const Admin = () => {
             ?.filter(user => {
                 return user.id !== store.user.id;
             })
-            .filter(user =>
-                user.name.toLowerCase().includes(searchTerm.toLowerCase())
+            .filter(
+                user =>
+                    user.name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    user.lastname
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    user.email
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    user.role.includes(searchTerm.toLowerCase())
             )
             // eslint-disable-next-line array-callback-return
             .sort((a, b) => {
@@ -47,8 +57,6 @@ export const Admin = () => {
                     Array.isArray(a[sortOrder.column]) &&
                     Array.isArray(b[sortOrder.column])
                 ) {
-                    a[sortOrder.column].sort((a, b) => a.localeCompare(b));
-                    b[sortOrder.column].sort((a, b) => a.localeCompare(b));
                     return sortOrder.ascending
                         ? a[sortOrder.column]
                               .sort((a, b) => a.localeCompare(b))[0]
@@ -185,18 +193,23 @@ export const Admin = () => {
                                                 {user.email}
                                             </td>
                                             <td>
-                                                {user.role.map((role, i) => {
-                                                    return (
-                                                        <span key={i}>
-                                                            {}
-                                                            {role}
-                                                            {i !==
-                                                                user.role
-                                                                    .length -
-                                                                    1 && ","}
-                                                        </span>
-                                                    );
-                                                })}
+                                                {user.role
+                                                    .sort((a, b) =>
+                                                        a.localeCompare(b)
+                                                    )
+                                                    .map((role, i) => {
+                                                        return (
+                                                            <span key={i}>
+                                                                {}
+                                                                {role}
+                                                                {i !==
+                                                                    user.role
+                                                                        .length -
+                                                                        1 &&
+                                                                    ","}
+                                                            </span>
+                                                        );
+                                                    })}
                                             </td>
                                             <td className="py-2 text-center">
                                                 <button
