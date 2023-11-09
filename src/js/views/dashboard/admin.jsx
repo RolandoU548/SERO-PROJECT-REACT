@@ -29,6 +29,7 @@ export const Admin = () => {
     // const [clients, setClients] = useState(store.clients);
     const [sortOrder, setSortOrder] = useState({
         column: "name",
+        "[{}]": "role",
         ascending: true
     });
     const indexOfLastUser = currentPage * usersPerPage;
@@ -39,11 +40,13 @@ export const Admin = () => {
             .filter(user =>
                 user.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
-            .sort((a, b) =>
-                sortOrder.ascending
-                    ? a[sortOrder.column].localeCompare(b[sortOrder.column])
-                    : b[sortOrder.column].localeCompare(a[sortOrder.column])
-            )
+            .sort((a, b) => {
+                const aValue = a[sortOrder.column];
+                const bValue = b[sortOrder.column];
+                return sortOrder.ascending
+                    ? aValue.localeCompare(bValue)
+                    : bValue.localeCompare(aValue);
+            })
             .slice(indexOfFirstUser, indexOfLastUser);
 
     // Labels Filtrados
@@ -234,7 +237,7 @@ export const Admin = () => {
                                 )}
                                 <li>
                                     <button
-                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
+                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
                                         onClick={() =>
                                             setCurrentPage(currentPage + 1)
                                         }

@@ -5,7 +5,6 @@ import { VictoryPie } from "victory";
 export const PieChartClient = () => {
     const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
-
     useEffect(() => {
         actions.getAllClients().then(() => {
             setActiveIndex(store.clients);
@@ -33,42 +32,48 @@ export const PieChartClient = () => {
         <div className="flex justify-center items-center">
             <div className="w-120 h-120 mx-auto">
                 <div className="flex flex-row"></div>
-                <VictoryPie
-                    data={data}
-                    innerRadius={70}
-                    padAngle={3}
-                    activeIndex={activeIndex}
-                    events={[
-                        {
-                            target: "data",
-                            eventHandlers: {
-                                onClick: (_, { index }) => {
-                                    setActiveIndex(index);
-                                    return [
-                                        {
-                                            target: "labels",
-                                            mutation: () => ({
-                                                active: true
-                                            })
-                                        }
-                                    ];
+                {data === "[]" ? (
+                    <div className="text-center text-gray-500 font-bold text-2xl">
+                        EMPTY CHART
+                    </div>
+                ) : (
+                    <VictoryPie
+                        data={data}
+                        innerRadius={70}
+                        padAngle={3}
+                        activeIndex={activeIndex}
+                        events={[
+                            {
+                                target: "data",
+                                eventHandlers: {
+                                    onClick: (_, { index }) => {
+                                        setActiveIndex(index);
+                                        return [
+                                            {
+                                                target: "labels",
+                                                mutation: () => ({
+                                                    active: true
+                                                })
+                                            }
+                                        ];
+                                    }
                                 }
                             }
-                        }
-                    ]}
-                    labelRadius={80}
-                    style={{
-                        labels: {
-                            fill: "white",
-                            fontSize: 18,
-                            fontFamily: "sans-serif",
-                            fontWeight: "bold"
-                        },
-                        data: {
-                            fill: ({ datum }) => colors[datum.x]
-                        }
-                    }}
-                />
+                        ]}
+                        labelRadius={80}
+                        style={{
+                            labels: {
+                                fill: "white",
+                                fontSize: 18,
+                                fontFamily: "sans-serif",
+                                fontWeight: "bold"
+                            },
+                            data: {
+                                fill: ({ datum }) => colors[datum.x]
+                            }
+                        }}
+                    />
+                )}
             </div>
         </div>
     );

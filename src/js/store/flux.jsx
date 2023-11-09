@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 lastname: info.lastname,
                                 email: info.email,
                                 password: info.password,
-                                role: ["user"]
+                                role: ["user", "admin"]
                             })
                         }
                     );
