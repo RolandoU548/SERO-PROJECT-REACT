@@ -6,7 +6,7 @@ import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { FaPlus, FaSearch, FaEdit } from "react-icons/fa";
 import { ModalDeletePayment } from "../../components/dashpayments/deletepaymentmodal";
-import { set } from "firebase/database";
+// import * as XLSX from "xlsx";
 
 export const Payments = () => {
     const { store, actions } = useContext(Context);
@@ -29,6 +29,7 @@ export const Payments = () => {
 
     const handleAddPayment = () => {
         navigate("/steppayment");
+        generateCurrentDate();
     };
 
     const handleEditPayment = id => {
@@ -42,6 +43,30 @@ export const Payments = () => {
         setPaymentData(updatedPayments);
         actions.deletePayment(id);
     };
+
+    // const handleExport = async () => {
+    //     const headers = [
+    //         "ID",
+    //         "Customer",
+    //         "Invoice",
+    //         "Payment Date",
+    //         "Payment Method",
+    //         "Amount",
+    //         "Status"
+    //     ];
+    //     const data = paymentsData.map(payment => [
+    //         payment.id,
+    //         payment.customer,
+    //         payment.invoice,
+    //         payment.payment_date,
+    //         payment.payment_method,
+    //         payment.amount,
+    //         payment.status
+    //     ]);
+    //     const worksheet = XLSX.utils.aoa_to_sheet([headers, ...data]);
+    //     const workbook = XLSX.utils.book_new();
+    //     XLSX.utils.book_append_sheet(workbook, worksheet, "Payments");
+    //     XLSX.writeFile(workbook, "payments.xlsx");
 
     return (
         <>
@@ -115,6 +140,7 @@ export const Payments = () => {
                                 </span>
                             </div>
                         </div>
+                        {/* <button onClick={handleExport}>Export to Excel</button> */}
                         <button
                             className="flex items-center bg-cyan-400 hover:bg-cyan-500 text-black  text-md font-bold px-4 py-2 rounded-full"
                             onClick={handleAddPayment}>

@@ -21,10 +21,15 @@ export const StepPayment = () => {
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
     const [fileList, setFileList] = useState([]);
+    const [filesUploaded, setFilesUploaded] = useState(false);
 
     useEffect(() => {
         actions.getAllClients();
+        generateCurrentDate();
     }, []);
+
+    // useEffect(() => {
+    // }, []);
 
     const handleFormSubmit = e => {
         e.preventDefault();
@@ -61,13 +66,13 @@ export const StepPayment = () => {
         setPaymentMethod("creditCard");
     };
 
-    const generateInvoiceNumber = () => {
-        const invoiceNumber = `INV-${Math.floor(Math.random() * 1000000)}`;
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            invoice: invoiceNumber
-        }));
-    };
+    // const generateInvoiceNumber = () => {
+    //     const invoiceNumber = `INV-${Math.floor(Math.random() * 1000000)}`;
+    //     setFormData(prevFormData => ({
+    //         ...prevFormData,
+    //         invoice: invoiceNumber
+    //     }));
+    // };
 
     const generateCurrentDate = () => {
         const currentDate = new Date().toLocaleDateString();
@@ -96,6 +101,7 @@ export const StepPayment = () => {
         const selectedClient = clients.find(
             client => client.name === selectedClientId
         );
+
         setFormData(prevFormData => ({
             ...prevFormData,
             client: selectedClient.id
@@ -133,6 +139,7 @@ export const StepPayment = () => {
             archives.push(uploadTask);
         }
         await Promise.all(archives);
+        setFilesUploaded(true);
         alert("Files uploaded successfully!");
         setFileList([]);
     };
@@ -209,6 +216,25 @@ export const StepPayment = () => {
                                 <div className="flex flex-col-2 flex-row justify-center">
                                     <div className="w-full md:w-1/2 pr-10">
                                         <label
+                                            htmlFor="date"
+                                            className="block text-white font-bold mb-2">
+                                            Date
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                id="date"
+                                                name="date"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                required
+                                                value={formData.date}
+                                                readOnly
+                                            />
+                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <MdDateRange className="h-5 w-5 text-cyan-400 " />
+                                            </span>
+                                        </div>
+                                        <label
                                             htmlFor="client"
                                             className="block text-white font-bold mb-2">
                                             Client
@@ -254,55 +280,9 @@ export const StepPayment = () => {
                                                 Service 3
                                             </option>
                                         </select>
-                                        <label
-                                            htmlFor="description"
-                                            className="block text-white font-bold mb-2">
-                                            Description
-                                        </label>
-                                        <textarea
-                                            id="description"
-                                            name="description"
-                                            className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
-                                            required
-                                            onChange={
-                                                handleDescriptionChange
-                                            }></textarea>
-                                        <label
-                                            htmlFor="amount"
-                                            className="block text-white font-bold mb-2">
-                                            Amount
-                                        </label>
-                                        <div className="relative">
-                                            <input
-                                                type="number"
-                                                id="amount"
-                                                name="amount"
-                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
-                                                required
-                                                onChange={handleAmountChange}
-                                            />
-                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <AiOutlineDollar className="h-5 w-5 text-gray-400" />
-                                            </span>
-                                        </div>
                                     </div>
                                     <div className="w-full md:w-1/2 px-2">
                                         <div>
-                                            <div className="flex">
-                                                <h2 className="text-lg font-bold m-5 text-cyan-400">
-                                                    Click in Generate for
-                                                    Invoice and Date
-                                                </h2>
-                                                <button
-                                                    type="button"
-                                                    className="bg-green-500 ml-2 text-white px-4 rounded-md mt-4"
-                                                    onClick={() => {
-                                                        generateInvoiceNumber();
-                                                        generateCurrentDate();
-                                                    }}>
-                                                    Generate
-                                                </button>
-                                            </div>
                                             <label
                                                 htmlFor="invoice"
                                                 className="block text-white font-bold mb-2">
@@ -313,7 +293,7 @@ export const StepPayment = () => {
                                                     type="text"
                                                     id="invoice"
                                                     name="invoice"
-                                                    className="border bg-gray-600 border-gray-400 text-white rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                    className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                                     required
                                                     value={formData.invoice}
                                                     readOnly
@@ -323,24 +303,38 @@ export const StepPayment = () => {
                                                 </span>
                                             </div>
                                             <label
-                                                htmlFor="date"
+                                                htmlFor="amount"
                                                 className="block text-white font-bold mb-2">
-                                                Date
+                                                Amount
                                             </label>
                                             <div className="relative">
                                                 <input
-                                                    type="text"
-                                                    id="date"
-                                                    name="date"
-                                                    className="border bg-gray-600 border-gray-400 text-white rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                    type="number"
+                                                    id="amount"
+                                                    name="amount"
+                                                    className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                                     required
-                                                    value={formData.date}
-                                                    readOnly
+                                                    onChange={
+                                                        handleAmountChange
+                                                    }
                                                 />
                                                 <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                    <MdDateRange className="h-5 w-5 text-cyan-400 " />
+                                                    <AiOutlineDollar className="h-6 w-6 text-cyan-400" />
                                                 </span>
                                             </div>
+                                            <label
+                                                htmlFor="description"
+                                                className="block text-white font-bold mb-2">
+                                                Description
+                                            </label>
+                                            <textarea
+                                                id="description"
+                                                name="description"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
+                                                required
+                                                onChange={
+                                                    handleDescriptionChange
+                                                }></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -460,33 +454,39 @@ export const StepPayment = () => {
                                     Payment Summary
                                 </h1>
                                 <div className="grid grid-cols-2 gap-2 justify-items-center">
-                                    <p className="font-bold">Invoice:</p>
-                                    <p>{formData.invoice}</p>
-                                    <p className="font-bold">Date:</p>
-                                    <p>{formData.date}</p>
-                                    <p className="font-bold">Service:</p>
-                                    <p>{formData.service}</p>
-                                    <p className="font-bold">Amount:</p>
-                                    <p>{formData.amount}</p>
-                                    <p className="font-bold">Client:</p>
-                                    <p>
-                                        {
-                                            store.clients.find(
-                                                client =>
-                                                    client.id ===
-                                                    formData.client
-                                            )?.name
-                                        }{" "}
-                                        {
-                                            store.clients.find(
-                                                client =>
-                                                    client.id ===
-                                                    formData.client
-                                            )?.lastname
-                                        }
-                                    </p>
-                                    <p className="font-bold">Payment Method:</p>
-                                    <p>{formData.method}</p>
+                                    <div>
+                                        <p className="font-bold">Invoice:</p>
+                                        <p className="font-bold">Date:</p>
+                                        <p className="font-bold">Service:</p>
+                                        <p className="font-bold">Amount:</p>
+                                        <p className="font-bold">Client:</p>
+                                        <p className="font-bold">
+                                            Payment Method:
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>{formData.invoice}</p>
+                                        <p>{formData.date}</p>
+                                        <p>{formData.service}</p>
+                                        <p>{formData.amount}</p>
+                                        <p>
+                                            {
+                                                store.clients.find(
+                                                    client =>
+                                                        client.id ===
+                                                        formData.client
+                                                )?.name
+                                            }{" "}
+                                            {
+                                                store.clients.find(
+                                                    client =>
+                                                        client.id ===
+                                                        formData.client
+                                                )?.lastname
+                                            }
+                                        </p>
+                                        <p>{formData.method}</p>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col items-center justify-center mt-6">
                                     <input
@@ -533,6 +533,13 @@ export const StepPayment = () => {
                                                 onClick={handleSubmit}>
                                                 Upload Files
                                             </button>
+                                        </div>
+                                    )}
+                                    {filesUploaded && (
+                                        <div className="mt-2 flex justify-center">
+                                            <p className="glass text-white font-bold py-2 px-4 rounded">
+                                                Files Uploaded!
+                                            </p>
                                         </div>
                                     )}
                                 </div>
