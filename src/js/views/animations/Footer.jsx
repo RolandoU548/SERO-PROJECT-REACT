@@ -7,7 +7,7 @@ import { faFacebookF, faInstagram, faXTwitter, faWhatsapp } from '@fortawesome/f
 
 export const Footer = () => {
   return (
-    <div className='footer glass'>
+    <div className='footer bg-neutral-950'>
         <footer>
             <div className='row'>
                 <div className='colPrincipal'>
@@ -15,7 +15,7 @@ export const Footer = () => {
                     <p className='slogan'>La solucion a sus problemas</p>
                 </div>
                 <div className='col'>
-                    <h3>Contact <div className="underline"><span></span></div> </h3>
+                    <h3>Contact <div className="underlineFooter"><span></span></div> </h3>
                     <ul>
                         <li><a href="">Direccion</a></li>
                         <li><a href="">Numero de telefono</a></li>
@@ -23,7 +23,7 @@ export const Footer = () => {
                     </ul>
                 </div>
                 <div className='col'>
-                    <h3>Links <div className="underline"><span></span></div> </h3>
+                    <h3>Links <div className="underlineFooter"><span></span></div> </h3>
                     <ul>
                         <li><a href="">Inicio</a></li>
                         <li><a href="">Servicios</a></li>
@@ -32,7 +32,7 @@ export const Footer = () => {
                     </ul>
                 </div>
                 <div className='col'>
-                    <h3>Boletin informativo <div className="underline"><span></span></div> </h3>
+                    <h3>Boletin informativo <div className="underlineFooter"><span></span></div> </h3>
                     <form className='formFooter'>
                         <FontAwesomeIcon icon={faEnvelope} />
                         <input type="email" placeholder='Coloque su correo electronico' required/>
