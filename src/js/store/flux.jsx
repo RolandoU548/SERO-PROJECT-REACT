@@ -385,6 +385,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
+            },
+            generateInvitationClientForm: async info => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/inviteClientForm/${info.id}`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify(info)
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
             }
         }
     };
