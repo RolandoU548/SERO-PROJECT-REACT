@@ -25,6 +25,7 @@ import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
 import { ClientForm } from "./views/dashboard/clientForm.jsx";
+import { InviteClientForm } from "./views/dashboard/inviteClientForm.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -219,6 +220,36 @@ const Layout = () => {
                             </>
                         }
                     />
+                    <Route
+                        path="/clientForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <Navbar />
+                                <ClientForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/inviteClientForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <InviteClientForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/createUser"
+                        transition="fade"
+                        element={
+                            <>
+                                <Navbar />
+                                <ClientForm />
+                            </>
+                        }
+                    />
                 </Route>
                 <Route
                     path="/admin"
@@ -228,16 +259,6 @@ const Layout = () => {
                             <PrivateNavbar />
                             <Admin />
                         </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/clientForm"
-                    transition="fade"
-                    element={
-                        <>
-                            <PrivateNavbar />
-                            <ClientForm />
-                        </>
                     }
                 />
                 <Route path="*" element={<NotFound />} />

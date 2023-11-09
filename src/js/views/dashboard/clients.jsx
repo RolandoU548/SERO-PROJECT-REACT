@@ -76,7 +76,7 @@ export const Clients = () => {
                 <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("clients")}
                 </h2>
-                <div className="glass p-[3vw] mt-5 m-auto tiny:w-11/12 w-[98%]">
+                <div className="glass p-[3vw] my-5 m-auto tiny:w-11/12 w-[98%]">
                     <div className="flex justify-between items-center mb-5">
                         <div className="relative w-96 max-w-[65%]">
                             <input
@@ -86,7 +86,7 @@ export const Clients = () => {
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
                             />
-                            <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3">
+                            <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3 pointer-events-none">
                                 <FaSearch className="h-4 w-4 fill-current text-gray-800 dark:text-gray-500" />
                             </span>
                         </div>
