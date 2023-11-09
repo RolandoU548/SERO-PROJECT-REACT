@@ -29,7 +29,6 @@ export const Payments = () => {
 
     const handleAddPayment = () => {
         navigate("/steppayment");
-        generateCurrentDate();
     };
 
     const handleEditPayment = id => {
