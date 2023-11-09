@@ -362,8 +362,7 @@ export const ClientForm = () => {
                                     <div>
                                         <label>{t("image")}</label>
                                         <div className="relative rounded-md shadow-sm">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            </div>
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
@@ -373,9 +372,9 @@ export const ClientForm = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-cyan-400 flex items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-300 hover:text-black transition duration-300"
+                                                className=" text-start focus:ring-cyan-400 flex items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
                                                 onClick={handleButtonClick}>
-                                                    <FaImage className="h-5 w-5" />
+                                                <FaImage className="h-5 w-5" />
                                                 {image
                                                     ? t("changeImage")
                                                     : t("selectImage")}
@@ -400,7 +399,7 @@ export const ClientForm = () => {
                                 <div className="mt-5 col-span-2 flex justify-center items-center ">
                                     <button
                                         type="submit"
-                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-300 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-400 hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         {t("createClient")}
                                     </button>
                                 </div>

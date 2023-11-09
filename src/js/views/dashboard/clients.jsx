@@ -86,7 +86,7 @@ export const Clients = () => {
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
                             />
-                            <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3">
+                            <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3 pointer-events-none">
                                 <FaSearch className="h-4 w-4 fill-current text-gray-800 dark:text-gray-500" />
                             </span>
                         </div>

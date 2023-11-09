@@ -220,6 +220,36 @@ const Layout = () => {
                             </>
                         }
                     />
+                    <Route
+                        path="/clientForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <Navbar />
+                                <ClientForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/inviteClientForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <InviteClientForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/createUser"
+                        transition="fade"
+                        element={
+                            <>
+                                <Navbar />
+                                <ClientForm />
+                            </>
+                        }
+                    />
                 </Route>
                 <Route
                     path="/admin"
@@ -229,26 +259,6 @@ const Layout = () => {
                             <PrivateNavbar />
                             <Admin />
                         </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/clientForm"
-                    transition="fade"
-                    element={
-                        <>
-                            <Navbar />
-                            <ClientForm />
-                        </>
-                    }
-                />
-                <Route
-                    path="/inviteClientForm"
-                    transition="fade"
-                    element={
-                        <>
-                            <PrivateNavbar />
-                            <InviteClientForm />
-                        </>
                     }
                 />
                 <Route path="*" element={<NotFound />} />

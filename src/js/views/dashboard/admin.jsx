@@ -41,11 +41,37 @@ export const Admin = () => {
             .filter(user =>
                 user.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
-            .sort((a, b) =>
-                sortOrder.ascending
-                    ? a[sortOrder.column].localeCompare(b[sortOrder.column])
-                    : b[sortOrder.column].localeCompare(a[sortOrder.column])
-            )
+            // eslint-disable-next-line array-callback-return
+            .sort((a, b) => {
+                if (
+                    Array.isArray(a[sortOrder.column]) &&
+                    Array.isArray(b[sortOrder.column])
+                ) {
+                    a[sortOrder.column].sort((a, b) => a.localeCompare(b));
+                    b[sortOrder.column].sort((a, b) => a.localeCompare(b));
+                    return sortOrder.ascending
+                        ? a[sortOrder.column]
+                              .sort((a, b) => a.localeCompare(b))[0]
+                              .localeCompare(
+                                  b[sortOrder.column].sort((a, b) =>
+                                      a.localeCompare(b)
+                                  )[0]
+                              )
+                        : b[sortOrder.column]
+                              .sort((a, b) => a.localeCompare(b))[0]
+                              .localeCompare(
+                                  a[sortOrder.column].sort((a, b) =>
+                                      a.localeCompare(b)
+                                  )[0]
+                              );
+                } else {
+                    return sortOrder.ascending
+                        ? a[sortOrder.column].localeCompare(b[sortOrder.column])
+                        : b[sortOrder.column].localeCompare(
+                              a[sortOrder.column]
+                          );
+                }
+            })
             .slice(indexOfFirstUser, indexOfLastUser);
 
     const handleSort = column => {
@@ -84,7 +110,7 @@ export const Admin = () => {
                                         setSearchTerm(e.target.value)
                                     }
                                 />
-                                <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3">
+                                <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3 pointer-events-none">
                                     <FaSearch className="h-4 w-4 fill-current text-gray-800 dark:text-gray-500" />
                                 </span>
                             </div>
