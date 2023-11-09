@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 role: ["user", "admin"]
             },
             clients: [],
+            users: [],
             payments: []
         },
         actions: {
