@@ -193,7 +193,7 @@ export const Admin = () => {
                                             <td className="px-4 py-2 text-center">
                                                 {user.email}
                                             </td>
-                                            <td>
+                                            <td className="px-4 py-2 text-center">
                                                 {user.role
                                                     .sort((a, b) =>
                                                         a.localeCompare(b)
