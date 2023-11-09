@@ -217,8 +217,8 @@ export const Admin = () => {
                                                     key={user.id}
                                                     className="m-1 p-1.5 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 mr-3"
                                                     onClick={() => {
-                                                        setIsOpenEdit(true);
                                                         setUser(user);
+                                                        setIsOpenEdit(true);
                                                     }}>
                                                     <FaEdit />
                                                 </button>
@@ -226,8 +226,8 @@ export const Admin = () => {
                                                     key={user.id}
                                                     className="p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
                                                     onClick={() => {
-                                                        setIsOpenDelete(true);
                                                         setUser(user);
+                                                        setIsOpenDelete(true);
                                                     }}>
                                                     <FaTrash />
                                                 </button>
