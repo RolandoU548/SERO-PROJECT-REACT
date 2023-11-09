@@ -106,13 +106,16 @@ export const ClientCard = () => {
                             {t("Client Profile")}
                         </h1>
                     </div>
-                    <div className="glass p-10 mt-5 m-auto w-11/12">
+                    <div className="glass p-10 mt-2 m-auto w-11/12">
                         <HiArrowCircleLeft
                             className="h-12 w-12 text-gray-200 cursor-pointer"
                             onClick={() => navigate("/clients")}
                         />
+                        <div className="flex justify-center items-center">
+                            <ClientProfile key={client.id} client={client} />
+                        </div>
                         <div className="flex justify-center items-center flex-col sm:flex-row">
-                            <div className="glass p-10 mt-5 m-auto w-11/12 shadow-lg overflow-hidden flex-1">
+                            <div className="glass p-8 mt-5 m-auto w-700 shadow-lg overflow-hidden flex-1">
                                 <div className="flex items-center justify-between mb-8">
                                     <h1 className="text-2xl font-bold text-white">
                                         {client.name} {client.lastname}
@@ -143,12 +146,6 @@ export const ClientCard = () => {
                                         }>
                                         {client.status}
                                     </div>
-                                </div>
-                                <div className="mt-8">
-                                    <ClientProfile
-                                        key={client.id}
-                                        client={client}
-                                    />
                                 </div>
                             </div>
                             <div className="flex-1">

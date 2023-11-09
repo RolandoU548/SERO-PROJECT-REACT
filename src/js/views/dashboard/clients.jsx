@@ -11,7 +11,7 @@ import { ClientCardButton } from "../../components/dashclients/clientcardbutton"
 
 export const Clients = () => {
     const { store, actions } = useContext(Context);
-    const [t] = useTranslation("Clients");
+    const [t] = useTranslation("clients");
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -41,9 +41,6 @@ export const Clients = () => {
                     : b[sortOrder.column].localeCompare(a[sortOrder.column])
             )
             .slice(indexOfFirstClient, indexOfLastClient);
-
-    // Cambiar de Pagina
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     // Labels Filtrados
     const sortClients = (clients, column, ascending) => {
@@ -77,24 +74,24 @@ export const Clients = () => {
             />
             <div className=" font-serif text-gray-200 mt-28">
                 <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
-                    {t("Clients")}
+                    {t("clients")}
                 </h2>
-                <div className="glass p-10 mt-5 m-auto w-11/12">
+                <div className="glass p-[3vw] mt-5 m-auto tiny:w-11/12 w-[98%]">
                     <div className="flex justify-between items-center mb-5">
-                        <div className="relative">
+                        <div className="relative w-96 max-w-[65%]">
                             <input
                                 type="text"
                                 placeholder="Search clients"
-                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:bg-white w-96"
+                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-full"
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
                             />
-                            <span className="absolute top-0 right-0 mt-3 mr-4">
+                            <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3">
                                 <FaSearch className="h-4 w-4 fill-current text-gray-800 dark:text-gray-500" />
                             </span>
                         </div>
                         <button
-                            className="bg-orange-300 hover:bg-orange-400 px-4 py-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-cyan-200 focus:ring-opacity-50"
+                            className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
                             onClick={() => navigate("/createclient")}>
                             Add Client
                         </button>
@@ -146,7 +143,7 @@ export const Clients = () => {
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
-                                        className="px-4 py-2"
+                                        className="px-4 py-2 overflow-hidden"
                                         onClick={() =>
                                             handleSort("description")
                                         }>
@@ -171,7 +168,7 @@ export const Clients = () => {
                                             <img
                                                 src={client.image}
                                                 alt={client.name}
-                                                className="h-20 w-20 rounded-full inline-block"
+                                                className="h-20 w-20 object-cover rounded-full inline-block"
                                             />
                                         </td>
                                         <td className="px-4 py-2 text-center">
@@ -187,22 +184,25 @@ export const Clients = () => {
                                             {client.phone}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.business}
+                                            {client.business.substring(0, 30)}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.description}
+                                            {client.description.substring(
+                                                0,
+                                                30
+                                            )}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            <button
+                                            <div
                                                 className={`px-4 py-2 rounded-full ${
                                                     client.status === "Active"
-                                                        ? "bg-green-500 text-black"
-                                                        : "bg-red-600 text-black"
+                                                        ? "bg-green-600 text-white"
+                                                        : "bg-red-600 text-white"
                                                 }`}>
                                                 {client.status}
-                                            </button>
+                                            </div>
                                         </td>
-                                        <td className="px-4 py-2 text-center">
+                                        <td className="py-2 text-center">
                                             <ClientCardButton
                                                 key={client.id}
                                                 client={client}
@@ -222,69 +222,65 @@ export const Clients = () => {
                         </table>
                     </div>
                     <div className="flex justify-between items-center mt-5">
-                        <div>
-                            <span className="text-gray-700 dark:text-gray-600">
-                                Showing {indexOfFirstClient + 1} to{" "}
-                                {indexOfLastClient} of {store.clients.length}{" "}
-                                entries
-                            </span>
+                        <div className="tiny:w-96 text-gray-700 dark:text-gray-600">
+                            Showing {indexOfFirstClient + 1} to{" "}
+                            {indexOfLastClient} of {store.clients.length}{" "}
+                            entries
                         </div>
-                        <div>
-                            <nav className="block">
-                                <ul
-                                    className="flex pl-0 rounded list-none flex-wrap items-center"
-                                    style={{ gap: 0 }}>
-                                    <li>
-                                        <button
-                                            className="relative block py-2 px-3 leading-tight text-black border-r-0 ml-0 rounded-l bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
-                                            onClick={() =>
-                                                paginate(currentPage - 1)
-                                            }
-                                            disabled={currentPage === 1}>
-                                            <span>Previous</span>
-                                        </button>
-                                    </li>
-                                    {Array.from(
-                                        {
-                                            length: Math.ceil(
-                                                store.clients.length /
-                                                    clientsPerPage
-                                            )
-                                        },
-                                        (_, i) => (
-                                            <li key={i}>
-                                                <button
-                                                    className={`relative block py-2 px-3 leading-tight text-cyan-300 border-r-0 bg-slate-200 hover:bg-cyan-300 focus:outline-none ${
-                                                        currentPage === i + 1
-                                                            ? "z-10 bg-neutral-800 text-cyan-500"
-                                                            : ""
-                                                    }`}
-                                                    onClick={() =>
-                                                        paginate(i + 1)
-                                                    }>
-                                                    {i + 1}
-                                                </button>
-                                            </li>
+                        <div className="w-full overflow-auto flex justify-end">
+                            <ul
+                                className="flex rounded list-none"
+                                style={{ gap: 0 }}>
+                                <li>
+                                    <button
+                                        className="relative block p-2.5 leading-tight text-black border-r-0 rounded-l bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
+                                        onClick={() =>
+                                            setCurrentPage(currentPage - 1)
+                                        }
+                                        disabled={currentPage === 1}>
+                                        <span>Previous</span>
+                                    </button>
+                                </li>
+                                {Array.from(
+                                    {
+                                        length: Math.ceil(
+                                            store.clients.length /
+                                                clientsPerPage
                                         )
-                                    )}
-                                    <li>
-                                        <button
-                                            className="bg-orange-300 hover:bg-orange-400 relative block py-2 px-3 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
-                                            onClick={() =>
-                                                paginate(currentPage + 1)
-                                            }
-                                            disabled={
-                                                currentPage ===
+                                    },
+                                    (_, i) => (
+                                        <li key={i}>
+                                            <button
+                                                className={`transition duration-300 relative block p-2.5 leading-tight text-blue-900 border-r-0 bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 focus:outline-none ${
+                                                    currentPage === i + 1
+                                                        ? "z-10 bg-orange-400 hover:bg-orange-500 dark:bg-cyan-400 dark:hover:bg-cyan-500 text-white"
+                                                        : ""
+                                                }`}
+                                                onClick={() =>
+                                                    setCurrentPage(i + 1)
+                                                }>
+                                                {i + 1}
+                                            </button>
+                                        </li>
+                                    )
+                                )}
+                                <li>
+                                    <button
+                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
+                                        onClick={() =>
+                                            setCurrentPage(currentPage + 1)
+                                        }
+                                        disabled={
+                                            currentPage ===
                                                 Math.ceil(
                                                     store.clients.length /
                                                         clientsPerPage
-                                                )
-                                            }>
-                                            <span>Next</span>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </nav>
+                                                ) || store.clients.length < 1
+                                        }>
+                                        <span>Next</span>
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

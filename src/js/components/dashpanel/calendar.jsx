@@ -14,7 +14,6 @@ dayjs.extend(customParseFormat);
 dayjs.locale("es"); //
 
 export const Calendar = () => {
-    const [tasks, setTasks] = useState([]);
     const [currentMonth, setCurrentMonth] = useState(dayjs());
     const [t] = useTranslation("dashboard");
 
@@ -93,11 +92,7 @@ export const Calendar = () => {
                         {week.map((day, index) => (
                             <React.Fragment key={index}>
                                 {day ? (
-                                    <CalendarDay
-                                        day={day}
-                                        // tasks={tasks}
-                                        // setTasks={setTasks}
-                                    />
+                                    <CalendarDay day={day} />
                                 ) : (
                                     <div className="border border-cyan-400 p-2"></div>
                                 )}

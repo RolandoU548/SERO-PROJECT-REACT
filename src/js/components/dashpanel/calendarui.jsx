@@ -23,12 +23,30 @@ export const CalendarDay = ({ day }) => {
                 ...prevTasks,
                 [day.format("YYYY-MM-DD")]: [
                     ...(prevTasks[day.format("YYYY-MM-DD")] || []),
-                    { text: newTask.trim() }
+                    { text: newTask.trim(), completed: false }
                 ]
             }));
             setNewTask("");
             setShowModal(false);
         }
+    };
+
+    const toggleTask = index => {
+        setTasks(prevTasks => {
+            const updatedTasks = {
+                ...prevTasks,
+                [day.format("YYYY-MM-DD")]: prevTasks[
+                    day.format("YYYY-MM-DD")
+                ].map((task, i) => {
+                    if (i === index) {
+                        return { ...task, completed: !task.completed };
+                    }
+                    return task;
+                })
+            };
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+            return updatedTasks;
+        });
     };
 
     const deleteTask = index => {
@@ -56,13 +74,15 @@ export const CalendarDay = ({ day }) => {
                 {tasks[day.format("YYYY-MM-DD")]?.map((task, index) => (
                     <div
                         key={index}
-                        className="flex items-center justify-between px-2 py-1 bg-cyan-300 rounded-md mb-2">
-                        <div className="text-sm font-bold text-black overflow-hidden">
+                        onClick={() => toggleTask(index)}
+                        className={`flex items-center justify-between px-2 py-1 rounded-md mb-2 cursor-pointer ${
+                            task.completed
+                                ? "bg-gray-300 text-gray-500 line-through"
+                                : "bg-cyan-300 text-black"
+                        }`}>
+                        <div className="text-sm font-bold overflow-hidden">
                             {task.text}
                         </div>
-                        {/* <button onClick={() => deleteTask(index)}>
-                            <FaTrash className="h-4 w-4 text-red-600" />
-                        </button> */}
                         <ModalDeleteTask
                             index={index}
                             deleteTask={deleteTask}

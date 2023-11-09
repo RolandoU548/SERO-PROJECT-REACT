@@ -1,14 +1,30 @@
-import React, { useState } from "react";
-import "../../../css/app.css";
-import "../../../css/glass.css";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// import { useParams } from "react-router-dom";
+import { Context } from "../../store/appContext";
+import { FaCreditCard, FaFileInvoice, FaFilePdf } from "react-icons/fa";
+import { MdDateRange } from "react-icons/md";
+import { AiOutlineDollar } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import PayPalButton from "./PayPalButton";
+import { storage } from "../../components/firebase/firebase";
+import { ref as storageRef, uploadBytes } from "firebase/storage";
 
 export const StepPayment = () => {
+    // const { id } = useParams();
+    const navigate = useNavigate();
+    const { store, actions } = useContext(Context);
+    const clients = store.clients;
+    // const client = clients.find(c => c.id === id);
     const [t] = useTranslation("steppayment");
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
+    const [fileList, setFileList] = useState([]);
+
+    useEffect(() => {
+        actions.getAllClients();
+    }, []);
 
     const handleFormSubmit = e => {
         e.preventDefault();
@@ -16,11 +32,22 @@ export const StepPayment = () => {
     };
 
     const handlePaymentMethod = method => {
-        setPaymentMethod(method);
+        const paymentMethod = method === "paypal" ? "Paypal" : "Credit Card";
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            method: paymentMethod
+        }));
     };
 
-    const handlePaymentSubmit = e => {
-        e.preventDefault();
+    useEffect(() => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            method: "Credit Card"
+        }));
+    }, []);
+
+    const handlePaymentSubmit = () => {
+        actions.createPayment({ ...formData, status: "Paid" });
         setStep(3);
     };
 
@@ -32,6 +59,82 @@ export const StepPayment = () => {
         setStep(1);
         setFormData({});
         setPaymentMethod("creditCard");
+    };
+
+    const generateInvoiceNumber = () => {
+        const invoiceNumber = `INV-${Math.floor(Math.random() * 1000000)}`;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            invoice: invoiceNumber
+        }));
+    };
+
+    const generateCurrentDate = () => {
+        const currentDate = new Date().toLocaleDateString();
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            date: currentDate
+        }));
+    };
+
+    const handleServiceChange = e => {
+        setFormData({
+            ...formData,
+            service: e.target.value
+        });
+    };
+
+    const handleDescriptionChange = e => {
+        setFormData({
+            ...formData,
+            description: e.target.value
+        });
+    };
+
+    const handleClientChange = e => {
+        const selectedClientId = e.target.value;
+        const selectedClient = clients.find(
+            client => client.name === selectedClientId
+        );
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            client: selectedClient.id
+        }));
+    };
+
+    const handleAmountChange = e => {
+        const amount = parseFloat(e.target.value).toFixed(2);
+        setFormData({
+            ...formData,
+            amount: amount
+        });
+    };
+
+    const handleFileChange = event => {
+        const newFiles = Array.from(event.target.files);
+        setFileList([...fileList, ...newFiles]);
+    };
+
+    const handleFileDelete = index => {
+        const newFiles = [...fileList];
+        newFiles.splice(index, 1);
+        setFileList(newFiles);
+    };
+
+    const handleSubmit = async () => {
+        const archives = [];
+        for (let i = 0; i < fileList.length; i++) {
+            const file = fileList[i];
+            const imageRef = storageRef(
+                storage,
+                `clientFiles/$clientFile_${formData.client}_${file.name}`
+            );
+            const uploadTask = uploadBytes(imageRef, file);
+            archives.push(uploadTask);
+        }
+        await Promise.all(archives);
+        alert("Files uploaded successfully!");
+        setFileList([]);
     };
 
     return (
@@ -106,43 +209,27 @@ export const StepPayment = () => {
                                 <div className="flex flex-col-2 flex-row justify-center">
                                     <div className="w-full md:w-1/2 pr-10">
                                         <label
-                                            htmlFor="name"
+                                            htmlFor="client"
                                             className="block text-white font-bold mb-2">
-                                            Name
+                                            Client
                                         </label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
+                                        <select
+                                            id="client"
+                                            name="client"
                                             className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                             required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    name: e.target.value
-                                                })
-                                            }
-                                        />
-                                        <label
-                                            htmlFor="email"
-                                            className="block text-white font-bold mb-2">
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
-                                            required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    email: e.target.value
-                                                })
-                                            }
-                                        />
-                                    </div>
-                                    <div className="w-full md:w-1/2 px-2">
+                                            onChange={handleClientChange}>
+                                            <option value="">
+                                                Select a client
+                                            </option>
+                                            {clients.map(client => (
+                                                <option
+                                                    key={client.id}
+                                                    value={client.name}>
+                                                    {client.name}
+                                                </option>
+                                            ))}
+                                        </select>
                                         <label
                                             htmlFor="services"
                                             className="block text-white font-bold mb-2">
@@ -153,12 +240,7 @@ export const StepPayment = () => {
                                             name="services"
                                             className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                             required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    services: e.target.value
-                                                })
-                                            }>
+                                            onChange={handleServiceChange}>
                                             <option value="">
                                                 Select a service
                                             </option>
@@ -182,30 +264,84 @@ export const StepPayment = () => {
                                             name="description"
                                             className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                             required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    description: e.target.value
-                                                })
+                                            onChange={
+                                                handleDescriptionChange
                                             }></textarea>
                                         <label
                                             htmlFor="amount"
                                             className="block text-white font-bold mb-2">
                                             Amount
                                         </label>
-                                        <input
-                                            type="number"
-                                            id="amount"
-                                            name="amount"
-                                            className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
-                                            required
-                                            onChange={e =>
-                                                setFormData({
-                                                    ...formData,
-                                                    amount: e.target.value
-                                                })
-                                            }
-                                        />
+                                        <div className="relative">
+                                            <input
+                                                type="number"
+                                                id="amount"
+                                                name="amount"
+                                                className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                required
+                                                onChange={handleAmountChange}
+                                            />
+                                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <AiOutlineDollar className="h-5 w-5 text-gray-400" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="w-full md:w-1/2 px-2">
+                                        <div>
+                                            <div className="flex">
+                                                <h2 className="text-lg font-bold m-5 text-cyan-400">
+                                                    Click in Generate for
+                                                    Invoice and Date
+                                                </h2>
+                                                <button
+                                                    type="button"
+                                                    className="bg-green-500 ml-2 text-white px-4 rounded-md mt-4"
+                                                    onClick={() => {
+                                                        generateInvoiceNumber();
+                                                        generateCurrentDate();
+                                                    }}>
+                                                    Generate
+                                                </button>
+                                            </div>
+                                            <label
+                                                htmlFor="invoice"
+                                                className="block text-white font-bold mb-2">
+                                                Invoice
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    id="invoice"
+                                                    name="invoice"
+                                                    className="border bg-gray-600 border-gray-400 text-white rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                    required
+                                                    value={formData.invoice}
+                                                    readOnly
+                                                />
+                                                <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                    <FaFileInvoice className="h-5 w-5 text-cyan-400" />
+                                                </span>
+                                            </div>
+                                            <label
+                                                htmlFor="date"
+                                                className="block text-white font-bold mb-2">
+                                                Date
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    id="date"
+                                                    name="date"
+                                                    className="border bg-gray-600 border-gray-400 text-white rounded-md py-2 px-3 mb-4 w-full pr-10"
+                                                    required
+                                                    value={formData.date}
+                                                    readOnly
+                                                />
+                                                <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                    <MdDateRange className="h-5 w-5 text-cyan-400 " />
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
@@ -232,6 +368,7 @@ export const StepPayment = () => {
                                         onClick={() =>
                                             handlePaymentMethod("creditCard")
                                         }>
+                                        <FaCreditCard className="h-5 w-5 mr-2" />
                                         Credit Card
                                     </button>
                                     <button
@@ -244,7 +381,7 @@ export const StepPayment = () => {
                                         onClick={() =>
                                             handlePaymentMethod("paypal")
                                         }>
-                                        PayPal
+                                        <PayPalButton />
                                     </button>
                                 </div>
                                 {paymentMethod === "creditCard" && (
@@ -299,23 +436,6 @@ export const StepPayment = () => {
                                         />
                                     </div>
                                 )}
-                                {paymentMethod === "paypal" && (
-                                    // <div className="flex flex-col">
-                                    //     <label
-                                    //         htmlFor="paypalEmail"
-                                    //         className="mb-2">
-                                    //         PayPal Email
-                                    //     </label>
-                                    //     <input
-                                    //         type="email"
-                                    //         id="paypalEmail"
-                                    //         name="paypalEmail"
-                                    //         className="border border-gray-400 rounded-md py-2 px-3 mb-4"
-                                    //         required
-                                    //     />
-                                    // </div>
-                                    <PayPalButton />
-                                )}
                                 <div className="flex justify-between">
                                     <button
                                         type="button"
@@ -324,8 +444,9 @@ export const StepPayment = () => {
                                         Back
                                     </button>
                                     <button
-                                        type="submit"
-                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4">
+                                        type="button"
+                                        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
+                                        onClick={() => setStep(3)}>
                                         Pay
                                     </button>
                                 </div>
@@ -334,13 +455,89 @@ export const StepPayment = () => {
                     )}
                     {step === 3 && (
                         <div className="glass p-10 mt-5 m-auto w-11/12">
-                            <h1 className="text-2xl font-bold mb-4">
-                                Payment Summary
-                            </h1>
-                            <p>Name: {formData.name}</p>
-                            <p>Email: {formData.email}</p>
-                            <p>Amount: {formData.amount}</p>
-                            <p>Payment Method: {paymentMethod}</p>
+                            <div className="glass p-10 mt-5 m-auto w-11/12">
+                                <h1 className="text-2xl font-bold mb-5 text-center">
+                                    Payment Summary
+                                </h1>
+                                <div className="grid grid-cols-2 gap-2 justify-items-center">
+                                    <p className="font-bold">Invoice:</p>
+                                    <p>{formData.invoice}</p>
+                                    <p className="font-bold">Date:</p>
+                                    <p>{formData.date}</p>
+                                    <p className="font-bold">Service:</p>
+                                    <p>{formData.service}</p>
+                                    <p className="font-bold">Amount:</p>
+                                    <p>{formData.amount}</p>
+                                    <p className="font-bold">Client:</p>
+                                    <p>
+                                        {
+                                            store.clients.find(
+                                                client =>
+                                                    client.id ===
+                                                    formData.client
+                                            )?.name
+                                        }{" "}
+                                        {
+                                            store.clients.find(
+                                                client =>
+                                                    client.id ===
+                                                    formData.client
+                                            )?.lastname
+                                        }
+                                    </p>
+                                    <p className="font-bold">Payment Method:</p>
+                                    <p>{formData.method}</p>
+                                </div>
+                                <div className="flex flex-col items-center justify-center mt-6">
+                                    <input
+                                        type="file"
+                                        onChange={handleFileChange}
+                                        className="hidden"
+                                        id="fileInput"
+                                        accept="application/pdf"
+                                        multiple
+                                    />
+                                    <label
+                                        htmlFor="fileInput"
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Select PDF Files
+                                    </label>
+                                    {fileList.length > 0 && (
+                                        <div className="mt-2 flex justify-center">
+                                            {fileList.map((file, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="flex items-center justify-between bg-gray-200 rounded-lg p-2 mt-2">
+                                                    <div className="flex items-center">
+                                                        <FaFilePdf className="text-red-500 mr-2" />
+                                                        <div className="text-black">
+                                                            {file.name.substring(
+                                                                0,
+                                                                20
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <button
+                                                        className="text-red-500 font-bold ml-5"
+                                                        onClick={() =>
+                                                            handleFileDelete(
+                                                                index
+                                                            )
+                                                        }>
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            ))}
+                                            <button
+                                                className="mt-4 ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                                onClick={handleSubmit}>
+                                                Upload Files
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
                             <div className="flex justify-between">
                                 <button
                                     type="button"
@@ -356,7 +553,11 @@ export const StepPayment = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-green-500 text-white py-2 px-4 rounded-md mt-4">
+                                    className="bg-green-500 text-white py-2 px-4 rounded-md mt-4"
+                                    onClick={() => {
+                                        handlePaymentSubmit();
+                                        navigate("/payments");
+                                    }}>
                                     Confirm
                                 </button>
                             </div>

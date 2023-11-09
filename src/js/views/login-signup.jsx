@@ -62,7 +62,7 @@ export const LoginSignupCard = props => {
                     </p>
                 </div>
                 {/* LOGIN */}
-                <div className="m-auto lg:my-4 my-20 w-[35rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative">
+                <div className="m-auto lg:my-20 my-20 w-[35rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative">
                     <BackArrow
                         className="absolute top-4 right-5 md:hidden"
                         to="/"

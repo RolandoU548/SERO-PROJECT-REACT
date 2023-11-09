@@ -1,92 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
-import { FaPlus, FaSearch } from "react-icons/fa";
-
-const paymentsData = [
-    {
-        id: 1,
-        status: "Paid",
-        method: "Credit Card",
-        date: "2022-01-01",
-        customer: "Samuel Carmona",
-        amount: 5000.0,
-        invoice: "INV-001"
-    },
-    {
-        id: 2,
-        status: "Paid",
-        method: "Paypal",
-        date: "2022-01-02",
-        customer: "Rolando Uzcátegui",
-        amount: 600.0,
-        invoice: "INV-002"
-    },
-    {
-        id: 3,
-        status: "Paid",
-        method: "Bank Transfer",
-        date: "2022-01-03",
-        customer: "Roberto Vargas",
-        amount: 50.0,
-        invoice: "INV-003"
-    },
-    {
-        id: 4,
-        status: "Pending",
-        method: "Bank Transfer",
-        date: "2022-01-03",
-        customer: "Alexande De Matteo",
-        amount: 500.0,
-        invoice: "INV-004"
-    },
-    {
-        id: 5,
-        status: "Paid",
-        method: "Bank Transfer",
-        date: "2022-01-03",
-        customer: "Sebastian Castro",
-        amount: 20000000.0,
-        invoice: "INV-005"
-    },
-    {
-        id: 6,
-        status: "Paid",
-        method: "Paypal",
-        date: "2022-01-03",
-        customer: "Sebastian Lopez",
-        amount: 300.0,
-        invoice: "INV-006"
-    }
-];
+import { FaPlus, FaSearch, FaEdit } from "react-icons/fa";
+import { ModalDeletePayment } from "../../components/dashpayments/deletepaymentmodal";
+import { set } from "firebase/database";
 
 export const Payments = () => {
+    const { store, actions } = useContext(Context);
     const [t] = useTranslation("payments");
     const navigate = useNavigate();
     const [customerFilter, setCustomerFilter] = useState("");
     const [fromDateFilter, setFromDateFilter] = useState("");
     const [toDateFilter, setToDateFilter] = useState("");
     const [invoiceFilter, setInvoiceFilter] = useState("");
+    const [paymentsData, setPaymentData] = useState(store.payments);
 
-    const filteredPaymentsData = paymentsData.filter(payment => {
-        return (
-            payment.customer
-                .toLowerCase()
-                .includes(customerFilter.toLowerCase()) &&
-            payment.invoice
-                .toLowerCase()
-                .includes(invoiceFilter.toLowerCase()) &&
-            (fromDateFilter === "" ||
-                new Date(payment.date) >= new Date(fromDateFilter)) &&
-            (toDateFilter === "" ||
-                new Date(payment.date) <= new Date(toDateFilter))
-        );
-    });
+    useEffect(() => {
+        actions.getAllPayments();
+        actions.getAllClients();
+    }, []);
+
+    useEffect(() => {
+        setPaymentData(store.payments);
+    }, [store.payments]);
 
     const handleAddPayment = () => {
         navigate("/steppayment");
+    };
+
+    const handleEditPayment = id => {
+        navigate(`/editpayment/${id}`);
+    };
+
+    const deletePayment = id => {
+        const updatedPayments = paymentsData.filter(
+            payment => payment.id !== id
+        );
+        setPaymentData(updatedPayments);
+        actions.deletePayment(id);
     };
 
     return (
@@ -144,8 +98,6 @@ export const Payments = () => {
                                 className="border border-gray-400 rounded py-1 px-2 text-gray-400"
                             />
                         </div>
-                        {/* <div className="flex items-center">
-                        </div> */}
                         <div className="flex items-center">
                             <label htmlFor="invoiceFilter">Invoice:</label>
                             <div className="relative">
@@ -170,58 +122,73 @@ export const Payments = () => {
                             Add
                         </button>
                     </div>
-                    <table className="table-auto w-full">
+                    <table className="table-auto w-full text-center">
                         <thead>
                             <tr className="border-b-4 border-y-blue-300">
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className=" py-4 text-lg font-bold">
                                     Status
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Method
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
-                                    Date
-                                </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">Date</th>
+                                <th className="py-4 text-lg font-bold">
                                     Customer
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Amount
                                 </th>
-                                <th className="px-4 py-4 text-lg font-bold">
+                                <th className="py-4 text-lg font-bold">
                                     Invoice
+                                </th>
+                                <th className="py-4 text-lg font-bold">
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredPaymentsData.map(payment => (
-                                <tr
-                                    key={payment.id}
-                                    className="border-b-2 border-gray-400 text-center">
-                                    <td className="px-4 py-4 text-md font-bold">
-                                        <button
-                                            className={`rounded-full ${
-                                                payment.status === "Paid"
-                                                    ? "bg-green-500"
-                                                    : "bg-red-500"
-                                            } text-white font-bold py-2 px-4 rounded`}>
+                            {paymentsData.map(payment => (
+                                <tr key={payment.id}>
+                                    <td className=" py-4">
+                                        <span
+                                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                                payment.status === "paid"
+                                                    ? "bg-red-700 text-white font-bold"
+                                                    : "bg-green-700 text-white font-bold"
+                                            }`}>
                                             {payment.status}
+                                        </span>
+                                    </td>
+                                    <td className="py-4">{payment.method}</td>
+                                    <td className="py-4">{payment.date}</td>
+                                    <td className="py-4">
+                                        {
+                                            store.clients.find(
+                                                client =>
+                                                    client.id === payment.client
+                                            )?.name
+                                        }{" "}
+                                        {
+                                            store.clients.find(
+                                                client =>
+                                                    client.id === payment.client
+                                            )?.lastname
+                                        }
+                                    </td>
+                                    <td className="py-4">{payment.amount}</td>
+                                    <td className="py-4">{payment.invoice}</td>
+                                    <td className="py-4">
+                                        <button
+                                            className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                            onClick={() =>
+                                                handleEditPayment(payment.id)
+                                            }>
+                                            <FaEdit />
                                         </button>
-                                    </td>
-                                    <td className="px-4 py-4 text-md">
-                                        {payment.method}
-                                    </td>
-                                    <td className="px-4 py-4 text-md">
-                                        {payment.date}
-                                    </td>
-                                    <td className="px-4 py-4 text-md">
-                                        {payment.customer}
-                                    </td>
-                                    <td className="px-4 py-4 text-md">
-                                        {payment.amount}
-                                    </td>
-                                    <td className="px-4 py-4 text-md">
-                                        {payment.invoice}
+                                        <ModalDeletePayment
+                                            id={payment.id}
+                                            deletePayment={deletePayment}
+                                        />
                                     </td>
                                 </tr>
                             ))}
