@@ -1,4 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useContext, useEffect } from "react";
+import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
 import { FaPlus } from "react-icons/fa";
@@ -7,59 +8,45 @@ import { ModalDeleteTask } from "./modaldeletetask";
 export const CalendarDay = ({ day }) => {
     const [showModal, setShowModal] = useState(false);
     const [newTask, setNewTask] = useState("");
-
-    const [tasks, setTasks] = useState(() => {
-        const storedTasks = localStorage.getItem("tasks");
-        return storedTasks ? JSON.parse(storedTasks) : {};
-    });
+    const { store, actions } = useContext(Context);
+    const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+        setTasks(
+            store.tasks.filter(task => task.date === day.format("YYYY-MM-DD"))
+        );
+    }, [store.tasks, day]);
 
-    const addTask = () => {
+    const addTask = async () => {
         if (newTask.trim() !== "") {
-            setTasks(prevTasks => ({
-                ...prevTasks,
-                [day.format("YYYY-MM-DD")]: [
-                    ...(prevTasks[day.format("YYYY-MM-DD")] || []),
-                    { text: newTask.trim(), completed: false }
-                ]
-            }));
+            const taskData = {
+                text: newTask.trim(),
+                completed: false,
+                date: day.format("YYYY-MM-DD")
+            };
+            const data = await actions.createTask(taskData);
             setNewTask("");
             setShowModal(false);
+            if (data.date === day.format("YYYY-MM-DD")) {
+                setTasks([...tasks, data]);
+            }
         }
     };
 
-    const toggleTask = index => {
-        setTasks(prevTasks => {
-            const updatedTasks = {
-                ...prevTasks,
-                [day.format("YYYY-MM-DD")]: prevTasks[
-                    day.format("YYYY-MM-DD")
-                ].map((task, i) => {
-                    if (i === index) {
-                        return { ...task, completed: !task.completed };
-                    }
-                    return task;
-                })
-            };
-            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-            return updatedTasks;
-        });
+    const toggleTask = async (id, completed) => {
+        const taskData = {
+            completed: !completed
+        };
+        const data = await actions.updateTask(id, taskData);
+        if (data) {
+            setTasks(tasks.map(task => (task.id === data.id ? data : task)));
+        }
     };
 
-    const deleteTask = index => {
-        setTasks(prevTasks => {
-            const updatedTasks = {
-                ...prevTasks,
-                [day.format("YYYY-MM-DD")]: prevTasks[
-                    day.format("YYYY-MM-DD")
-                ].filter((_, i) => i !== index)
-            };
-            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-            return updatedTasks;
-        });
+    const deleteTask = async id => {
+        await actions.deleteTask(id);
+        setTasks(tasks.filter(task => task.id !== id));
+        actions.getAllTask();
     };
 
     return (
@@ -71,10 +58,10 @@ export const CalendarDay = ({ day }) => {
                 {day.format("D")}
             </div>
             <div className="mt-6">
-                {tasks[day.format("YYYY-MM-DD")]?.map((task, index) => (
+                {tasks.map(task => (
                     <div
-                        key={index}
-                        onClick={() => toggleTask(index)}
+                        key={task.id}
+                        onClick={() => toggleTask(task.id, task.completed)}
                         className={`flex items-center justify-between px-2 py-1 rounded-md mb-2 cursor-pointer ${
                             task.completed
                                 ? "bg-gray-300 text-gray-500 line-through"
@@ -83,10 +70,7 @@ export const CalendarDay = ({ day }) => {
                         <div className="text-sm font-bold overflow-hidden">
                             {task.text}
                         </div>
-                        <ModalDeleteTask
-                            index={index}
-                            deleteTask={deleteTask}
-                        />
+                        <ModalDeleteTask id={task.id} deleteTask={deleteTask} />
                     </div>
                 ))}
                 <button
@@ -153,7 +137,7 @@ export const CalendarDay = ({ day }) => {
                                         <button
                                             type="button"
                                             onClick={() => setShowModal(false)}
-                                            className="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+                                            className="inline-flex justify-center px-4 py-2 ml-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
                                             Cancel
                                         </button>
                                     </div>
@@ -168,7 +152,5 @@ export const CalendarDay = ({ day }) => {
 };
 
 CalendarDay.propTypes = {
-    day: PropTypes.object,
-    tasks: PropTypes.object,
-    setTasks: PropTypes.func
+    day: PropTypes.object.isRequired
 };

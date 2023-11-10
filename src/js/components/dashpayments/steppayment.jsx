@@ -378,55 +378,104 @@ export const StepPayment = () => {
                                     </button>
                                 </div>
                                 {paymentMethod === "creditCard" && (
-                                    <div className="flex flex-col">
-                                        <label
-                                            htmlFor="cardNumber"
-                                            className="mb-2">
-                                            Card Number
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="cardNumber"
-                                            name="cardNumber"
-                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
-                                            required
-                                        />
-                                        <label
-                                            htmlFor="cardName"
-                                            className="mb-2">
-                                            Card Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="cardName"
-                                            name="cardName"
-                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
-                                            required
-                                        />
-                                        <label
-                                            htmlFor="cardExpiration"
-                                            className="mb-2">
-                                            Card Expiration
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="cardExpiration"
-                                            name="cardExpiration"
-                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
-                                            required
-                                        />
-                                        <label
-                                            htmlFor="cardCvv"
-                                            className="mb-2">
-                                            Card CVV
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="cardCvv"
-                                            name="cardCvv"
-                                            className="border border-gray-400 rounded-md py-2 px-3 mb-4 text-black"
-                                            required
-                                        />
+                                    <div className="space-y-16">
+                                        <div
+                                            className="glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl transition-transform transform hover:scale-110"
+                                            style={{
+                                                width: "512px",
+                                                height: "288px",
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                justifyContent: "space-between",
+                                                padding: "20px",
+                                                boxSizing: "border-box",
+                                                backgroundImage:
+                                                    "url('../../../../public/bg-card.jpeg')",
+                                                backgroundColor: "gray",
+                                                backgroundSize: "cover",
+                                                backgroundPosition: "center",
+                                                position: "relative",
+                                                transformOrigin: "top left" // added property
+                                            }}>
+                                            <div className="flex justify-between">
+                                                <p className="font-bold">
+                                                    SERØ. Bank
+                                                </p>
+                                                <div>
+                                                    <img
+                                                        className="w-25 h-10 mt-2"
+                                                        src="../../../../public/visa-logo-png-2026.png"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="flex justify-between">
+                                                <div className="flex flex-col w-2/3">
+                                                    <p className="font-light self-start mt-2">
+                                                        Name
+                                                    </p>
+                                                    <div className="flex justify-between">
+                                                        <input
+                                                            type="text"
+                                                            id="cardName"
+                                                            name="cardName"
+                                                            className="text-white bg-transparent border-b-2 border-white w-full"
+                                                            placeholder="Roberto J. Vargas"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col w-full">
+                                                <div className="flex justify-between">
+                                                    <p className="font-light">
+                                                        Card Number
+                                                    </p>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <input
+                                                        type="text"
+                                                        id="cardNumber"
+                                                        name="cardNumber"
+                                                        className="text-white bg-transparent border-b-2 border-white w-full"
+                                                        placeholder="0000 0000 0000 0000"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <div className="flex flex-col w-1/2">
+                                                    <div className="flex justify-between">
+                                                        <p className="font-light text-xs">
+                                                            Expiry
+                                                        </p>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <input
+                                                            type="text"
+                                                            id="cardExpiration"
+                                                            name="cardExpiration"
+                                                            className="text-white bg-transparent border-b-2 border-white w-full"
+                                                            placeholder="MM/YY"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-col w-1/2">
+                                                    <div className="flex justify-between">
+                                                        <p className="font-light text-xs">
+                                                            CVV
+                                                        </p>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <input
+                                                            type="text"
+                                                            id="cardCvv"
+                                                            name="cardCvv"
+                                                            className="text-white bg-transparent border-b-2 border-white w-full"
+                                                            placeholder="123"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
                                 <div className="flex justify-between">

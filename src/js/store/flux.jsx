@@ -12,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             clients: [],
             users: [],
-            payments: []
+            payments: [],
+            tasks: []
         },
         actions: {
             changeTheme: theme => {
@@ -320,6 +321,80 @@ const getState = ({ getStore, getActions, setStore }) => {
                         payments: [
                             ...getStore().payments.filter(x => x.id !== id)
                         ]
+                    });
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            getAllTask: async () => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/tasks"
+                    );
+                    const data = await resp.json();
+                    setStore({ tasks: data });
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            createTask: async taskData => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/tasks",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(taskData)
+                        }
+                    );
+                    const data = await response.json();
+                    setStore({ tasks: [...getStore().tasks, data] });
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            updateTask: async (id, taskData) => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/tasks/${id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(taskData)
+                        }
+                    );
+                    const data = await response.json();
+                    const updatedTasks = getStore().tasks.map(t => {
+                        if (t.id === id) {
+                            return data;
+                        }
+                        return t;
+                    });
+                    setStore({
+                        tasks: updatedTasks
+                    });
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            deleteTask: async id => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/tasks/${id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+                    const data = await resp.json();
+                    setStore({
+                        tasks: [...getStore().tasks.filter(x => x.id !== id)]
                     });
                     return data;
                 } catch (error) {

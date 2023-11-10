@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-export const ModalDeleteTask = ({ index, deleteTask }) => {
+export const ModalDeleteTask = ({ id, deleteTask }) => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const handleDelete = () => {
-        deleteTask(index);
+        deleteTask(id);
         setModalOpen(false);
     };
 
@@ -87,5 +87,5 @@ ModalDeleteTask.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     setIsOpen: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired
+    id: PropTypes.number.isRequired
 };

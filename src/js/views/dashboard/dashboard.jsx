@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { Calendar } from "../../components/dashpanel/calendar";
 import { PieChartPayment } from "../../components/dashpayments/piechartpayment";
 import { PieChartClient } from "../../components/dashclients/piechartclient";
+import { PieChartTask } from "../../components/dashpanel/piecharttask";
+import { FaUsers, FaMoneyBillAlt, FaTasks, FaFileAlt } from "react-icons/fa";
 
 export const Dashboard = () => {
     const { store, actions } = useContext(Context);
@@ -13,6 +15,7 @@ export const Dashboard = () => {
     const navigate = useNavigate();
     const [numClients, setNumClients] = useState(0);
     const [numPayments, setNumPayments] = useState(0);
+    const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         actions.getAllClients().then(() => {
@@ -21,10 +24,18 @@ export const Dashboard = () => {
         actions.getAllPayments().then(() => {
             setNumPayments(store.payments.length);
         });
+        actions.getAllTask();
     }, []);
+
+    useEffect(() => {
+        setTasks(store.tasks);
+    }, [store.tasks]);
 
     const handleClientClick = () => {
         navigate("/clients");
+    };
+    const handlePaymentClick = () => {
+        navigate("/payments");
     };
 
     return (
@@ -40,43 +51,58 @@ export const Dashboard = () => {
                 <div className="p-10 m-auto w-11/12">
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                         <div
-                            className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer"
+                            className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800"
                             onClick={() => {
                                 handleClientClick();
                             }}>
-                            <div className="font-bold text-black dark:text-white">
-                                CLIENTS
+                            <div className="flex flex-col items-center">
+                                <div className="font-bold text-black dark:text-white items-center">
+                                    CLIENTS
+                                </div>
+                                <div className="font-bold text-cyan-300 text-md sm:text-xl">
+                                    {numClients}
+                                </div>
                             </div>
-                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
-                                {numClients}
-                            </div>
+                            <FaUsers className="text-5xl text-cyan-300" />
                         </div>
-                        <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
-                            <div className="font-bold text-black dark:text-white">
-                                PAYMENTS
+                        <div
+                            className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800"
+                            onClick={() => {
+                                handlePaymentClick();
+                            }}>
+                            <div className="flex flex-col items-center">
+                                <div className="font-bold text-black dark:text-white">
+                                    PAYMENTS
+                                </div>
+                                <div className="font-bold text-cyan-300 text-md sm:text-xl">
+                                    {numPayments}
+                                </div>
                             </div>
-                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
-                                {numPayments}
-                            </div>
+                            <FaMoneyBillAlt className="text-5xl text-cyan-300" />
                         </div>
-                        <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
-                            <div className="font-bold text-black dark:text-white">
-                                TASKS
+                        <div className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800">
+                            <div className="flex flex-col items-center">
+                                <div className="font-bold text-black dark:text-white">
+                                    TASKS
+                                </div>
+                                <div className="font-bold text-cyan-300 text-md sm:text-xl">
+                                    {tasks.length}
+                                </div>
                             </div>
-                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
-                                20
-                            </div>
+                            <FaTasks className="text-5xl text-cyan-300" />
                         </div>
-                        <div className="glass p-4 m-2 flex flex-col items-center justify-center cursor-pointer">
-                            <div className="font-bold text-black dark:text-white">
-                                REPORTS
+                        <div className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800">
+                            <div className="flex flex-col items-center">
+                                <div className="font-bold text-black dark:text-white">
+                                    REPORTS
+                                </div>
+                                <div className="font-bold text-cyan-300 text-md sm:text-xl">
+                                    3
+                                </div>
                             </div>
-                            <div className="font-bold text-cyan-300 text-md sm:text-xl">
-                                3
-                            </div>
+                            <FaFileAlt className="text-5xl text-cyan-300" />
                         </div>
                     </div>
-
                     <div className="flex flex-row justify-center">
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
                             <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
@@ -89,6 +115,12 @@ export const Dashboard = () => {
                                 {t("Clients Chart")}
                             </h1>
                             <PieChartClient numClients={numClients} />
+                        </div>
+                        <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
+                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                                {t("Tasks Chart")}
+                            </h1>
+                            <PieChartTask tasks={tasks} />
                         </div>
                     </div>
                 </div>
