@@ -6,25 +6,25 @@ export const Profile = () => {
     const [t] = useTranslation("profile");
     const { store, actions } = useContext(Context);
 
-    const [isEditingPhoneNumber, setIsEditingPhoneNumber] = useState(false);
-    const [newPhoneNumber, setNewPhoneNumber] = useState(
-        store.user.phoneNumber || ""
-    );
+    const [editingField, setEditingField] = useState(null);
+    const [editedValue, setEditedValue] = useState("");
 
-    const handlePhoneNumberEdit = () => {
-        setIsEditingPhoneNumber(true);
-        setNewPhoneNumber(store.user.phoneNumber || "");
+    const handleFieldEdit = fieldName => {
+        setEditingField(fieldName);
+        setEditedValue(store.user[fieldName] || "");
     };
 
-    const handlePhoneNumberSave = async () => {
-        const success = await actions.updateUser({
+    const handleFieldSave = async () => {
+        const updatedInfo = {
             ...store.user,
-            phoneNumber: newPhoneNumber
-        });
+            [editingField]: editedValue
+        };
+
+        const success = await actions.updateUser(updatedInfo);
 
         if (success) {
-            setIsEditingPhoneNumber(false);
-            store.user.phoneNumber = newPhoneNumber;
+            setEditingField(null);
+            store.user[editingField] = editedValue;
         }
     };
 
@@ -48,7 +48,7 @@ export const Profile = () => {
                             <h2 className="font-bold text-xl text-center leading-8 my-1">
                                 {store.user.name} {store.user.lastname}
                             </h2>
-                            <ul className="hover:text-cyan-400 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                            <ul className="py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
                                     <span>Status</span>
                                     <span className="ml-auto">
@@ -73,37 +73,50 @@ export const Profile = () => {
                                 </li>
                             </ul>
                             <div className="grid text-sm">
-                                <div className="flex flex-row">
+                                <div className="flex flex-row justify-between items-center">
                                     <div className="px-4 py-2 font-semibold">
+                                        Email
+                                    </div>
+                                    <div className="flex">
+                                        <div className="px-4 py-4">
+                                            <a
+                                                className="ææææææææææææææææææææææ"
+                                                href="mailto:jane@example.com">
+                                                {store.user.email}
+                                            </a>
+                                        </div>
+                                        <div className="bg-neutral-400 px-3 py-1 my-3 ml-14 mr-4 text-neutral-300 border border-neutral-300 rounded-md cursor-not-allowed">
+                                            Edit
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row justify-between items-center mb-3">
+                                    <div className="px-4 font-semibold">
                                         Contact No.
                                     </div>
-                                    <div className="px-4 py-2">
-                                        {isEditingPhoneNumber ? (
+                                    <div className="px-4 gap-3 flex">
+                                        {editingField === "phoneNumber" ? (
                                             <>
                                                 <input
                                                     type="text"
-                                                    value={newPhoneNumber}
+                                                    value={editedValue}
                                                     onChange={e =>
-                                                        setNewPhoneNumber(
+                                                        setEditedValue(
                                                             e.target.value
                                                         )
                                                     }
-                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                    className="border border-gray-300 text-black rounded-md"
                                                 />
                                                 <button
-                                                    className="bg-blue-500 p-1 mx-auto text-white rounded-md"
-                                                    onClick={
-                                                        handlePhoneNumberSave
-                                                    }>
+                                                    className="bg-sky-400 px-3 py-1 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}>
                                                     Save
                                                 </button>
                                                 <button
                                                     onClick={() =>
-                                                        setIsEditingPhoneNumber(
-                                                            false
-                                                        )
+                                                        setEditingField(null)
                                                     }
-                                                    className="bg-red-500 p-1 gap-4 text-white rounded-md">
+                                                    className="bg-red-500 px-3 gap-4 text-white rounded-md">
                                                     Cancel
                                                 </button>
                                             </>
@@ -111,9 +124,11 @@ export const Profile = () => {
                                             <>
                                                 {store.user.phoneNumber}
                                                 <button
-                                                    className="bg-cyan-300 p-1 ml-14 text-black rounded-md"
-                                                    onClick={
-                                                        handlePhoneNumberEdit
+                                                    className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "phoneNumber"
+                                                        )
                                                     }>
                                                     Edit
                                                 </button>
@@ -122,32 +137,97 @@ export const Profile = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-row">
-                                    <div className="px-4 py-2 font-semibold">
+                                <div className="flex flex-row justify-between items-center">
+                                    <div className="px-4 font-semibold">
                                         Address
                                     </div>
-                                    <div className="px-4 py-2">
-                                        Los Samanes, Caracas
+                                    <div className="px-4 gap-3 flex ">
+                                        {editingField === "address" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={e =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-sky-400 py-1 px-3 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}>
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 px-3 gap-4 text-white rounded-md">
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.address}
+                                                <button
+                                                    className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "address"
+                                                        )
+                                                    }>
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
-                                <div className="flex flex-row">
-                                    <div className="px-4 py-2 font-semibold">
-                                        Email
-                                    </div>
-                                    <div className="px-4 py-2">
-                                        <a
-                                            className="ææææææææææææææææææææææ"
-                                            href="mailto:jane@example.com">
-                                            {store.user.email}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row">
-                                    <div className="px-4 py-2 font-semibold">
+
+                                <div className="flex flex-row justify-between mt-3">
+                                    <div className="px-4 font-semibold">
                                         Birthday
                                     </div>
-                                    <div className="px-4 py-2">
-                                        Agosto 18, 2001
+                                    <div className="px-4 gap-3 flex ">
+                                        {editingField === "birthday" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={e =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-sky-400 py-1 px-3 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}>
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 px-3 gap-4 text-white rounded-md">
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.birthday}
+                                                <button
+                                                    className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "birthday"
+                                                        )
+                                                    }>
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>
