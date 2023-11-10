@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 lastname: "Sero",
                 email: null,
                 role: ["user", "admin"],
-                status: "Active",
+                // status: "Active",
                 phoneNumber: []
             },
             clients: [],

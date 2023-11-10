@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Context } from "../../store/appContext";
 
@@ -8,6 +8,12 @@ export const Profile = () => {
 
     const [editingField, setEditingField] = useState(null);
     const [editedValue, setEditedValue] = useState("");
+    const [newUser, setNewUser] = useState([]);
+
+    useEffect(() => {
+        actions.getAllUsers(setNewUser);
+        // setNewUser(store.user);
+    }, [actions]);
 
     const handleFieldEdit = fieldName => {
         setEditingField(fieldName);
@@ -34,15 +40,14 @@ export const Profile = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fprofile%2FProfileBG.jpeg?alt=media&token=c90a4f9c-9ae6-4ce2-a4b2-0bb4af67e72e"
                 className="invert w-full fixed -z-50 bottom-0 left-0 dark:invert-0 transition duration-500"
             />
-            <div className="dark:text-white mt-28 w-4/12 m-auto mb-5 p-5">
+            <div className="dark:text-white mt-28 w-5/12 m-auto mb-5 p-5">
                 <div className="">
                     <div className="">
-                        <div className="border border-white rounded-xl p-3">
-                            <div className="image overflow-hidden">
-                                <img
-                                    className="h-36 w-36 rounded-full mx-auto"
-                                    src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
-                                    alt=""
+                        <div className="border border-black dark:border-white transition duration-300 rounded-xl p-3">
+                            <div className="mx-auto text-center flex flex-col justify-center items-center my-6">
+                                <i
+                                    className="fa-regular fa-circle-user text-8xl invert dark:invert-0 rounded-full mx-auto text-center"
+                                    style={{ color: "#ffffff" }}
                                 />
                             </div>
                             <h2 className="font-bold text-xl text-center leading-8 my-1">
@@ -94,12 +99,14 @@ export const Profile = () => {
                                     <div className="px-4 font-semibold">
                                         Contact No.
                                     </div>
+                                    {store.user.phone}
                                     <div className="px-4 gap-3 flex">
-                                        {editingField === "phoneNumber" ? (
+                                        {editingField === "phone" ? (
                                             <>
+                                                {store.user.phone}
                                                 <input
                                                     type="text"
-                                                    value={editedValue}
+                                                    value={newUser.phone}
                                                     onChange={e =>
                                                         setEditedValue(
                                                             e.target.value
@@ -107,6 +114,7 @@ export const Profile = () => {
                                                     }
                                                     className="border border-gray-300 text-black rounded-md"
                                                 />
+                                                {store.user.phone}
                                                 <button
                                                     className="bg-sky-400 px-3 py-1 mx-auto text-white rounded-md"
                                                     onClick={handleFieldSave}>
@@ -122,19 +130,18 @@ export const Profile = () => {
                                             </>
                                         ) : (
                                             <>
-                                                {store.user.phoneNumber}
+                                                {store.user.phone}
                                                 <button
                                                     className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
                                                     onClick={() =>
-                                                        handleFieldEdit(
-                                                            "phoneNumber"
-                                                        )
+                                                        handleFieldEdit("phone")
                                                     }>
                                                     Edit
                                                 </button>
                                             </>
                                         )}
                                     </div>
+                                    {store.user.phone}
                                 </div>
 
                                 <div className="flex flex-row justify-between items-center">
@@ -192,7 +199,7 @@ export const Profile = () => {
                                         {editingField === "birthday" ? (
                                             <>
                                                 <input
-                                                    type="text"
+                                                    type="date"
                                                     value={editedValue}
                                                     onChange={e =>
                                                         setEditedValue(

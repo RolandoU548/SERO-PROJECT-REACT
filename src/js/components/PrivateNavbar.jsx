@@ -159,7 +159,7 @@ export const PrivateNavbar = () => {
                         SERØ.
                     </h2>
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
-                        <li>
+                        <li className="mt-4">
                             <Link to="/profile" className="text-xl text-light">
                                 {store.user.role.includes("admin") && (
                                     <span className="text-sm text-cyan-500 dark:text-cyan-400 font-bold mr-1">
@@ -168,11 +168,11 @@ export const PrivateNavbar = () => {
                                 )}
                                 {store.user.name
                                     ? store.user.name[0].toUpperCase() +
-                                      store.user.name.substr(1)
+                                    store.user.name.substr(1)
                                     : " "}{" "}
                                 {store.user.lastname
                                     ? store.user.lastname[0].toUpperCase() +
-                                      store.user.lastname.substr(1)
+                                    store.user.lastname.substr(1)
                                     : " "}
                                 <i
                                     className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"
