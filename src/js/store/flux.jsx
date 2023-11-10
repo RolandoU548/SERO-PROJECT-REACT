@@ -8,9 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 name: "Prueba",
                 lastname: "Sero",
                 email: null,
-                role: ["user", "admin"],
-                // status: "Active",
-                phoneNumber: []
+                role: ["user", "admin"]
             },
             clients: [],
             users: [],

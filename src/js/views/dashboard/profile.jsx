@@ -8,21 +8,25 @@ export const Profile = () => {
 
     const [editingField, setEditingField] = useState(null);
     const [editedValue, setEditedValue] = useState("");
-    const [newUser, setNewUser] = useState([]);
+    const [newUser, setNewUser] = useState(null);
 
     useEffect(() => {
-        actions.getAllUsers(setNewUser);
-        // setNewUser(store.user);
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser) {
+            setNewUser(storedUser);
+        } else {
+            actions.getAllUsers(setNewUser);
+        }
     }, [actions]);
 
     const handleFieldEdit = fieldName => {
         setEditingField(fieldName);
-        setEditedValue(store.user[fieldName] || "");
+        setEditedValue(newUser[fieldName] || "");
     };
 
     const handleFieldSave = async () => {
         const updatedInfo = {
-            ...store.user,
+            ...newUser,
             [editingField]: editedValue
         };
 
@@ -30,9 +34,15 @@ export const Profile = () => {
 
         if (success) {
             setEditingField(null);
-            store.user[editingField] = editedValue;
+            const updatedUser = { ...newUser, [editingField]: editedValue };
+            setNewUser(updatedUser);
+            localStorage.setItem("user", JSON.stringify(updatedUser));
         }
     };
+
+    if (!newUser) {
+        return null;
+    }
 
     return (
         <>
@@ -51,7 +61,7 @@ export const Profile = () => {
                                 />
                             </div>
                             <h2 className="font-bold text-xl text-center leading-8 my-1">
-                                {store.user.name} {store.user.lastname}
+                                {newUser.name} {newUser.lastname}
                             </h2>
                             <ul className="py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
@@ -59,20 +69,19 @@ export const Profile = () => {
                                     <span className="ml-auto">
                                         <span
                                             className={`${
-                                                store.user.status === "Active"
+                                                newUser.status === "Active"
                                                     ? "bg-cyan-500"
                                                     : "bg-red-500"
                                             } py-1 px-2 rounded text-sm`}>
-                                            {store.user.status}
+                                            {newUser.status}
                                         </span>
                                     </span>
                                 </li>
-
                                 <li className="flex items-center py-3">
                                     <span>Member since</span>
                                     <span className="ml-auto">
                                         {new Date(
-                                            store.user.createdAt
+                                            newUser.createdAt
                                         ).toLocaleDateString()}
                                     </span>
                                 </li>
@@ -85,9 +94,8 @@ export const Profile = () => {
                                     <div className="flex">
                                         <div className="px-4 py-4">
                                             <a
-                                                className="ææææææææææææææææææææææ"
-                                                href="mailto:jane@example.com">
-                                                {store.user.email}
+                                                href={`mailto:${newUser.email}`}>
+                                                {newUser.email}
                                             </a>
                                         </div>
                                         <div className="bg-neutral-400 px-3 py-1 my-3 ml-14 mr-4 text-neutral-300 border border-neutral-300 rounded-md cursor-not-allowed">
@@ -99,14 +107,12 @@ export const Profile = () => {
                                     <div className="px-4 font-semibold">
                                         Contact No.
                                     </div>
-                                    {store.user.phone}
                                     <div className="px-4 gap-3 flex">
                                         {editingField === "phone" ? (
                                             <>
-                                                {store.user.phone}
                                                 <input
                                                     type="text"
-                                                    value={newUser.phone}
+                                                    value={editedValue}
                                                     onChange={e =>
                                                         setEditedValue(
                                                             e.target.value
@@ -114,7 +120,6 @@ export const Profile = () => {
                                                     }
                                                     className="border border-gray-300 text-black rounded-md"
                                                 />
-                                                {store.user.phone}
                                                 <button
                                                     className="bg-sky-400 px-3 py-1 mx-auto text-white rounded-md"
                                                     onClick={handleFieldSave}>
@@ -130,7 +135,7 @@ export const Profile = () => {
                                             </>
                                         ) : (
                                             <>
-                                                {store.user.phone}
+                                                {newUser.phone}
                                                 <button
                                                     className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
                                                     onClick={() =>
@@ -141,9 +146,7 @@ export const Profile = () => {
                                             </>
                                         )}
                                     </div>
-                                    {store.user.phone}
                                 </div>
-
                                 <div className="flex flex-row justify-between items-center">
                                     <div className="px-4 font-semibold">
                                         Address
@@ -176,7 +179,7 @@ export const Profile = () => {
                                             </>
                                         ) : (
                                             <>
-                                                {store.user.address}
+                                                {newUser.address}
                                                 <button
                                                     className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
                                                     onClick={() =>
@@ -190,7 +193,6 @@ export const Profile = () => {
                                         )}
                                     </div>
                                 </div>
-
                                 <div className="flex flex-row justify-between mt-3">
                                     <div className="px-4 font-semibold">
                                         Birthday
@@ -223,7 +225,7 @@ export const Profile = () => {
                                             </>
                                         ) : (
                                             <>
-                                                {store.user.birthday}
+                                                {newUser.birthday}
                                                 <button
                                                     className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
                                                     onClick={() =>
@@ -245,3 +247,5 @@ export const Profile = () => {
         </>
     );
 };
+
+export default Profile;
