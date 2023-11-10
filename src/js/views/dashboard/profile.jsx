@@ -6,25 +6,25 @@ export const Profile = () => {
     const [t] = useTranslation("profile");
     const { store, actions } = useContext(Context);
 
-    const [isEditingPhoneNumber, setIsEditingPhoneNumber] = useState(false);
-    const [newPhoneNumber, setNewPhoneNumber] = useState(
-        store.user.phoneNumber || ""
-    );
+    const [editingField, setEditingField] = useState(null);
+    const [editedValue, setEditedValue] = useState("");
 
-    const handlePhoneNumberEdit = () => {
-        setIsEditingPhoneNumber(true);
-        setNewPhoneNumber(store.user.phoneNumber || "");
+    const handleFieldEdit = (fieldName) => {
+        setEditingField(fieldName);
+        setEditedValue(store.user[fieldName] || "");
     };
 
-    const handlePhoneNumberSave = async () => {
-        const success = await actions.updateUser({
+    const handleFieldSave = async () => {
+        const updatedInfo = {
             ...store.user,
-            phoneNumber: newPhoneNumber
-        });
+            [editingField]: editedValue
+        };
+
+        const success = await actions.updateUser(updatedInfo);
 
         if (success) {
-            setIsEditingPhoneNumber(false);
-            store.user.phoneNumber = newPhoneNumber;
+            setEditingField(null);
+            store.user[editingField] = editedValue;
         }
     };
 
@@ -73,85 +73,168 @@ export const Profile = () => {
                                 </li>
                             </ul>
                             <div className="grid text-sm">
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Contact No.
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            {isEditingPhoneNumber ? (
-                                                <>
-                                                    <input
-                                                        type="text"
-                                                        value={newPhoneNumber}
-                                                        onChange={e =>
-                                                            setNewPhoneNumber(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                        className="border border-gray-300 p-1 text-black rounded-md"
-                                                    />
-                                                    <button
-                                                        className="bg-blue-500 p-1 mx-auto text-white rounded-md"
-                                                        onClick={
-                                                            handlePhoneNumberSave
-                                                        }>
-                                                        Save
-                                                    </button>
-                                                    <button
-                                                        onClick={() =>
-                                                            setIsEditingPhoneNumber(
-                                                                false
-                                                            )
-                                                        }
-                                                        className="bg-red-500 p-1 gap-4 text-white rounded-md"
-                                                        >
-                                                        Cancel
-                                                    </button>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    {store.user.phoneNumber}
-                                                    <button
-                                                        className="bg-cyan-300 p-1 ml-14 text-black rounded-md"
-                                                        onClick={
-                                                            handlePhoneNumberEdit
-                                                        }>
-                                                        Edit
-                                                    </button>
-                                                </>
-                                            )}
-                                        </div>
+                                <div className="flex flex-row">
+                                    <div className="px-4 py-2 font-semibold">
+                                        Contact No.
                                     </div>
-
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Address
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            Los Samanes, Caracas
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Email
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            <a
-                                                className="ææææææææææææææææææææææ"
-                                                href="mailto:jane@example.com">
-                                                {store.user.email}
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Birthday
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            Agosto 18, 2001
-                                        </div>
+                                    <div className="px-4 py-2">
+                                        {editingField === "phoneNumber" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={(e) =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-blue-500 p-1 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 p-1 gap-4 text-white rounded-md"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.phoneNumber}
+                                                <button
+                                                    className="bg-cyan-300 p-1 ml-14 text-black rounded-md"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "phoneNumber"
+                                                        )
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
+
+                                <div className="flex flex-row">
+                                    <div className="px-4 py-2 font-semibold">
+                                        Address
+                                    </div>
+                                    <div className="px-4 py-2">
+                                        {editingField === "address" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={(e) =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-blue-500 p-1 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 p-1 gap-4 text-white rounded-md"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.address}
+                                                <button
+                                                    className="bg-cyan-300 p-1 ml-14 text-black rounded-md"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "address"
+                                                        )
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="flex flex-row">
+                                    <div className="px-4 py-2 font-semibold">
+                                        Email
+                                    </div>
+                                    <div className="px-4 py-2">
+                                        <a
+                                            className="ææææææææææææææææææææææ"
+                                            href="mailto:jane@example.com"
+                                        >
+                                            {store.user.email}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row">
+                                    <div className="px-4 py-2 font-semibold">
+                                        Birthday
+                                    </div>
+                                    <div className="px-4 py-2">
+                                        {editingField === "birthday" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={(e) =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-blue-500 p-1 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 p-1 gap-4 text-white rounded-md"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.birthday}
+                                                <button
+                                                    className="bg-cyan-300 p-1 ml-14 text-black rounded-md"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "birthday"
+                                                        )
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="my-4"></div>
                     </div>
