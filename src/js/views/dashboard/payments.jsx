@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
-import { FaPlus, FaSearch, FaEdit } from "react-icons/fa";
-import { ModalDeletePayment } from "../../components/dashpayments/deletepaymentmodal";
-// import * as XLSX from "xlsx";
+import {
+    FaPlus,
+    FaSearch,
+    FaFileAlt,
+    FaSort,
+    FaSortUp,
+    FaSortDown
+} from "react-icons/fa";
 
 export const Payments = () => {
     const { store, actions } = useContext(Context);
@@ -17,6 +22,28 @@ export const Payments = () => {
     const [toDateFilter, setToDateFilter] = useState("");
     const [invoiceFilter, setInvoiceFilter] = useState("");
     const [paymentsData, setPaymentData] = useState(store.payments);
+    const [sortColumn, setSortColumn] = useState("status");
+    const [sortDirection, setSortDirection] = useState("asc");
+
+    const handleSort = column => {
+        if (sortColumn === column) {
+            setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+        } else {
+            setSortColumn(column);
+            setSortDirection("asc");
+        }
+    };
+
+    const sortedPayments = paymentsData.sort((a, b) => {
+        const isAsc = sortDirection === "asc" ? 1 : -1;
+        if (a[sortColumn] < b[sortColumn]) {
+            return -1 * isAsc;
+        } else if (a[sortColumn] > b[sortColumn]) {
+            return 1 * isAsc;
+        } else {
+            return 0;
+        }
+    });
 
     useEffect(() => {
         actions.getAllPayments();
@@ -31,41 +58,17 @@ export const Payments = () => {
         navigate("/steppayment");
     };
 
-    const handleEditPayment = id => {
-        navigate(`/editpayment/${id}`);
-    };
+    // const handleEditPayment = id => {
+    //     navigate(`/editpayment/${id}`);
+    // };
 
-    const deletePayment = id => {
-        const updatedPayments = paymentsData.filter(
-            payment => payment.id !== id
-        );
-        setPaymentData(updatedPayments);
-        actions.deletePayment(id);
-    };
-
-    // const handleExport = async () => {
-    //     const headers = [
-    //         "ID",
-    //         "Customer",
-    //         "Invoice",
-    //         "Payment Date",
-    //         "Payment Method",
-    //         "Amount",
-    //         "Status"
-    //     ];
-    //     const data = paymentsData.map(payment => [
-    //         payment.id,
-    //         payment.customer,
-    //         payment.invoice,
-    //         payment.payment_date,
-    //         payment.payment_method,
-    //         payment.amount,
-    //         payment.status
-    //     ]);
-    //     const worksheet = XLSX.utils.aoa_to_sheet([headers, ...data]);
-    //     const workbook = XLSX.utils.book_new();
-    //     XLSX.utils.book_append_sheet(workbook, worksheet, "Payments");
-    //     XLSX.writeFile(workbook, "payments.xlsx");
+    // const deletePayment = id => {
+    //     const updatedPayments = paymentsData.filter(
+    //         payment => payment.id !== id
+    //     );
+    //     setPaymentData(updatedPayments);
+    //     actions.deletePayment(id);
+    // };
 
     return (
         <>
@@ -89,7 +92,8 @@ export const Payments = () => {
                                     onChange={e =>
                                         setCustomerFilter(e.target.value)
                                     }
-                                    className="border border-gray-400 rounded py-1 px-2 pl-8 text-black ml-2"
+                                    placeholder="Filter by customer"
+                                    className="border border-gray-400 rounded py-1 px-2 text-gray-400"
                                 />
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-2">
                                     <FaSearch className="w-4 h-4 text-gray-400" />
@@ -139,7 +143,6 @@ export const Payments = () => {
                                 </span>
                             </div>
                         </div>
-                        {/* <button onClick={handleExport}>Export to Excel</button> */}
                         <button
                             className="flex items-center bg-cyan-400 hover:bg-cyan-500 text-black  text-md font-bold px-4 py-2 rounded-full"
                             onClick={handleAddPayment}>
@@ -150,21 +153,89 @@ export const Payments = () => {
                     <table className="table-auto w-full text-center">
                         <thead>
                             <tr className="border-b-4 border-y-blue-300">
-                                <th className=" py-4 text-lg font-bold">
-                                    Status
+                                <th
+                                    className=" py-4 text-lg font-bold cursor-pointer"
+                                    onClick={() => handleSort("status")}>
+                                    Status{" "}
+                                    {sortColumn === "status" &&
+                                        (sortDirection === "asc" ? (
+                                            <FaSortUp className="inline-block ml-1" />
+                                        ) : (
+                                            <FaSortDown className="inline-block ml-1" />
+                                        ))}
+                                    {!sortColumn.includes("status") && (
+                                        <FaSort className="inline-block ml-1" />
+                                    )}
                                 </th>
-                                <th className="py-4 text-lg font-bold">
-                                    Method
+                                <th
+                                    className="py-4 text-lg font-bold cursor-pointer"
+                                    onClick={() => handleSort("method")}>
+                                    Method{" "}
+                                    {sortColumn === "method" &&
+                                        (sortDirection === "asc" ? (
+                                            <FaSortUp className="inline-block ml-1" />
+                                        ) : (
+                                            <FaSortDown className="inline-block ml-1" />
+                                        ))}
+                                    {!sortColumn.includes("method") && (
+                                        <FaSort className="inline-block ml-1" />
+                                    )}
                                 </th>
-                                <th className="py-4 text-lg font-bold">Date</th>
-                                <th className="py-4 text-lg font-bold">
-                                    Customer
+                                <th
+                                    className="py-4 text-lg font-bold cursor-pointer"
+                                    onClick={() => handleSort("date")}>
+                                    Date{" "}
+                                    {sortColumn === "date" &&
+                                        (sortDirection === "asc" ? (
+                                            <FaSortUp className="inline-block ml-1" />
+                                        ) : (
+                                            <FaSortDown className="inline-block ml-1" />
+                                        ))}
+                                    {!sortColumn.includes("date") && (
+                                        <FaSort className="inline-block ml-1" />
+                                    )}
                                 </th>
-                                <th className="py-4 text-lg font-bold">
-                                    Amount
+                                <th
+                                    className="py-4 text-lg font-bold cursor-pointer"
+                                    onClick={() => handleSort("client")}>
+                                    Customer{" "}
+                                    {sortColumn === "client" &&
+                                        (sortDirection === "asc" ? (
+                                            <FaSortUp className="inline-block ml-1" />
+                                        ) : (
+                                            <FaSortDown className="inline-block ml-1" />
+                                        ))}
+                                    {!sortColumn.includes("client") && (
+                                        <FaSort className="inline-block ml-1" />
+                                    )}
                                 </th>
-                                <th className="py-4 text-lg font-bold">
-                                    Invoice
+                                <th
+                                    className="py-4 text-lg font-bold cursor-pointer"
+                                    onClick={() => handleSort("amount")}>
+                                    Amount{" "}
+                                    {sortColumn === "amount" &&
+                                        (sortDirection === "asc" ? (
+                                            <FaSortUp className="inline-block ml-1" />
+                                        ) : (
+                                            <FaSortDown className="inline-block ml-1" />
+                                        ))}
+                                    {!sortColumn.includes("amount") && (
+                                        <FaSort className="inline-block ml-1" />
+                                    )}
+                                </th>
+                                <th
+                                    className="py-4 text-lg font-bold cursor-pointer"
+                                    onClick={() => handleSort("invoice")}>
+                                    Invoice{" "}
+                                    {sortColumn === "invoice" &&
+                                        (sortDirection === "asc" ? (
+                                            <FaSortUp className="inline-block ml-1" />
+                                        ) : (
+                                            <FaSortDown className="inline-block ml-1" />
+                                        ))}
+                                    {!sortColumn.includes("invoice") && (
+                                        <FaSort className="inline-block ml-1" />
+                                    )}
                                 </th>
                                 <th className="py-4 text-lg font-bold">
                                     Actions
@@ -206,14 +277,12 @@ export const Payments = () => {
                                         <button
                                             className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                             onClick={() =>
-                                                handleEditPayment(payment.id)
+                                                navigate(
+                                                    `/creditmemo/${payment.id}`
+                                                )
                                             }>
-                                            <FaEdit />
+                                            <FaFileAlt />
                                         </button>
-                                        <ModalDeletePayment
-                                            id={payment.id}
-                                            deletePayment={deletePayment}
-                                        />
                                     </td>
                                 </tr>
                             ))}

@@ -1,1 +1,24 @@
-{ "dashboard": "Panel de Control" }
+{
+    "dashboard": "Panel de Control",
+    "CLIENTS": "CLIENTES",
+    "PAYMENTS": "FACTURAS",
+    "TASKS": "TAREAS",
+    "Sunday": "Domingo",
+    "Monday": "Lunes",
+    "Tuesday": "Martes",
+    "Wednesday": "Miercoles",
+    "Thursday": "Jueves",
+    "Friday": "Viernes",
+    "Saturday": "Sabado",
+    "REPORTS": "REPORTES",
+    "Task": "Tarea",
+    "Add task to": "Agregar tarea a",
+    "Add task": "Agregar tarea",
+    "Cancel": "Cancelar",
+    "Completed": "Completado",
+    "Pending": "Pendiente",
+    "Paid": "Pagado",
+    "Unaid": "En Mora",
+    "Active": "Activo",
+    "Inactive": "Inactivo"
+}

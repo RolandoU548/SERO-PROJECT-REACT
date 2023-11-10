@@ -1,1 +1,13 @@
-{ "clients": "Clientes" }
+{
+    "clients": "Clientes",
+    "Add Client": "Agregar Cliente",
+    "Image": "Imagen",
+    "Name": "Nombre",
+    "Lastname": "Apellido",
+    "Email": "Correo",
+    "Phone": "Teléfono",
+    "Business": "Negocio",
+    "Description": "Descripción",
+    "Status": "Estado",
+    "Actions": "Acciones"
+}

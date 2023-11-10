@@ -64,7 +64,7 @@ export const Calendar = () => {
                         className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
                         <FaChevronLeft />
                     </button>
-                    <div className="text-md font-bold">
+                    <div className="text-md font-bold dark:text-white text-black">
                         {currentMonth.format("MMMM YYYY")}
                     </div>
                     <button
@@ -80,13 +80,27 @@ export const Calendar = () => {
                 </div>
             </div>
             <div className="grid grid-cols-7 gap-2">
-                <div className="text-sm font-bold text-white">Domingo</div>
-                <div className="text-sm font-bold text-white">Lunes</div>
-                <div className="text-sm font-bold text-white">Martes</div>
-                <div className="text-sm font-bold text-white">Miércoles</div>
-                <div className="text-sm font-bold text-white">Jueves</div>
-                <div className="text-sm font-bold text-white">Viernes</div>
-                <div className="text-sm font-bold text-white">Sábado</div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Sunday")}
+                </div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Monday")}
+                </div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Tuesday")}{" "}
+                </div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Wednesday")}
+                </div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Thursday")}
+                </div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Friday")}
+                </div>
+                <div className="text-sm font-bold dark:text-white text-black">
+                    {t("Saturday")}
+                </div>
                 {weeks.map((week, index) => (
                     <React.Fragment key={index}>
                         {week.map((day, index) => (

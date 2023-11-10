@@ -372,7 +372,7 @@ export const ClientForm = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-cyan-400 flex items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
+                                                className=" text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
                                                 onClick={handleButtonClick}>
                                                 <FaImage className="h-5 w-5" />
                                                 {image

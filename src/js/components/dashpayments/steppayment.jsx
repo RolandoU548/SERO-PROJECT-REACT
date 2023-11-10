@@ -106,10 +106,14 @@ export const StepPayment = () => {
     };
 
     const handleInvoiceChange = e => {
-        const invoice = e.target.value.toUppercase();
+        const invoice = e.target.value;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            invoice: invoice
+        }));
         setFormData({
             ...formData,
-            invoice: invoice
+            invoice
         });
     };
 
@@ -454,7 +458,7 @@ export const StepPayment = () => {
                                                             id="cardExpiration"
                                                             name="cardExpiration"
                                                             className="text-white bg-transparent border-b-2 border-white w-full"
-                                                            placeholder="MM/YY"
+                                                            placeholder="MMYY"
                                                         />
                                                     </div>
                                                 </div>
@@ -522,7 +526,7 @@ export const StepPayment = () => {
                                             Payment Method:
                                         </p>
                                     </div>
-                                    <div>
+                                    <div className="font-bold text-lg">
                                         <p>{formData.invoice}</p>
                                         <p>{formData.date}</p>
                                         <p>{formData.service}</p>

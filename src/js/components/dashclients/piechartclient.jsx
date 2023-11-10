@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { VictoryPie } from "victory";
+import { useTranslation } from "react-i18next";
 
 export const PieChartClient = () => {
+    const [t] = useTranslation("dashboard");
     const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
     useEffect(() => {

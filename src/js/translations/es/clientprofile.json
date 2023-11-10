@@ -1,0 +1,15 @@
+{
+    "CLIENT INFO": "INFO DEL CLIENTE",
+    "Image": "Imagen",
+    "Selectotherimage": "Selecciona otra Imagen",
+    "ImageSelected": "Imagen Seleccionada",
+    "Name": "Nombre",
+    "Last Name": "Apellido",
+    "Email": "Correo",
+    "Phone": "Teléfono",
+    "Business": "Negocio",
+    "Description": "Descripción",
+    "Status": "Estado",
+    "Save": "Guardar",
+    "Cancel": "Cancelar"
+}
