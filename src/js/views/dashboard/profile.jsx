@@ -1,135 +1,233 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Context } from "../../store/appContext";
 
 export const Profile = () => {
     const [t] = useTranslation("profile");
-    const { store } = useContext(Context);
+    const { store, actions } = useContext(Context);
+
+    const [editingField, setEditingField] = useState(null);
+    const [editedValue, setEditedValue] = useState("");
+
+    const handleFieldEdit = fieldName => {
+        setEditingField(fieldName);
+        setEditedValue(store.user[fieldName] || "");
+    };
+
+    const handleFieldSave = async () => {
+        const updatedInfo = {
+            ...store.user,
+            [editingField]: editedValue
+        };
+
+        const success = await actions.updateUser(updatedInfo);
+
+        if (success) {
+            setEditingField(null);
+            store.user[editingField] = editedValue;
+        }
+    };
 
     return (
         <>
             <img
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fprofile%2FProfileBG.jpeg?alt=media&token=c90a4f9c-9ae6-4ce2-a4b2-0bb4af67e72e"
-                className="invert fixed -z-50 -top-20 left-0 dark:invert-0 transition duration-500"
+                className="invert w-full fixed -z-50 bottom-0 left-0 dark:invert-0 transition duration-500"
             />
-            <div className="h-[22.2rem] dark:text-white mt-32 container mx-auto mb-5 p-5">
-                <div className="md:flex no-wrap md:-mx-2 ">
-                    <div className="w-full md:w-3/12 md:mx-2">
-                        <div className="glass p-3">
+            <div className="dark:text-white mt-28 w-4/12 m-auto mb-5 p-5">
+                <div className="">
+                    <div className="">
+                        <div className="border border-white rounded-xl p-3">
                             <div className="image overflow-hidden">
                                 <img
-                                    className="h-48 w-48 rounded-full mx-auto"
+                                    className="h-36 w-36 rounded-full mx-auto"
                                     src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
                                     alt=""
                                 />
                             </div>
-                            <h1 className="font-bold text-xl text-center leading-8 my-1">
+                            <h2 className="font-bold text-xl text-center leading-8 my-1">
                                 {store.user.name} {store.user.lastname}
-                            </h1>
-                            {/* <h3 className="font-lg text-semibold leading-6">
-                                EL GOAT
-                            </h3>
-                            <p className="text-sm hover:text-cyan-300 leading-6">
-                                Soy el mejor del mundo
-                            </p> */}
-                            <ul className="hover:text-cyan-400 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                            </h2>
+                            <ul className="py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
                                     <span>Status</span>
                                     <span className="ml-auto">
-                                        <span className="bg-cyan-500 py-1 px-2 rounded text-sm">
-                                            Active
+                                        <span
+                                            className={`${
+                                                store.user.status === "Active"
+                                                    ? "bg-cyan-500"
+                                                    : "bg-red-500"
+                                            } py-1 px-2 rounded text-sm`}>
+                                            {store.user.status}
                                         </span>
                                     </span>
                                 </li>
+
                                 <li className="flex items-center py-3">
                                     <span>Member since</span>
-                                    <span className="ml-auto">Nov 6, 2016</span>
+                                    <span className="ml-auto">
+                                        {new Date(
+                                            store.user.createdAt
+                                        ).toLocaleDateString()}
+                                    </span>
                                 </li>
                             </ul>
-                        </div>
-                        <div className="my-4"></div>
-                    </div>
-                    <div className="w-full md:w-9/12 mx-2 h-64">
-                        <div className="glass p-3">
-                            <div className="flex items-center space-x-2 font-semibold leading-8">
-                                <span className="text-cyan-300">
-                                    <svg
-                                        className="h-5"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                        />
-                                    </svg>
-                                </span>
-                                <span className="tracking-wide text-xl">
-                                    About
-                                </span>
-                            </div>
-                            <div>
-                                <div className="grid text-sm">
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            First Name
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            {store.user.name}
-                                        </div>
+                            <div className="grid text-sm">
+                                <div className="flex flex-row justify-between items-center">
+                                    <div className="px-4 py-2 font-semibold">
+                                        Email
                                     </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Last Name
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            {store.user.lastname}
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Gender
-                                        </div>
-                                        <div className="px-4 py-2">Macho</div>
-                                    </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Contact No.
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            +58 4124029490
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Address
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            Los Samanes, Caracas
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Email
-                                        </div>
-                                        <div className="px-4 py-2">
+                                    <div className="flex">
+                                        <div className="px-4 py-4">
                                             <a
                                                 className="ææææææææææææææææææææææ"
                                                 href="mailto:jane@example.com">
                                                 {store.user.email}
                                             </a>
                                         </div>
+                                        <div className="bg-neutral-400 px-3 py-1 my-3 ml-14 mr-4 text-neutral-300 border border-neutral-300 rounded-md cursor-not-allowed">
+                                            Edit
+                                        </div>
                                     </div>
-                                    <div className="flex flex-row">
-                                        <div className="px-4 py-2 font-semibold">
-                                            Birthday
-                                        </div>
-                                        <div className="px-4 py-2">
-                                            Agosto 18, 2001
-                                        </div>
+                                </div>
+                                <div className="flex flex-row justify-between items-center mb-3">
+                                    <div className="px-4 font-semibold">
+                                        Contact No.
+                                    </div>
+                                    <div className="px-4 gap-3 flex">
+                                        {editingField === "phoneNumber" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={e =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-sky-400 px-3 py-1 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}>
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 px-3 gap-4 text-white rounded-md">
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.phoneNumber}
+                                                <button
+                                                    className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "phoneNumber"
+                                                        )
+                                                    }>
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-row justify-between items-center">
+                                    <div className="px-4 font-semibold">
+                                        Address
+                                    </div>
+                                    <div className="px-4 gap-3 flex ">
+                                        {editingField === "address" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={e =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-sky-400 py-1 px-3 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}>
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 px-3 gap-4 text-white rounded-md">
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.address}
+                                                <button
+                                                    className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "address"
+                                                        )
+                                                    }>
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-row justify-between mt-3">
+                                    <div className="px-4 font-semibold">
+                                        Birthday
+                                    </div>
+                                    <div className="px-4 gap-3 flex ">
+                                        {editingField === "birthday" ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedValue}
+                                                    onChange={e =>
+                                                        setEditedValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="border border-gray-300 p-1 text-black rounded-md"
+                                                />
+                                                <button
+                                                    className="bg-sky-400 py-1 px-3 mx-auto text-white rounded-md"
+                                                    onClick={handleFieldSave}>
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        setEditingField(null)
+                                                    }
+                                                    className="bg-red-500 px-3 gap-4 text-white rounded-md">
+                                                    Cancel
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {store.user.birthday}
+                                                <button
+                                                    className="hover:text-cyan-300 hover:border-cyan-300 bg-neutral-900 px-3 py-1 ml-14 text-white border border-white rounded-md transition duration-300"
+                                                    onClick={() =>
+                                                        handleFieldEdit(
+                                                            "birthday"
+                                                        )
+                                                    }>
+                                                    Edit
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>

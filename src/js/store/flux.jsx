@@ -8,7 +8,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                 name: "Prueba",
                 lastname: "Sero",
                 email: null,
-                role: ["user", "admin"]
+                role: ["user", "admin"],
+                status: "Active",
+                phoneNumber: []
             },
             clients: [],
             users: [],
@@ -55,10 +57,17 @@ const getState = ({ getStore, getActions, setStore }) => {
                             body: JSON.stringify(info)
                         }
                     );
-                    const data = await resp.json();
-                    return data;
+
+                    if (resp.ok) {
+                        const data = await resp.json();
+                        return data;
+                    } else {
+                        console.log("Error updating user. Status:", resp.status);
+                        return null;
+                    }
                 } catch (error) {
                     console.log("There has been an error", error);
+                    return null;
                 }
             },
             deleteUser: async id => {
@@ -120,6 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 name: data.name,
                                 lastname: data.lastname,
                                 email: data.email,
+                                createdAt: data.createdAt,
                                 role: data.role.map(role => {
                                     return role.role;
                                 })
@@ -453,6 +463,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 "Content-Type": "application/json",
                                 authorization: "Bearer " + store.token
                             }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            generateInvitationClientForm: async info => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/inviteClientForm/${info.id}`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify(info)
                         }
                     );
                     const data = await resp.json();
