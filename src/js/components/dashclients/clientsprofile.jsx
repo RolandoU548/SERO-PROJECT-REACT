@@ -132,13 +132,15 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                                     className="text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
                                                     onClick={handleButtonClick}>
                                                     {editableClient.image
-                                                        ? t("Selectotherimage")
+                                                        ? t(
+                                                              "Select a different Image"
+                                                          )
                                                         : t("ImageSelected")}
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="name"
                                             className="font-bold mr-6">
@@ -152,7 +154,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="lastname"
                                             className="font-bold mr-6">
@@ -166,7 +168,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="email"
                                             className="font-bold mt-6 mr-6">
@@ -180,7 +182,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="phone"
                                             className="font-bold mt-6 mr-6">
@@ -194,7 +196,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="business"
                                             className="font-bold mt-6 mr-6">
@@ -208,7 +210,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="description"
                                             className="font-bold mt-6 mr-6">
@@ -221,7 +223,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="status"
                                             className="font-bold mt-6 mr-6">

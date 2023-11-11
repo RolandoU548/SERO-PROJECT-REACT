@@ -33,7 +33,7 @@ import { NotFound } from "./views/notfound.jsx";
 import injectContext from "./store/appContext.jsx";
 import { ClientCard } from "./components/dashclients/clientcard.jsx";
 import { StepPayment } from "./components/dashpayments/steppayment.jsx";
-import PayPalButton from "./components/dashpayments/PayPalButton.jsx";
+import { PayPalButton } from "./components/dashpayments/PayPalButton.jsx";
 import { CreditMemo } from "./components/dashpayments/creditmemo.jsx";
 
 const Layout = () => {
@@ -208,6 +208,15 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <StepPayment />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/PayPalButton"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
                                 <PayPalButton />
                             </>
                         }
@@ -219,7 +228,6 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <CreditMemo />
-                                {/* <PayPalButton /> */}
                             </>
                         }
                     />
