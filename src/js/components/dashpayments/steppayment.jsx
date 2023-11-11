@@ -413,7 +413,7 @@ export const StepPayment = () => {
                                             rotateX: flip ? 360 : 0
                                         }}
                                         transition={{
-                                            duration: 2
+                                            duration: 0.6
                                         }}>
                                         <div className="flex justify-center">
                                             {flip ? (
