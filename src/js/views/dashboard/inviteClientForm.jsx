@@ -7,13 +7,37 @@ import { Context } from "../../store/appContext";
 export const InviteClientForm = () => {
     const [t] = useTranslation("form");
     const navigate = useNavigate();
-    const { actions } = useContext(Context)
+    const { actions } = useContext(Context);
     const [hash, setHash] = useState();
 
+    const COPY_MSG_COPY = "COPY";
+    const COPY_MSG_COPIED = "COPIED";
+
+    const [copyMsg, setCopyMsg] = useState(COPY_MSG_COPY);
+
     const generateHash = async () => {
-        const hashObject = await actions.generateInvitationClientForm()
-        setHash(hashObject.hashed_form)
-    }
+        const hashObject = await actions.generateInvitationClientForm();
+        setHash(hashObject.hashed_form);
+        setCopyMsg(COPY_MSG_COPY);
+    };
+
+    const handleCopy = () => {
+        navigator.clipboard
+            .writeText(
+                `${location.origin}${import.meta.env.BASE_URL}/clientForm/${
+                    hash.invitation_hash
+                }`
+            )
+            .then(
+                function () {
+                    console.log("Async: Copying to clipboard was successful!");
+                    setCopyMsg(COPY_MSG_COPIED);
+                },
+                function (err) {
+                    console.error("Async: Could not copy text: ", err);
+                }
+            );
+    };
 
     return (
         <>
@@ -27,26 +51,38 @@ export const InviteClientForm = () => {
             </video>
             <div className="font-serif text-black dark:text-white mt-40"></div>
             <div className="w-11/12 flex justify-center gap-4 mx-16 mt-8 h-64">
-                <button className="bg-green-500" onClick={() => generateHash()}>Invite</button>
-                <div
-                    className="border border-white rounded-2xl w-4/12 p-4 m-2 flex flex-col justify-center text-2xl"
-                    // onClick={() => {
-                    //     navigate("/clientForm");
-                    // }}
-                >
-                    <h2 className="text-white font-bold mb-5 flex gap-2 justify-center">INVITATION CLIENT<p className="text-cyan-300">FORM</p></h2>
+                <div className="border border-white rounded-2xl w-fit min-w-[33.333333%] p-4 m-2 flex flex-col justify-center text-2xl">
+                    <h2 className="text-white font-bold mb-5 flex gap-2 justify-center">
+                        INVITATION CLIENT<p className="text-cyan-300">FORM</p>
+                    </h2>
                     <div className="flex items-center justify-center gap-4">
-                        {hash && <div
-                            className="border border-white rounded-2xl p-2 w-4/5 font-bold text-black dark:text-white flex gap-2 cursor-pointer items-center"
-                            onClick={() => {
-                                navigate("/clientForm");
-                            }}>
-                            http://localhost:3000/forms/{hash.invitation_hash}
-                        </div>}
-                        <div className="border border-white rounded-2xl p-2 font-bold dark:text-cyan-300 text-cyan-500 cursor-pointer">
-                            COPY
-                        </div>
+                        {hash && (
+                            <>
+                                <div
+                                    className="border border-white rounded-2xl p-2 w-fit font-bold text-black dark:text-white flex gap-2 cursor-pointer items-center"
+                                    onClick={() => {
+                                        navigate(
+                                            `/clientForm/${hash.invitation_hash}`
+                                        );
+                                    }}>
+                                    {location.origin}
+                                    {import.meta.env.BASE_URL}
+                                    /clientForm/
+                                    {hash.invitation_hash}
+                                </div>
+                                <div
+                                    className="border border-white rounded-2xl p-2 font-bold dark:text-cyan-300 text-cyan-500 cursor-pointer"
+                                    onClick={() => handleCopy()}>
+                                    {copyMsg}
+                                </div>
+                            </>
+                        )}
                     </div>
+                    <button
+                        className="border border-white rounded-2xl mt-5 p-2 font-bold dark:text-green-400 text-green-600 cursor-pointer"
+                        onClick={() => generateHash()}>
+                        GENERATE LINK
+                    </button>
                 </div>
             </div>
         </>

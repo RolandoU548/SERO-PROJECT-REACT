@@ -262,6 +262,27 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error(error);
                 }
             },
+            createClientFromClHash: async client => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL +
+                            "/clients_with_clhash",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(client)
+                        }
+                    );
+                    const data = await response.json();
+                    setStore({ clients: [...getStore().clients, data] });
+                    localStorage.setItem("client", JSON.stringify(data));
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             getAllPayments: async () => {
                 try {
                     const resp = await fetch(

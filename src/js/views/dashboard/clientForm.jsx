@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { storage } from "../../components/firebase/firebase";
 import {
@@ -25,6 +25,7 @@ import { useTranslation } from "react-i18next";
 export const ClientForm = () => {
     const id = new Date();
     const { actions } = useContext(Context);
+    const { clienthash } = useParams();
     const [t] = useTranslation("createclient");
     const {
         register,
@@ -66,8 +67,9 @@ export const ClientForm = () => {
             } else {
                 data.image = "noImage";
             }
-            console.log(data);
-            await actions.createClient(data);
+            const client = { client: data, clhash: clienthash };
+            console.log(client);
+            await actions.createClient(client);
         } catch (error) {
             console.log(error);
         }

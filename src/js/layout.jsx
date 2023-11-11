@@ -244,7 +244,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/clientForm"
+                        path="/clientForm/:clienthash"
                         transition="fade"
                         element={
                             <>
