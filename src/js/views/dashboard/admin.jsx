@@ -133,13 +133,6 @@ export const Admin = () => {
                             <table className="text-black dark:text-white table w-full">
                                 <thead>
                                     <tr>
-                                        {/* <th
-                                        className="px-4 py-2"
-                                        onClick={() => handleSort("image")}>
-                                        Image{" "}
-                                        {sortOrder.column === "image" &&
-                                            (sortOrder.ascending ? "▲" : "▼")}
-                                    </th> */}
                                         <th
                                             className="px-4 py-2"
                                             onClick={() => handleSort("name")}>
@@ -200,15 +193,11 @@ export const Admin = () => {
                                                     )
                                                     .map((role, i) => {
                                                         return (
-                                                            <span key={i}>
-                                                                {}
+                                                            <button
+                                                                key={i}
+                                                                className="m-1 p-1 rounded-md bg-green-600 text-white">
                                                                 {role}
-                                                                {i !==
-                                                                    user.role
-                                                                        .length -
-                                                                        1 &&
-                                                                    ","}
-                                                            </span>
+                                                            </button>
                                                         );
                                                     })}
                                             </td>
@@ -249,9 +238,7 @@ export const Admin = () => {
                                 entries
                             </div>
                             <div className="w-full overflow-auto flex justify-end">
-                                <ul
-                                    className="flex rounded list-none"
-                                    style={{ gap: 0 }}>
+                                <ul className="flex rounded list-none">
                                     <li>
                                         <button
                                             className="relative block p-2.5 leading-tight text-black border-r-0 rounded-l bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"

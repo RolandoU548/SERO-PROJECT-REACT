@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 lastname: info.lastname,
                                 email: info.email,
                                 password: info.password,
-                                role: ["user", "admin"]
+                                role: ["user"]
                             })
                         }
                     );
@@ -60,7 +60,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                         const data = await resp.json();
                         return data;
                     } else {
-                        console.log("Error updating user. Status:", resp.status);
+                        console.log(
+                            "Error updating user. Status:",
+                            resp.status
+                        );
                         return null;
                     }
                 } catch (error) {
@@ -469,18 +472,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            generateInvitationClientForm: async info => {
+            generateInvitationClientForm: async () => {
                 const store = getStore();
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + `/inviteClientForm/${info.id}`,
+                        import.meta.env.VITE_BACKEND_URL + `/inviteclientform`,
                         {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
                                 authorization: "Bearer " + store.token
                             },
-                            body: JSON.stringify(info)
+                            body: JSON.stringify({})
                         }
                     );
                     const data = await resp.json();

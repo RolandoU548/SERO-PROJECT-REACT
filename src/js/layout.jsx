@@ -26,6 +26,7 @@ import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
 import { ClientForm } from "./views/dashboard/clientForm.jsx";
 import { InviteClientForm } from "./views/dashboard/inviteClientForm.jsx";
+import { CreateUser } from "./views/dashboard/createUser.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -257,8 +258,8 @@ const Layout = () => {
                         transition="fade"
                         element={
                             <>
-                                <Navbar />
-                                <ClientForm />
+                                <PrivateNavbar />
+                                <CreateUser />
                             </>
                         }
                     />

@@ -153,6 +153,15 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             <div className="flex justify-between items-center">
                                 <label className="font-bold">Role:</label>
                                 <fieldset>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="role"
+                                            value="admin"
+                                            {...register("role")}
+                                        />
+                                        Admin
+                                    </label>
                                     <label style={{ pointerEvents: "none" }}>
                                         <input
                                             type="checkbox"
@@ -162,16 +171,6 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                             {...register("role")}
                                         />
                                         User
-                                    </label>
-
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            name="role"
-                                            value="admin"
-                                            {...register("role")}
-                                        />
-                                        Admin
                                     </label>
                                 </fieldset>
                             </div>
