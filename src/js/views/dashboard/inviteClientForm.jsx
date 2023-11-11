@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../../css/app.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../store/appContext";
 
 export const InviteClientForm = () => {
     const [t] = useTranslation("form");
     const navigate = useNavigate();
+    const { actions } = useContext(Context)
+    const [hash, setHash] = useState();
+
+    const generateHash = async () => {
+        const hashObject = await actions.generateInvitationClientForm()
+        setHash(hashObject.hashed_form)
+    }
 
     return (
         <>
@@ -19,6 +27,7 @@ export const InviteClientForm = () => {
             </video>
             <div className="font-serif text-black dark:text-white mt-40"></div>
             <div className="w-11/12 flex justify-center gap-4 mx-16 mt-8 h-64">
+                <button className="bg-green-500" onClick={() => generateHash()}>Invite</button>
                 <div
                     className="border border-white rounded-2xl w-4/12 p-4 m-2 flex flex-col justify-center text-2xl"
                     // onClick={() => {
@@ -27,13 +36,13 @@ export const InviteClientForm = () => {
                 >
                     <h2 className="text-white font-bold mb-5 flex gap-2 justify-center">INVITATION CLIENT<p className="text-cyan-300">FORM</p></h2>
                     <div className="flex items-center justify-center gap-4">
-                        <div
+                        {hash && <div
                             className="border border-white rounded-2xl p-2 w-4/5 font-bold text-black dark:text-white flex gap-2 cursor-pointer items-center"
                             onClick={() => {
                                 navigate("/clientForm");
                             }}>
-                            http://localhost:3000/forms/:id
-                        </div>
+                            http://localhost:3000/forms/{hash.invitation_hash}
+                        </div>}
                         <div className="border border-white rounded-2xl p-2 font-bold dark:text-cyan-300 text-cyan-500 cursor-pointer">
                             COPY
                         </div>
