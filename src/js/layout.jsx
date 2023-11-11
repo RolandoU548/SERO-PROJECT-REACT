@@ -25,7 +25,9 @@ import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
 import { ClientForm } from "./views/dashboard/clientForm.jsx";
+import { DatabaseForm } from "./views/dashboard/databaseForm.jsx";
 import { InviteClientForm } from "./views/dashboard/inviteClientForm.jsx";
+import { InviteDatabaseForm } from "./views/dashboard/inviteDatabaseForm.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
@@ -252,12 +254,32 @@ const Layout = () => {
                         }
                     />
                     <Route
+                        path="/databaseForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <Navbar />
+                                <DatabaseForm />
+                            </>
+                        }
+                    />
+                    <Route
                         path="/inviteClientForm"
                         transition="fade"
                         element={
                             <>
                                 <PrivateNavbar />
                                 <InviteClientForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/inviteDatabaseForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <InviteDatabaseForm />
                             </>
                         }
                     />
