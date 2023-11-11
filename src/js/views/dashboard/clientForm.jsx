@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { storage } from "../../components/firebase/firebase";
@@ -36,6 +36,15 @@ export const ClientForm = () => {
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(null);
+    const [isValidClHash, setValidClHash] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            setValidClHash(
+                await actions.existsInvitationClientForm(clienthash)
+            );
+        })();
+    });
 
     const handleImageChange = async e => {
         if (e.target.files[0]) {
@@ -69,12 +78,13 @@ export const ClientForm = () => {
             }
             const client = { client: data, clhash: clienthash };
             console.log(client);
-            await actions.createClient(client);
+            await actions.createClientFromClHash(client);
+
+            reset();
+            navigate("/clientCreationSuccessful");
         } catch (error) {
             console.log(error);
         }
-        reset();
-        navigate("/clientCreationSuccessful");
     };
 
     const handleDeleteImage = async () => {
@@ -83,7 +93,7 @@ export const ClientForm = () => {
         setImage(null);
     };
 
-    return (
+    const result = (
         <>
             <div className="font-serif dark:text-white mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
@@ -202,32 +212,33 @@ export const ClientForm = () => {
                                     {t("phone")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <FaPhone className="h-5 w-5 text-gray-400" />
+                                            <FaPhone
+                                                className="h-5 w-5 text-gray-400"
+                                                placeholder={t("phone")}
+                                                {...register("phone", {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Phone required"
+                                                    },
+                                                    minLength: {
+                                                        value: 3,
+                                                        message:
+                                                            t("phoneMinLength")
+                                                    },
+                                                    maxLength: {
+                                                        value: 20,
+                                                        message:
+                                                            t("phoneMaxLength")
+                                                    },
+                                                    pattern: {
+                                                        value: /^[0-9]+$/,
+                                                        message:
+                                                            t("invalidPhone")
+                                                    }
+                                                })}
+                                            />
                                         </div>
-                                        <input
-                                            type="tel"
-                                            autoComplete="phone"
-                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
-                                            placeholder={t("phone")}
-                                            {...register("phone", {
-                                                required: {
-                                                    value: true,
-                                                    message: "Phone required"
-                                                },
-                                                minLength: {
-                                                    value: 3,
-                                                    message: t("phoneMinLength")
-                                                },
-                                                maxLength: {
-                                                    value: 20,
-                                                    message: t("phoneMaxLength")
-                                                },
-                                                pattern: {
-                                                    value: /^[0-9]+$/,
-                                                    message: t("invalidPhone")
-                                                }
-                                            })}
-                                        />
                                     </div>
                                     {errors.phone && (
                                         <span className="text-sm text-red-500">
@@ -410,6 +421,17 @@ export const ClientForm = () => {
                     </form>
                 </div>
             </div>
+        </>
+    );
+
+    if (isValidClHash === false) {
+        throw new Error("Invalid Invitation Form");
+    }
+    return isValidClHash === true ? (
+        result
+    ) : (
+        <>
+            <div>loading...</div>
         </>
     );
 };

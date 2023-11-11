@@ -186,9 +186,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                 localStorage.removeItem("token");
             },
             getAllClients: async () => {
+                const store = getStore();
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/clients"
+                        import.meta.env.VITE_BACKEND_URL + "/clients",
+                        {
+                            headers: {
+                                authorization: "Bearer " + store.token
+                            }
+                        }
                     );
                     const data = await resp.json();
                     setStore({ clients: data });
@@ -198,13 +204,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             updateClient: async (id, client) => {
+                const store = getStore();
                 try {
                     const response = await fetch(
                         import.meta.env.VITE_BACKEND_URL + `/clients/${id}`,
                         {
                             method: "PUT",
                             headers: {
-                                "Content-Type": "application/json"
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
                             },
                             body: JSON.stringify(client)
                         }
@@ -243,13 +251,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             createClient: async client => {
+                const store = getStore();
                 try {
                     const response = await fetch(
                         import.meta.env.VITE_BACKEND_URL + "/clients",
                         {
                             method: "POST",
                             headers: {
-                                "Content-Type": "application/json"
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
                             },
                             body: JSON.stringify(client)
                         }
@@ -511,6 +521,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
+                }
+            },
+            existsInvitationClientForm: async clhash => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL +
+                            `/inviteclientform/${clhash}`
+                    );
+                    const data = await resp.json();
+                    return data !== undefined && data !== null;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return false;
                 }
             }
         }
