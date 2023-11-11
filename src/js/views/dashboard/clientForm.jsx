@@ -21,6 +21,7 @@ import {
 } from "react-icons/fa";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { RingLoader } from "react-spinners";
 
 export const ClientForm = () => {
     const id = new Date();
@@ -93,7 +94,10 @@ export const ClientForm = () => {
         setImage(null);
     };
 
-    const result = (
+    if (isValidClHash === false) {
+        throw new Error("Invalid Invitation Form");
+    }
+    return isValidClHash === true ? (
         <>
             <div className="font-serif dark:text-white mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
@@ -215,30 +219,32 @@ export const ClientForm = () => {
                                             <FaPhone
                                                 className="h-5 w-5 text-gray-400"
                                                 placeholder={t("phone")}
-                                                {...register("phone", {
-                                                    required: {
-                                                        value: true,
-                                                        message:
-                                                            "Phone required"
-                                                    },
-                                                    minLength: {
-                                                        value: 3,
-                                                        message:
-                                                            t("phoneMinLength")
-                                                    },
-                                                    maxLength: {
-                                                        value: 20,
-                                                        message:
-                                                            t("phoneMaxLength")
-                                                    },
-                                                    pattern: {
-                                                        value: /^[0-9]+$/,
-                                                        message:
-                                                            t("invalidPhone")
-                                                    }
-                                                })}
                                             />
                                         </div>
+                                        <input
+                                            type="tel"
+                                            autoComplete="phone"
+                                            className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                            placeholder={t("phone")}
+                                            {...register("phone", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Phone required"
+                                                },
+                                                minLength: {
+                                                    value: 3,
+                                                    message: t("phoneMinLength")
+                                                },
+                                                maxLength: {
+                                                    value: 20,
+                                                    message: t("phoneMaxLength")
+                                                },
+                                                pattern: {
+                                                    value: /^[0-9]+$/,
+                                                    message: t("invalidPhone")
+                                                }
+                                            })}
+                                        />
                                     </div>
                                     {errors.phone && (
                                         <span className="text-sm text-red-500">
@@ -422,16 +428,11 @@ export const ClientForm = () => {
                 </div>
             </div>
         </>
-    );
-
-    if (isValidClHash === false) {
-        throw new Error("Invalid Invitation Form");
-    }
-    return isValidClHash === true ? (
-        result
     ) : (
         <>
-            <div>loading...</div>
+            <div className="flex justify-center items-center h-screen">
+                <RingLoader color="#26C6DA" loading={true} size={100} />
+            </div>
         </>
     );
 };
