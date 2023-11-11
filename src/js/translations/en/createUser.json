@@ -16,5 +16,7 @@
     "passwordMinLength": "Password must be at least 6 characters",
     "passwordMaxLength": "Password must have a maximum of 15 characters",
     "confirmPassword": "Confirm Password",
-    "passwordsNotMatch": "Passwords don't match"
+    "passwordsNotMatch": "Passwords don't match",
+    "userAlreadyExists": "has already been registered",
+    "userCreated": "User created"
 }

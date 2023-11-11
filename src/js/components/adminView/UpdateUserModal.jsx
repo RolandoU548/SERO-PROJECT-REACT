@@ -152,7 +152,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <label className="font-bold">Role:</label>
-                                <fieldset>
+                                <fieldset className="flex gap-x-2">
                                     <label>
                                         <input
                                             type="checkbox"
@@ -162,7 +162,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                         />
                                         Admin
                                     </label>
-                                    <label style={{ pointerEvents: "none" }}>
+                                    <label className="pointer-events-none opacity-50">
                                         <input
                                             type="checkbox"
                                             name="role"
