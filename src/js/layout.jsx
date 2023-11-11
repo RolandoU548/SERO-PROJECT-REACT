@@ -272,16 +272,18 @@ const Layout = () => {
                         }
                     />
                 </Route>
-                <Route
-                    path="/admin"
-                    transition="fade"
-                    element={
-                        <ProtectedRoute role={["admin"]}>
-                            <PrivateNavbar />
-                            <Admin />
-                        </ProtectedRoute>
-                    }
-                />
+                <Route element={<ProtectedRoute role={["admin"]} />}>
+                    <Route
+                        path="/admin"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <Admin />
+                            </>
+                        }
+                    />
+                </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

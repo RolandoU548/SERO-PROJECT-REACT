@@ -16,5 +16,7 @@
     "passwordMinLength": "Contraseña debe tener al menos 6 caracteres",
     "passwordMaxLength": "Contraseña debe tener máximo 15 caracteres",
     "confirmPassword": "Confirmar Contraseña",
-    "passwordsNotMatch": "Las contraseñas no coinciden"
+    "passwordsNotMatch": "Las contraseñas no coinciden",
+    "userAlreadyExists": "ya ha sido registrado",
+    "userCreated": "Usuario creado"
 }

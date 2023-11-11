@@ -20,13 +20,14 @@ export const CreateUser = () => {
     const navigate = useNavigate();
 
     const submit = async data => {
-        try {
-            console.log(data);
-        } catch (error) {
-            console.log(error);
+        const respuesta = await actions.createUser(data);
+        if (respuesta?.message === `User ${data.email} already exists`) {
+            alert(`${data.email} ${t("userAlreadyExists")}`);
+        } else if (respuesta?.message === "A user has been created") {
+            alert(t("userCreated"));
+            reset();
+            navigate("/admin");
         }
-        reset();
-        navigate("/clients");
     };
 
     return (
