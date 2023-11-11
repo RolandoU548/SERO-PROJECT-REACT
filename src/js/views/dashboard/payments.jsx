@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { RingLoader } from "react-spinners";
 import {
     FaPlus,
     FaSearch,
@@ -16,6 +17,7 @@ import {
 export const Payments = () => {
     const { store, actions } = useContext(Context);
     const [t] = useTranslation("payments");
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const [customerFilter, setCustomerFilter] = useState("");
     const [fromDateFilter, setFromDateFilter] = useState("");
@@ -46,8 +48,12 @@ export const Payments = () => {
     });
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
         actions.getAllPayments();
         actions.getAllClients();
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
@@ -58,20 +64,17 @@ export const Payments = () => {
         navigate("/steppayment");
     };
 
-    // const handleEditPayment = id => {
-    //     navigate(`/editpayment/${id}`);
-    // };
-
-    // const deletePayment = id => {
-    //     const updatedPayments = paymentsData.filter(
-    //         payment => payment.id !== id
-    //     );
-    //     setPaymentData(updatedPayments);
-    //     actions.deletePayment(id);
-    // };
-
     return (
         <>
+            {isLoading && (
+                <div className="flex justify-center items-center h-screen">
+                    <RingLoader
+                        color="#26C6DA"
+                        loading={isLoading}
+                        size={100}
+                    />
+                </div>
+            )}
             <img
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2FPaymentsBG.jpg?alt=media&token=63e70794-5b13-4160-b6f8-0cdc1f68f7c1&_gl=1*uwspi8*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MTY2Ny4zLjAuMA.."
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"

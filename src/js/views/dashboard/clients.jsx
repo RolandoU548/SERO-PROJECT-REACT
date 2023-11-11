@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "../../../css/glass.css";
+import { RingLoader } from "react-spinners";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
 import { DeleteModal } from "../../components/dashclients/deletemodal";
@@ -12,6 +13,7 @@ import { ClientCardButton } from "../../components/dashclients/clientcardbutton"
 export const Clients = () => {
     const { store, actions } = useContext(Context);
     const [t] = useTranslation("clients");
+    const [isLoading, setIsLoading] = useState(true);
     const [client, setClient] = useState();
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
@@ -19,14 +21,18 @@ export const Clients = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [clientsPerPage] = useState(5);
-    // const [clients, setClients] = useState(store.clients);
     const [sortOrder, setSortOrder] = useState({
         column: "name",
         ascending: true
     });
 
     useEffect(() => {
-        actions.getAllClients();
+        setIsLoading(true);
+        actions.getAllClients().then(() => {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 2000);
+        });
     }, []);
 
     // Usuario actual
@@ -71,6 +77,16 @@ export const Clients = () => {
 
     return (
         <>
+            {isLoading && (
+                <div className="flex justify-center items-center h-screen">
+                    <RingLoader
+                        color="#26C6DA"
+                        loading={isLoading}
+                        size={100}
+                    />
+                </div>
+            )}
+
             {isOpenEdit && (
                 <ClientProfile setIsOpen={setIsOpenEdit} client={client} />
             )}

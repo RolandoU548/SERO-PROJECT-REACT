@@ -8,25 +8,30 @@ import { PieChartPayment } from "../../components/dashpayments/piechartpayment";
 import { PieChartClient } from "../../components/dashclients/piechartclient";
 import { PieChartTask } from "../../components/dashpanel/piecharttask";
 import { FaUsers, FaMoneyBillAlt, FaTasks, FaFileAlt } from "react-icons/fa";
+import { RingLoader } from "react-spinners";
 
 export const Dashboard = () => {
     const { store, actions } = useContext(Context);
     const [t] = useTranslation("dashboard");
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const [numClients, setNumClients] = useState(0);
     const [numPayments, setNumPayments] = useState(0);
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        actions.getAllClients().then(() => {
-            setNumClients(store.clients.length);
-        });
-        actions.getAllPayments().then(() => {
-            setNumPayments(store.payments.length);
-        });
-        actions.getAllTask();
+        setIsLoading(true);
+        setTimeout(() => {
+            actions.getAllClients().then(() => {
+                setNumClients(store.clients.length);
+            });
+            actions.getAllPayments().then(() => {
+                setNumPayments(store.payments.length);
+            });
+            actions.getAllTask();
+            setIsLoading(false);
+        }, 2000);
     }, []);
-
     useEffect(() => {
         setTasks(store.tasks);
     }, [store.tasks]);
@@ -40,6 +45,15 @@ export const Dashboard = () => {
 
     return (
         <>
+            {isLoading && (
+                <div className="flex justify-center items-center h-screen">
+                    <RingLoader
+                        color="#26C6DA"
+                        loading={isLoading}
+                        size={100}
+                    />
+                </div>
+            )}
             <img
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fdashboard%2FDashboardBG.jpg?alt=media&token=2ec7eddc-7603-410b-b2c8-cbce6ab643a3&_gl=1*wcikbl*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MTQ1Ny42MC4wLjA."
                 className="invert fixed -z-50 top-0 left-0 dark:invert-0 transition duration-500"
