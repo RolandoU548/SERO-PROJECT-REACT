@@ -1,7 +1,14 @@
 {
+    "name": "Nombre",
+    "lastname": "Apellido",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "createUser": "Crear Usuario",
     "nameRequired": "Nombre requerido",
+    "invalidName": "Nombre no válido",
     "lastnameRequired": "Apellido requerido",
-    "emailRequired": "Correo requerido",
+    "invalidLastname": "Apellido no válido",
+    "emailRequired": "Correo Requerido",
     "emailMinLength": "Correo debe tener al menos 5 caracteres",
     "emailMaxLength": "Correo debe tener máximo 60 caracteres",
     "invalidEmail": "Correo no válido",
@@ -9,9 +16,5 @@
     "passwordMinLength": "Contraseña debe tener al menos 6 caracteres",
     "passwordMaxLength": "Contraseña debe tener máximo 15 caracteres",
     "confirmPassword": "Confirmar Contraseña",
-    "passwordsNotMatch": "Las contraseñas no coinciden",
-    "userAlreadyExists": "ya ha sido registrado",
-    "userCreated": "Usuario creado",
-    "invalidName": "Nombre Inválido",
-    "invalidLastname": "Apellido Inválido"
+    "passwordsNotMatch": "Las contraseñas no coinciden"
 }

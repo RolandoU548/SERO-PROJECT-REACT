@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                                 lastname: info.lastname,
                                 email: info.email,
                                 password: info.password,
-                                role: ["user", "admin"]
+                                role: ["user"]
                             })
                         }
                     );
@@ -60,7 +60,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                         const data = await resp.json();
                         return data;
                     } else {
-                        console.log("Error updating user. Status:", resp.status);
+                        console.log(
+                            "Error updating user. Status:",
+                            resp.status
+                        );
                         return null;
                     }
                 } catch (error) {

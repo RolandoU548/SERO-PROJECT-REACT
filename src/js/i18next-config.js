@@ -37,6 +37,8 @@ import settingsEs from "./translations/es/dashboard/settings.json";
 import settingsEn from "./translations/en/dashboard/settings.json";
 import createclientEs from "./translations/es/createclient.json";
 import createclientEn from "./translations/en/createclient.json";
+import createUserEs from "./translations/es/createUser.json";
+import createUserEn from "./translations/en/createUser.json";
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -62,7 +64,8 @@ i18next.init({
             reports: reportsEs,
             settings: settingsEs,
             payments: paymentsEs,
-            createclient: createclientEs
+            createclient: createclientEs,
+            createUser: createUserEs
         },
         en: {
             app: appEn,
@@ -83,7 +86,8 @@ i18next.init({
             reports: reportsEn,
             payments: paymentsEn,
             settings: settingsEn,
-            createclient: createclientEn
+            createclient: createclientEn,
+            createUser: createUserEn
         }
     }
 });

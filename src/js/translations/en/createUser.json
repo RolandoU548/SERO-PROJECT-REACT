@@ -1,7 +1,14 @@
 {
-    "nameRequired": "Name is required",
-    "lastnameRequired": "Lastname is required",
-    "emailRequired": "Email is required",
+    "name": "Name",
+    "lastname": "Lastname",
+    "email": "Email",
+    "password": "Password",
+    "createUser": "Create User",
+    "nameRequired": "Name is Required",
+    "invalidName": "Invalid Name",
+    "lastnameRequired": "Lastname is Required",
+    "invalidLastname": "Invalid Lastname",
+    "emailRequired": "Email is Required",
     "emailMinLength": "Email must be at least 5 characters",
     "emailMaxLength": "Email must have a maximum of 60 characters",
     "invalidEmail": "Invalid Email",
@@ -9,9 +16,5 @@
     "passwordMinLength": "Password must be at least 6 characters",
     "passwordMaxLength": "Password must have a maximum of 15 characters",
     "confirmPassword": "Confirm Password",
-    "passwordsNotMatch": "Passwords don't match",
-    "userAlreadyExists": "has already been registered",
-    "userCreated": "User created",
-    "invalidName": "Invalid Name",
-    "invalidLastname": "Invalid Lastname"
+    "passwordsNotMatch": "Passwords don't match"
 }

@@ -80,7 +80,7 @@ export const SignUpForm = ({
                     {...register("lastname", {
                         required: {
                             value: true,
-                            message: t("lastNameRequired")
+                            message: t("lastnameRequired")
                         },
                         pattern: {
                             value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1|'|\s]+$/,

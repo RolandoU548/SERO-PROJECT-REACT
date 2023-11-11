@@ -169,7 +169,7 @@ export const CreateClient = () => {
                                             {...register("email", {
                                                 required: {
                                                     value: true,
-                                                    message: "Email Requerido"
+                                                    message: t("emailRequired")
                                                 },
                                                 minLength: {
                                                     value: 5,
