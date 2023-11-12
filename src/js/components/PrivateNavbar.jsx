@@ -28,7 +28,7 @@ export const PrivateNavbar = () => {
             link: "/form",
             icon: TbReportAnalytics
         },
-        { name: t2("reports"), link: "/reports", icon: FiFolder },
+        { name: t2("kandan"), link: "/kanban", icon: FiFolder },
         {
             name: t2("payments"),
             link: "/payments",
@@ -168,11 +168,11 @@ export const PrivateNavbar = () => {
                                 )}
                                 {store.user.name
                                     ? store.user.name[0].toUpperCase() +
-                                    store.user.name.substr(1)
+                                      store.user.name.substr(1)
                                     : " "}{" "}
                                 {store.user.lastname
                                     ? store.user.lastname[0].toUpperCase() +
-                                    store.user.lastname.substr(1)
+                                      store.user.lastname.substr(1)
                                     : " "}
                                 <i
                                     className="fa-regular fa-circle-user text-2xl mx-4 invert dark:invert-0"

@@ -18,7 +18,7 @@ import { Form } from "./views/dashboard/form.jsx";
 import { Database } from "./views/dashboard/database.jsx";
 import { Dashboard } from "./views/dashboard/dashboard.jsx";
 import { Clients } from "./views/dashboard/clients.jsx";
-import { Reports } from "./views/dashboard/reports.jsx";
+import { Kanban } from "./views/dashboard/kanban.jsx";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
@@ -227,12 +227,12 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/reports"
+                        path="/kanban"
                         transition="fade"
                         element={
                             <>
                                 <PrivateNavbar />
-                                <Reports />
+                                <Kanban />
                             </>
                         }
                     />
