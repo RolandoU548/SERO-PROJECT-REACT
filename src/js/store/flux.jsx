@@ -126,14 +126,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                     if (resp.ok) {
                         setStore({
                             user: {
-                                id: data.id,
-                                name: data.name,
-                                lastname: data.lastname,
-                                email: data.email,
-                                createdAt: data.createdAt,
+                                ...data,
                                 role: data.role.map(role => {
                                     return role.role;
-                                })
+                                }),
+                                createdAt: new Date(data.createdAt),
+                                birthday: new Date(data.birthday)
                             }
                         });
                         return true;
