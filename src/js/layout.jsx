@@ -93,6 +93,17 @@ const Layout = () => {
                     }
                 />
 
+                <Route
+                    path="/clientForm/:clienthash"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <ClientForm />
+                        </>
+                    }
+                />
+
                 <Route element={<ProtectedRoute />}>
                     <Route
                         path="/private"
@@ -240,16 +251,6 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Settings />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/clientForm/:clienthash"
-                        transition="fade"
-                        element={
-                            <>
-                                <Navbar />
-                                <ClientForm />
                             </>
                         }
                     />

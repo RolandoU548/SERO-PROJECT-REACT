@@ -41,9 +41,11 @@ export const ClientForm = () => {
 
     useEffect(() => {
         (async () => {
-            setValidClHash(
-                await actions.existsInvitationClientForm(clienthash)
-            );
+            const isClHashValid =
+                await actions.existsInvitationClientForm(clienthash);
+            setTimeout(() => {
+                setValidClHash(isClHashValid);
+            }, 2000);
         })();
     });
 
