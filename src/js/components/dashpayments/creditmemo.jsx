@@ -9,36 +9,74 @@ import PropTypes from "prop-types";
 export const CreditMemo = ({ id }) => {
     const navigate = useNavigate();
     const { store, actions } = useContext(Context);
-    const [formData, setFormData] = useState({
-        invoice: "",
-        date: "",
-        service: "",
-        amount: "",
-        client: "",
-        method: "",
-        description: ""
-    });
+    const clients = store.clients;
+    const [formData, setFormData] = useState({});
 
     useEffect(() => {
         actions.getAllClients();
-        const payment = store.payments.find(payment => payment.id === id);
-        if (payment) {
-            setFormData({
-                invoice: payment.invoice,
-                date: payment.date,
-                service: payment.service,
-                amount: payment.amount,
-                client: payment.client,
-                method: payment.method,
-                description: payment.description
-            });
-        }
-    }, [id]);
+        generateCurrentDate();
+    }, []);
 
-    console.log(formData.date);
+    const generateCurrentDate = () => {
+        const currentDate = new Date().toLocaleDateString();
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            date: currentDate
+        }));
+    };
+
+    const handleClientChange = e => {
+        const selectedClientId = e.target.value;
+        const selectedClient = clients.find(
+            client => client.name === selectedClientId
+        );
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            client: selectedClient.id
+        }));
+    };
+
+    const handleServiceChange = e => {
+        setFormData({
+            ...formData,
+            service: e.target.value
+        });
+    };
+
+    const handleDescriptionChange = e => {
+        setFormData({
+            ...formData,
+            description: e.target.value
+        });
+    };
+
+    const handleInvoiceChange = e => {
+        const invoice = e.target.value;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            invoice: invoice
+        }));
+        setFormData({
+            ...formData,
+            invoice
+        });
+    };
+
+    const handleAmountChange = e => {
+        const amount = parseFloat(e.target.value).toFixed(2);
+        setFormData({
+            ...formData,
+            amount: amount
+        });
+    };
 
     const handleFormSubmit = () => {
-        actions.createPayment(formData);
+        actions.createPayment({
+            ...formData,
+            status: "Credit",
+            method: "Refund"
+        });
+        navigate("/payments");
     };
 
     return (
@@ -65,6 +103,7 @@ export const CreditMemo = ({ id }) => {
                                     className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                     required
                                     value={formData.date}
+                                    readOnly
                                 />
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                                     <MdDateRange className="h-5 w-5 text-cyan-400 " />
@@ -80,11 +119,11 @@ export const CreditMemo = ({ id }) => {
                                 name="client"
                                 className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                 required
-                                value={formData.client}>
+                                onChange={handleClientChange}>
                                 <option value="">Select a client</option>
-                                {store.clients.map(client => (
-                                    <option key={client.id} value={client.id}>
-                                        {client.name} {client.lastname}
+                                {clients.map(client => (
+                                    <option key={client.id} value={client.name}>
+                                        {client.name}
                                     </option>
                                 ))}
                             </select>
@@ -98,7 +137,7 @@ export const CreditMemo = ({ id }) => {
                                 name="services"
                                 className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                 required
-                                value={formData.service}>
+                                onChange={handleServiceChange}>
                                 <option value="">Select a service</option>
                                 <option value="Service 1">Service 1</option>
                                 <option value="Service 2">Service 2</option>
@@ -110,7 +149,7 @@ export const CreditMemo = ({ id }) => {
                                 <label
                                     htmlFor="invoice"
                                     className="block text-white font-bold mb-2">
-                                    Invoice
+                                    Credit Memo
                                 </label>
                                 <div className="relative">
                                     <input
@@ -119,7 +158,7 @@ export const CreditMemo = ({ id }) => {
                                         name="invoice"
                                         className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                         required
-                                        value={formData.invoice}
+                                        onChange={handleInvoiceChange}
                                     />
                                     <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                                         <FaFileInvoice className="h-5 w-5 text-cyan-400" />
@@ -137,7 +176,7 @@ export const CreditMemo = ({ id }) => {
                                         name="amount"
                                         className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
                                         required
-                                        value={formData.amount}
+                                        onChange={handleAmountChange}
                                     />
                                     <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                                         <AiOutlineDollar className="h-6 w-6 text-cyan-400" />
@@ -153,19 +192,17 @@ export const CreditMemo = ({ id }) => {
                                     name="description"
                                     className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                     required
-                                    value={formData.description}></textarea>
+                                    onChange={
+                                        handleDescriptionChange
+                                    }></textarea>
                             </div>
                         </div>
                     </div>
                     <div className="flex justify-end">
                         <button
                             type="submit"
-                            className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4"
-                            onClick={() => {
-                                handleFormSubmit();
-                                navigate("/payments");
-                            }}>
-                            Create Credit Memo
+                            className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4">
+                            Generate
                         </button>
                     </div>
                 </form>

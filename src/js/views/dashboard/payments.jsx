@@ -251,7 +251,7 @@ export const Payments = () => {
                                     <td className=" py-4">
                                         <span
                                             className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                                                payment.status === "paid"
+                                                payment.status !== "Paid"
                                                     ? "bg-red-700 text-white font-bold"
                                                     : "bg-green-700 text-white font-bold"
                                             }`}>

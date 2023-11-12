@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { FaCreditCard, FaFileInvoice, FaFilePdf } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
@@ -8,49 +7,51 @@ import { AiOutlineDollar } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import { storage } from "../../components/firebase/firebase";
 import { ref as storageRef, uploadBytes } from "firebase/storage";
-import { motion } from "framer-motion";
+import ReactCardFlip from "react-card-flip";
 
 export const StepPayment = () => {
-    // const { id } = useParams();
     const navigate = useNavigate();
     const { store, actions } = useContext(Context);
     const clients = store.clients;
-    // const client = clients.find(c => c.id === id);
     const [t] = useTranslation("steppayment");
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
     const [fileList, setFileList] = useState([]);
     const [filesUploaded, setFilesUploaded] = useState(false);
+    const [isFlipped, setIsFlipped] = useState(false);
     const [cardName, setCardName] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [cardExpiration, setCardExpiration] = useState("");
     const [cardCvv, setCardCvv] = useState("");
-    const [flip, setFlip] = useState(false);
 
     useEffect(() => {
         actions.getAllClients();
         generateCurrentDate();
     }, []);
 
-    const handleCardNameChange = event => {
-        setCardName(event.target.value);
+    const handleCardNameChange = e => {
+        setCardName(e.target.value);
     };
 
-    const handleCardNumberChange = event => {
-        setCardNumber(event.target.value);
+    const handleCardNumberChange = e => {
+        setCardNumber(e.target.value);
     };
 
     const handleCardExpirationChange = e => {
         setCardExpiration(e.target.value);
         if (e.target.value.length === 4) {
-            setFlip(true);
+            setIsFlipped(true);
+        } else if (e.target.value.length < 4) {
+            setIsFlipped(false);
         }
     };
 
     const handleCardCvvChange = e => {
         setCardCvv(e.target.value);
-        setFlip(true);
+        if (e.target.value.length === 3) {
+            setIsFlipped(false);
+        }
     };
 
     const handleFormSubmit = e => {
@@ -407,89 +408,12 @@ export const StepPayment = () => {
                                     </button>
                                 </div>
                                 {paymentMethod === "creditCard" && (
-                                    <motion.div
-                                        className="flex justify-center"
-                                        animate={{
-                                            rotateX: flip ? 360 : 0
-                                        }}
-                                        transition={{
-                                            duration: 0.6
-                                        }}>
-                                        <div className="flex justify-center">
-                                            {flip ? (
-                                                <motion.div
-                                                    className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl `}
-                                                    style={{
-                                                        width: "512px",
-                                                        height: "288px",
-                                                        display: "flex",
-                                                        flexDirection: "column",
-                                                        justifyContent:
-                                                            "space-between",
-                                                        padding: "20px",
-                                                        boxSizing: "border-box",
-                                                        backgroundImage:
-                                                            "url('../../../../public/bg-card.jpeg')",
-                                                        backgroundColor: "gray",
-                                                        backgroundSize: "cover",
-                                                        backgroundPosition:
-                                                            "center",
-                                                        position: "relative",
-                                                        transformOrigin:
-                                                            "center",
-                                                        transitionDuration:
-                                                            "2s",
-                                                        transitionProperty:
-                                                            "transform"
-                                                    }}
-                                                    animate={{
-                                                        rotatey: flip ? 180 : 0
-                                                    }}
-                                                    transition={{
-                                                        duration: 2
-                                                    }}>
-                                                    <div className="">
-                                                        <div className="flex justify-between">
-                                                            <p className="font-bold">
-                                                                SERØ. Bank
-                                                            </p>
-                                                            <div>
-                                                                <img
-                                                                    className="w-25 h-10 mt-2"
-                                                                    src="../../../../public/visa-logo-png-2026.png"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex flex-col justify-center items-center w-full mt-16">
-                                                            <div className="flex flex-col justify-between">
-                                                                <div className="flex justify-center">
-                                                                    <p className="font-light text-xs">
-                                                                        CVV
-                                                                    </p>
-                                                                </div>
-                                                                <div className="flex justify-between">
-                                                                    <input
-                                                                        type="text"
-                                                                        id="cardCvv"
-                                                                        name="cardCvv"
-                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                        placeholder="123"
-                                                                        value={
-                                                                            cardCvv
-                                                                        }
-                                                                        onChange={e => {
-                                                                            handleCardCvvChange(
-                                                                                e
-                                                                            );
-                                                                        }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </motion.div>
-                                            ) : (
-                                                <motion.div
+                                    <div>
+                                        <ReactCardFlip
+                                            isFlipped={isFlipped}
+                                            flipDirection="horizontal">
+                                            <div key="front">
+                                                <div
                                                     className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl`}
                                                     style={{
                                                         width: "512px",
@@ -594,10 +518,75 @@ export const StepPayment = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </motion.div>
-                                            )}
-                                        </div>
-                                    </motion.div>
+                                                </div>
+                                            </div>
+                                            <div key="back">
+                                                <div
+                                                    className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl `}
+                                                    style={{
+                                                        width: "512px",
+                                                        height: "288px",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        justifyContent:
+                                                            "space-between",
+                                                        padding: "20px",
+                                                        boxSizing: "border-box",
+                                                        backgroundImage:
+                                                            "url('../../../../public/bg-card.jpeg')",
+                                                        backgroundColor: "gray",
+                                                        backgroundSize: "cover",
+                                                        backgroundPosition:
+                                                            "center",
+                                                        position: "relative",
+                                                        transformOrigin:
+                                                            "center",
+                                                        transitionDuration:
+                                                            "2s",
+                                                        transitionProperty:
+                                                            "transform"
+                                                    }}>
+                                                    <div className="flex justify-between">
+                                                        <p className="font-bold">
+                                                            SERØ. Bank
+                                                        </p>
+                                                        <div>
+                                                            <img
+                                                                className="w-25 h-10 mt-2"
+                                                                src="../../../../public/visa-logo-png-2026.png"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex flex-col justify-center items-center w-full mt-16">
+                                                        <div className="flex flex-col justify-between">
+                                                            <div className="flex justify-center">
+                                                                <p className="font-light text-xs">
+                                                                    CVV
+                                                                </p>
+                                                            </div>
+                                                            <div className="flex justify-between mb-24">
+                                                                <input
+                                                                    type="text"
+                                                                    id="cardCvv"
+                                                                    name="cardCvv"
+                                                                    className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                    placeholder="123"
+                                                                    value={
+                                                                        cardCvv
+                                                                    }
+                                                                    onChange={e => {
+                                                                        handleCardCvvChange(
+                                                                            e
+                                                                        );
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ReactCardFlip>
+                                    </div>
                                 )}
                                 <div className="flex justify-between">
                                     <button
