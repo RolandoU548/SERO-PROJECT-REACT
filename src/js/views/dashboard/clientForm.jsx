@@ -1,5 +1,5 @@
-import React, { useState, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { storage } from "../../components/firebase/firebase";
 import {
@@ -21,10 +21,12 @@ import {
 } from "react-icons/fa";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { RingLoader } from "react-spinners";
 
 export const ClientForm = () => {
     const id = new Date();
     const { actions } = useContext(Context);
+    const { clienthash } = useParams();
     const [t] = useTranslation("createclient");
     const {
         register,
@@ -35,6 +37,17 @@ export const ClientForm = () => {
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(null);
+    const [isValidClHash, setValidClHash] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            const isClHashValid =
+                await actions.existsInvitationClientForm(clienthash);
+            setTimeout(() => {
+                setValidClHash(isClHashValid);
+            }, 2000);
+        })();
+    });
 
     const handleImageChange = async e => {
         if (e.target.files[0]) {
@@ -66,13 +79,15 @@ export const ClientForm = () => {
             } else {
                 data.image = "noImage";
             }
-            console.log(data);
-            await actions.createClient(data);
+            const client = { client: data, clhash: clienthash };
+            console.log(client);
+            await actions.createClientFromClHash(client);
+
+            reset();
+            navigate("/formSuccessful");
         } catch (error) {
             console.log(error);
         }
-        reset();
-        navigate("/clientCreationSuccessful");
     };
 
     const handleDeleteImage = async () => {
@@ -81,7 +96,10 @@ export const ClientForm = () => {
         setImage(null);
     };
 
-    return (
+    if (isValidClHash === false) {
+        throw new Error("Invalid Invitation Form");
+    }
+    return isValidClHash === true ? (
         <>
             <div className="font-serif dark:text-white mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
@@ -200,7 +218,10 @@ export const ClientForm = () => {
                                     {t("phone")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <FaPhone className="h-5 w-5 text-gray-400" />
+                                            <FaPhone
+                                                className="h-5 w-5 text-gray-400"
+                                                placeholder={t("phone")}
+                                            />
                                         </div>
                                         <input
                                             type="tel"
@@ -407,6 +428,12 @@ export const ClientForm = () => {
                         </div>
                     </form>
                 </div>
+            </div>
+        </>
+    ) : (
+        <>
+            <div className="flex justify-center items-center h-screen">
+                <RingLoader color="#26C6DA" loading={true} size={100} />
             </div>
         </>
     );

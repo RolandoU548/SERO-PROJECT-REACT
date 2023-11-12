@@ -126,14 +126,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                     if (resp.ok) {
                         setStore({
                             user: {
-                                id: data.id,
-                                name: data.name,
-                                lastname: data.lastname,
-                                email: data.email,
-                                createdAt: data.createdAt,
+                                ...data,
                                 role: data.role.map(role => {
                                     return role.role;
-                                })
+                                }),
+                                createdAt: new Date(data.createdAt),
+                                birthday: new Date(data.birthday)
                             }
                         });
                         return true;
@@ -186,9 +184,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                 localStorage.removeItem("token");
             },
             getAllClients: async () => {
+                const store = getStore();
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/clients"
+                        import.meta.env.VITE_BACKEND_URL + "/clients",
+                        {
+                            headers: {
+                                authorization: "Bearer " + store.token
+                            }
+                        }
                     );
                     const data = await resp.json();
                     setStore({ clients: data });
@@ -198,13 +202,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             updateClient: async (id, client) => {
+                const store = getStore();
                 try {
                     const response = await fetch(
                         import.meta.env.VITE_BACKEND_URL + `/clients/${id}`,
                         {
                             method: "PUT",
                             headers: {
-                                "Content-Type": "application/json"
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
                             },
                             body: JSON.stringify(client)
                         }
@@ -243,9 +249,32 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             createClient: async client => {
+                const store = getStore();
                 try {
                     const response = await fetch(
                         import.meta.env.VITE_BACKEND_URL + "/clients",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify(client)
+                        }
+                    );
+                    const data = await response.json();
+                    setStore({ clients: [...getStore().clients, data] });
+                    localStorage.setItem("client", JSON.stringify(data));
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            createClientFromClHash: async client => {
+                try {
+                    const response = await fetch(
+                        import.meta.env.VITE_BACKEND_URL +
+                            "/clients_with_clhash",
                         {
                             method: "POST",
                             headers: {
@@ -490,6 +519,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
+                }
+            },
+            existsInvitationClientForm: async clhash => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL +
+                            `/inviteclientform/${clhash}`
+                    );
+                    const data = await resp.json();
+                    return data !== undefined && data !== null;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return false;
                 }
             }
         }

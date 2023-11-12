@@ -28,6 +28,8 @@ import { ClientForm } from "./views/dashboard/clientForm.jsx";
 import { DatabaseForm } from "./views/dashboard/databaseForm.jsx";
 import { InviteClientForm } from "./views/dashboard/inviteClientForm.jsx";
 import { InviteDatabaseForm } from "./views/dashboard/inviteDatabaseForm.jsx";
+import { FormSuccessful } from "./views/dashboard/formSuccessful.jsx";
+import { FormExpired } from "./views/dashboard/formExpired.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
@@ -89,6 +91,37 @@ const Layout = () => {
                             <Cursor />
                             <BackgroundVideo />
                             <SpecificFounder />
+                        </>
+                    }
+                />
+
+                <Route
+                    path="/clientForm/:clienthash"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <ClientForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/formSuccessful"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <FormSuccessful />
+                        </>
+                    }
+                />
+                <Route
+                    path="/formExpired"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <FormExpired />
                         </>
                     }
                 />
@@ -240,16 +273,6 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Settings />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/clientForm"
-                        transition="fade"
-                        element={
-                            <>
-                                <Navbar />
-                                <ClientForm />
                             </>
                         }
                     />

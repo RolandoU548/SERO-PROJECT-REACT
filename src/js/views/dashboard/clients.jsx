@@ -192,11 +192,18 @@ export const Clients = () => {
                                 {currentClients.map(client => (
                                     <tr key={client.id}>
                                         <td className="px-4 py-2 text-center">
-                                            <img
-                                                src={client.image}
-                                                alt={client.name}
-                                                className="h-20 w-20 object-cover rounded-full inline-block"
-                                            />
+                                            {client.image !== "noImage" ? (
+                                                <img
+                                                    src={client.image}
+                                                    alt={client.name}
+                                                    className="h-20 w-20 object-cover rounded-full inline-block"
+                                                />
+                                            ) : (
+                                                <i
+                                                    className="fa-regular fa-circle-user text-5xl mx-4 invert dark:invert-0"
+                                                    style={{ color: "#ffffff" }}
+                                                />
+                                            )}
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             {client.name}

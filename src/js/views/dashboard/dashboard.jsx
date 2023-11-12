@@ -119,19 +119,19 @@ export const Dashboard = () => {
                     </div>
                     <div className="flex flex-row justify-center">
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
-                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                            <h1 className="mb-2 text-2xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Payments Chart")}
                             </h1>
                             <PieChartPayment numPayments={numPayments} />
                         </div>
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
-                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                            <h1 className="mb-2 text-2xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Clients Chart")}
                             </h1>
                             <PieChartClient numClients={numClients} />
                         </div>
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
-                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                            <h1 className="mb-2 text-2xl font-black z-10 text-black dark:text-white m-auto">
                                 {t("Tasks Chart")}
                             </h1>
                             <PieChartTask tasks={tasks} />
