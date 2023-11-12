@@ -84,7 +84,7 @@ export const ClientForm = () => {
             await actions.createClientFromClHash(client);
 
             reset();
-            navigate("/clientCreationSuccessful");
+            navigate("/formSuccessful");
         } catch (error) {
             console.log(error);
         }
