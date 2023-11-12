@@ -18,7 +18,7 @@ import { Form } from "./views/dashboard/form.jsx";
 import { Database } from "./views/dashboard/database.jsx";
 import { Dashboard } from "./views/dashboard/dashboard.jsx";
 import { Clients } from "./views/dashboard/clients.jsx";
-import { Reports } from "./views/dashboard/reports.jsx";
+import { Kanban } from "./views/dashboard/kanban.jsx";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
@@ -28,6 +28,8 @@ import { ClientForm } from "./views/dashboard/clientForm.jsx";
 import { DatabaseForm } from "./views/dashboard/databaseForm.jsx";
 import { InviteClientForm } from "./views/dashboard/inviteClientForm.jsx";
 import { InviteDatabaseForm } from "./views/dashboard/inviteDatabaseForm.jsx";
+import { FormSuccessful } from "./views/dashboard/formSuccessful.jsx";
+import { FormExpired } from "./views/dashboard/formExpired.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
@@ -100,6 +102,36 @@ const Layout = () => {
                         <>
                             <Navbar />
                             <ClientForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/databaseForm/:dbhash"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <DatabaseForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/formSuccessful"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <FormSuccessful />
+                        </>
+                    }
+                />
+                <Route
+                    path="/formExpired"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <FormExpired />
                         </>
                     }
                 />
@@ -195,12 +227,12 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/reports"
+                        path="/kanban"
                         transition="fade"
                         element={
                             <>
                                 <PrivateNavbar />
-                                <Reports />
+                                <Kanban />
                             </>
                         }
                     />
@@ -251,16 +283,6 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Settings />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/databaseForm"
-                        transition="fade"
-                        element={
-                            <>
-                                <Navbar />
-                                <DatabaseForm />
                             </>
                         }
                     />

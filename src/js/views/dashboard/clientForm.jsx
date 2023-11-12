@@ -84,7 +84,7 @@ export const ClientForm = () => {
             await actions.createClientFromClHash(client);
 
             reset();
-            navigate("/clientCreationSuccessful");
+            navigate("/formSuccessful");
         } catch (error) {
             console.log(error);
         }
@@ -97,7 +97,9 @@ export const ClientForm = () => {
     };
 
     if (isValidClHash === false) {
-        throw new Error("Invalid Invitation Form");
+        console.log("Expired!");
+        navigate("/formExpired");
+        return <></>;
     }
     return isValidClHash === true ? (
         <>
