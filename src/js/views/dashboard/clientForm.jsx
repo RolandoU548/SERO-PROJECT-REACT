@@ -97,7 +97,9 @@ export const ClientForm = () => {
     };
 
     if (isValidClHash === false) {
-        throw new Error("Invalid Invitation Form");
+        console.log("Expired!");
+        navigate("/formExpired");
+        return <></>;
     }
     return isValidClHash === true ? (
         <>

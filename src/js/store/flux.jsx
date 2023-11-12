@@ -533,6 +533,59 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                     return false;
                 }
+            },
+            generateInvitationDbForm: async () => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + `/invitedbform`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            },
+                            body: JSON.stringify({})
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                }
+            },
+            columnsInvitationDbForm: async dbhash => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL +
+                            `/invitedbform/${dbhash}`
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return null;
+                }
+            },
+            addRowInvitationDbForm: async (dbhash, row) => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL +
+                            `/invitedbform/${dbhash}`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(row)
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return null;
+                }
             }
         }
     };

@@ -106,6 +106,16 @@ const Layout = () => {
                     }
                 />
                 <Route
+                    path="/databaseForm/:dbhash"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <DatabaseForm />
+                        </>
+                    }
+                />
+                <Route
                     path="/formSuccessful"
                     transition="fade"
                     element={
@@ -273,16 +283,6 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Settings />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/databaseForm"
-                        transition="fade"
-                        element={
-                            <>
-                                <Navbar />
-                                <DatabaseForm />
                             </>
                         }
                     />
