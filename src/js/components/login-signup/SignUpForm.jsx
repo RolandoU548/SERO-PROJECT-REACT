@@ -29,6 +29,7 @@ export const SignUpForm = ({
     } = useForm();
 
     const submit = async data => {
+        data.role = ["user"];
         const respuesta = await actions.createUser(data);
         if (respuesta?.message === `User ${data.email} already exists`) {
             alert(`${data.email} ${t("userAlreadyExists")}`);

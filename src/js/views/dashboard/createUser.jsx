@@ -16,7 +16,11 @@ export const CreateUser = () => {
         reset,
         watch,
         formState: { errors }
-    } = useForm();
+    } = useForm({
+        defaultValues: {
+            role: "user"
+        }
+    });
     const navigate = useNavigate();
 
     const submit = async data => {
@@ -228,6 +232,29 @@ export const CreateUser = () => {
                                         </span>
                                     )}
                                 </label>
+                            </div>
+                            <div>
+                                <fieldset className="flex gap-x-2">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="role"
+                                            value="admin"
+                                            {...register("role")}
+                                        />
+                                        Admin
+                                    </label>
+                                    <label className="pointer-events-none opacity-50">
+                                        <input
+                                            type="checkbox"
+                                            name="role"
+                                            value="user"
+                                            readOnly
+                                            {...register("role")}
+                                        />
+                                        User
+                                    </label>
+                                </fieldset>
                             </div>
                         </div>
                         <button
