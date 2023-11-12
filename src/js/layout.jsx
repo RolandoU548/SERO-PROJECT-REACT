@@ -25,7 +25,9 @@ import { Profile } from "./views/dashboard/profile.jsx";
 import { UserProfile } from "./views/dashboard/userprofile.jsx";
 import { CreateClient } from "./views/dashboard/createclient.jsx";
 import { ClientForm } from "./views/dashboard/clientForm.jsx";
+import { DatabaseForm } from "./views/dashboard/databaseForm.jsx";
 import { InviteClientForm } from "./views/dashboard/inviteClientForm.jsx";
+import { InviteDatabaseForm } from "./views/dashboard/inviteDatabaseForm.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
@@ -33,7 +35,8 @@ import { NotFound } from "./views/notfound.jsx";
 import injectContext from "./store/appContext.jsx";
 import { ClientCard } from "./components/dashclients/clientcard.jsx";
 import { StepPayment } from "./components/dashpayments/steppayment.jsx";
-import PayPalButton from "./components/dashpayments/PayPalButton.jsx";
+import { PayPalButton } from "./components/dashpayments/PayPalButton.jsx";
+import { CreditMemo } from "./components/dashpayments/creditmemo.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -86,6 +89,17 @@ const Layout = () => {
                             <Cursor />
                             <BackgroundVideo />
                             <SpecificFounder />
+                        </>
+                    }
+                />
+
+                <Route
+                    path="/clientForm/:clienthash"
+                    transition="fade"
+                    element={
+                        <>
+                            <Navbar />
+                            <ClientForm />
                         </>
                     }
                 />
@@ -207,7 +221,26 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <StepPayment />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/PayPalButton"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
                                 <PayPalButton />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/creditmemo/:id"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <CreditMemo />
                             </>
                         }
                     />
@@ -222,12 +255,12 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/clientForm"
+                        path="/databaseForm"
                         transition="fade"
                         element={
                             <>
                                 <Navbar />
-                                <ClientForm />
+                                <DatabaseForm />
                             </>
                         }
                     />
@@ -238,6 +271,16 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <InviteClientForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/inviteDatabaseForm"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <InviteDatabaseForm />
                             </>
                         }
                     />

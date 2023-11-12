@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { VictoryPie } from "victory";
+import { useTranslation } from "react-i18next";
 
 export const PieChartClient = () => {
+    const [t] = useTranslation("dashboard");
     const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
     useEffect(() => {
@@ -32,11 +34,7 @@ export const PieChartClient = () => {
         <div className="flex justify-center items-center">
             <div className="w-120 h-120 mx-auto">
                 <div className="flex flex-row"></div>
-                {data === "[]" ? (
-                    <div className="text-center text-gray-500 font-bold text-2xl">
-                        EMPTY CHART
-                    </div>
-                ) : (
+                {(store.clients.length !== 0 && (
                     <VictoryPie
                         data={data}
                         innerRadius={70}
@@ -73,6 +71,12 @@ export const PieChartClient = () => {
                             }
                         }}
                     />
+                )) || (
+                    <div className="w-full h-full">
+                        <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold text-lg">
+                            No clients registered
+                        </p>
+                    </div>
                 )}
             </div>
         </div>

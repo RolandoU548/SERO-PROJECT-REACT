@@ -1,1 +1,24 @@
-{ "dashboard": "Dashboard" }
+{
+    "dashboard": "Dashboard",
+    "CLIENTS": "CLIENTS",
+    "PAYMENTS": "PAYMENTS",
+    "TASKS": "TASKS",
+    "Sunday": "Sunday",
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday": "Saturday",
+    "FORMS": "FORMS",
+    "Task": "Task",
+    "Add task to": "Add task to",
+    "Add task": "Add task",
+    "Cancel": "Cancel",
+    "Completed": "Completed",
+    "Pending": "Pending",
+    "Paid": "Paid",
+    "Unaid": "Unpaid",
+    "Active": "Active",
+    "Inactive": "Inactive"
+}

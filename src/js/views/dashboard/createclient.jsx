@@ -85,7 +85,7 @@ export const CreateClient = () => {
         <>
             <div className="font-serif dark:text-white mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
-                    {t("Create a Client")}
+                    {t("createClient")}
                 </h1>
                 <div className="glass p-20 mt-5 m-auto w-11/12">
                     <form onSubmit={handleSubmit(submit)} className="space-y-6">
@@ -374,7 +374,7 @@ export const CreateClient = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 mb-4 sm:text-md border-gray-300 rounded-md text-white bg-green-700"
+                                                className=" text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
                                                 onClick={handleButtonClick}>
                                                 {image
                                                     ? t("changeImage")

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "../../../css/glass.css";
+import { RingLoader } from "react-spinners";
 
 import { ClientProfile } from "../../components/dashclients/clientsprofile";
 import { DeleteModal } from "../../components/dashclients/deletemodal";
@@ -12,6 +13,7 @@ import { ClientCardButton } from "../../components/dashclients/clientcardbutton"
 export const Clients = () => {
     const { store, actions } = useContext(Context);
     const [t] = useTranslation("clients");
+    const [isLoading, setIsLoading] = useState(true);
     const [client, setClient] = useState();
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
@@ -19,14 +21,18 @@ export const Clients = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [clientsPerPage] = useState(5);
-    // const [clients, setClients] = useState(store.clients);
     const [sortOrder, setSortOrder] = useState({
         column: "name",
         ascending: true
     });
 
     useEffect(() => {
-        actions.getAllClients();
+        setIsLoading(true);
+        actions.getAllClients().then(() => {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 2000);
+        });
     }, []);
 
     // Usuario actual
@@ -71,6 +77,16 @@ export const Clients = () => {
 
     return (
         <>
+            {isLoading && (
+                <div className="flex justify-center items-center h-screen">
+                    <RingLoader
+                        color="#26C6DA"
+                        loading={isLoading}
+                        size={100}
+                    />
+                </div>
+            )}
+
             {isOpenEdit && (
                 <ClientProfile setIsOpen={setIsOpenEdit} client={client} />
             )}
@@ -102,7 +118,7 @@ export const Clients = () => {
                         <button
                             className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
                             onClick={() => navigate("/createclient")}>
-                            Add Client
+                            {t("Add Client")}
                         </button>
                     </div>
                     <div className="overflow-x-auto">
@@ -112,42 +128,42 @@ export const Clients = () => {
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("image")}>
-                                        Image{" "}
+                                        {t("Image")}{" "}
                                         {sortOrder.column === "image" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("name")}>
-                                        Name{" "}
+                                        {t("Name")}{" "}
                                         {sortOrder.column === "name" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("lastname")}>
-                                        Lastname{" "}
+                                        {t("Lastname")}{" "}
                                         {sortOrder.column === "lastname" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("email")}>
-                                        Email{" "}
+                                        {t("Email")}{" "}
                                         {sortOrder.column === "email" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("phone")}>
-                                        Phone{" "}
+                                        {t("Phone")}{" "}
                                         {sortOrder.column === "phone" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("business")}>
-                                        Business{" "}
+                                        {t("Business")}{" "}
                                         {sortOrder.column === "business" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
@@ -156,29 +172,38 @@ export const Clients = () => {
                                         onClick={() =>
                                             handleSort("description")
                                         }>
-                                        Description{" "}
+                                        {t("Description")}{" "}
                                         {sortOrder.column === "description" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("status")}>
-                                        Status{" "}
+                                        {t("Status")}{" "}
                                         {sortOrder.column === "status" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
-                                    <th className="px-4 py-2">Actions</th>
+                                    <th className="px-4 py-2">
+                                        {t("Actions")}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {currentClients.map(client => (
                                     <tr key={client.id}>
                                         <td className="px-4 py-2 text-center">
-                                            <img
-                                                src={client.image}
-                                                alt={client.name}
-                                                className="h-20 w-20 object-cover rounded-full inline-block"
-                                            />
+                                            {client.image !== "noImage" ? (
+                                                <img
+                                                    src={client.image}
+                                                    alt={client.name}
+                                                    className="h-20 w-20 object-cover rounded-full inline-block"
+                                                />
+                                            ) : (
+                                                <i
+                                                    className="fa-regular fa-circle-user text-5xl mx-4 invert dark:invert-0"
+                                                    style={{ color: "#ffffff" }}
+                                                />
+                                            )}
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             {client.name}

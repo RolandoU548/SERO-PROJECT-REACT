@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
 import { FaImage } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { storage } from "../../components/firebase/firebase";
 import {
     deleteObject,
@@ -15,6 +16,7 @@ import "../../../css/app.css";
 import "../../../css/glass.css";
 
 export const ClientProfile = ({ client, setIsOpen }) => {
+    const [t] = useTranslation("clientprofile");
     const navigate = useNavigate();
     const id = new Date();
     const { actions } = useContext(Context);
@@ -101,7 +103,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                             <h3
                                 className="text-xl text-center leading-6 text-white font-bold"
                                 id="modal-headline">
-                                CLIENT DATA
+                                {t("CLIENT INFO")}
                             </h3>
                             <div className="mt-5 flex justify-center items-center rounded-t-lg">
                                 <div className="flex flex-col space-y-2">
@@ -110,7 +112,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             <label
                                                 htmlFor="Image"
                                                 className="sr-only">
-                                                Image
+                                                {t("Image")}
                                             </label>
                                             <div className="relative rounded-md shadow-sm">
                                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -130,17 +132,19 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                                     className="text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
                                                     onClick={handleButtonClick}>
                                                     {editableClient.image
-                                                        ? "Select a different Image"
-                                                        : "Image Selected"}
+                                                        ? t(
+                                                              "Select a different Image"
+                                                          )
+                                                        : t("ImageSelected")}
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="name"
                                             className="font-bold mr-6">
-                                            Name:
+                                            {t("Name")}
                                         </label>
                                         <input
                                             type="text"
@@ -150,11 +154,11 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="lastname"
                                             className="font-bold mr-6">
-                                            Last Name:
+                                            {t("Last Name")}
                                         </label>
                                         <input
                                             type="text"
@@ -164,11 +168,11 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="email"
                                             className="font-bold mt-6 mr-6">
-                                            Email:
+                                            {t("Email")}
                                         </label>
                                         <input
                                             type="email"
@@ -178,11 +182,11 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="phone"
                                             className="font-bold mt-6 mr-6">
-                                            Phone:
+                                            {t("Phone")}
                                         </label>
                                         <input
                                             type="tel"
@@ -192,11 +196,11 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="business"
                                             className="font-bold mt-6 mr-6">
-                                            Business:
+                                            {t("Business")}
                                         </label>
                                         <input
                                             type="text"
@@ -206,11 +210,11 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="description"
                                             className="font-bold mt-6 mr-6">
-                                            Description:
+                                            {t("Description")}
                                         </label>
                                         <textarea
                                             name="description"
@@ -219,11 +223,11 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             className="rounded-md px-3 py-2 text-black text-center"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex justify-between items-center dark:text-white text-black">
                                         <label
                                             htmlFor="status"
                                             className="font-bold mt-6 mr-6">
-                                            Status:
+                                            {t("Status")}
                                         </label>
                                         <select
                                             name="status"
@@ -246,7 +250,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                 type="button"
                                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm"
                                 onClick={handleSubmit}>
-                                Save
+                                {t("Save")}
                             </button>
                             <button
                                 type="button"
@@ -254,7 +258,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                 onClick={() => {
                                     setIsOpen(false);
                                 }}>
-                                Cancel
+                                {t("Cancel")}
                             </button>
                         </div>
                     </div>

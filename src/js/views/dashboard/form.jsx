@@ -35,7 +35,11 @@ export const Form = () => {
                         </div>
                     </div>
                 </div>
-                <div className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer text-2xl">
+                <div
+                    className="glass w-8/12 p-4 m-2 flex flex-col items-center justify-center cursor-pointer text-2xl"
+                    onClick={() => {
+                        navigate("/inviteDatabaseForm");
+                    }}>
                     <div className="font-bold text-black dark:text-white flex gap-2 items-center">
                         DATABASE
                         <div className="font-bold dark:text-cyan-300 text-cyan-500">
