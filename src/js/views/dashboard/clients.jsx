@@ -41,8 +41,29 @@ export const Clients = () => {
     const currentClients =
         store.clients &&
         store.clients
-            .filter(client =>
-                client.name.toLowerCase().includes(searchTerm.toLowerCase())
+            .filter(
+                client =>
+                    client.name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    client.lastname
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    client.email
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    client.phone
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    client.business
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    client.description
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    client.status
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())
             )
             .sort((a, b) =>
                 sortOrder.ascending
