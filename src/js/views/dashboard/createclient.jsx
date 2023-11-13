@@ -83,11 +83,15 @@ export const CreateClient = () => {
 
     return (
         <>
+        <img
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fclients%2FClientsBG.jpeg?alt=media&token=2d8c8c81-a447-480b-b66b-087811f4cb1c"
+                className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
+            />
             <div className="font-serif dark:text-white mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
                     {t("createClient")}
                 </h1>
-                <div className="glass p-20 mt-5 m-auto w-11/12">
+                <div className="glass p-14 mt-5 m-auto w-11/12">
                     <form onSubmit={handleSubmit(submit)} className="space-y-6">
                         <div className="grid grid-cols-1 gap-4">
                             <div>
@@ -169,7 +173,7 @@ export const CreateClient = () => {
                                             {...register("email", {
                                                 required: {
                                                     value: true,
-                                                    message: t("emailRequired")
+                                                    message: "Email Requerido"
                                                 },
                                                 minLength: {
                                                     value: 5,
@@ -200,7 +204,10 @@ export const CreateClient = () => {
                                     {t("phone")}
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <FaPhone className="h-5 w-5 text-gray-400" />
+                                            <FaPhone
+                                                className="h-5 w-5 text-gray-400"
+                                                placeholder={t("phone")}
+                                            />
                                         </div>
                                         <input
                                             type="tel"
@@ -362,9 +369,7 @@ export const CreateClient = () => {
                                     <div>
                                         <label>{t("image")}</label>
                                         <div className="relative rounded-md shadow-sm">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <FaImage className="h-5 w-5 text-gray-400" />
-                                            </div>
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
@@ -374,8 +379,9 @@ export const CreateClient = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className=" text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
+                                                className="flex text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
                                                 onClick={handleButtonClick}>
+                                                <FaImage className="h-5 w-5" />
                                                 {image
                                                     ? t("changeImage")
                                                     : t("selectImage")}
@@ -400,26 +406,7 @@ export const CreateClient = () => {
                                 <div className="mt-5 col-span-2 flex justify-center items-center ">
                                     <button
                                         type="submit"
-                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-white text-md font-medium rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                                            <svg
-                                                className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                                aria-hidden="true">
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M3.293 6.707a1 1 0 010-1.414l7-7a1 1 0 011.414 0l7 7a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7z"
-                                                    clipRule="evenodd"
-                                                />
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9 18a1 1 0 01-1-1v-5a1 1 0 112 0v5a1 1 0 01-1 1zM9 7a1 1 0 00-1 1v5a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                        </span>
+                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-400 hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         {t("createClient")}
                                     </button>
                                 </div>

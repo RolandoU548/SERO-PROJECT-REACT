@@ -70,6 +70,10 @@ export const Kanban = () => {
 
     return (
         <>
+            <img
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Ftasks%2FTasksBG.jpg?alt=media&token=e765e05c-ec9a-4f6d-8bed-121cc7354a30"
+                className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
+            />
             <div className="font-serif text-black dark:text-white mt-28">
                 <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
                     {t("tasks")}

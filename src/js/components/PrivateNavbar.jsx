@@ -16,7 +16,7 @@ import {
     FiHome,
     FiLogOut
 } from "react-icons/fi";
-import { FaTasks } from "react-icons/fa"
+import { FaTasks } from "react-icons/fa";
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
@@ -32,7 +32,7 @@ export const PrivateNavbar = () => {
         { name: t2("database"), link: "/database", icon: FiDatabase },
         {
             name: t2("fillForm"),
-            link: "/form",
+            link: "/forms",
             icon: TbReportAnalytics
         },
         { name: t2("tasks"), link: "/kanban", icon: FaTasks },

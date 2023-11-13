@@ -217,7 +217,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/form"
+                        path="/forms"
                         transition="fade"
                         element={
                             <>
@@ -227,7 +227,7 @@ const Layout = () => {
                         }
                     />
                     <Route
-                        path="/kanban"
+                        path="/tasks"
                         transition="fade"
                         element={
                             <>

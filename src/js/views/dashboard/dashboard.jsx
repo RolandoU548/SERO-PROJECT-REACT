@@ -42,6 +42,12 @@ export const Dashboard = () => {
     const handlePaymentClick = () => {
         navigate("/payments");
     };
+    const handleTasksClick = () => {
+        navigate("/tasks");
+    };
+    const handleFormsClick = () => {
+        navigate("/forms");
+    };
 
     return (
         <>
@@ -94,7 +100,11 @@ export const Dashboard = () => {
                             </div>
                             <FaMoneyBillAlt className="text-5xl text-cyan-300" />
                         </div>
-                        <div className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800">
+                        <div
+                            className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800"
+                            onClick={() => {
+                                handleTasksClick();
+                            }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white">
                                     {t("TASKS")}
@@ -105,7 +115,9 @@ export const Dashboard = () => {
                             </div>
                             <FaTasks className="text-5xl text-cyan-300" />
                         </div>
-                        <div className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800">
+                        <div className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800" onClick={() => {
+                                handleFormsClick();
+                            }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white">
                                     {t("FORMS")}
