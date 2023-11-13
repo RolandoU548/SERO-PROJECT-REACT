@@ -30,7 +30,7 @@ export const PrivateHome = () => {
                 />
                 <FuncionalityCard
                     title={t("formCard")}
-                    to="/form"
+                    to="/forms"
                     image="bg-[url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8&_gl=1*1eaq0ks*_ga*NzgxNTMyNDcyLjE2OTg0NDk1MjI.*_ga_CW55HF8NVT*MTY5ODU1ODYyNS40LjEuMTY5ODU2MDUzNy41NS4wLjA.')]"
                 />
                 <FuncionalityCard
