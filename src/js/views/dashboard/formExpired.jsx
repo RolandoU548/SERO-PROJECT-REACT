@@ -25,7 +25,7 @@ import { RingLoader } from "react-spinners";
 
 export const FormExpired = () => {
     const { actions } = useContext(Context);
-    const [t] = useTranslation("createclient");
+    const [t] = useTranslation("formExpired");
     const navigate = useNavigate();
 
     // useEffect(() => {
@@ -41,13 +41,13 @@ export const FormExpired = () => {
     return (
         <>
             <img
-                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fdatabase%2FDatabaseBG.jpg?alt=media&token=3bf525b3-764b-4ff8-b1ec-e22c672f52d4"
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2FformSuccessful%2FformSuccessful.jpg?alt=media&token=0395b314-3d58-4019-a071-b43633a859fd"
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="mt-48 font-serif dark:text-white">
                 <h2 className="text-[150px] ml-72">{":("}</h2>
                 <h2 className="mt-10 w-7/12 text-end text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-4xl font-black z-10 m-auto">
-                    {t("This invitation link to fill the form has expired, please contact the sender so they  can generate a new one.")}
+                    {t("expiredMessage")}
                 </h2>
             </div>
         </>

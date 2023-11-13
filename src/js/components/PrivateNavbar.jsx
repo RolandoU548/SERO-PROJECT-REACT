@@ -9,7 +9,13 @@ import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
-import { FiDatabase, FiFolder, FiDollarSign, FiHome } from "react-icons/fi";
+import {
+    FiDatabase,
+    FiFolder,
+    FiDollarSign,
+    FiHome,
+    FiLogOut
+} from "react-icons/fi";
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
@@ -103,6 +109,34 @@ export const PrivateNavbar = () => {
                                     </h2>
                                 </Link>
                             ))}
+                            <div
+                                className="
+                                        mt-10 text-red-500 group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md cursor-pointer"
+                                onClick={() => {
+                                    actions.signOut();
+                                    navigate("/");
+                                }}>
+                                <div>
+                                    <FiLogOut />
+                                </div>
+                                <h2
+                                    style={{
+                                        transitionDelay: `100ms`
+                                    }}
+                                    className={`whitespace-pre duration-500 ${
+                                        !open &&
+                                        "opacity-0 translate-x-28 overflow-hidden"
+                                    }`}>
+                                    {/* { name: t2("logout"), link: "/", icon: FiLogOut, margin: true } */}
+                                    {t2("logout")}
+                                </h2>
+                                <h2
+                                    className={`${
+                                        open && "hidden"
+                                    } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>
+                                    {t2("logout")}
+                                </h2>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -180,7 +214,7 @@ export const PrivateNavbar = () => {
                                 />
                             </Link>
                         </li>
-                        <li className="my-2.5">
+                        {/* <li className="my-2.5">
                             <button
                                 className="hover:bg-cyan-300 dark:hover:bg-cyan-300 hover:text-black transition duration-300 dark:hover:text-white w-40 text-xl p-2 dark:text-black rounded-full bg-black text-white dark:bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
                                 onClick={() => {
@@ -189,8 +223,8 @@ export const PrivateNavbar = () => {
                                 }}>
                                 {t("logout")}
                             </button>
-                        </li>
-                        <li className="my-2.5">
+                        </li> */}
+                        <li className="my-2.5 mr-3">
                             <LanguageButton className="ml-3 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
                         </li>
                         <li className="my-2.5">

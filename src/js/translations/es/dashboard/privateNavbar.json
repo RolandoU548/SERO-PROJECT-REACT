@@ -7,5 +7,6 @@
     "reports": "Reportes",
     "payments": "Pagos",
     "settings": "Ajustes",
-    "kanban": "Kanban"
+    "kanban": "Kanban",
+    "logout": "Cerrar sesión"
 }

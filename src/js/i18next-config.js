@@ -39,6 +39,10 @@ import createclientEs from "./translations/es/createclient.json";
 import createclientEn from "./translations/en/createclient.json";
 import createUserEs from "./translations/es/createUser.json";
 import createUserEn from "./translations/en/createUser.json";
+import formSuccessfulEs from "./translations/es/formSuccessful.json";
+import formSuccessfulEn from "./translations/en/formSuccessful.json";
+import formExpiredEs from "./translations/es/formExpired.json";
+import formExpiredEn from "./translations/en/formExpired.json";
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -65,7 +69,9 @@ i18next.init({
             settings: settingsEs,
             payments: paymentsEs,
             createclient: createclientEs,
-            createUser: createUserEs
+            createUser: createUserEs,
+            formSuccessful: formSuccessfulEs,
+            formExpired: formExpiredEs
         },
         en: {
             app: appEn,
@@ -87,7 +93,9 @@ i18next.init({
             payments: paymentsEn,
             settings: settingsEn,
             createclient: createclientEn,
-            createUser: createUserEn
+            createUser: createUserEn,
+            formSuccessful: formSuccessfulEn,
+            formExpired: formExpiredEn
         }
     }
 });
