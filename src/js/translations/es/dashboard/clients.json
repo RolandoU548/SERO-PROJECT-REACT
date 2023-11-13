@@ -1,13 +1,15 @@
 {
     "clients": "Clientes",
-    "Add Client": "Agregar Cliente",
-    "Image": "Imagen",
-    "Name": "Nombre",
-    "Lastname": "Apellido",
-    "Email": "Correo",
-    "Phone": "Teléfono",
-    "Business": "Negocio",
-    "Description": "Descripción",
-    "Status": "Estado",
-    "Actions": "Acciones"
+    "addClient": "Añadir cliente",
+    "image": "Imagen",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "phone": "Número telefónico",
+    "business": "Negocio",
+    "description": "Descripción",
+    "actions": "Acciones",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "status": "Estado"
 }

@@ -139,7 +139,7 @@ export const Clients = () => {
                         <button
                             className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
                             onClick={() => navigate("/createclient")}>
-                            {t("Add Client")}
+                            {t("addClient")}
                         </button>
                     </div>
                     <div className="overflow-x-auto">
@@ -149,42 +149,42 @@ export const Clients = () => {
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("image")}>
-                                        {t("Image")}{" "}
+                                        {t("image")}{" "}
                                         {sortOrder.column === "image" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("name")}>
-                                        {t("Name")}{" "}
+                                        {t("name")}{" "}
                                         {sortOrder.column === "name" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("lastname")}>
-                                        {t("Lastname")}{" "}
+                                        {t("lastName")} {" "}
                                         {sortOrder.column === "lastname" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("email")}>
-                                        {t("Email")}{" "}
+                                        {t("email")} {" "}
                                         {sortOrder.column === "email" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("phone")}>
-                                        {t("Phone")}{" "}
+                                        {t("phone")} {" "}
                                         {sortOrder.column === "phone" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("business")}>
-                                        {t("Business")}{" "}
+                                        {t("business")} {" "}
                                         {sortOrder.column === "business" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
@@ -193,20 +193,18 @@ export const Clients = () => {
                                         onClick={() =>
                                             handleSort("description")
                                         }>
-                                        {t("Description")}{" "}
+                                        {t("description")} {" "}
                                         {sortOrder.column === "description" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("status")}>
-                                        {t("Status")}{" "}
+                                        {t("status")}{" "}
                                         {sortOrder.column === "status" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
-                                    <th className="px-4 py-2">
-                                        {t("Actions")}
-                                    </th>
+                                    <th className="px-4 py-2">{t("actions")} </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -301,7 +299,7 @@ export const Clients = () => {
                                             setCurrentPage(currentPage - 1)
                                         }
                                         disabled={currentPage === 1}>
-                                        <span>Previous</span>
+                                        <span>{t("previous")} </span>
                                     </button>
                                 </li>
                                 {Array.from(
@@ -340,7 +338,7 @@ export const Clients = () => {
                                                         clientsPerPage
                                                 ) || store.clients.length < 1
                                         }>
-                                        <span>Next</span>
+                                        <span>{t("next")}</span>
                                     </button>
                                 </li>
                             </ul>

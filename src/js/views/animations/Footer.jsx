@@ -4,38 +4,40 @@ import "../../../css/glass.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faInstagram, faXTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
-  return (
+    const [t] = useTranslation("app");
+return (
     <div className='footer bg-neutral-950'>
         <footer>
             <div className='row'>
                 <div className='colPrincipal'>
                     <h2 className='logoFooter'>SERØ.</h2>
-                    <p className='slogan'>La solucion a sus problemas</p>
+                    <p className='slogan'>{t("weSolveProblems")}</p>
                 </div>
                 <div className='col'>
                     <h3>Contact <div className="underlineFooter"><span></span></div> </h3>
                     <ul>
-                        <li><a href="">Direccion</a></li>
-                        <li><a href="">Numero de telefono</a></li>
-                        <li><a href="">Correo electronico</a></li>
+                        <li><a href="">{t("address")}</a></li>
+                        <li><a href="">{t("phoneNumber")}</a></li>
+                        <li><a href="">{t("email")}</a></li>
                     </ul>
                 </div>
                 <div className='col'>
                     <h3>Links <div className="underlineFooter"><span></span></div> </h3>
                     <ul>
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="">Servicios</a></li>
-                        <li><a href="">Sobre nosotros</a></li>
-                        <li><a href="">Fundadores</a></li>
+                        <li><a href="">{t("home")}</a></li>
+                        <li><a href="">{t("services")}</a></li>
+                        <li><a href="">{t("aboutUs")}</a></li>
+                        <li><a href="">{t("founders")}</a></li>
                     </ul>
                 </div>
                 <div className='col'>
-                    <h3>Boletin informativo <div className="underlineFooter"><span></span></div> </h3>
+                    <h3>{t("newsletter")}<div className="underlineFooter"><span></span></div> </h3>
                     <form className='formFooter'>
                         <FontAwesomeIcon icon={faEnvelope} />
-                        <input type="email" placeholder='Coloque su correo electronico' required/>
+                        <input type="email" placeholder={t("newsletterEmail")} required/>
                         <button type='submit'><FontAwesomeIcon icon={faArrowRight} /></button>
                     </form>
                     <div className="social-icons">
@@ -47,7 +49,7 @@ export const Footer = () => {
                 </div>
             </div>
         <hr />
-        <p className='copyright'>SERØ © 2023 - Todos los derechos reservados</p>
+        <p className='copyright'>SERØ © 2023 - {t("copyright")}</p>
         </footer>
     </div>
   )

@@ -1,13 +1,15 @@
 {
     "clients": "Clients",
-    "Add Client": "Add Client",
-    "Image": "Image",
-    "Name": "Name",
-    "Lastname": "Lastname",
-    "Email": "Email",
-    "Phone": "Phone",
-    "Business": "Business",
-    "Description": "Description",
-    "Status": "Status",
-    "Actions": "Actions"
+    "addClient": "Add Client",
+    "image": "Imagen",
+    "name": "Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "business": "Business",
+    "description": "Description",
+    "actions": "Actions",
+    "previous": "Previous",
+    "next": "Next",
+    "status": "Status"
 }

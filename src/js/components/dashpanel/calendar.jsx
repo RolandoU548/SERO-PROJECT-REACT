@@ -51,7 +51,7 @@ export const Calendar = () => {
         <>
             <div className="text-sm font-medium text-white items-end flex justify-between mb-12">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
-                    {t("Calendar")}
+                    {t("calendar")}
                 </h1>
                 <div className="w-96 items-center flex h-10">
                     <button
@@ -80,27 +80,13 @@ export const Calendar = () => {
                 </div>
             </div>
             <div className="grid grid-cols-7 gap-2">
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Sunday")}
-                </div>
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Monday")}
-                </div>
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Tuesday")}{" "}
-                </div>
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Wednesday")}
-                </div>
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Thursday")}
-                </div>
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Friday")}
-                </div>
-                <div className="text-sm font-bold dark:text-white text-black">
-                    {t("Saturday")}
-                </div>
+                <div className="text-sm font-bold text-white">{t("sunday")}</div>
+                <div className="text-sm font-bold text-white">{t("monday")}</div>
+                <div className="text-sm font-bold text-white">{t("tuesday")}</div>
+                <div className="text-sm font-bold text-white">{t("wednesday")}</div>
+                <div className="text-sm font-bold text-white">{t("thursday")}</div>
+                <div className="text-sm font-bold text-white">{t("friday")}</div>
+                <div className="text-sm font-bold text-white">{t("saturday")}</div>
                 {weeks.map((week, index) => (
                     <React.Fragment key={index}>
                         {week.map((day, index) => (

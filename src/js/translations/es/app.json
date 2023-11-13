@@ -60,5 +60,8 @@
     "invalidEmail": "Correo no válido",
     "messageRequired": "Mensaje requerido",
     "messageMinLength": "El mensaje debe tener al menos 5 caracteres",
-    "messageMaxLength": "El mensaje debe tener máximo 400 caracteres"
+    "messageMaxLength": "El mensaje debe tener máximo 400 caracteres",
+    "newsletter": "Boletín informativo",
+    "newsletterEmail": "Coloque su correo electronico",
+    "copyright": "Todos los derechos reservados"
 }

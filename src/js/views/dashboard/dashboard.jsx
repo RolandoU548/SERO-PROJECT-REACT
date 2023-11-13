@@ -77,7 +77,7 @@ export const Dashboard = () => {
                             }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white items-center">
-                                    {t("CLIENTS")}
+                                    {t("clients")}
                                 </div>
                                 <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                     {numClients}
@@ -92,7 +92,7 @@ export const Dashboard = () => {
                             }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white">
-                                    {t("PAYMENTS")}
+                                    {t("payments")}
                                 </div>
                                 <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                     {numPayments}
@@ -107,7 +107,7 @@ export const Dashboard = () => {
                             }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white">
-                                    {t("TASKS")}
+                                    {t("tasks")}
                                 </div>
                                 <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                     {tasks.length}
@@ -120,7 +120,7 @@ export const Dashboard = () => {
                             }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white">
-                                    {t("FORMS")}
+                                    {t("reports")}
                                 </div>
                                 <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                     3
@@ -131,20 +131,20 @@ export const Dashboard = () => {
                     </div>
                     <div className="flex flex-row justify-center">
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
-                            <h1 className="mb-2 text-2xl font-black z-10 text-black dark:text-white m-auto">
-                                {t("Payments Chart")}
+                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                                {t("paymentsChart")}
                             </h1>
                             <PieChartPayment numPayments={numPayments} />
                         </div>
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
-                            <h1 className="mb-2 text-2xl font-black z-10 text-black dark:text-white m-auto">
-                                {t("Clients Chart")}
+                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                                {t("clientsChart")}
                             </h1>
                             <PieChartClient numClients={numClients} />
                         </div>
                         <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
-                            <h1 className="mb-2 text-2xl font-black z-10 text-black dark:text-white m-auto">
-                                {t("Tasks Chart")}
+                            <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                                {t("tasksChart")}
                             </h1>
                             <PieChartTask tasks={tasks} />
                         </div>

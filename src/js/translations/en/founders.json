@@ -1,1 +1,7 @@
-{ "founders": "Founders of SERØ" }
+{
+    "founders": "Founders of SERØ",
+    "frontEndTechnologies": "Front-End Technologies",
+    "frontEndFrameworks": " Front-End Libraries / Frameworks",
+    "backEndTechnologies": "Back-End Technologies",
+    "backEndFrameworks": "Back-End Libraries / Frameworks"
+}

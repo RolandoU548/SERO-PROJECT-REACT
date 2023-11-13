@@ -1,6 +1,6 @@
 {
     "name": "Name",
-    "lastname": "Lastname",
+    "lastname": "Last Name",
     "email": "Email",
     "phone": "Phone",
     "status": "Status",
@@ -14,7 +14,7 @@
     "createClient": "Create Client",
     "nameRequired": "Name is Required",
     "invalidName": "Invalid Name",
-    "lastnameRequired": "Lastname is Required",
+    "lastnameRequired": "Last Name is Required",
     "invalidLastname": "Invalid Lastname",
     "emailRequired": "Email is Required",
     "emailMinLength": "Email must be at least 5 characters",

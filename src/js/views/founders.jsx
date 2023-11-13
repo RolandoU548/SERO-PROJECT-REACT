@@ -37,7 +37,7 @@ export const Founder = () => {
                 />
             </div>
             <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
-                Tecnologías de Front-End
+                {t("frontEndTechnologies")}
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="rounded-full p-1 w-36 logo animated tada">
@@ -63,7 +63,7 @@ export const Founder = () => {
                 </div>
             </div>
             <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
-                Librerías / Frameworks de Front-End
+                {t("frontEndFrameworks")}
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="flex items-center w-36 h-28 bg-white rounded-lg logo animated tada border-2 border-cyan-300">
@@ -106,7 +106,7 @@ export const Founder = () => {
                 </div>
             </div>
             <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
-                Tecnologías de Back-End
+                {t("backEndTechnologies")}
             </h2>
             <div className="flex flex-wrap gap-2 glass w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="p-3 flex items-center logo animated tada">
@@ -129,7 +129,7 @@ export const Founder = () => {
                 </div>
             </div>
             <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
-                Librerías / Frameworks de Back-End
+                {t("backEndFrameworks")}
             </h2>
             <div className="flex flex-wrap gap-2 glass max-w-[30rem] w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
                 <div className="p-3 flex items-center logo animated tada">
