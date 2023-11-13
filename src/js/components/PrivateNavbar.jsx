@@ -16,6 +16,7 @@ import {
     FiHome,
     FiLogOut
 } from "react-icons/fi";
+import { FaTasks } from "react-icons/fa"
 import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
@@ -34,7 +35,7 @@ export const PrivateNavbar = () => {
             link: "/form",
             icon: TbReportAnalytics
         },
-        { name: t2("kandan"), link: "/kanban", icon: FiFolder },
+        { name: t2("tasks"), link: "/kanban", icon: FaTasks },
         {
             name: t2("payments"),
             link: "/payments",

@@ -72,7 +72,7 @@ export const Kanban = () => {
         <>
             <div className="font-serif text-black dark:text-white mt-28">
                 <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
-                    {t("kanban")}
+                    {t("tasks")}
                 </h2>
                 <div className="flex justify-center mt-5">
                     {/* {users.map(user => (

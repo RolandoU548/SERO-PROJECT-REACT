@@ -8,5 +8,6 @@
     "payments": "Payments",
     "settings": "Settings",
     "kanban": "Kanban",
-    "logout": "Logout"
+    "logout": "Logout",
+    "tasks": "Tasks"
 }

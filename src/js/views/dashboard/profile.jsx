@@ -43,7 +43,7 @@ export const Profile = () => {
         <>
             <img
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fprofile%2FProfileBG.jpeg?alt=media&token=c90a4f9c-9ae6-4ce2-a4b2-0bb4af67e72e"
-                className="invert w-full fixed -z-50 top-0 left-0 dark:invert-0 transition duration-500"
+                className="invert w-full fixed -z-50 bottom-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="dark:text-white mt-28 w-[30rem] max-w-full m-auto mb-5 p-5">
                 <div className="border border-black dark:border-white transition duration-300 rounded-xl p-3">
