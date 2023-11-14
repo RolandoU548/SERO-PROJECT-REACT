@@ -39,9 +39,8 @@ export const Clients = () => {
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients =
-        Array.isArray(store.clients) &&
-        store.clients.length > 0 &&
-        (0)
+        store.clients &&
+        store.clients
             .filter(
                 client =>
                     client.name
@@ -330,7 +329,7 @@ export const Clients = () => {
                                 )}
                                 <li>
                                     <button
-                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
+                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
                                         onClick={() =>
                                             setCurrentPage(currentPage + 1)
                                         }
