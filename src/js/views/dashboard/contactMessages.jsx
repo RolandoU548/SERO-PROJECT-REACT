@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import "../../../css/app.css";
 import "../../../css/glass.css";
@@ -8,7 +7,6 @@ import { useTranslation } from "react-i18next";
 export const ContactMessages = () => {
     const { actions } = useContext(Context);
     const [suggestions, setSuggestions] = useState(null);
-    const navigate = useNavigate();
     const [t] = useTranslation("admin");
 
     useEffect(() => {

@@ -11,7 +11,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
 import {
     FiDatabase,
-    FiFolder,
     FiDollarSign,
     FiHome,
     FiLogOut,
@@ -22,7 +21,6 @@ import "../../css/glass.css";
 
 export const PrivateNavbar = () => {
     const { store, actions } = useContext(Context);
-    const [t] = useTranslation("private");
     const [t2] = useTranslation("privateNavbar");
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);

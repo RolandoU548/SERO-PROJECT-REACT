@@ -9,7 +9,7 @@ export const Funcionality = ({ title, paragraph, image, to }) => {
     const navigate = useNavigate();
     const [t] = useTranslation("app");
     return (
-        <div className="flex resp:flex-col-reverse my-20 w-10/12 resp:w-[98%] m-auto">
+        <div className="flex resp:flex-col-reverse my-20 w-10/12 resp:w-[98%] m-auto items-center">
             <div
                 className="w-[40%] h-[20rem] cursor-pointer transition ease-out duration-300 hover:scale-105 rounded-2xl border-2 border-white relative group m-auto resp:mt-10 resp:w-[26rem] resp:max-w-[75%]"
                 style={{
