@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { VictoryPie } from "victory";
+import { useTranslation } from "react-i18next";
 
 export const PieChartClient = () => {
+    const [t] = useTranslation("dashboard");
     const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -20,13 +22,13 @@ export const PieChartClient = () => {
         : [];
 
     const data = [
-        { x: "Active", y: activeClients.length },
-        { x: "Inactive", y: inactiveClients.length }
+        { x: t("active"), y: activeClients.length },
+        { x: t("inactive"), y: inactiveClients.length }
     ];
 
     const colors = {
-        Active: "#008000",
-        Inactive: "#ff0000"
+        [t("active")]: "#008000",
+        [t("inactive")]: "#ff0000"
     };
 
     return (
@@ -73,7 +75,7 @@ export const PieChartClient = () => {
                 )) || (
                     <div className="w-full h-full">
                         <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold text-lg">
-                            No clients registered
+                            {t("noclients")}
                         </p>
                     </div>
                 )}

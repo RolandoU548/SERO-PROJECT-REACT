@@ -7,12 +7,22 @@ import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import { registerLanguageDictionary, esMX, enUS } from "handsontable/i18n";
 import "handsontable/dist/handsontable.full.min.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 registerAllModules();
 registerLanguageDictionary(enUS);
 registerLanguageDictionary(esMX);
 
 export const Database = () => {
+    const notify = () =>
+        toast.success(t("savedTable"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    const notifyDownload = () =>
+        toast.success(t("downloadTable"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
     const { actions } = useContext(Context);
     const [t] = useTranslation("database");
     const i18n = useTranslation("global")[1];
@@ -35,14 +45,14 @@ export const Database = () => {
     const sendRow = async () => {
         const data = await actions.sendRow(rows);
         if (data.message === "Row created" || data.message === "Row updated") {
-            alert(t("savedTable"));
+            notify();
         }
     };
 
     const downloadFile = () => {
         const downloadPlugin =
             hotTableComponent.current.hotInstance.getPlugin("exportFile");
-
+        notifyDownload();
         downloadPlugin.downloadFile("csv", {
             filename: "DatabaseTable",
             fileExtension: "csv",

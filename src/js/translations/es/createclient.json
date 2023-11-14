@@ -30,5 +30,11 @@
     "businessMaxLength": "Negocio debe tener máximo 40 caracteres",
     "descriptionRequired": "Descripción requerido",
     "descriptionMinLength": "Descripción debe tener al menos 5 caracteres",
-    "descriptionMaxLength": "Descripción debe tener máximo 120 caracteres"
+    "descriptionMaxLength": "Descripción debe tener máximo 120 caracteres",
+    "clientCreated": "Cliente Creado",
+    "imageUploaded": "Imagen Subida",
+    "notifyImageDelete": "Imagen Eliminada",
+    "clientDeleted": "Cliente Eliminado",
+    "deleteclient": "Eliminar Cliente",
+    "sure": "Estas seguro de Elminar este Cliente? Este proceso no se podrá revertir."
 }

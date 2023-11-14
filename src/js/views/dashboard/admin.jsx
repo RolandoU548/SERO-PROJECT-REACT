@@ -9,11 +9,11 @@ import { DeleteUserModal } from "../../components/adminView/DeleteUserModal";
 import { useTranslation } from "react-i18next";
 
 export const Admin = () => {
+    const [t] = useTranslation("createUser");
     const navigate = useNavigate();
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
     const [user, setUser] = useState();
-    const [t] = useTranslation("admin");
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
@@ -112,7 +112,7 @@ export const Admin = () => {
                             <div className="relative w-96 max-w-[65%]">
                                 <input
                                     type="text"
-                                    placeholder="Search users"
+                                    placeholder={t("searchuser")}
                                     className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-full"
                                     value={searchTerm}
                                     onChange={e =>
@@ -126,7 +126,7 @@ export const Admin = () => {
                             <button
                                 className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
                                 onClick={() => navigate("/createUser")}>
-                                Add User
+                                {t("adduser")}
                             </button>
                         </div>
                         <div className="overflow-x-auto">
@@ -136,7 +136,7 @@ export const Admin = () => {
                                         <th
                                             className="px-4 py-2"
                                             onClick={() => handleSort("name")}>
-                                            Name{" "}
+                                            {t("name")}{" "}
                                             {sortOrder.column === "name" &&
                                                 (sortOrder.ascending
                                                     ? "▲"
@@ -147,7 +147,7 @@ export const Admin = () => {
                                             onClick={() =>
                                                 handleSort("lastname")
                                             }>
-                                            Lastname{" "}
+                                            {t("lastname")}{" "}
                                             {sortOrder.column === "lastname" &&
                                                 (sortOrder.ascending
                                                     ? "▲"
@@ -156,7 +156,7 @@ export const Admin = () => {
                                         <th
                                             className="px-4 py-2"
                                             onClick={() => handleSort("email")}>
-                                            Email{" "}
+                                            {t("email")}{" "}
                                             {sortOrder.column === "email" &&
                                                 (sortOrder.ascending
                                                     ? "▲"
@@ -165,13 +165,15 @@ export const Admin = () => {
                                         <th
                                             className="px-4 py-2"
                                             onClick={() => handleSort("role")}>
-                                            Role{" "}
+                                            {t("role")}{" "}
                                             {sortOrder.column === "role" &&
                                                 (sortOrder.ascending
                                                     ? "▲"
                                                     : "▼")}
                                         </th>
-                                        <th className="px-4 py-2">Actions</th>
+                                        <th className="px-4 py-2">
+                                            {t("actions")}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -228,14 +230,14 @@ export const Admin = () => {
                         </div>
                         <div className="flex justify-between items-center mt-5">
                             <div className="tiny:w-96 text-gray-700 dark:text-gray-600">
-                                Showing {indexOfFirstUser + 1} to{" "}
-                                {indexOfLastUser} of{" "}
+                                {t("showing")} {indexOfFirstUser + 1} {t("to")}{" "}
+                                {indexOfLastUser} {t("of")}{" "}
                                 {
                                     store.users?.filter(user => {
                                         return user.id !== store.user.id;
                                     }).length
                                 }{" "}
-                                entries
+                                {t("entries")}
                             </div>
                             <div className="w-full overflow-auto flex justify-end">
                                 <ul className="flex rounded list-none">
@@ -246,7 +248,7 @@ export const Admin = () => {
                                                 setCurrentPage(currentPage - 1)
                                             }
                                             disabled={currentPage === 1}>
-                                            <span>Previous</span>
+                                            <span>{t("previous")}</span>
                                         </button>
                                     </li>
                                     {Array.from(
@@ -278,7 +280,7 @@ export const Admin = () => {
                                     )}
                                     <li>
                                         <button
-                                            className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
+                                            className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
                                             onClick={() =>
                                                 setCurrentPage(currentPage + 1)
                                             }
@@ -302,7 +304,7 @@ export const Admin = () => {
                                                     );
                                                 }).length < 1
                                             }>
-                                            <span>Next</span>
+                                            <span>{t("next")}</span>
                                         </button>
                                     </li>
                                 </ul>

@@ -11,5 +11,6 @@
     "Description": "Description",
     "Status": "Status",
     "Save": "Save",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "clientUpdate": "Client Updated Successfully"
 }

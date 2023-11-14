@@ -14,6 +14,31 @@
     "wednesday": "Wednesday",
     "thursday": "Thursday",
     "friday": "Friday",
-    "saturday": "Saturday"
-
+    "saturday": "Saturday",
+    "taskAdded": "Task Added",
+    "taskDeleted": "Task Deleted",
+    "paid": "Paid",
+    "credit": "Credit",
+    "nopayments": "No payments registered",
+    "currentMonth": "{0} {1}",
+    "monthNames": {
+        "1": "January",
+        "2": "February",
+        "3": "March",
+        "4": "April",
+        "5": "May",
+        "6": "June",
+        "7": "July",
+        "8": "August",
+        "9": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+    },
+    "completed": "Completed",
+    "pending": "Pending",
+    "notasks": "No tasks registered",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noclients": "No clients registered"
 }

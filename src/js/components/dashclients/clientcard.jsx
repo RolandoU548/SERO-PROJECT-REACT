@@ -21,7 +21,7 @@ export const ClientCard = () => {
     // SELECCION DE FILES
     let { id } = useParams();
     id = parseInt(id);
-    const [t] = useTranslation("clientcard");
+    const [t] = useTranslation("clients");
     const client = store.clients.find(client => client.id === id);
     const [fileList, setFileList] = useState([]);
 
@@ -106,7 +106,7 @@ export const ClientCard = () => {
                 <div className="font-serif text-gray-200 mt-28">
                     <div className="flex items-center">
                         <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black text-black dark:text-white m-auto">
-                            {t("Client Profile")}
+                            {t("clientprofile")}
                         </h1>
                     </div>
                     <div className="glass p-10 mt-2 m-auto w-11/12">
@@ -134,17 +134,25 @@ export const ClientCard = () => {
                                     />
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 text-white">
-                                    <div className="font-bold">Email:</div>
+                                    <div className="font-bold">
+                                        {t("email")}:
+                                    </div>
                                     <div>{client.email}</div>
-                                    <div className="font-bold">Phone:</div>
+                                    <div className="font-bold">
+                                        {t("phone")}:
+                                    </div>
                                     <div>{client.phone}</div>
-                                    <div className="font-bold">Business:</div>
+                                    <div className="font-bold">
+                                        {t("business")}:
+                                    </div>
                                     <div>{client.business}</div>
                                     <div className="font-bold">
-                                        Description:
+                                        {t("description")}:
                                     </div>
                                     <div>{client.description}</div>
-                                    <div className="font-bold">Status:</div>
+                                    <div className="font-bold">
+                                        {t("status")}:
+                                    </div>
                                     <div
                                         className={
                                             client.status === "Active"
@@ -168,7 +176,7 @@ export const ClientCard = () => {
                                     <label
                                         htmlFor="fileInput"
                                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                        Select PDF Files
+                                        {t("selectpdf")}
                                     </label>
                                     {fileList.length > 0 && (
                                         <div className="mt-2">
@@ -192,14 +200,14 @@ export const ClientCard = () => {
                                                                 index
                                                             )
                                                         }>
-                                                        Delete
+                                                        {t("delete")}
                                                     </button>
                                                 </div>
                                             ))}
                                             <button
                                                 className="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                                                 onClick={handleSubmit}>
-                                                Upload Files
+                                                {t("uploadfiles")}
                                             </button>
                                         </div>
                                     )}
@@ -207,7 +215,7 @@ export const ClientCard = () => {
                                 <div className="flex-1">
                                     <div className="glass p-10 mt-5 m-auto w-11/12">
                                         <h2 className="text-2xl font-bold text-white">
-                                            List of Files
+                                            {t("listfiles")}
                                         </h2>
                                         <ul className="mt-4">
                                             {buckets.map((url, index) => (
@@ -239,7 +247,7 @@ export const ClientCard = () => {
                                                                 index
                                                             )
                                                         }>
-                                                        Delete
+                                                        {t("delete")}
                                                     </button>
                                                 </li>
                                             ))}

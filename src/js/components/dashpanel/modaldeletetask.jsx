@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 export const ModalDeleteTask = ({ id, deleteTask }) => {
+    const [t] = useTranslation("dashboard");
     const [modalOpen, setModalOpen] = useState(false);
+    const notifyDelete = () =>
+        toast.error(t("taskDeleted"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     const handleDelete = () => {
         deleteTask(id);
         setModalOpen(false);
+        notifyDelete();
     };
 
     return (

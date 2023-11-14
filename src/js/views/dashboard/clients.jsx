@@ -127,7 +127,7 @@ export const Clients = () => {
                         <div className="relative w-96 max-w-[65%]">
                             <input
                                 type="text"
-                                placeholder="Search clients"
+                                placeholder={t("searchclients")}
                                 className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-full"
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
@@ -286,9 +286,9 @@ export const Clients = () => {
                     </div>
                     <div className="flex justify-between items-center mt-5">
                         <div className="tiny:w-96 text-gray-700 dark:text-gray-600">
-                            Showing {indexOfFirstClient + 1} to{" "}
-                            {indexOfLastClient} of {store.clients.length}{" "}
-                            entries
+                            {t("showing")} {indexOfFirstClient + 1} {t("to")}{" "}
+                            {indexOfLastClient} {t("of")} {store.clients.length}{" "}
+                            {t("entries")}
                         </div>
                         <div className="w-full overflow-auto flex justify-end">
                             <ul
@@ -329,7 +329,7 @@ export const Clients = () => {
                                 )}
                                 <li>
                                     <button
-                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
+                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
                                         onClick={() =>
                                             setCurrentPage(currentPage + 1)
                                         }

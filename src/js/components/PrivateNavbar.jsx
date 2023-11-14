@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton.jsx";
 import { Darkmode } from "./Darkmode.jsx";
 import { MdOutlineDashboard } from "react-icons/md";
-import { RiSettings4Line } from "react-icons/ri";
+// import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
@@ -39,8 +39,8 @@ export const PrivateNavbar = () => {
             name: t2("payments"),
             link: "/payments",
             icon: FiDollarSign
-        },
-        { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
+        }
+        // { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
 

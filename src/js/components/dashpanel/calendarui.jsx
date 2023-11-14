@@ -5,6 +5,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { FaPlus } from "react-icons/fa";
 import { ModalDeleteTask } from "./modaldeletetask";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CalendarDay = ({ day }) => {
     const [t] = useTranslation("dashboard");
@@ -12,6 +14,11 @@ export const CalendarDay = ({ day }) => {
     const [newTask, setNewTask] = useState("");
     const { store, actions } = useContext(Context);
     const [tasks, setTasks] = useState([]);
+
+    const notify = () =>
+        toast.success(t("taskAdded"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     useEffect(() => {
         setTasks(
@@ -29,6 +36,7 @@ export const CalendarDay = ({ day }) => {
             const data = await actions.createTask(taskData);
             setNewTask("");
             setShowModal(false);
+            notify();
             if (data.date === day.format("YYYY-MM-DD")) {
                 setTasks([...tasks, data]);
             }

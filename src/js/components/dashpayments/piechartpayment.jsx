@@ -18,17 +18,17 @@ export const PieChartPayment = () => {
         payment => payment.status === "Paid"
     );
     const inactivePayments = store.payments.filter(
-        payment => payment.status === "Unpaid"
+        payment => payment.status === "Credit"
     );
 
     const data = [
-        { x: "Paid", y: activePayments.length },
-        { x: "Unpaid", y: inactivePayments.length }
+        { x: t("paid"), y: activePayments.length },
+        { x: t("credit"), y: inactivePayments.length }
     ];
 
     const colors = {
-        Paid: "#008000",
-        Unpaid: "#ff0000"
+        [t("paid")]: "#00ff00",
+        [t("credit")]: "#ff0000"
     };
 
     return (
@@ -75,7 +75,7 @@ export const PieChartPayment = () => {
                 )) || (
                     <div className="w-full h-full">
                         <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold text-lg">
-                            No payments registered
+                            {t("nopayments")}
                         </p>
                     </div>
                 )}

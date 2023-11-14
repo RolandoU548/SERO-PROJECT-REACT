@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignUpForm = ({
     name,
@@ -18,6 +20,10 @@ export const SignUpForm = ({
     children
 }) => {
     const [t] = useTranslation("signupform");
+    const notify = () =>
+        toast.success(t("userCreated"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
     const { actions } = useContext(Context);
     const navigate = useNavigate();
     const {
@@ -34,7 +40,7 @@ export const SignUpForm = ({
         if (respuesta?.message === `User ${data.email} already exists`) {
             alert(`${data.email} ${t("userAlreadyExists")}`);
         } else if (respuesta?.message === "A user has been created") {
-            alert(t("userCreated"));
+            notify();
             const token = await actions.generateToken(data);
             if (token.token) {
                 const userAuthenticated = await actions.identificateUser(

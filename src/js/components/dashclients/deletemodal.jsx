@@ -1,11 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../store/appContext";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 export function DeleteModal({ client, setIsOpen }) {
+    const [t] = useTranslation("createclient");
     const { actions } = useContext(Context);
     const [deleteClient, setDeleteClient] = useState(client);
+    const notifyDelete = () =>
+        toast.error(t("clientDeleted"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     const handleClientDelete = async id => {
         try {
@@ -15,6 +22,7 @@ export function DeleteModal({ client, setIsOpen }) {
                 delete newState[id];
                 return newState;
             });
+            notifyDelete();
             setIsOpen(false);
         } catch (error) {
             console.error(error);
@@ -58,13 +66,12 @@ export function DeleteModal({ client, setIsOpen }) {
                                 <h3
                                     className="text-lg leading-6 font-medium text-gray-900"
                                     id="modal-headline">
-                                    Delete Client
+                                    {t("deleteclient")}
                                 </h3>
 
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">
-                                        Are you sure you want to delete this
-                                        client? This action cannot be undone.
+                                        {t("sure")}
                                     </p>
                                 </div>
                             </div>

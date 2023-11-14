@@ -11,7 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 dayjs.extend(customParseFormat);
-dayjs.locale("es"); //
+dayjs.locale("es");
 
 export const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(dayjs());
@@ -65,7 +65,7 @@ export const Calendar = () => {
                         <FaChevronLeft />
                     </button>
                     <div className="text-md font-bold dark:text-white text-black">
-                        {currentMonth.format("MMMM YYYY")}
+                        {t(currentMonth.format("MMMM YYYY"))}
                     </div>
                     <button
                         onClick={handleNextMonth}
@@ -80,13 +80,27 @@ export const Calendar = () => {
                 </div>
             </div>
             <div className="grid grid-cols-7 gap-2">
-                <div className="text-sm font-bold text-white">{t("sunday")}</div>
-                <div className="text-sm font-bold text-white">{t("monday")}</div>
-                <div className="text-sm font-bold text-white">{t("tuesday")}</div>
-                <div className="text-sm font-bold text-white">{t("wednesday")}</div>
-                <div className="text-sm font-bold text-white">{t("thursday")}</div>
-                <div className="text-sm font-bold text-white">{t("friday")}</div>
-                <div className="text-sm font-bold text-white">{t("saturday")}</div>
+                <div className="text-sm font-bold text-white">
+                    {t("sunday")}
+                </div>
+                <div className="text-sm font-bold text-white">
+                    {t("monday")}
+                </div>
+                <div className="text-sm font-bold text-white">
+                    {t("tuesday")}
+                </div>
+                <div className="text-sm font-bold text-white">
+                    {t("wednesday")}
+                </div>
+                <div className="text-sm font-bold text-white">
+                    {t("thursday")}
+                </div>
+                <div className="text-sm font-bold text-white">
+                    {t("friday")}
+                </div>
+                <div className="text-sm font-bold text-white">
+                    {t("saturday")}
+                </div>
                 {weeks.map((week, index) => (
                     <React.Fragment key={index}>
                         {week.map((day, index) => (

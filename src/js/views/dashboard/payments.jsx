@@ -86,7 +86,9 @@ export const Payments = () => {
                 <div className="glass p-10 mt-5 m-auto w-11/12">
                     <div className="flex justify-between items-center mb-5 gap-6">
                         <div className="flex items-center">
-                            <label htmlFor="customerFilter">Customer:</label>
+                            <label htmlFor="customerFilter">
+                                {t("client")}:
+                            </label>
                             <div className="relative">
                                 <input
                                     type="text"
@@ -107,7 +109,7 @@ export const Payments = () => {
                             <label
                                 htmlFor="fromDateFilter"
                                 className="mr-2 ml-2">
-                                From:
+                                {t("from")}:
                             </label>
                             <input
                                 type="date"
@@ -119,7 +121,7 @@ export const Payments = () => {
                                 className="border border-gray-400 rounded py-1 px-2 text-gray-400"
                             />
                             <label htmlFor="toDateFilter" className="mr-2 ml-2">
-                                To:
+                                {t("to")}:
                             </label>
                             <input
                                 type="date"
@@ -130,7 +132,9 @@ export const Payments = () => {
                             />
                         </div>
                         <div className="flex items-center">
-                            <label htmlFor="invoiceFilter">Invoice:</label>
+                            <label htmlFor="invoiceFilter">
+                                {t("invoice")}:
+                            </label>
                             <div className="relative">
                                 <input
                                     type="text"
@@ -150,7 +154,7 @@ export const Payments = () => {
                             className="flex items-center bg-cyan-400 hover:bg-cyan-500 text-black  text-md font-bold px-4 py-2 rounded-full"
                             onClick={handleAddPayment}>
                             <FaPlus className="mr-2" />
-                            Add
+                            {t("add")}
                         </button>
                     </div>
                     <table className="table-auto w-full text-center">
@@ -159,7 +163,7 @@ export const Payments = () => {
                                 <th
                                     className=" py-4 text-lg font-bold cursor-pointer"
                                     onClick={() => handleSort("status")}>
-                                    Status{" "}
+                                    {t("status")}{" "}
                                     {sortColumn === "status" &&
                                         (sortDirection === "asc" ? (
                                             <FaSortUp className="inline-block ml-1" />
@@ -173,7 +177,7 @@ export const Payments = () => {
                                 <th
                                     className="py-4 text-lg font-bold cursor-pointer"
                                     onClick={() => handleSort("method")}>
-                                    Method{" "}
+                                    {t("method")}{" "}
                                     {sortColumn === "method" &&
                                         (sortDirection === "asc" ? (
                                             <FaSortUp className="inline-block ml-1" />
@@ -187,7 +191,7 @@ export const Payments = () => {
                                 <th
                                     className="py-4 text-lg font-bold cursor-pointer"
                                     onClick={() => handleSort("date")}>
-                                    Date{" "}
+                                    {t("date")}{" "}
                                     {sortColumn === "date" &&
                                         (sortDirection === "asc" ? (
                                             <FaSortUp className="inline-block ml-1" />
@@ -201,7 +205,7 @@ export const Payments = () => {
                                 <th
                                     className="py-4 text-lg font-bold cursor-pointer"
                                     onClick={() => handleSort("client")}>
-                                    Customer{" "}
+                                    {t("client")}{" "}
                                     {sortColumn === "client" &&
                                         (sortDirection === "asc" ? (
                                             <FaSortUp className="inline-block ml-1" />
@@ -215,7 +219,7 @@ export const Payments = () => {
                                 <th
                                     className="py-4 text-lg font-bold cursor-pointer"
                                     onClick={() => handleSort("amount")}>
-                                    Amount{" "}
+                                    {t("amount")}{" "}
                                     {sortColumn === "amount" &&
                                         (sortDirection === "asc" ? (
                                             <FaSortUp className="inline-block ml-1" />
@@ -229,7 +233,7 @@ export const Payments = () => {
                                 <th
                                     className="py-4 text-lg font-bold cursor-pointer"
                                     onClick={() => handleSort("invoice")}>
-                                    Invoice{" "}
+                                    {t("involice")}{" "}
                                     {sortColumn === "invoice" &&
                                         (sortDirection === "asc" ? (
                                             <FaSortUp className="inline-block ml-1" />
@@ -241,7 +245,7 @@ export const Payments = () => {
                                     )}
                                 </th>
                                 <th className="py-4 text-lg font-bold">
-                                    Actions
+                                    {t("actions")}
                                 </th>
                             </tr>
                         </thead>

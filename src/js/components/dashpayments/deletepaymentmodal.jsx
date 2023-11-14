@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 export const ModalDeletePayment = ({ id, deletePayment }) => {
+    const [t] = useTranslation("payments");
     const [modalOpen, setModalOpen] = useState(false);
+    const notifyDelete = () =>
+        toast.error(t("paymentDeleted"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     const handleDelete = () => {
         deletePayment(id);
         setModalOpen(false);
+        notifyDelete();
     };
 
     return (
@@ -50,14 +59,12 @@ export const ModalDeletePayment = ({ id, deletePayment }) => {
                                         <h3
                                             className="text-lg leading-6 font-medium text-gray-900"
                                             id="modal-headline">
-                                            Delete Payment
+                                            {t("deletePayment")}
                                         </h3>
 
                                         <div className="mt-2">
                                             <p className="text-sm text-gray-500">
-                                                Are you sure you want to delete
-                                                this payment? This action cannot
-                                                be undone.
+                                                {t("sure")}
                                             </p>
                                         </div>
                                     </div>

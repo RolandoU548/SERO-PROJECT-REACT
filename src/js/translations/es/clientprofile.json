@@ -11,5 +11,6 @@
     "Description": "Descripción",
     "Status": "Estado",
     "Save": "Guardar",
-    "Cancel": "Cancelar"
+    "Cancel": "Cancelar",
+    "clientUpdate": "Cliente Actualizado"
 }

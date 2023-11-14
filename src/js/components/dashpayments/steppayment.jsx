@@ -8,12 +8,14 @@ import { useTranslation } from "react-i18next";
 import { storage } from "../../components/firebase/firebase";
 import { ref as storageRef, uploadBytes } from "firebase/storage";
 import ReactCardFlip from "react-card-flip";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const StepPayment = () => {
     const navigate = useNavigate();
     const { store, actions } = useContext(Context);
     const clients = store.clients;
-    const [t] = useTranslation("steppayment");
+    const [t] = useTranslation("payments");
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
@@ -24,6 +26,14 @@ export const StepPayment = () => {
     const [cardNumber, setCardNumber] = useState("");
     const [cardExpiration, setCardExpiration] = useState("");
     const [cardCvv, setCardCvv] = useState("");
+    const notify = () =>
+        toast.success(t("paymentcreated"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    const notifyFiles = () =>
+        toast.success(t("fileuploaded"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     useEffect(() => {
         actions.getAllClients();
@@ -76,6 +86,7 @@ export const StepPayment = () => {
 
     const handlePaymentSubmit = () => {
         actions.createPayment({ ...formData, status: "Paid" });
+        notify();
         setStep(3);
     };
 
@@ -167,7 +178,7 @@ export const StepPayment = () => {
         }
         await Promise.all(archives);
         setFilesUploaded(true);
-        alert("Files uploaded successfully!");
+        notifyFiles();
         setFileList([]);
     };
 
@@ -180,7 +191,7 @@ export const StepPayment = () => {
             <div className="font-serif text-gray-200 mt-28">
                 <div className="flex items-center">
                     <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
-                        {t("Make a Payment")}
+                        {t("createpayment")}
                     </h1>
                 </div>
                 <div className="px-10 mt-5 m-auto w-3/4">
@@ -202,7 +213,7 @@ export const StepPayment = () => {
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                     </svg>
                                     <span className="mr-2">1</span>
-                                    Information
+                                    {t("information")}
                                 </span>
                             </li>
                             <li
@@ -221,7 +232,7 @@ export const StepPayment = () => {
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                     </svg>
                                     <span className="mr-2">2</span>
-                                    Payment
+                                    {t("pay")}
                                 </span>
                             </li>
                             <li
@@ -239,7 +250,7 @@ export const StepPayment = () => {
                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                 </svg>
                                 <span className="mr-2">3</span>
-                                Confirmation
+                                {t("confirmation")}
                             </li>
                         </ol>
                         {step === 1 && (
@@ -250,7 +261,7 @@ export const StepPayment = () => {
                                             <label
                                                 htmlFor="date"
                                                 className="block text-white font-bold mb-2">
-                                                Date
+                                                {t("date")}
                                             </label>
                                             <div className="relative">
                                                 <input
@@ -269,7 +280,7 @@ export const StepPayment = () => {
                                             <label
                                                 htmlFor="client"
                                                 className="block text-white font-bold mb-2">
-                                                Client
+                                                {t("client")}
                                             </label>
                                             <select
                                                 id="client"
@@ -278,7 +289,7 @@ export const StepPayment = () => {
                                                 required
                                                 onChange={handleClientChange}>
                                                 <option value="">
-                                                    Select a client
+                                                    {t("selectclient")}
                                                 </option>
                                                 {clients.map(client => (
                                                     <option
@@ -291,7 +302,7 @@ export const StepPayment = () => {
                                             <label
                                                 htmlFor="services"
                                                 className="block text-white font-bold mb-2">
-                                                Services
+                                                {t("services")}
                                             </label>
                                             <select
                                                 id="services"
@@ -300,16 +311,16 @@ export const StepPayment = () => {
                                                 required
                                                 onChange={handleServiceChange}>
                                                 <option value="">
-                                                    Select a service
+                                                    {t("selectServices")}
                                                 </option>
                                                 <option value="Service 1">
-                                                    Service 1
+                                                    {t("service1")}
                                                 </option>
                                                 <option value="Service 2">
-                                                    Service 2
+                                                    {t("service2")}
                                                 </option>
                                                 <option value="Service 3">
-                                                    Service 3
+                                                    {t("service3")}
                                                 </option>
                                             </select>
                                         </div>
@@ -318,7 +329,7 @@ export const StepPayment = () => {
                                                 <label
                                                     htmlFor="invoice"
                                                     className="block text-white font-bold mb-2">
-                                                    Invoice
+                                                    {t("invoice")}
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -338,7 +349,7 @@ export const StepPayment = () => {
                                                 <label
                                                     htmlFor="amount"
                                                     className="block text-white font-bold mb-2">
-                                                    Amount
+                                                    {t("amount")}
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -358,7 +369,7 @@ export const StepPayment = () => {
                                                 <label
                                                     htmlFor="description"
                                                     className="block text-white font-bold mb-2">
-                                                    Description
+                                                    {t("description")}
                                                 </label>
                                                 <textarea
                                                     id="description"
@@ -375,7 +386,7 @@ export const StepPayment = () => {
                                         <button
                                             type="submit"
                                             className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4">
-                                            Next
+                                            {t("next")}
                                         </button>
                                     </div>
                                 </form>
@@ -398,7 +409,7 @@ export const StepPayment = () => {
                                                 )
                                             }>
                                             <FaCreditCard className="h-5 w-5 mr-2" />
-                                            Credit Card
+                                            {t("creditcard")}
                                         </button>
                                         <button
                                             type="button"
@@ -411,7 +422,7 @@ export const StepPayment = () => {
                                                 navigate("/PayPalButton")
                                             }>
                                             <FaCreditCard className="h-5 w-5 mr-2" />
-                                            Paypal
+                                            {t("paypal")}
                                         </button>
                                     </div>
                                     {paymentMethod === "creditCard" && (
@@ -450,7 +461,7 @@ export const StepPayment = () => {
                                                         }}>
                                                         <div className="flex justify-between">
                                                             <p className="font-bold">
-                                                                SERØ. Bank
+                                                                {t("serobank")}
                                                             </p>
                                                             <div>
                                                                 <img
@@ -463,7 +474,7 @@ export const StepPayment = () => {
                                                         <div className="flex justify-between">
                                                             <div className="flex flex-col w-2/3">
                                                                 <p className="font-light self-start mt-2">
-                                                                    Name
+                                                                    {t("name")}
                                                                 </p>
                                                                 <div className="flex justify-between">
                                                                     <input
@@ -485,7 +496,9 @@ export const StepPayment = () => {
                                                         <div className="flex flex-col w-full">
                                                             <div className="flex justify-between">
                                                                 <p className="font-light">
-                                                                    Card Number
+                                                                    {t(
+                                                                        "cardnumber"
+                                                                    )}
                                                                 </p>
                                                             </div>
                                                             <div className="flex justify-between">
@@ -508,7 +521,9 @@ export const StepPayment = () => {
                                                             <div className="flex flex-col w-1/2">
                                                                 <div className="flex justify-between">
                                                                     <p className="font-light text-xs">
-                                                                        Expiry
+                                                                        {t(
+                                                                            "expiry"
+                                                                        )}
                                                                     </p>
                                                                 </div>
                                                                 <div className="flex justify-between">
@@ -517,7 +532,9 @@ export const StepPayment = () => {
                                                                         id="cardExpiration"
                                                                         name="cardExpiration"
                                                                         className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                        placeholder="MMYY"
+                                                                        placeholder={t(
+                                                                            "expirydate"
+                                                                        )}
                                                                         value={
                                                                             cardExpiration
                                                                         }
@@ -565,7 +582,7 @@ export const StepPayment = () => {
                                                         }}>
                                                         <div className="flex justify-between">
                                                             <p className="font-bold">
-                                                                SERØ. Bank
+                                                                {t("serobank")}
                                                             </p>
                                                             <div>
                                                                 <img
@@ -578,7 +595,9 @@ export const StepPayment = () => {
                                                             <div className="flex flex-col justify-between">
                                                                 <div className="flex justify-center">
                                                                     <p className="font-light text-xs">
-                                                                        CVV
+                                                                        {t(
+                                                                            "cvv"
+                                                                        )}
                                                                     </p>
                                                                 </div>
                                                                 <div className="flex justify-between mb-24">
@@ -610,13 +629,13 @@ export const StepPayment = () => {
                                             type="button"
                                             className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
                                             onClick={handleBack}>
-                                            Back
+                                            {t("back")}
                                         </button>
                                         <button
                                             type="button"
                                             className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4"
                                             onClick={() => setStep(3)}>
-                                            Pay
+                                            {t("paynow")}
                                         </button>
                                     </div>
                                 </form>
@@ -626,27 +645,27 @@ export const StepPayment = () => {
                             <div className="glass p-10 mt-5 m-auto w-3/4">
                                 <div className="p-10 mt-5 m-auto w-15/12">
                                     <h1 className="text-2xl font-bold mb-5 text-center">
-                                        Payment Summary
+                                        {t("paymentsummary")}
                                     </h1>
                                     <div className="grid grid-cols-2 justify-items-center">
                                         <div>
                                             <p className="font-bold text-lg">
-                                                Invoice:
+                                                {t("invoice")}:
                                             </p>
                                             <p className="font-bold text-lg">
-                                                Date:
+                                                {t("date")}:
                                             </p>
                                             <p className="font-bold text-lg">
-                                                Service:
+                                                {t("services")}:
                                             </p>
                                             <p className="font-bold text-lg">
-                                                Amount:
+                                                {t("amount")}:
                                             </p>
                                             <p className="font-bold text-lg">
-                                                Client:
+                                                {t("client")}:
                                             </p>
                                             <p className="font-bold text-lg">
-                                                Payment Method:
+                                                {t("mehtod")}:
                                             </p>
                                         </div>
                                         <div className="font-bold text-lg">
@@ -685,7 +704,7 @@ export const StepPayment = () => {
                                         <label
                                             htmlFor="fileInput"
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                            Select PDF Files
+                                            {t("selectpdf")}
                                         </label>
                                         {fileList.length > 0 && (
                                             <div className="mt-2 flex justify-center">
@@ -709,21 +728,21 @@ export const StepPayment = () => {
                                                                     index
                                                                 )
                                                             }>
-                                                            Delete
+                                                            {t("delete")}
                                                         </button>
                                                     </div>
                                                 ))}
                                                 <button
                                                     className="mt-4 ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                                                     onClick={handleSubmit}>
-                                                    Upload Files
+                                                    {t("uploadfiles")}
                                                 </button>
                                             </div>
                                         )}
                                         {filesUploaded && (
                                             <div className="mt-2 flex justify-center">
                                                 <p className="glass text-white font-bold py-2 px-4 rounded">
-                                                    Files Uploaded!
+                                                    {t("filesuploaded")}
                                                 </p>
                                             </div>
                                         )}
@@ -735,13 +754,13 @@ export const StepPayment = () => {
                                         type="button"
                                         className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
                                         onClick={handleBack}>
-                                        Back
+                                        {t("back")}
                                     </button>
                                     <button
                                         type="button"
                                         className="bg-red-500 text-white py-2 px-4 rounded-md mt-4"
                                         onClick={handleReset}>
-                                        Start Over
+                                        {t("startover")}
                                     </button>
                                     <button
                                         type="button"
@@ -750,7 +769,7 @@ export const StepPayment = () => {
                                             handlePaymentSubmit();
                                             navigate("/payments");
                                         }}>
-                                        Confirm
+                                        {t("confirm")}
                                     </button>
                                 </div>
                             </div>

@@ -4,6 +4,8 @@ import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
 import { FaImage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { storage } from "../../components/firebase/firebase";
 import {
     deleteObject,
@@ -16,13 +18,18 @@ import "../../../css/app.css";
 import "../../../css/glass.css";
 
 export const ClientProfile = ({ client, setIsOpen }) => {
-    const [t] = useTranslation("clientprofile");
+    const [t] = useTranslation("clients");
     const navigate = useNavigate();
     const id = new Date();
     const { actions } = useContext(Context);
     const [editableClient, setEditableClient] = useState(client);
     const [imageUrl, setImageUrl] = useState(null);
     const fileInputRef = useRef(null);
+
+    const notify = () =>
+        toast.success(t("clientUpdate"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     const handleInputChange = event => {
         const { name, value } = event.target;
@@ -69,6 +76,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
         e.preventDefault();
         try {
             await actions.updateClient(editableClient.id, editableClient);
+            notify();
             setIsOpen(false);
             navigate("/clients");
         } catch (error) {
@@ -103,7 +111,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                             <h3
                                 className="text-xl text-center leading-6 text-white font-bold"
                                 id="modal-headline">
-                                {t("CLIENT INFO")}
+                                {t("clientsinfo")}
                             </h3>
                             <div className="mt-5 flex justify-center items-center rounded-t-lg">
                                 <div className="flex flex-col space-y-2">
@@ -112,7 +120,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             <label
                                                 htmlFor="Image"
                                                 className="sr-only">
-                                                {t("Image")}
+                                                {t("image")}
                                             </label>
                                             <div className="relative rounded-md shadow-sm">
                                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -132,10 +140,8 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                                     className="text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
                                                     onClick={handleButtonClick}>
                                                     {editableClient.image
-                                                        ? t(
-                                                              "Select a different Image"
-                                                          )
-                                                        : t("ImageSelected")}
+                                                        ? t("selectdifimage")
+                                                        : t("selectedimage")}
                                                 </button>
                                             </div>
                                         </div>
@@ -144,7 +150,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="name"
                                             className="font-bold mr-6">
-                                            {t("Name")}
+                                            {t("name")}
                                         </label>
                                         <input
                                             type="text"
@@ -158,7 +164,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="lastname"
                                             className="font-bold mr-6">
-                                            {t("Last Name")}
+                                            {t("lastName")}
                                         </label>
                                         <input
                                             type="text"
@@ -172,7 +178,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="email"
                                             className="font-bold mt-6 mr-6">
-                                            {t("Email")}
+                                            {t("email")}
                                         </label>
                                         <input
                                             type="email"
@@ -186,7 +192,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="phone"
                                             className="font-bold mt-6 mr-6">
-                                            {t("Phone")}
+                                            {t("phone")}
                                         </label>
                                         <input
                                             type="tel"
@@ -200,7 +206,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="business"
                                             className="font-bold mt-6 mr-6">
-                                            {t("Business")}
+                                            {t("business")}
                                         </label>
                                         <input
                                             type="text"
@@ -214,7 +220,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="description"
                                             className="font-bold mt-6 mr-6">
-                                            {t("Description")}
+                                            {t("description")}
                                         </label>
                                         <textarea
                                             name="description"
@@ -227,7 +233,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                         <label
                                             htmlFor="status"
                                             className="font-bold mt-6 mr-6">
-                                            {t("Status")}
+                                            {t("status")}
                                         </label>
                                         <select
                                             name="status"
@@ -235,10 +241,10 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                             onChange={handleInputChange}
                                             className="rounded-md px-4 py-2 text-black text-center">
                                             <option value="Active">
-                                                Active
+                                                {t("active")}
                                             </option>
                                             <option value="Inactive">
-                                                Inactive
+                                                {t("inactive")}
                                             </option>
                                         </select>
                                     </div>
@@ -250,7 +256,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                 type="button"
                                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm"
                                 onClick={handleSubmit}>
-                                {t("Save")}
+                                {t("save")}
                             </button>
                             <button
                                 type="button"
@@ -258,7 +264,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                 onClick={() => {
                                     setIsOpen(false);
                                 }}>
-                                {t("Cancel")}
+                                {t("cancel")}
                             </button>
                         </div>
                     </div>

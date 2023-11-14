@@ -2,5 +2,6 @@
     "database": "Base de Datos",
     "downloadFile": "Descargar Tabla",
     "saveTable": "Guardar Tabla",
-    "savedTable": "Tabla guardada"
+    "savedTable": "Tabla guardada",
+    "downloadTable": "Tabla Descargada"
 }

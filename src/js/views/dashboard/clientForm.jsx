@@ -22,6 +22,8 @@ import {
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { RingLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ClientForm = () => {
     const id = new Date();
@@ -38,6 +40,15 @@ export const ClientForm = () => {
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(null);
     const [isValidClHash, setValidClHash] = useState(null);
+    const notify = () => toast.success(t("clientCreated"));
+    const notifyImage = () =>
+        toast.success(t("imageUploaded"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    const notifyImageDelete = () =>
+        toast.error(t("imageDeleted"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     useEffect(() => {
         (async () => {
@@ -60,7 +71,7 @@ export const ClientForm = () => {
                 );
 
                 const url = await getDownloadURL(uploadResp.ref);
-
+                notifyImage();
                 setImage(url);
             } catch (err) {
                 console.log(err);
@@ -82,9 +93,9 @@ export const ClientForm = () => {
             const client = { client: data, clhash: clienthash };
             console.log(client);
             await actions.createClientFromClHash(client);
-
             reset();
             navigate("/formSuccessful");
+            notify();
         } catch (error) {
             console.log(error);
         }
@@ -93,6 +104,7 @@ export const ClientForm = () => {
     const handleDeleteImage = async () => {
         const imageRef = storageRef(storage, image);
         await deleteObject(imageRef);
+        notifyImageDelete();
         setImage(null);
     };
 
@@ -403,7 +415,7 @@ export const ClientForm = () => {
                                             />
                                             <button
                                                 type="button"
-                                                className="flex text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
+                                                className="flex text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
                                                 onClick={handleButtonClick}>
                                                 <FaImage className="h-5 w-5" />
                                                 {image

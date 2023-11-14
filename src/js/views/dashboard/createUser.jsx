@@ -6,6 +6,8 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CreateUser = () => {
     const { actions } = useContext(Context);
@@ -22,13 +24,17 @@ export const CreateUser = () => {
         }
     });
     const navigate = useNavigate();
+    const notify = () =>
+        toast.success(t("userCreated"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     const submit = async data => {
         const respuesta = await actions.createUser(data);
         if (respuesta?.message === `User ${data.email} already exists`) {
             alert(`${data.email} ${t("userAlreadyExists")}`);
         } else if (respuesta?.message === "A user has been created") {
-            alert(t("userCreated"));
+            notify();
             reset();
             navigate("/admin");
         }

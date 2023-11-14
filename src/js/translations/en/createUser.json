@@ -18,5 +18,16 @@
     "confirmPassword": "Confirm Password",
     "passwordsNotMatch": "Passwords don't match",
     "userAlreadyExists": "has already been registered",
-    "userCreated": "User created"
+    "userCreated": "User created",
+    "admin": "Admin Panel",
+    "searchuser": "Search User",
+    "adduser": "Add User",
+    "role": "Role",
+    "actions": "Actions",
+    "showing": "Showing",
+    "entries": "entries",
+    "to": "to",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next"
 }

@@ -18,13 +18,13 @@ export const PieChartTask = () => {
     const inactiveTasks = store.tasks.filter(task => task.completed === false);
 
     const data = [
-        { x: "Completed", y: activeTasks.length },
-        { x: "Pending", y: inactiveTasks.length }
+        { x: t("completed"), y: activeTasks.length },
+        { x: t("pending"), y: inactiveTasks.length }
     ];
 
     const colors = {
-        Completed: "#008000",
-        Pending: "#ff0000"
+        [t("completed")]: "#008000",
+        [t("pending")]: "#ff0000"
     };
 
     return (
@@ -71,7 +71,7 @@ export const PieChartTask = () => {
                 )) || (
                     <div className="w-full h-full">
                         <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold text-lg">
-                            No tasks registered
+                            {t("notasks")}
                         </p>
                     </div>
                 )}

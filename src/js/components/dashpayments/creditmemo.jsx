@@ -4,6 +4,9 @@ import { FaFileInvoice } from "react-icons/fa";
 import { AiOutlineDollar } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 import { Context } from "../../store/appContext";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 
 export const CreditMemo = ({ id }) => {
@@ -11,6 +14,12 @@ export const CreditMemo = ({ id }) => {
     const { store, actions } = useContext(Context);
     const clients = store.clients;
     const [formData, setFormData] = useState({});
+    const [t] = useTranslation("payments");
+
+    const notify = () =>
+        toast.success(t("creditSuccess"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
     useEffect(() => {
         actions.getAllClients();
@@ -76,6 +85,7 @@ export const CreditMemo = ({ id }) => {
             status: "Credit",
             method: "Refund"
         });
+        notify();
         navigate("/payments");
     };
 
@@ -83,7 +93,7 @@ export const CreditMemo = ({ id }) => {
         <div className="font-serif text-gray-200 mt-28">
             <div className="flex items-center">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
-                    Create Credit
+                    {t("credit")}
                 </h1>
             </div>
             <div className="glass p-10 mt-5 m-auto w-11/12">
@@ -93,7 +103,7 @@ export const CreditMemo = ({ id }) => {
                             <label
                                 htmlFor="date"
                                 className="block text-white font-bold mb-2">
-                                Date
+                                {t("date")}
                             </label>
                             <div className="relative">
                                 <input
@@ -112,7 +122,7 @@ export const CreditMemo = ({ id }) => {
                             <label
                                 htmlFor="client"
                                 className="block text-white font-bold mb-2">
-                                Client
+                                {t("client")}
                             </label>
                             <select
                                 id="client"
@@ -120,7 +130,7 @@ export const CreditMemo = ({ id }) => {
                                 className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                 required
                                 onChange={handleClientChange}>
-                                <option value="">Select a client</option>
+                                <option value="">{t("selectclient")}</option>
                                 {clients.map(client => (
                                     <option key={client.id} value={client.name}>
                                         {client.name}
@@ -130,7 +140,7 @@ export const CreditMemo = ({ id }) => {
                             <label
                                 htmlFor="services"
                                 className="block text-white font-bold mb-2">
-                                Services
+                                {t("services")}
                             </label>
                             <select
                                 id="services"
@@ -138,10 +148,16 @@ export const CreditMemo = ({ id }) => {
                                 className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full"
                                 required
                                 onChange={handleServiceChange}>
-                                <option value="">Select a service</option>
-                                <option value="Service 1">Service 1</option>
-                                <option value="Service 2">Service 2</option>
-                                <option value="Service 3">Service 3</option>
+                                <option value="">{t("selectServices")}</option>
+                                <option value="Service 1">
+                                    {t("services1")}
+                                </option>
+                                <option value="Service 2">
+                                    {t("service2")}
+                                </option>
+                                <option value="Service 3">
+                                    {t("service3")}
+                                </option>
                             </select>
                         </div>
                         <div className="w-full md:w-1/2 px-2">
@@ -149,7 +165,7 @@ export const CreditMemo = ({ id }) => {
                                 <label
                                     htmlFor="invoice"
                                     className="block text-white font-bold mb-2">
-                                    Credit Memo
+                                    {t("creditmemo")}
                                 </label>
                                 <div className="relative">
                                     <input
@@ -167,7 +183,7 @@ export const CreditMemo = ({ id }) => {
                                 <label
                                     htmlFor="amount"
                                     className="block text-white font-bold mb-2">
-                                    Amount
+                                    {t("amount")}
                                 </label>
                                 <div className="relative">
                                     <input
@@ -185,7 +201,7 @@ export const CreditMemo = ({ id }) => {
                                 <label
                                     htmlFor="description"
                                     className="block text-white font-bold mb-2">
-                                    Description
+                                    {t("description")}
                                 </label>
                                 <textarea
                                     id="description"
@@ -202,7 +218,7 @@ export const CreditMemo = ({ id }) => {
                         <button
                             type="submit"
                             className="bg-cyan-300 text-black py-2 px-4 rounded-md mt-4">
-                            Generate
+                            {t("generate")}
                         </button>
                     </div>
                 </form>

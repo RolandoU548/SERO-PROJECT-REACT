@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LoginForm = ({
     email,
@@ -24,18 +26,21 @@ export const LoginForm = ({
         formState: { errors }
     } = useForm();
 
+    const notify = () =>
+        toast.success(t("loggedIn"), { position: toast.POSITION.BOTTOM_RIGHT });
+
     const submit = async data => {
         const token = await actions.generateToken(data);
         if (token.message === "Incorrect password") {
-            alert(t("incorrectPassword"));
+            toast.error(t("incorrectPassword"));
         } else if (token.message === "User doesn't exist") {
-            alert(t("userNotRegistered"));
+            toast.error(t("userNotRegistered"));
         } else if (token.token) {
             const userAuthenticated = await actions.identificateUser(
                 token.token
             );
             if (userAuthenticated) {
-                alert(t("loggedIn"));
+                notify();
                 navigate("/private");
             }
         }

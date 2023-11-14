@@ -21,11 +21,17 @@ import {
 } from "react-icons/fa";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CreateClient = () => {
     const id = new Date();
     const { actions } = useContext(Context);
     const [t] = useTranslation("createclient");
+    const notify = () =>
+        toast.success(t("clientCreated"), {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
     const {
         register,
         handleSubmit,
@@ -68,6 +74,7 @@ export const CreateClient = () => {
             }
             console.log(data);
             await actions.createClient(data);
+            notify();
         } catch (error) {
             console.log(error);
         }
@@ -83,7 +90,7 @@ export const CreateClient = () => {
 
     return (
         <>
-        <img
+            <img
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fclients%2FClientsBG.jpeg?alt=media&token=2d8c8c81-a447-480b-b66b-087811f4cb1c"
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />

@@ -5,6 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import "./i18next-config.js";
 import { AppLoader } from "./views/apploader.jsx";
+import { ToastContainer } from "react-toastify";
 
 function App() {
     const [showLoader, setShowLoader] = useState(true);
@@ -22,6 +23,7 @@ function App() {
                 {showLoader ? <AppLoader /> : <Layout />}
                 {/* <Layout /> */}
             </I18nextProvider>
+            <ToastContainer />
         </React.StrictMode>
     );
 }
