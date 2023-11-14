@@ -31,6 +31,7 @@ import { InviteDatabaseForm } from "./views/dashboard/inviteDatabaseForm.jsx";
 import { FormSuccessful } from "./views/dashboard/formSuccessful.jsx";
 import { FormExpired } from "./views/dashboard/formExpired.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
+import { ContactMessages } from "./views/dashboard/contactMessages.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -325,6 +326,16 @@ const Layout = () => {
                             <>
                                 <PrivateNavbar />
                                 <Admin />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/contactMessages"
+                        transition="fade"
+                        element={
+                            <>
+                                <PrivateNavbar />
+                                <ContactMessages />
                             </>
                         }
                     />

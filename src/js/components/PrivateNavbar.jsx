@@ -14,7 +14,8 @@ import {
     FiFolder,
     FiDollarSign,
     FiHome,
-    FiLogOut
+    FiLogOut,
+    FiMessageSquare
 } from "react-icons/fi";
 import { FaTasks } from "react-icons/fa";
 import "../../css/glass.css";
@@ -46,12 +47,19 @@ export const PrivateNavbar = () => {
     const [open, setOpen] = useState(false);
 
     if (store.user.role.includes("admin")) {
-        menus.push({
-            name: t2("admin"),
-            link: "/admin",
-            icon: BsKey,
-            margin: true
-        });
+        menus.push(
+            {
+                name: t2("contactmessages"),
+                link: "/contactMessages",
+                icon: FiMessageSquare,
+                margin: true
+            },
+            {
+                name: t2("Admin"),
+                link: "/admin",
+                icon: BsKey
+            }
+        );
     }
 
     return (
@@ -112,7 +120,7 @@ export const PrivateNavbar = () => {
                             ))}
                             <div
                                 className="
-                                        mt-10 text-red-500 group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md cursor-pointer"
+                                        mt-2 text-red-500 group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md cursor-pointer"
                                 onClick={() => {
                                     actions.signOut();
                                     navigate("/");
