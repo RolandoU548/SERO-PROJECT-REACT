@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 export const UpdateUserModal = ({ setIsOpen, user }) => {
     const { store, actions } = useContext(Context);
     const [t] = useTranslation("signupform");
+    const [t2] = useTranslation("clients");
     const {
         register,
         handleSubmit,
@@ -176,19 +177,19 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <div className="bg-neutral-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button
                             type="submit"
-                            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm">
-                            Save
+                            className="-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cyan-300 text-base font-medium text-black hover:bg-cyan-400 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm">
+                            {t2("save")}
                         </button>
                         <button
                             type="button"
-                            className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                            className="w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white transition duration-300 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                             onClick={() => {
                                 setIsOpen(false);
                             }}>
-                            Cancel
+                            {t2("cancel")}
                         </button>
                     </div>
                 </form>

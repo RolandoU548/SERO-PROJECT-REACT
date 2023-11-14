@@ -39,7 +39,7 @@ export const Functionalities = () => {
                 title={t("formCard")}
                 paragraph={t("form1")}
                 image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FFormCardBG.jpg?alt=media&token=f42d2fea-fe65-411a-a6fa-6140187eaea8"
-                to="/tryDatabase"
+                to="/tryForms"
 
             />
             {/* Clientes */}
@@ -47,7 +47,7 @@ export const Functionalities = () => {
                 title={t("clientsCard")}
                 paragraph={t("clients1")}
                 image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a"
-                to="/tryDatabase"
+                to="/tryClients"
 
             />
             {/* Panel de Control */}
@@ -55,7 +55,7 @@ export const Functionalities = () => {
                 title={t("dashboardCard")}
                 paragraph={t("dashboard1")}
                 image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FDashboardCardBG.jpg?alt=media&token=db56f99f-811d-4ba3-9a0c-57c0fffb6703"
-                to="/tryDatabase"
+                to="/tryDashboard"
 
             />
         </div>

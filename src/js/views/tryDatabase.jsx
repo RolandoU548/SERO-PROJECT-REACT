@@ -51,9 +51,9 @@ export const TryDatabase = () => {
                             onClick={downloadFile}>
                             <p>{t("downloadFile")}</p>
                         </div>
-                        <Link>
+                        <Link to="/signup">
                             <div
-                                className="flex h-12 w-40 justify-center items-center mr-5 rounded-full p-3 transition duration-300 bg-neutral-400 text-neutral-300 border border-neutral-300 cursor-not-allowed"
+                                className="flex h-12 w-40 justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
                                 >
                                 <p>{t("saveTable")}</p>
                             </div>

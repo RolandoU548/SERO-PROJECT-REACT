@@ -33,6 +33,11 @@ import { FormExpired } from "./views/dashboard/formExpired.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
 import { ContactMessages } from "./views/dashboard/contactMessages.jsx";
 import { TryDatabase } from "./views/tryDatabase.jsx";
+import { TryForms } from "./views/tryForms.jsx";
+import { TryClientForm } from "./views/tryClientForm.jsx";
+import { TryInviteClientForm } from "./views/tryInviteClientForm.jsx";
+import { TryDatabaseForm } from "./views/tryDatabaseForm";
+import { TryInviteDatabaseForm } from "./views/tryInviteDatabaseForm.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -41,6 +46,8 @@ import { ClientCard } from "./components/dashclients/clientcard.jsx";
 import { StepPayment } from "./components/dashpayments/steppayment.jsx";
 import { PayPalButton } from "./components/dashpayments/PayPalButton.jsx";
 import { CreditMemo } from "./components/dashpayments/creditmemo.jsx";
+import { TryClients } from "./views/tryClients.jsx";
+import { TryDashboard } from "./views/tryDashboard.jsx";
 
 const Layout = () => {
     // the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -102,6 +109,69 @@ const Layout = () => {
                         <>
                             <Navbar />
                             <TryDatabase />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryForms"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryForms />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryInviteClientForm"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryInviteClientForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryClientForm"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryClientForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryInviteDatabaseForm"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryInviteDatabaseForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryDatabaseForm"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryDatabaseForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryClients"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryClients />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryDashboard"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryDashboard />
                         </>
                     }
                 />

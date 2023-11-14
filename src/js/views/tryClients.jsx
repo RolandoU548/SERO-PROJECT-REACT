@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../../store/appContext";
+import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import "../../../css/glass.css";
+import "../../css/glass.css";
 import { RingLoader } from "react-spinners";
 
-import { ClientProfile } from "../../components/dashclients/clientsprofile";
-import { DeleteModal } from "../../components/dashclients/deletemodal";
-import { ClientCardButton } from "../../components/dashclients/clientcardbutton";
+import { ClientProfile } from "../components/dashclients/clientsprofile";
+import { DeleteModal } from "../components/dashclients/deletemodal";
+import { ClientCardButton } from "../components/dashclients/clientcardbutton";
 
-export const Clients = () => {
+export const TryClients = () => {
     const { store, actions } = useContext(Context);
     const [t] = useTranslation("clients");
     const [isLoading, setIsLoading] = useState(true);
