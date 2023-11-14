@@ -32,6 +32,7 @@ import { FormSuccessful } from "./views/dashboard/formSuccessful.jsx";
 import { FormExpired } from "./views/dashboard/formExpired.jsx";
 import { CreateUser } from "./views/dashboard/createUser.jsx";
 import { ContactMessages } from "./views/dashboard/contactMessages.jsx";
+import { TryDatabase } from "./views/tryDatabase.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
 
@@ -92,6 +93,15 @@ const Layout = () => {
                             <Cursor />
                             <BackgroundVideo />
                             <SpecificFounder />
+                        </>
+                    }
+                />
+                <Route
+                    path="/tryDatabase"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryDatabase />
                         </>
                     }
                 />

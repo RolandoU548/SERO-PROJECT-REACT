@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { OpacityBackground } from "../OpacityBackground.jsx";
 
-export const Funcionality = ({ title, paragraph, image }) => {
+export const Funcionality = ({ title, paragraph, image, to }) => {
     const navigate = useNavigate();
     const [t] = useTranslation("app");
     return (
@@ -18,7 +18,7 @@ export const Funcionality = ({ title, paragraph, image }) => {
                     backgroundPosition: "center"
                 }}
                 onClick={() => {
-                    navigate("/signup");
+                    navigate(to);
                 }}>
                 <OpacityBackground className="rounded-2xl" />
             </div>
@@ -30,7 +30,7 @@ export const Funcionality = ({ title, paragraph, image }) => {
                     <p className="text-lg mt-3">{paragraph}</p>
                     <Link
                         className="text-black text-2xl mt-10 bg-cyan-400 hover:bg-cyan-500 transition duration-300 py-2 px-16 rounded-2xl inline-block"
-                        to="/login">
+                        to={to}>
                         {t("tryIt")}
                     </Link>
                 </div>
@@ -42,5 +42,6 @@ export const Funcionality = ({ title, paragraph, image }) => {
 Funcionality.propTypes = {
     title: PropTypes.string.isRequired,
     paragraph: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired
 };
