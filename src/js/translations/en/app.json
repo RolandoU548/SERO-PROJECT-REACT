@@ -63,5 +63,6 @@
     "messageMaxLength": "Message must have a maximum of 400 characters",
     "newsletter": "Newsletter",
     "newsletterEmail": "Insert your email",
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+    "messageSent": "Message Sent"
 }

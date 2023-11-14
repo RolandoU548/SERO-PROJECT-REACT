@@ -587,6 +587,49 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                     return null;
                 }
+            },
+            createSuggestion: async (name, email, text) => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/suggestion",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                name,
+                                email,
+                                text
+                            })
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return null;
+                }
+            },
+            getAllSuggestions: async () => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/suggestions",
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return null;
+                }
             }
         }
     };

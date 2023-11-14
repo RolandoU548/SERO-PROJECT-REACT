@@ -63,5 +63,6 @@
     "messageMaxLength": "El mensaje debe tener máximo 400 caracteres",
     "newsletter": "Boletín informativo",
     "newsletterEmail": "Coloque su correo electronico",
-    "copyright": "Todos los derechos reservados"
+    "copyright": "Todos los derechos reservados",
+    "messageSent": "Mensaje Enviado"
 }
