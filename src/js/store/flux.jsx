@@ -123,15 +123,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
+                    console.log(data.createdAt);
+                    console.log(data.birthday);
                     if (resp.ok) {
+                        let birthday = null;
+                        if (data.birthday) {
+                            birthday = new Date(data.birthday);
+                            const birthdayPlusOne = birthday.getDate() + 1;
+                            birthday.setDate(birthdayPlusOne);
+                        }
+                        const createdAt = new Date(data.createdAt);
+                        const createdAtPlusOne = createdAt.getDate() + 1;
+                        createdAt.setDate(createdAtPlusOne);
                         setStore({
                             user: {
                                 ...data,
                                 role: data.role.map(role => {
                                     return role.role;
                                 }),
-                                createdAt: new Date(data.createdAt),
-                                birthday: new Date(data.birthday)
+                                createdAt,
+                                birthday
                             }
                         });
                         return true;
