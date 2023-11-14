@@ -56,7 +56,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                             body: JSON.stringify(info)
                         }
                     );
-
                     if (resp.ok) {
                         const data = await resp.json();
                         return data;
@@ -629,6 +628,25 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.log("There has been an error", error);
                     return null;
+                }
+            },
+            deleteSuggestion: async id => {
+                const store = getStore();
+                try {
+                    const resp = await fetch(
+                        `${import.meta.env.VITE_BACKEND_URL}/suggestion/${id}`,
+                        {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
+                        }
+                    );
+                    const data = await resp.json();
+                    return data;
+                } catch (error) {
+                    console.log("There has been an error", error);
                 }
             }
         }
