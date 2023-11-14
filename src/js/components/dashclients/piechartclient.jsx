@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { VictoryPie } from "victory";
-import { useTranslation } from "react-i18next";
 
 export const PieChartClient = () => {
-    const [t] = useTranslation("dashboard");
     const { store, actions } = useContext(Context);
     const [activeIndex, setActiveIndex] = useState(0);
+
     useEffect(() => {
         actions.getAllClients().then(() => {
             setActiveIndex(store.clients);
         });
     }, []);
 
-    const activeClients = store.clients.filter(
-        client => client.status === "Active"
-    );
-    const inactiveClients = store.clients.filter(
-        client => client.status === "Inactive"
-    );
+    const activeClients = Array.isArray(store.clients)
+        ? store.clients.filter(client => client.status === "Active")
+        : [];
+    const inactiveClients = Array.isArray(store.clients)
+        ? store.clients.filter(client => client.status === "Inactive")
+        : [];
 
     const data = [
         { x: "Active", y: activeClients.length },
@@ -34,7 +33,7 @@ export const PieChartClient = () => {
         <div className="flex justify-center items-center">
             <div className="w-120 h-120 mx-auto">
                 <div className="flex flex-row"></div>
-                {(store.clients.length !== 0 && (
+                {(store.clients.length === 0 && (
                     <VictoryPie
                         data={data}
                         innerRadius={70}
