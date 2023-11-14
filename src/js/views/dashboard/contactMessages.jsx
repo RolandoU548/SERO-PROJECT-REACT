@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import { AiOutlineClose } from "react-icons/ai";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
@@ -29,20 +30,28 @@ export const ContactMessages = () => {
                     <h2 className="w-11/12 ml-16 text-black dark:text-white text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
                         {t("Contact Messages")}
                     </h2>
-                    <div className="mt-20 flex justify-center gap-5 w-[90%] m-auto flex-wrap">
+                    <div className="m-auto mt-10 gap-x-10 flex flex-wrap justify-center gap-10">
                         {suggestions.map(suggestion => {
                             return (
                                 <div
-                                    className="glass w-1/5"
+                                    className="glass w-3/12 p-5"
                                     key={suggestion.id}>
+                                    <AiOutlineClose className="flex justify-end text-red-500 absolute right-5 cursor-pointer" onClick={() => {alert("eliminado")}} />
                                     <h2 className="my-4">
-                                        Nombre y Apellido: {suggestion.name}
+                                        <p className="font-bold">
+                                            Nombre y Apellido:
+                                        </p>{" "}
+                                        {suggestion.name}
                                     </h2>
                                     <h2 className="my-4">
-                                        Correo Electrónico:{suggestion.email}
+                                        <p className="font-bold">
+                                            Correo Electrónico:{" "}
+                                        </p>
+                                        {suggestion.email}
                                     </h2>
                                     <h2 className="my-4">
-                                        Mensaje:{suggestion.text}
+                                        <p className="font-bold">Mensaje:</p>
+                                        {suggestion.text}
                                     </h2>
                                 </div>
                             );
