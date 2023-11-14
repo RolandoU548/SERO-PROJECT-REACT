@@ -1,5 +1,4 @@
 import React, { useRef, useContext } from "react";
-import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext.jsx";
 import "../../../css/contact.css";
 import { motion, useInView } from "framer-motion";
@@ -22,7 +21,7 @@ const variants = {
 };
 
 export const Contact = () => {
-    const { store } = useContext(Context);
+    const { actions, store } = useContext(Context);
     const ref = useRef();
     const [t] = useTranslation("app");
 
@@ -35,12 +34,14 @@ export const Contact = () => {
     } = useForm();
 
     const submit = async data => {
-        const sendForm = document.getElementById("sendForm");
-        sendForm.setAttribute(
-            "href",
-            `mailTo:rolandou548@gmail.com?subject=SERØ&body=Nombre: ${data.nameAndLastname}. Email: ${data.email}. Mensaje: ${data.message}.`
+        const respuesta = await actions.createSuggestion(
+            data.nameAndLastname,
+            data.email,
+            data.message
         );
-        sendForm.click();
+        if (respuesta?.message === "A suggestion has been saved") {
+            alert(t("messageSent"));
+        }
         reset();
     };
 
@@ -183,9 +184,6 @@ export const Contact = () => {
                     </motion.form>
                 </motion.div>
             </motion.div>
-            <Link
-                to="mailTo:rolandou548@gmail.com?subject=todoBien&body=Fino"
-                id="sendForm"></Link>
         </div>
     );
 };

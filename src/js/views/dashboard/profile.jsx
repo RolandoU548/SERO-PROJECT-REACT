@@ -65,7 +65,7 @@ export const Profile = () => {
                                 className={
                                     "py-1 rounded text-sm" +
                                     " " +
-                                    (store.user.status === "Active"
+                                    (store.user.status !== "Inactive"
                                         ? "bg-cyan-500"
                                         : "bg-red-500")
                                 }
