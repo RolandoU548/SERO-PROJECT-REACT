@@ -39,8 +39,9 @@ export const Clients = () => {
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients =
-        store.clients &&
-        store.clients
+        Array.isArray(store.clients) &&
+        store.clients.length > 0 &&
+        (0)
             .filter(
                 client =>
                     client.name
@@ -163,28 +164,28 @@ export const Clients = () => {
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("lastname")}>
-                                        {t("lastName")} {" "}
+                                        {t("lastName")}{" "}
                                         {sortOrder.column === "lastname" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("email")}>
-                                        {t("email")} {" "}
+                                        {t("email")}{" "}
                                         {sortOrder.column === "email" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("phone")}>
-                                        {t("phone")} {" "}
+                                        {t("phone")}{" "}
                                         {sortOrder.column === "phone" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
                                     <th
                                         className="px-4 py-2"
                                         onClick={() => handleSort("business")}>
-                                        {t("business")} {" "}
+                                        {t("business")}{" "}
                                         {sortOrder.column === "business" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
@@ -193,7 +194,7 @@ export const Clients = () => {
                                         onClick={() =>
                                             handleSort("description")
                                         }>
-                                        {t("description")} {" "}
+                                        {t("description")}{" "}
                                         {sortOrder.column === "description" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
@@ -204,7 +205,9 @@ export const Clients = () => {
                                         {sortOrder.column === "status" &&
                                             (sortOrder.ascending ? "▲" : "▼")}
                                     </th>
-                                    <th className="px-4 py-2">{t("actions")} </th>
+                                    <th className="px-4 py-2">
+                                        {t("actions")}{" "}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -327,7 +330,7 @@ export const Clients = () => {
                                 )}
                                 <li>
                                     <button
-                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
+                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w text-black dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
                                         onClick={() =>
                                             setCurrentPage(currentPage + 1)
                                         }
