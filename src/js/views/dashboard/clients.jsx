@@ -257,13 +257,13 @@ export const Clients = () => {
                                                 {client.status}
                                             </div>
                                         </td>
-                                        <td className="py-2 text-center">
+                                        <td className="py-2 text-center flex gap-x-1 my-auto">
                                             <ClientCardButton
                                                 key={client.id}
                                                 client={client}
                                             />
                                             <button
-                                                className="m-1 p-1.5 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                className="m-1 p-1.5 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700  hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                                 onClick={() => {
                                                     setClient(client);
                                                     setIsOpenEdit(true);
@@ -271,7 +271,7 @@ export const Clients = () => {
                                                 <FaEdit />
                                             </button>
                                             <button
-                                                className="p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
+                                                className="m-1 p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                                 onClick={() => {
                                                     setClient(client);
                                                     setIsOpenDelete(true);
@@ -296,7 +296,7 @@ export const Clients = () => {
                                 style={{ gap: 0 }}>
                                 <li>
                                     <button
-                                        className="relative block p-2.5 leading-tight text-black border-r-0 rounded-l bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 transition duration-300 focus:outline-none"
+                                        className="relative block p-2.5 leading-tight text-white border-r-0 rounded-l bg-neutral-950 border border-neutral-700 transition duration-300 focus:outline-none"
                                         onClick={() =>
                                             setCurrentPage(currentPage - 1)
                                         }
@@ -314,9 +314,9 @@ export const Clients = () => {
                                     (_, i) => (
                                         <li key={i}>
                                             <button
-                                                className={`transition duration-300 relative block p-2.5 leading-tight text-blue-900 border-r-0 bg-orange-300 hover:bg-orange-400 dark:bg-cyan-300 dark:hover:bg-cyan-400 focus:outline-none ${
+                                                className={`transition duration-300 relative block p-2.5 leading-tight border border-neutral-700 border-r-0 bg-neutral-900 focus:outline-none ${
                                                     currentPage === i + 1
-                                                        ? "z-10 bg-orange-400 hover:bg-orange-500 dark:bg-cyan-400 dark:hover:bg-cyan-500 text-white"
+                                                        ? "z-10 text-cyan-300"
                                                         : ""
                                                 }`}
                                                 onClick={() =>
@@ -329,7 +329,7 @@ export const Clients = () => {
                                 )}
                                 <li>
                                     <button
-                                        className="bg-orange-300 hover:bg-orange-400 relative block p-2.5 leading-tight bg-w dark:bg-cyan-300 rounded-r dark:hover:bg-cyan-400 text-black transition duration-300 focus:outline-none"
+                                        className="relative block p-2.5 leading-tight bg-w text-white rounded-r bg-neutral-950 border border-neutral-700 transition duration-300 focus:outline-none"
                                         onClick={() =>
                                             setCurrentPage(currentPage + 1)
                                         }

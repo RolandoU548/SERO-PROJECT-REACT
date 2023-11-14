@@ -3,7 +3,7 @@
     "clients": "CLIENTS",
     "payments": "PAYMENTS",
     "tasks": "TASKS",
-    "reports": "REPORTS",
+    "forms": "FORMS",
     "clientsChart": "Clients Chart",
     "paymentsChart": "Payments Chart",
     "tasksChart": "Tasks Chart",

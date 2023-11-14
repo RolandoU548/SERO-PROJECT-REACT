@@ -27,7 +27,7 @@ export const PieChartPayment = () => {
     ];
 
     const colors = {
-        [t("paid")]: "#00ff00",
+        [t("paid")]: "#008000",
         [t("credit")]: "#ff0000"
     };
 
@@ -74,7 +74,7 @@ export const PieChartPayment = () => {
                     />
                 )) || (
                     <div className="w-full h-full">
-                        <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold text-lg">
+                        <p className="w-[400px] h-[400px] flex items-center text-black dark:text-white justify-center pb-20 font-bold text-lg">
                             {t("nopayments")}
                         </p>
                     </div>

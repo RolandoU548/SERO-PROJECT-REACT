@@ -70,7 +70,7 @@ export const PieChartTask = () => {
                     />
                 )) || (
                     <div className="w-full h-full">
-                        <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold text-lg">
+                        <p className="w-[400px] h-[400px] text-black dark:text-white flex items-center justify-center pb-20 font-bold text-lg">
                             {t("notasks")}
                         </p>
                     </div>

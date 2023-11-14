@@ -643,10 +643,10 @@ export const StepPayment = () => {
                         )}
                         {step === 3 && (
                             <div className="glass p-10 mt-5 m-auto w-3/4">
-                                <div className="p-10 mt-5 m-auto w-15/12">
-                                    <h1 className="text-2xl font-bold mb-5 text-center">
+                                <div className="p-5 m-auto w-15/12">
+                                    <h2 className="text-2xl pb-5 font-bold mb-5 text-center">
                                         {t("paymentsummary")}
-                                    </h1>
+                                    </h2>
                                     <div className="grid grid-cols-2 justify-items-center">
                                         <div>
                                             <p className="font-bold text-lg">
@@ -703,7 +703,7 @@ export const StepPayment = () => {
                                         />
                                         <label
                                             htmlFor="fileInput"
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            className="bg-cyan-300 hover:bg-cyan-400 text-black font-bold py-2 px-4 rounded">
                                             {t("selectpdf")}
                                         </label>
                                         {fileList.length > 0 && (
@@ -764,7 +764,7 @@ export const StepPayment = () => {
                                     </button>
                                     <button
                                         type="button"
-                                        className="bg-green-500 text-white py-2 px-4 rounded-md mt-4"
+                                        className="bg-neutral-800 text-white py-2 px-4 rounded-md mt-4"
                                         onClick={() => {
                                             handlePaymentSubmit();
                                             navigate("/payments");

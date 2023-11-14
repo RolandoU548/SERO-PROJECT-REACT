@@ -107,7 +107,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="modal-headline">
-                        <div className="glass px-4 sm:p-6 sm:pb-4 rounded-t-lg">
+                        <div className="px-4 sm:p-6 sm:pb-4 rounded-t-lg">
                             <h3
                                 className="text-xl text-center leading-6 text-white font-bold"
                                 id="modal-headline">
@@ -123,9 +123,6 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                                 {t("image")}
                                             </label>
                                             <div className="relative rounded-md shadow-sm">
-                                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                    <FaImage className="h-5 w-5 text-gray-400" />
-                                                </div>
                                                 <input
                                                     id="Image"
                                                     name="Image"
@@ -137,11 +134,14 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                                 />
                                                 <button
                                                     type="button"
-                                                    className="text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm border-gray-300 rounded-md text-white bg-green-700"
+                                                    className="text-start focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-2 mb-4 sm:text-sm rounded-md text-cyan-300 hover:text-black border border-cyan-300 bg-black hover:bg-cyan-300 transition duration-300"
                                                     onClick={handleButtonClick}>
                                                     {editableClient.image
                                                         ? t("selectdifimage")
                                                         : t("selectedimage")}
+                                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                        <FaImage className="h-5 w-5" />
+                                                    </div>
                                                 </button>
                                             </div>
                                         </div>
@@ -251,16 +251,16 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <div className="bg-neutral-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <button
                                 type="button"
-                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cyan-300 text-base font-medium text-black hover:bg-cyan-400 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm"
                                 onClick={handleSubmit}>
                                 {t("save")}
                             </button>
                             <button
                                 type="button"
-                                className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                className="w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white transition duration-300 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                 onClick={() => {
                                     setIsOpen(false);
                                 }}>

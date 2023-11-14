@@ -120,7 +120,7 @@ export const Dashboard = () => {
                             }}>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-black dark:text-white">
-                                    {t("reports")}
+                                    {t("forms")}
                                 </div>
                                 <div className="font-bold text-cyan-300 text-md sm:text-xl">
                                     3
