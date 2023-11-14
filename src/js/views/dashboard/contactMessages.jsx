@@ -12,7 +12,7 @@ export const ContactMessages = () => {
     return (
         <>
             <img
-                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fadmin%2FAdminBG.jpeg?alt=media&token=bb862525-094d-4ea4-bd01-ad4ed93518fe"
+                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2FcontactMessages%2FContactMessagesBG.jpg?alt=media&token=4c6c1f7b-3754-4dca-a95b-c637fc370ba1"
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className=" font-serif text-gray-200 mt-28">
