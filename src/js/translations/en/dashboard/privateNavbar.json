@@ -11,5 +11,6 @@
     "logout": "Logout",
     "tasks": "Tasks",
     "contactmessages": "Contact Messages",
-    "notifytoken": "Your session has expired. Please login again."
+    "notifytoken": "Your session has expired. Please login again.",
+    "logouttoast": "You have been logged out successfully."
 }

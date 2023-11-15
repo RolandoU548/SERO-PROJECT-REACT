@@ -57,6 +57,18 @@ export const PrivateNavbar = () => {
             }
         });
 
+    const logOutToast = () =>
+        toast.error(t2("logouttoast"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
+
     if (store.user.role.includes("admin")) {
         menus.push(
             {
@@ -146,6 +158,7 @@ export const PrivateNavbar = () => {
                                 className="
                                         mt-2 text-red-500 group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md cursor-pointer"
                                 onClick={() => {
+                                    logOutToast();
                                     actions.signOut();
                                     navigate("/");
                                 }}>

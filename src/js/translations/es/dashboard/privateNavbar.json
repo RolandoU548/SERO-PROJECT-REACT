@@ -11,5 +11,6 @@
     "logout": "Cerrar sesión",
     "tasks": "Tareas",
     "contactmessages": "Mensajes de Contacto",
-    "notifytoken": "La sesión ha expirado. Por favor ingrese su usuario nuevamente."
+    "notifytoken": "La sesión ha expirado. Por favor ingrese su usuario nuevamente.",
+    "logouttoast": "Sesión cerrada con éxito."
 }
