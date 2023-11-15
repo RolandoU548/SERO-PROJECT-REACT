@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 export const Footer = () => {
     const [t] = useTranslation("app");
 return (
-    <div className='footer bg-neutral-950'>
+    <div className='footer bg-neutral-950 text-white'>
         <footer>
             <div className='row'>
                 <div className='colPrincipal'>

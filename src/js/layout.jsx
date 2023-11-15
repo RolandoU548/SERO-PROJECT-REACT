@@ -35,6 +35,7 @@ import { ContactMessages } from "./views/dashboard/contactMessages.jsx";
 import { TryDatabase } from "./views/tryDatabase.jsx";
 import { TryForms } from "./views/tryForms.jsx";
 import { TryClientForm } from "./views/tryClientForm.jsx";
+import { TryCreateClient } from "./views/tryCreateClient.jsx";
 import { TryInviteClientForm } from "./views/tryInviteClientForm.jsx";
 import { TryDatabaseForm } from "./views/tryDatabaseForm";
 import { TryInviteDatabaseForm } from "./views/tryInviteDatabaseForm.jsx";
@@ -163,6 +164,15 @@ const Layout = () => {
                         <>
                             <Navbar />
                             <TryClients />
+                        </>
+                    }
+                />
+                <Route
+                    path="/trycreateclient"
+                    element={
+                        <>
+                            <Navbar />
+                            <TryCreateClient />
                         </>
                     }
                 />
