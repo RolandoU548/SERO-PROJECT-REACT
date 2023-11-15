@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import getState from "./flux.jsx";
+import { isTokenExpired } from "../utils/isTokenExpired.js";
 
 // Don't change, here is where we initialize our context, by default it's just going to be null.
 export const Context = React.createContext(null);
@@ -33,7 +34,16 @@ const injectContext = PassedComponent => {
                 document.documentElement.classList.remove("dark");
                 state.actions.changeTheme("light");
             }
-            state.actions.identificateUser(state.store.token);
+            if (localStorage.getItem("token")) {
+                const validateSession = isTokenExpired(
+                    localStorage.getItem("token")
+                );
+                if (!validateSession) {
+                    state.actions.identificateUser(
+                        localStorage.getItem("token")
+                    );
+                }
+            }
         }, []);
 
         // The initial value for the context is not null anymore, but the current state of this component,

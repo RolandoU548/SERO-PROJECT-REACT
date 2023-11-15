@@ -1,14 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "./LanguageButton.jsx";
 import { Darkmode } from "./Darkmode.jsx";
 import { MdOutlineDashboard } from "react-icons/md";
-// import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
+import { isTokenExpired } from "../utils/isTokenExpired.js";
 import {
     FiDatabase,
     FiDollarSign,
@@ -59,6 +59,21 @@ export const PrivateNavbar = () => {
             }
         );
     }
+
+    useEffect(() => {
+        const intervalId = setInterval(function () {
+            console.log("interval");
+            if (store.token) {
+                console.log("existe token");
+                const validateSession = isTokenExpired(store.token);
+                if (validateSession) {
+                    clearInterval(intervalId);
+                    alert("Sesión cerrada por razones de seguridad");
+                    actions.signOut();
+                }
+            }
+        }, 10000);
+    }, []);
 
     return (
         <>

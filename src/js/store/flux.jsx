@@ -124,8 +124,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    console.log(data.createdAt);
-                    console.log(data.birthday);
                     if (resp.ok) {
                         let birthday = null;
                         if (data.birthday) {

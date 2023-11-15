@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
@@ -7,12 +8,19 @@ import { Services } from "./animations/Services";
 import { Contact } from "./animations/Contact";
 import { Functionalities } from "./animations/Functionalities";
 import { Footer } from "./animations/Footer";
+import { isTokenExpired } from "../utils/isTokenExpired";
 
 export const App = () => {
+    const { actions } = useContext(Context);
     const [t] = useTranslation("app");
     const navigate = useNavigate();
     if (localStorage.getItem("token")) {
-        navigate("/private");
+        const validateSession = isTokenExpired(localStorage.getItem("token"));
+        if (validateSession) {
+            actions.signOut();
+        } else {
+            navigate("/private");
+        }
     }
 
     return (
