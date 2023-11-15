@@ -6,8 +6,7 @@ import { useForm } from "react-hook-form";
 
 export const UpdateUserModal = ({ setIsOpen, user }) => {
     const { store, actions } = useContext(Context);
-    const [t] = useTranslation("signupform");
-    const [t2] = useTranslation("clients");
+    const [t] = useTranslation("createUser");
     const {
         register,
         handleSubmit,
@@ -59,12 +58,12 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                         <h3
                             className="text-xl text-center leading-6 font-bold"
                             id="modal-headline">
-                            USER DATA
+                            {t("userdata")}
                         </h3>
                         <div className="m-auto mt-5 flex flex-col space-y-2 items-around w-8/12">
                             <div className="flex justify-between items-center">
                                 <label htmlFor="name" className="font-bold">
-                                    Name:
+                                    {t("name")}:
                                 </label>
                                 <input
                                     type="text"
@@ -91,7 +90,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <label htmlFor="lastname" className="font-bold">
-                                    Lastname:
+                                    {t("lastname")}:
                                 </label>
                                 <input
                                     type="text"
@@ -118,7 +117,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <label htmlFor="email" className="font-bold">
-                                    Email:
+                                    {t("email")}:
                                 </label>
                                 <input
                                     type="email"
@@ -152,26 +151,28 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                 )}
                             </div>
                             <div className="flex justify-between items-center">
-                                <label className="font-bold">Role:</label>
+                                <label className="font-bold">
+                                    {t("role")}:
+                                </label>
                                 <fieldset className="flex gap-x-2">
                                     <label>
                                         <input
                                             type="checkbox"
-                                            name="role"
+                                            name={t("role")}
                                             value="admin"
                                             {...register("role")}
                                         />
-                                        Admin
+                                        {t("admin1")}
                                     </label>
                                     <label className="pointer-events-none opacity-50">
                                         <input
                                             type="checkbox"
-                                            name="role"
+                                            name={t("role")}
                                             value="user"
                                             readOnly
                                             {...register("role")}
                                         />
-                                        User
+                                        {t("user")}
                                     </label>
                                 </fieldset>
                             </div>
@@ -181,7 +182,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                         <button
                             type="submit"
                             className="-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cyan-300 text-base font-medium text-black hover:bg-cyan-400 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:ml-3 sm:w-auto sm:text-sm">
-                            {t2("save")}
+                            {t("save")}
                         </button>
                         <button
                             type="button"
@@ -189,7 +190,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             onClick={() => {
                                 setIsOpen(false);
                             }}>
-                            {t2("cancel")}
+                            {t("cancel")}
                         </button>
                     </div>
                 </form>

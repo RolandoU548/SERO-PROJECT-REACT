@@ -16,7 +16,7 @@ export const CalendarDay = ({ day }) => {
     const [tasks, setTasks] = useState([]);
 
     const notify = () =>
-        toast.success(t("taskAdded"), {
+        toast.success(t("taskadded"), {
             position: toast.POSITION.BOTTOM_RIGHT
         });
 
@@ -87,7 +87,7 @@ export const CalendarDay = ({ day }) => {
                     onClick={() => setShowModal(true)}
                     className="mt-2 flex items-center justify-center px-1 py-0.5 border border-transparent text-sm font-medium rounded-md text-white bg-neutral-800 hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <FaPlus className="h-4 w-4 mr-1" />
-                    {t("Task")}
+                    {t("task")}
                 </button>
 
                 <Transition appear show={showModal} as={Fragment}>
@@ -124,7 +124,7 @@ export const CalendarDay = ({ day }) => {
                                     <Dialog.Title
                                         as="h3"
                                         className="text-lg font-medium leading-6 text-gray-900">
-                                        {t("Add task to")}{" "}
+                                        {t("addtaskto")}{" "}
                                         {day.format("MMM D, YYYY")}
                                     </Dialog.Title>
                                     <div className="mt-2">
@@ -135,7 +135,7 @@ export const CalendarDay = ({ day }) => {
                                                 setNewTask(e.target.value)
                                             }
                                             className="block w-full border border-gray-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-cyan-300 sm:text-md px-4"
-                                            placeholder="Task description"
+                                            placeholder={t("taskdescription")}
                                         />
                                     </div>
                                     <div className="mt-4">
@@ -143,13 +143,13 @@ export const CalendarDay = ({ day }) => {
                                             type="button"
                                             onClick={addTask}
                                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
-                                            {t("Add task")}
+                                            {t("addtask")}
                                         </button>
                                         <button
                                             type="button"
                                             onClick={() => setShowModal(false)}
                                             className="inline-flex justify-center px-4 py-2 ml-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
-                                            {t("Cancel")}
+                                            {t("cancel")}
                                         </button>
                                     </div>
                                 </div>

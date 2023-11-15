@@ -35,7 +35,7 @@ export const PieChartClient = () => {
         <div className="flex justify-center items-center">
             <div className="w-120 h-120 mx-auto">
                 <div className="flex flex-row"></div>
-                {(store.clients.length === 0 && (
+                {(store.clients.length !== 0 && (
                     <VictoryPie
                         data={data}
                         innerRadius={70}
@@ -75,7 +75,7 @@ export const PieChartClient = () => {
                 )) || (
                     <div className="w-full h-full">
                         <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold  text-black dark:text-white text-lg">
-                        {t("noclients")}
+                            {t("noclients")}
                         </p>
                     </div>
                 )}

@@ -36,5 +36,7 @@
     "notifyImageDelete": "Image Deleted",
     "clientDeleted": "Client Deleted",
     "deleteclient": "Delete Client",
-    "sure": "Are you sure you want to delete this client? This action cannot be undone."
+    "sure": "Are you sure you want to delete this client? This action cannot be undone.",
+    "yes": "Yes",
+    "no": "No"
 }

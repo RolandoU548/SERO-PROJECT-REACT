@@ -40,5 +40,15 @@
     "notasks": "No hay Tareas Registradas",
     "active": "Activo",
     "inactive": "Inactivo",
-    "noclients": "No hay Clientes Registrados"
+    "noclients": "No hay Clientes Registrados",
+    "taskadded": "Tarea Agregada",
+    "task": "Tarea",
+    "addtaskto": "Agregar tarea a",
+    "taskdescription": "Descripcion de Tarea",
+    "addtask": "Agregar",
+    "cancel": "Cancelar",
+    "deletetask": "Eliminar Tarea",
+    "sure": "Estas seguro de Elminar este Pago? Este proceso no se podrá revertir.",
+    "yes": "Si",
+    "no": "No"
 }

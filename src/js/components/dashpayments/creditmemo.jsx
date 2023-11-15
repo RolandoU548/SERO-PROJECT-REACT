@@ -17,7 +17,7 @@ export const CreditMemo = ({ id }) => {
     const [t] = useTranslation("payments");
 
     const notify = () =>
-        toast.success(t("creditSuccess"), {
+        toast.error(t("creditSuccess"), {
             position: toast.POSITION.BOTTOM_RIGHT
         });
 
@@ -150,7 +150,7 @@ export const CreditMemo = ({ id }) => {
                                 onChange={handleServiceChange}>
                                 <option value="">{t("selectServices")}</option>
                                 <option value="Service 1">
-                                    {t("services1")}
+                                    {t("service1")}
                                 </option>
                                 <option value="Service 2">
                                     {t("service2")}

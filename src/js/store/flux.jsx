@@ -242,11 +242,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             deleteClient: async id => {
+                const store = getStore();
                 try {
                     const resp = await fetch(
                         import.meta.env.VITE_BACKEND_URL + `/clients/${id}`,
                         {
-                            method: "DELETE"
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                                authorization: "Bearer " + store.token
+                            }
                         }
                     );
                     const data = await resp.json();

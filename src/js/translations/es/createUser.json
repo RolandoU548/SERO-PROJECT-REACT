@@ -29,5 +29,14 @@
     "to": "a",
     "of": "de",
     "previous": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "deleteuser": "Eliminar Usuario",
+    "sure": "Estas seguro de Elminar este usuario? Este proceso no se podrá revertir.",
+    "yes": "Si",
+    "no": "No",
+    "userdata": "DATA DE USUARIO",
+    "admin1": "Admin",
+    "user": "Usuario",
+    "save": "Guardar",
+    "cancel": "Cancelar"
 }

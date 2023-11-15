@@ -36,5 +36,7 @@
     "notifyImageDelete": "Imagen Eliminada",
     "clientDeleted": "Cliente Eliminado",
     "deleteclient": "Eliminar Cliente",
-    "sure": "Estas seguro de Elminar este Cliente? Este proceso no se podrá revertir."
+    "sure": "Estas seguro de Eliminar este Cliente? Este proceso no se podrá revertir.",
+    "yes": "Si",
+    "no": "No"
 }

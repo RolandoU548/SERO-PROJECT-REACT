@@ -40,5 +40,15 @@
     "notasks": "No tasks registered",
     "active": "Active",
     "inactive": "Inactive",
-    "noclients": "No clients registered"
+    "noclients": "No clients registered",
+    "taskadded": "Task Added",
+    "task": "Task",
+    "addtaskto": "Add task to",
+    "taskdescription": "Task description",
+    "addtask": "Add task",
+    "cancel": "Cancel",
+    "deletetask": "Delete task",
+    "sure": "Are you sure you want to delete this client? This action cannot be undone.",
+    "yes": "Yes",
+    "no": "No"
 }
