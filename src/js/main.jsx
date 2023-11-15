@@ -23,7 +23,7 @@ function App() {
                 {showLoader ? <AppLoader /> : <Layout />}
                 {/* <Layout /> */}
             </I18nextProvider>
-            <ToastContainer autoClose={1500} />
+            <ToastContainer autoClose={3000} />
         </React.StrictMode>
     );
 }

@@ -18,6 +18,8 @@ import {
 } from "react-icons/fi";
 import { FaTasks } from "react-icons/fa";
 import "../../css/glass.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const PrivateNavbar = () => {
     const { store, actions } = useContext(Context);
@@ -43,6 +45,17 @@ export const PrivateNavbar = () => {
         // { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
+    const notifyToken = () =>
+        toast.error(t2("notifytoken"), {
+            position: "top-center",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
 
     if (store.user.role.includes("admin")) {
         menus.push(
@@ -62,13 +75,11 @@ export const PrivateNavbar = () => {
 
     useEffect(() => {
         const intervalId = setInterval(function () {
-            console.log("interval");
             if (store.token) {
-                console.log("existe token");
                 const validateSession = isTokenExpired(store.token);
                 if (validateSession) {
                     clearInterval(intervalId);
-                    alert("Sesión cerrada por razones de seguridad");
+                    notifyToken();
                     actions.signOut();
                 }
             }

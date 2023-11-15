@@ -10,5 +10,6 @@
     "kanban": "Kanban",
     "logout": "Logout",
     "tasks": "Tasks",
-    "contactmessages": "Contact Messages"
+    "contactmessages": "Contact Messages",
+    "notifytoken": "Your session has expired. Please login again."
 }
