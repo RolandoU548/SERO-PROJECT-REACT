@@ -28,11 +28,9 @@ export const TryClients = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        actions.getAllClients().then(() => {
             setTimeout(() => {
                 setIsLoading(false);
             }, 2000);
-        });
     }, []);
 
     // Usuario actual
@@ -138,7 +136,7 @@ export const TryClients = () => {
                         </div>
                         <button
                             className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
-                            onClick={() => navigate("/createclient")}>
+                            onClick={() => navigate("/trycreateclient")}>
                             {t("addClient")}
                         </button>
                     </div>
