@@ -23,5 +23,6 @@
     "signupButton": "Sign Up",
     "account": "Already have an account?",
     "login": "Log In",
-    "sucessSignup": "Successful sign up"
+    "sucessSignup": "Successful sign up",
+    "successgoogle": "Successful Login with Google"
 }

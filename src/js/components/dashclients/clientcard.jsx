@@ -37,6 +37,17 @@ export const ClientCard = () => {
                 borderRadius: "10px"
             }
         });
+    const notifyDeleteBucket = () =>
+        toast.error(t("filesdeleted"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
 
     // MOSTRAR FILES
 
@@ -107,6 +118,7 @@ export const ClientCard = () => {
             return deleteObject(fileRef);
         });
         await Promise.all(promises);
+        notifyDeleteBucket();
         setBuckets([]);
     };
 

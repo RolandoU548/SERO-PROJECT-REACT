@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import ReactCardFlip from "react-card-flip";
 import { useTranslation } from "react-i18next";
@@ -7,13 +8,57 @@ import { SignUpForm } from "../components/login-signup/SignUpForm";
 import { LoginForm } from "../components/login-signup/LoginForm";
 import { Buttons } from "../components/login-signup/Buttons";
 import { BackArrow } from "../components/BackArrow";
+import { signInWithGooglePopup } from "../components/firebase/firebase";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import PropTypes from "prop-types";
 
 export const LoginSignupCard = props => {
-    const { actions } = useContext(Context);
     const [t] = useTranslation("loginsignup");
+    const navigate = useNavigate();
+    const { actions } = useContext(Context);
+    const notify = () =>
+        toast.success(t("successgoogle"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
     const [flip, setFlip] = useState(props.flip);
+    const logGoogleUser = async () => {
+        const response = await signInWithGooglePopup();
+        console.log(response);
+        const user = {
+            name: response.user.displayName.split(" ")[0],
+            lastname: response.user.displayName.split(" ")[1],
+            email: response.user.email,
+            password: response.user.uid,
+            role: ["user", "admin"],
+            status: "Active"
+        };
+        await actions.createUser(user);
+
+        const token = await actions.generateToken(user);
+        if (token.message === "Incorrect password") {
+            toast.error(t("incorrectPassword"));
+        } else if (token.message === "User doesn't exist") {
+            toast.error(t("userNotRegistered"));
+        } else if (token.token) {
+            const userAuthenticated = await actions.identificateUser(
+                token.token
+            );
+            if (userAuthenticated) {
+                notify();
+                navigate("/private");
+            }
+        }
+    };
+
     useEffect(() => {
         actions.signOut();
     }, []);
@@ -44,14 +89,14 @@ export const LoginSignupCard = props => {
                             {t("agreement")}
                         </p>
                     </SignUpForm>
-                    <div className="border-b text-center">
+                    {/* <div className="border-b text-center">
                         <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white rounded transition duration-500">
                             {t("signupOption")}
                         </div>
                     </div>
                     <div className="mt-5">
                         <Buttons buttonGoogle={t("signupGoogle")} />
-                    </div>
+                    </div> */}
                     <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                         {t("account")}
                         <button
@@ -84,7 +129,10 @@ export const LoginSignupCard = props => {
                         </div>
                     </div>
                     <div className="mt-5">
-                        <Buttons buttonGoogle={t("loginGoogle")} />
+                        <Buttons
+                            buttonGoogle={t("loginGoogle")}
+                            ejecutar={logGoogleUser}
+                        />
                     </div>
                     <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-2">
                         {t("noAccount")}

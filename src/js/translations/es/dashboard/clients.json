@@ -64,5 +64,6 @@
     "message": "Mensaje",
     "contactmessage": "Mensajes de Contactos",
     "namelastname": "Nombre y Apellido",
-    "toastdeleted": "Mensaje Eliminado"
+    "toastdeleted": "Mensaje Eliminado",
+    "filesdeleted": "Archivos Eliminados"
 }

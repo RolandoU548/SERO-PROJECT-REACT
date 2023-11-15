@@ -22,5 +22,6 @@
     "signupButton": "Crear Cuenta",
     "account": "Ya tienes una cuenta?",
     "login": "Acceder",
-    "successSignup": "Registro exitoso"
+    "successSignup": "Registro exitoso",
+    "successgoogle": "Acceso exitoso con Google"
 }

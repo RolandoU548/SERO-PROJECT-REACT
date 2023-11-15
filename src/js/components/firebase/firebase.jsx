@@ -1,12 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getStorage } from "firebase/storage";
-
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
-} from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_API_KEY,
@@ -24,12 +19,12 @@ export const db = getDatabase(app);
 
 export const storage = getStorage();
 
-const auth = getAuth();
+// Initialize Firebase Auth provider
+const provider = new GoogleAuthProvider();
 
-export const signIn = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
-};
-
-export const signUp = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-};
+// whenever a user interacts with the provider, we force them to select an account
+provider.setCustomParameters({
+    prompt: "select_account "
+});
+export const auth = getAuth();
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
