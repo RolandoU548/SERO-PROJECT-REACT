@@ -13,6 +13,8 @@ import {
     listAll
 } from "firebase/storage";
 import { FaFilePdf, FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ClientCard = () => {
     const { store, actions } = useContext(Context);
@@ -24,6 +26,17 @@ export const ClientCard = () => {
     const [t] = useTranslation("clients");
     const client = store.clients.find(client => client.id === id);
     const [fileList, setFileList] = useState([]);
+    const notify = () =>
+        toast.success(t("filesuploaded"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
 
     // MOSTRAR FILES
 
@@ -58,7 +71,7 @@ export const ClientCard = () => {
             archives.push(uploadTask);
         }
         await Promise.all(archives);
-        alert("Files uploaded successfully!");
+        notify();
         setFileList([]);
     };
 

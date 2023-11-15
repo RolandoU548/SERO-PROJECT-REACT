@@ -4,6 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import "../../../css/app.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ContactMessages = () => {
     const [t] = useTranslation("clients");
@@ -12,6 +14,17 @@ export const ContactMessages = () => {
     const fetchData = async () => {
         setSuggestions(await actions.getAllSuggestions());
     };
+    const notifyDelete = () =>
+        toast.error(t("toastdeleted"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
 
     useEffect(() => {
         fetchData();
@@ -44,7 +57,7 @@ export const ContactMessages = () => {
                                             if (respuesta) {
                                                 fetchData();
                                             }
-                                            alert("eliminado");
+                                            notifyDelete();
                                         }}
                                     />
                                     <h2 className="my-4">
