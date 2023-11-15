@@ -29,9 +29,9 @@ export const Form = () => {
                         navigate("/inviteClientForm");
                     }}>
                     <div className="font-bold text-black dark:text-white flex gap-2 items-center">
-                        CLIENTS
+                        {t("clients")}
                         <div className="font-bold dark:text-cyan-300 text-cyan-500">
-                            FORM
+                            {t("form1")}
                         </div>
                     </div>
                 </div>
@@ -41,9 +41,9 @@ export const Form = () => {
                         navigate("/inviteDatabaseForm");
                     }}>
                     <div className="font-bold text-black dark:text-white flex gap-2 items-center">
-                        DATABASE
+                        {t("database")}
                         <div className="font-bold dark:text-cyan-300 text-cyan-500">
-                            FORM
+                            {t("form1")}
                         </div>
                     </div>
                 </div>

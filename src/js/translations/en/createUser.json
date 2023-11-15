@@ -38,5 +38,13 @@
     "admin1": "Admin",
     "user": "User",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "members": "Member Since",
+    "edit": "Edit",
+    "contactnumber": "Contact Number",
+    "address": "Address",
+    "birthday": "Birthday"
 }

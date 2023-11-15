@@ -64,5 +64,7 @@
     "newsletter": "Newsletter",
     "newsletterEmail": "Insert your email",
     "copyright": "All rights reserved",
-    "messageSent": "Message Sent"
+    "messageSent": "Message Sent",
+    "contactmessage": "Contact Messages",
+    "namelastname": "Name and Last name"
 }

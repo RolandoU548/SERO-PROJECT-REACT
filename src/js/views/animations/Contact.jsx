@@ -4,6 +4,8 @@ import "../../../css/contact.css";
 import { motion, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const variants = {
     initial: {
@@ -24,6 +26,17 @@ export const Contact = () => {
     const { actions, store } = useContext(Context);
     const ref = useRef();
     const [t] = useTranslation("app");
+    const notify = () =>
+        toast.success(t("messageSent"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
 
     const isInView = useInView(ref, { margin: "-100px" });
     const {
@@ -40,7 +53,7 @@ export const Contact = () => {
             data.message
         );
         if (respuesta?.message === "A suggestion has been saved") {
-            alert(t("messageSent"));
+            notify();
         }
         reset();
     };

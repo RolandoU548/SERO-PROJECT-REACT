@@ -27,7 +27,7 @@ export const DatabaseForm = () => {
     const id = new Date();
     const { actions } = useContext(Context);
     const { dbhash } = useParams();
-    const [t] = useTranslation("createclient");
+    const [t] = useTranslation("form");
     const {
         register,
         handleSubmit,
@@ -79,7 +79,7 @@ export const DatabaseForm = () => {
             </video>
             <div className="font-serif dark:text-white mt-28">
                 <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
-                    {t("Add to Database")}
+                    {t("addtodatabase")}
                 </h1>
                 <div className="glass p-20 mt-5 m-auto w-11/12">
                     <form onSubmit={handleSubmit(submit)} className="space-y-6">
@@ -115,7 +115,7 @@ export const DatabaseForm = () => {
                                     <button
                                         type="submit"
                                         className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-400 hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        {t("Add to Database")}
+                                        {t("add")}
                                     </button>
                                 </div>
                             </div>

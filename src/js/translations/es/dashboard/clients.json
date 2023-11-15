@@ -60,5 +60,8 @@
     "active": "Activo",
     "inactive": "Inactivo",
     "save": "Guardar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "message": "Mensaje",
+    "contactmessage": "Mensajes de Contactos",
+    "namelastname": "Nombre y Apellido"
 }

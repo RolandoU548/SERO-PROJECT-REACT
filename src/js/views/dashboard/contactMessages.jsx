@@ -6,9 +6,9 @@ import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 
 export const ContactMessages = () => {
+    const [t] = useTranslation("clients");
     const { actions } = useContext(Context);
     const [suggestions, setSuggestions] = useState(null);
-    const [t] = useTranslation("admin");
     const fetchData = async () => {
         setSuggestions(await actions.getAllSuggestions());
     };
@@ -25,7 +25,7 @@ export const ContactMessages = () => {
             />
             <div className="mt-28 dark:text-white">
                 <h2 className="w-11/12 ml-16 text-black dark:text-white text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
-                    {t("Contact Messages")}
+                    {t("contactmessage")}
                 </h2>
                 {suggestions && (
                     <div className="m-auto my-10 gap-x-10 flex flex-wrap justify-center gap-10">
@@ -49,18 +49,20 @@ export const ContactMessages = () => {
                                     />
                                     <h2 className="my-4">
                                         <p className="font-bold">
-                                            Nombre y Apellido:
+                                            {t("namelastname")}
                                         </p>{" "}
                                         {suggestion.name}
                                     </h2>
                                     <h2 className="my-4">
                                         <p className="font-bold">
-                                            Correo Electrónico:{" "}
+                                            {t("email")}:{" "}
                                         </p>
                                         {suggestion.email}
                                     </h2>
                                     <h2 className="my-4">
-                                        <p className="font-bold">Mensaje:</p>
+                                        <p className="font-bold">
+                                            {t("message")}:
+                                        </p>
                                         {suggestion.text}
                                     </h2>
                                 </div>

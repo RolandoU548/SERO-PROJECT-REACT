@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Context } from "../../store/appContext";
 
 export const Profile = () => {
-    const [t] = useTranslation("profile");
+    const [t] = useTranslation("createUser");
     const { store, actions } = useContext(Context);
 
     const [editingField, setEditingField] = useState(null);
@@ -58,7 +58,7 @@ export const Profile = () => {
                     </h2>
                     <ul className="py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li className="flex justify-between items-center py-3">
-                            <span>Status</span>
+                            <span>{t("status")}</span>
                             <select
                                 name="status"
                                 id="status"
@@ -76,15 +76,15 @@ export const Profile = () => {
                                     changeStatus(e.target.value);
                                 }}>
                                 <option value="Active" className="bg-cyan-500">
-                                    Active
+                                    {t("active")}
                                 </option>
                                 <option value="Inactive" className="bg-red-500">
-                                    Inactive
+                                    {t("inactive")}
                                 </option>
                             </select>
                         </li>
                         <li className="flex items-center py-3">
-                            <span>Member since</span>
+                            <span>{t("members")}</span>
                             <span className="ml-auto">
                                 {user.createdAt?.toLocaleDateString()}
                             </span>
@@ -93,15 +93,15 @@ export const Profile = () => {
                     <table className="w-full">
                         <tbody className="flex flex-col gap-3 text-sm px-5">
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">Email</td>
+                                <td className="font-semibold">{t("email")}</td>
                                 <td className="text-center">{user.email}</td>
                                 <td className="bg-neutral-400 text-neutral-300 px-3 py-1 border border-neutral-300 rounded-md cursor-not-allowed">
-                                    Edit
+                                    {t("edit")}
                                 </td>
                             </tr>
                             <tr className="flex flex-row justify-between items-center">
                                 <td className="font-semibold">
-                                    Contact Number
+                                    {t("contactnumber")}
                                 </td>
                                 {editingField === "phone" ? (
                                     <td className="flex gap-1">
@@ -116,14 +116,14 @@ export const Profile = () => {
                                         <button
                                             className="bg-sky-400 py-1 px-3 text-white rounded-md"
                                             onClick={handleFieldSave}>
-                                            Save
+                                            {t("save")}
                                         </button>
                                         <button
                                             onClick={() =>
                                                 setEditingField(null)
                                             }
                                             className="bg-red-500 py-1 px-3 text-white rounded-md">
-                                            Cancel
+                                            {t("cancel")}
                                         </button>
                                     </td>
                                 ) : (
@@ -137,14 +137,16 @@ export const Profile = () => {
                                                 onClick={() =>
                                                     handleFieldEdit("phone")
                                                 }>
-                                                Edit
+                                                {t("edit")}
                                             </button>
                                         </td>
                                     </>
                                 )}
                             </tr>
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">Address</td>
+                                <td className="font-semibold">
+                                    {t("address")}
+                                </td>
                                 {editingField === "address" ? (
                                     <td className="flex gap-1">
                                         <input
@@ -158,14 +160,14 @@ export const Profile = () => {
                                         <button
                                             className="bg-sky-400 py-1 px-3 text-white rounded-md"
                                             onClick={handleFieldSave}>
-                                            Save
+                                            {t("save")}
                                         </button>
                                         <button
                                             onClick={() =>
                                                 setEditingField(null)
                                             }
                                             className="bg-red-500 py-1 px-3 text-white rounded-md">
-                                            Cancel
+                                            {t("cancel")}
                                         </button>
                                     </td>
                                 ) : (
@@ -179,14 +181,16 @@ export const Profile = () => {
                                                 onClick={() =>
                                                     handleFieldEdit("address")
                                                 }>
-                                                Edit
+                                                {t("edit")}
                                             </button>
                                         </td>
                                     </>
                                 )}
                             </tr>
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">Birthday</td>
+                                <td className="font-semibold">
+                                    {t("birthday")}
+                                </td>
                                 {editingField === "birthday" ? (
                                     <td className="flex gap-1">
                                         <input
@@ -200,14 +204,14 @@ export const Profile = () => {
                                         <button
                                             className="bg-sky-400 py-1 px-3 text-white rounded-md"
                                             onClick={handleFieldSave}>
-                                            Save
+                                            {t("save")}
                                         </button>
                                         <button
                                             onClick={() =>
                                                 setEditingField(null)
                                             }
                                             className="bg-red-500 py-1 px-3 text-white rounded-md">
-                                            Cancel
+                                            {t("cancel")}
                                         </button>
                                     </td>
                                 ) : (
@@ -221,7 +225,7 @@ export const Profile = () => {
                                                 onClick={() =>
                                                     handleFieldEdit("birthday")
                                                 }>
-                                                Edit
+                                                {t("edit")}
                                             </button>
                                         </td>
                                     </>

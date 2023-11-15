@@ -1,1 +1,11 @@
-{ "form": "Formularios" }
+{
+    "form": "Formularios",
+    "clients": "CLIENTES",
+    "form1": "FORMULARIO",
+    "database": "BASE DE DATOS",
+    "invitationclient": "INVITACION A CLIENTES",
+    "generate": "GENERAR ENLACE",
+    "invitationdata": "INVITACION A BASE DE DATOS",
+    "addtodatabase": "Agregar a Base de Datos",
+    "add": "Agregar"
+}

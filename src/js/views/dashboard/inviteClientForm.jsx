@@ -53,7 +53,8 @@ export const InviteClientForm = () => {
             <div className="w-11/12 flex justify-center gap-4 mx-16 mt-8 h-64">
                 <div className="border border-white rounded-2xl w-fit min-w-[33.333333%] p-4 m-2 flex flex-col justify-center text-2xl">
                     <h2 className="text-white font-bold mb-5 flex gap-2 justify-center">
-                        INVITATION CLIENT<p className="text-cyan-300">FORM</p>
+                        {t("invitationclient")}
+                        <p className="text-cyan-300">{t("form1")}</p>
                     </h2>
                     <div className="flex items-center justify-center gap-4">
                         {hash && (
@@ -81,7 +82,7 @@ export const InviteClientForm = () => {
                     <button
                         className="border border-white rounded-2xl mt-5 p-2 font-bold dark:text-green-400 text-green-600 cursor-pointer"
                         onClick={() => generateHash()}>
-                        GENERATE LINK
+                        {t("generate")}
                     </button>
                 </div>
             </div>

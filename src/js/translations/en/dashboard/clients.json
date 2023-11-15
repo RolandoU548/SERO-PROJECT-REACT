@@ -60,5 +60,8 @@
     "active": "Active",
     "inactive": "Inactive",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "message": "Message",
+    "contactmessage": "Contact Messages",
+    "namelastname": "Name and Last name"
 }

@@ -1,1 +1,11 @@
-{ "form": "Forms" }
+{
+    "form": "Forms",
+    "clients": "CLIENTS",
+    "form1": "FORMS",
+    "database": "DATABASE",
+    "invitationclient": "INVITATION CLIENT",
+    "generate": "GENERATE LINK",
+    "invitationdata": "INVITATION DATABASE",
+    "addtodatabase": "Add To DataBase",
+    "add": "Add to DataBase"
+}

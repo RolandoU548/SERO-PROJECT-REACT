@@ -10,7 +10,14 @@ export const ModalDeletePayment = ({ id, deletePayment }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const notifyDelete = () =>
         toast.error(t("paymentDeleted"), {
-            position: toast.POSITION.BOTTOM_RIGHT
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
         });
 
     const handleDelete = () => {

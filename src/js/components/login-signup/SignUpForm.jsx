@@ -24,6 +24,7 @@ export const SignUpForm = ({
         toast.success(t("userCreated"), {
             position: toast.POSITION.BOTTOM_RIGHT
         });
+
     const { actions } = useContext(Context);
     const navigate = useNavigate();
     const {
@@ -38,7 +39,16 @@ export const SignUpForm = ({
         data.role = ["user", "admin"];
         const respuesta = await actions.createUser(data);
         if (respuesta?.message === `User ${data.email} already exists`) {
-            alert(`${data.email} ${t("userAlreadyExists")}`);
+            toast.error(`${data.email} ${t("userAlreadyExists")}`, {
+                position: "bottom-right",
+                style: {
+                    background: "rgba(23, 23, 23, 0.2)",
+                    backdropFilter: "blur(10px)",
+                    boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                    color: "#fff",
+                    borderRadius: "10px"
+                }
+            });
         } else if (respuesta?.message === "A user has been created") {
             notify();
             const token = await actions.generateToken(data);

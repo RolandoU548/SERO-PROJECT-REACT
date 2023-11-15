@@ -27,7 +27,16 @@ export const LoginForm = ({
     } = useForm();
 
     const notify = () =>
-        toast.success(t("loggedIn"), { position: toast.POSITION.BOTTOM_RIGHT });
+        toast.success(t("loggedIn"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
 
     const submit = async data => {
         const token = await actions.generateToken(data);
