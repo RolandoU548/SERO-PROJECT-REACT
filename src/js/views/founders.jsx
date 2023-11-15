@@ -143,7 +143,10 @@ export const Founder = () => {
                 <button
                     className="block dark:text-gray-200 text-black"
                     onClick={() => {
-                        localStorage.setItem("token", "sdfas2e");
+                        localStorage.setItem(
+                            "token",
+                            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMDAyMTg0MCwianRpIjoiNzMxMmRmZGItODZkNi00Y2FlLThmMWUtOWQ4MjMwY2I1NTA5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJvbGFuZG91NTQ4QGdtYWlsLmNvbSIsIm5iZiI6MTcwMDAyMTg0MCwiZXhwIjoxNzAwMTA4MjQwfQ.57jBfh6D2hqAm7JXTNH9lwS1XaMnBCLv1MrnW535MJA"
+                        );
                     }}>
                     token
                 </button>
