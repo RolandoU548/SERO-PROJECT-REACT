@@ -18,7 +18,7 @@ import { Form } from "./views/dashboard/form.jsx";
 import { Database } from "./views/dashboard/database.jsx";
 import { Dashboard } from "./views/dashboard/dashboard.jsx";
 import { Clients } from "./views/dashboard/clients.jsx";
-import { Kanban } from "./views/dashboard/kanban.jsx";
+import { Kanban } from "./views/dashboard/Kanban/kanban";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
@@ -101,6 +101,15 @@ const Layout = () => {
                             <Cursor />
                             <BackgroundVideo />
                             <SpecificFounder />
+                        </>
+                    }
+                />
+                <Route
+                    path="/kanban"
+                    element={
+                        <>
+                            {/* <Navbar /> */}
+                            <Kanban />
                         </>
                     }
                 />
@@ -317,7 +326,7 @@ const Layout = () => {
                             </>
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="/tasks"
                         transition="fade"
                         element={
@@ -326,7 +335,7 @@ const Layout = () => {
                                 <Kanban />
                             </>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/payments"
                         transition="fade"
