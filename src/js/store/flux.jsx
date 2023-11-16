@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 role: ["user", "admin"]
             },
             clients: [],
+            tryclients: [],
             users: [],
             payments: [],
             tasks: []
