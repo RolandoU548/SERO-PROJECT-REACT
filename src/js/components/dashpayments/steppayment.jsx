@@ -273,7 +273,7 @@ export const StepPayment = () => {
                             </li>
                         </ol>
                         {step === 1 && (
-                            <div className="glass p-10 mt-5 m-auto w-11/12">
+                            <div className="glass p-10 my-5 m-auto w-11/12">
                                 <form onSubmit={handleFormSubmit}>
                                     <div className="flex flex-col-2 flex-row justify-center">
                                         <div className="w-full md:w-1/2 pr-10">
