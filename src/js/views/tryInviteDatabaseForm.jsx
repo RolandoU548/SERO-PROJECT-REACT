@@ -24,7 +24,7 @@ export const TryInviteDatabaseForm = () => {
     const handleCopy = () => {
         navigator.clipboard
             .writeText(
-                `${location.origin}${import.meta.env.BASE_URL}/tryDatabaseForm/${
+                `${location.origin}${import.meta.env.BASE_URL}/databaseForm/${
                     hash.invitation_hash
                 }`
             )
@@ -53,35 +53,15 @@ export const TryInviteDatabaseForm = () => {
             <div className="w-11/12 flex justify-center gap-4 mx-16 mt-8 h-64">
                 <div className="border border-white rounded-2xl w-fit min-w-[33.333333%] p-4 m-2 flex flex-col justify-center text-2xl">
                     <h2 className="text-white font-bold mb-5 flex gap-2 justify-center">
-                        INVITATION DATABASE<p className="text-cyan-300">FORM</p>
+                        {t("invitationdata")}
+                        <p className="text-cyan-300">{t("form1")}</p>
                     </h2>
-                    <div className="flex items-center justify-center gap-4">
-                        {hash && (
-                            <>
-                                <div
-                                    className="border border-white rounded-2xl p-2 w-fit font-bold text-black dark:text-white flex gap-2 cursor-pointer items-center"
-                                    onClick={() => {
-                                        navigate(
-                                            `/tryDatabaseForm/${hash.invitation_hash}`
-                                        );
-                                    }}>
-                                    {location.origin}
-                                    {import.meta.env.BASE_URL}
-                                    /databaseForm/
-                                    {hash.invitation_hash}
-                                </div>
-                                <div
-                                    className="border border-white rounded-2xl p-2 font-bold dark:text-cyan-300 text-cyan-500 cursor-pointer"
-                                    onClick={() => handleCopy()}>
-                                    {copyMsg}
-                                </div>
-                            </>
-                        )}
-                    </div>
                     <button
                         className="border border-white rounded-2xl mt-5 p-2 font-bold dark:text-green-400 text-green-600 cursor-pointer"
-                        onClick={() => generateHash()}>
-                        GENERATE LINK
+                        onClick={() => {
+                            navigate("/signup");
+                        }}>
+                        {t("generate")}
                     </button>
                 </div>
             </div>
