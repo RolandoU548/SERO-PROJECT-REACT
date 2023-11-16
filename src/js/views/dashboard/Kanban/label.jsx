@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Check, X } from "react-feather";
-import "../../../../css/Label.css";
+// import "../../../../css/Label.css";
 export const Label = props => {
     const input = useRef();
     const [selectedColor, setSelectedColor] = useState("");
     const [label, setLabel] = useState("");
 
-    const isColorUsed = (color) => {
-        return !!props.tags.find((item) => item.color === color);
+    const isColorUsed = color => {
+        return !!props.tags.find(item => item.color === color);
     };
 
     return (
