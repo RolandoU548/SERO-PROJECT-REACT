@@ -74,7 +74,7 @@ export const PieChartPayment = () => {
                     />
                 )) || (
                     <div className="w-full h-full">
-                        <p className="w-[400px] h-[400px] flex items-center text-black dark:text-white justify-center pb-20 font-bold text-lg">
+                        <p className="w-[400px] h-[400px] flex items-center text-black dark:text-white justify-center pb-32 font-bold text-lg">
                             {t("nopayments")}
                         </p>
                     </div>

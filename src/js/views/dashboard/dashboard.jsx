@@ -128,20 +128,20 @@ export const Dashboard = () => {
                                 <FaFileAlt className="text-5xl text-cyan-300" />
                             </div>
                         </div>
-                        <div className="flex flex-row justify-center">
-                            <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
+                        <div className="flex flex-row gap-16 justify-evenly w-11/12 m-auto">
+                            <div className="glass p-10 mt-5 text-center w-4/12 h-[25rem] flex flex-col">
                                 <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                     {t("paymentsChart")}
                                 </h1>
                                 <PieChartPayment numPayments={numPayments} />
                             </div>
-                            <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
+                            <div className="glass p-10 mt-5 text-center w-4/12 h-[25rem] flex flex-col">
                                 <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                     {t("clientsChart")}
                                 </h1>
                                 <PieChartClient numClients={numClients} />
                             </div>
-                            <div className="glass p-10 mt-5 m-auto w-[30rem] h-[30rem] mx-5 text-center flex flex-col">
+                            <div className="glass p-10 mt-5 text-center w-4/12 h-[25rem] flex flex-col">
                                 <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
                                     {t("tasksChart")}
                                 </h1>
