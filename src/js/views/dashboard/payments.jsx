@@ -24,6 +24,38 @@ export const Payments = () => {
     const [toDateFilter, setToDateFilter] = useState("");
     const [invoiceFilter, setInvoiceFilter] = useState("");
     const [paymentsData, setPaymentData] = useState(store.payments);
+    // store.payments.filter(payment => {
+    //     return store.clients
+    //         .find(client => client.id === payment.client)
+    //         ?.name.toLowerCase()
+    //         .includes(customerFilter.toLowerCase());
+    // })
+
+    const filterPayment = () => {
+        if (store.clients.length > 0 && paymentsData.length > 0) {
+            if (customerFilter) {
+                const client = store.clients.find(client =>
+                    client.name
+                        .toLowerCase()
+                        .includes(customerFilter.toLowerCase())
+                );
+                console.log(client);
+                if (client) {
+                    console.log(
+                        paymentsData.filter(payment => {
+                            const paymentClient = store.clients.find(
+                                client => client.id === payment.client
+                            );
+                            return client.name === paymentClient.name;
+                        })
+                    );
+                }
+            } else {
+                console.log(paymentsData);
+            }
+        }
+    };
+
     const [sortColumn, setSortColumn] = useState("status");
     const [sortDirection, setSortDirection] = useState("asc");
 
@@ -36,7 +68,7 @@ export const Payments = () => {
         }
     };
 
-    const sortedPayments = paymentsData.sort((a, b) => {
+    paymentsData.sort((a, b) => {
         const isAsc = sortDirection === "asc" ? 1 : -1;
         if (a[sortColumn] < b[sortColumn]) {
             return -1 * isAsc;
