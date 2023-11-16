@@ -74,7 +74,7 @@ export const PieChartClient = () => {
                     />
                 )) || (
                     <div className="w-full h-full">
-                        <p className="w-[400px] h-[400px] flex items-center justify-center pb-20 font-bold  text-black dark:text-white text-lg">
+                        <p className="w-[400px] h-[400px] flex items-center justify-center pb-32 font-bold  text-black dark:text-white text-lg">
                             {t("noclients")}
                         </p>
                     </div>

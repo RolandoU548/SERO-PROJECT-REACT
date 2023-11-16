@@ -115,10 +115,15 @@ export const StepPayment = () => {
     };
 
     const generateCurrentDate = () => {
-        const currentDate = new Date().toLocaleDateString();
+        const currentDate = new Date();
+        const day = String(currentDate.getDate()).padStart(2, "0");
+        const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+        const year = currentDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+
         setFormData(prevFormData => ({
             ...prevFormData,
-            date: currentDate
+            date: formattedDate
         }));
     };
 
@@ -152,7 +157,7 @@ export const StepPayment = () => {
         const amount = parseFloat(e.target.value).toFixed(2);
         setFormData({
             ...formData,
-            amount: amount
+            amount
         });
     };
 
@@ -160,7 +165,7 @@ export const StepPayment = () => {
         const invoice = e.target.value;
         setFormData(prevFormData => ({
             ...prevFormData,
-            invoice: invoice
+            invoice
         }));
         setFormData({
             ...formData,
@@ -268,7 +273,7 @@ export const StepPayment = () => {
                             </li>
                         </ol>
                         {step === 1 && (
-                            <div className="glass p-10 mt-5 m-auto w-11/12">
+                            <div className="glass p-10 my-5 m-auto w-11/12">
                                 <form onSubmit={handleFormSubmit}>
                                     <div className="flex flex-col-2 flex-row justify-center">
                                         <div className="w-full md:w-1/2 pr-10">
@@ -278,15 +283,9 @@ export const StepPayment = () => {
                                                 {t("date")}
                                             </label>
                                             <div className="relative">
-                                                <input
-                                                    type="text"
-                                                    id="date"
-                                                    name="date"
-                                                    className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10"
-                                                    required
-                                                    value={formData.date}
-                                                    readOnly
-                                                />
+                                                <div className="border border-gray-400 text-black rounded-md py-2 px-3 mb-4 w-full pr-10 bg-white">
+                                                    {formData.date}
+                                                </div>
                                                 <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                                                     <MdDateRange className="h-5 w-5 text-cyan-400 " />
                                                 </span>
