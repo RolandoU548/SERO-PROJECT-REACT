@@ -95,8 +95,8 @@ export const Payments = () => {
                                         onChange={e =>
                                             setCustomerFilter(e.target.value)
                                         }
-                                        placeholder="Filter by customer"
-                                        className="border border-gray-400 rounded py-1 px-2 text-gray-400"
+                                        placeholder={t("filterByCustomer")}
+                                        className="border border-gray-400 rounded py-1 px-2 text-black"
                                     />
                                     <span className="absolute inset-y-0 right-0 flex items-center pr-2">
                                         <FaSearch className="w-4 h-4 text-gray-400" />
@@ -145,7 +145,7 @@ export const Payments = () => {
                                         onChange={e =>
                                             setInvoiceFilter(e.target.value)
                                         }
-                                        className="border border-gray-400 rounded py-1 px-2 pl-8 text-black ml-2"
+                                        className="border border-gray-400 rounded py-1 px-2 text-black ml-2"
                                     />
                                     <span className="absolute inset-y-0 right-0 flex items-center pr-2">
                                         <FaSearch className="w-4 h-4 text-gray-400" />
@@ -153,7 +153,7 @@ export const Payments = () => {
                                 </div>
                             </div>
                             <button
-                                className="flex items-center bg-cyan-400 hover:bg-cyan-500 text-black  text-md font-bold px-4 py-2 rounded-full"
+                                className="flex items-center bg-cyan-300 hover:bg-cyan-400 text-black  text-md font-bold px-4 py-2 rounded-full"
                                 onClick={handleAddPayment}>
                                 <FaPlus className="mr-2" />
                                 {t("add")}
@@ -235,7 +235,7 @@ export const Payments = () => {
                                     <th
                                         className="py-4 text-lg font-bold cursor-pointer"
                                         onClick={() => handleSort("invoice")}>
-                                        {t("involice")}{" "}
+                                        {t("invoice")}{" "}
                                         {sortColumn === "invoice" &&
                                             (sortDirection === "asc" ? (
                                                 <FaSortUp className="inline-block ml-1" />
@@ -261,11 +261,15 @@ export const Payments = () => {
                                                         ? "bg-red-700 text-white font-bold"
                                                         : "bg-green-700 text-white font-bold"
                                                 }`}>
-                                                {payment.status}
+                                                {t(payment.status)}
                                             </span>
                                         </td>
                                         <td className="py-4">
-                                            {payment.method}
+                                            {t(
+                                                payment.method
+                                                    .replace(" ", "")
+                                                    .toLowerCase()
+                                            )}
                                         </td>
                                         <td className="py-4">{payment.date}</td>
                                         <td className="py-4">
