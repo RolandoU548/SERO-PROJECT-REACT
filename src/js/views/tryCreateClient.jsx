@@ -26,7 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const TryCreateClient = () => {
     const id = new Date();
-    const { actions } = useContext(Context);
+    const { actions, store } = useContext(Context);
     const [t] = useTranslation("createclient");
     const notify = () =>
         toast.success(t("clientCreated"), {
@@ -66,6 +66,7 @@ export const TryCreateClient = () => {
     };
 
     const submit = async data => {
+        // const store = getStore();
         try {
             if (image !== null) {
                 data.image = image;
@@ -73,7 +74,10 @@ export const TryCreateClient = () => {
                 data.image = "noImage";
             }
             console.log(data);
-            await actions.createClient(data);
+            // await actions.createClient(data);
+            // setStore({ clients: [...getStore().clients, data] });
+            localStorage.setItem("data", JSON.stringify(data));
+            // localStorage.setItem("client", JSON.stringify(data));
             notify();
         } catch (error) {
             console.log(error);

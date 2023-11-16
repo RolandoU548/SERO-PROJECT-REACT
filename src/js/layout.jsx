@@ -18,7 +18,7 @@ import { Form } from "./views/dashboard/form.jsx";
 import { Database } from "./views/dashboard/database.jsx";
 import { Dashboard } from "./views/dashboard/dashboard.jsx";
 import { Clients } from "./views/dashboard/clients.jsx";
-import { Kanban } from "./views/dashboard/kanban.jsx";
+import { Kanban } from "./views/dashboard/Kanban/kanban";
 import { Payments } from "./views/dashboard/payments.jsx";
 import { Settings } from "./views/dashboard/settings.jsx";
 import { Profile } from "./views/dashboard/profile.jsx";
@@ -34,10 +34,8 @@ import { CreateUser } from "./views/dashboard/createUser.jsx";
 import { ContactMessages } from "./views/dashboard/contactMessages.jsx";
 import { TryDatabase } from "./views/tryDatabase.jsx";
 import { TryForms } from "./views/tryForms.jsx";
-import { TryClientForm } from "./views/tryClientForm.jsx";
 import { TryCreateClient } from "./views/tryCreateClient.jsx";
 import { TryInviteClientForm } from "./views/tryInviteClientForm.jsx";
-import { TryDatabaseForm } from "./views/tryDatabaseForm";
 import { TryInviteDatabaseForm } from "./views/tryInviteDatabaseForm.jsx";
 
 import { NotFound } from "./views/notfound.jsx";
@@ -105,6 +103,15 @@ const Layout = () => {
                     }
                 />
                 <Route
+                    path="/kanban"
+                    element={
+                        <>
+                            {/* <Navbar /> */}
+                            <Kanban />
+                        </>
+                    }
+                />
+                <Route
                     path="/tryDatabase"
                     element={
                         <>
@@ -132,29 +139,11 @@ const Layout = () => {
                     }
                 />
                 <Route
-                    path="/tryClientForm"
-                    element={
-                        <>
-                            <Navbar />
-                            <TryClientForm />
-                        </>
-                    }
-                />
-                <Route
                     path="/tryInviteDatabaseForm"
                     element={
                         <>
                             <Navbar />
                             <TryInviteDatabaseForm />
-                        </>
-                    }
-                />
-                <Route
-                    path="/tryDatabaseForm"
-                    element={
-                        <>
-                            <Navbar />
-                            <TryDatabaseForm />
                         </>
                     }
                 />
@@ -317,7 +306,7 @@ const Layout = () => {
                             </>
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="/tasks"
                         transition="fade"
                         element={
@@ -326,7 +315,7 @@ const Layout = () => {
                                 <Kanban />
                             </>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/payments"
                         transition="fade"

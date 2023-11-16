@@ -12,6 +12,7 @@ import { ClientCardButton } from "../components/dashclients/clientcardbutton";
 
 export const TryClients = () => {
     const { store, actions } = useContext(Context);
+    // const data = localStorage.getItem('data')
     const [t] = useTranslation("clients");
     const [isLoading, setIsLoading] = useState(true);
     const [client, setClient] = useState();
@@ -28,58 +29,59 @@ export const TryClients = () => {
 
     useEffect(() => {
         setIsLoading(true);
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 2000);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
     }, []);
 
     // Usuario actual
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients =
-        store.clients &&
-        store.clients
-            .filter(
-                client =>
-                    client.name
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    client.lastname
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    client.email
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    client.phone
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    client.business
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    client.description
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    client.status
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-            )
-            .sort((a, b) =>
-                sortOrder.ascending
-                    ? a[sortOrder.column].localeCompare(b[sortOrder.column])
-                    : b[sortOrder.column].localeCompare(a[sortOrder.column])
-            )
-            .slice(indexOfFirstClient, indexOfLastClient);
+        localStorage.getItem('data') &&
+        localStorage
+            .getItem('data')
+            // .filter(
+            //     data =>
+            //         data.name
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase()) ||
+            //         data.lastname
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase()) ||
+            //         data.email
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase()) ||
+            //         data.phone
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase()) ||
+            //         client.business
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase()) ||
+            //         data.description
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase()) ||
+            //         data.status
+            //             .toLowerCase()
+            //             .includes(searchTerm.toLowerCase())
+            // )
+            // .sort((a, b) =>
+            //     sortOrder.ascending
+            //         ? a[sortOrder.column].localeCompare(b[sortOrder.column])
+            //         : b[sortOrder.column].localeCompare(a[sortOrder.column])
+            // )
+            // .slice(indexOfFirstClient, indexOfLastClient);
 
     // Labels Filtrados
-    const sortClients = (clients, column, ascending) => {
-        return clients.sort((a, b) => {
-            const aValue = a[column];
-            const bValue = b[column];
-            return ascending
-                ? aValue.localeCompare(bValue)
-                : bValue.localeCompare(aValue);
-        });
-    };
+    // const sortClients = (clients, column, ascending) => {
+    //     return clients.sort((a, b) => {
+    //         const aValue = a[column];
+    //         const bValue = b[column];
+    //         return ascending
+    //             ? aValue.localeCompare(bValue)
+    //             : bValue.localeCompare(aValue);
+    //     });
+    // };
 
     const handleSort = column => {
         setSortOrder({
@@ -88,11 +90,11 @@ export const TryClients = () => {
         });
     };
 
-    const sortedClients = sortClients(
-        currentClients,
-        sortOrder.column,
-        sortOrder.ascending
-    );
+    // const sortedClients = sortClients(
+    //     currentClients,
+    //     sortOrder.column,
+    //     sortOrder.ascending
+    // );
 
     return (
         <>
@@ -208,14 +210,14 @@ export const TryClients = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {currentClients.map(client => (
-                                    <tr key={client.id}>
+                                {currentClients.map(data => (
+                                    <tr key={data.id}>
                                         <td className="px-4 py-2 text-center">
-                                            {client.image !== "noImage" ? (
+                                            {data.image !== "noImage" ? (
                                                 <img
-                                                    src={client.image}
-                                                    alt={client.name}
-                                                    className="h-20 w-20 object-cover rounded-full inline-block"
+                                                    src={data.image}
+                                                    alt={data.name}
+                    data        className="h-20 w-20 object-cover rounded-full inline-block"
                                                 />
                                             ) : (
                                                 <i
@@ -225,22 +227,22 @@ export const TryClients = () => {
                                             )}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.name}
+                                            {data.name}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.lastname}
+                                            {data.lastname}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.email}
+                                            {data.email}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.phone}
+                                            {data.phone}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.business.substring(0, 30)}
+                                            {data.business.substring(0, 30)}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {client.description.substring(
+                                            {data.description.substring(
                                                 0,
                                                 30
                                             )}
@@ -248,16 +250,16 @@ export const TryClients = () => {
                                         <td className="px-4 py-2 text-center">
                                             <div
                                                 className={`px-4 py-2 rounded-full ${
-                                                    client.status === "Active"
+                                                    data.status === "Active"
                                                         ? "bg-green-600 text-white"
                                                         : "bg-red-600 text-white"
                                                 }`}>
-                                                {client.status}
+                                                {data.status}
                                             </div>
                                         </td>
                                         <td className="py-2 text-center flex gap-x-1 my-auto">
                                             <ClientCardButton
-                                                key={client.id}
+                                                key={data.id}
                                                 client={client}
                                             />
                                             <button
@@ -285,7 +287,7 @@ export const TryClients = () => {
                     <div className="flex justify-between items-center mt-5">
                         <div className="tiny:w-96 text-gray-700 dark:text-gray-600">
                             {t("showing")} {indexOfFirstClient + 1} {t("to")}{" "}
-                            {indexOfLastClient} {t("of")} {store.clients.length}{" "}
+                            {indexOfLastClient} {t("of")} {localStorage.getItem('data').length}{" "}
                             {t("entries")}
                         </div>
                         <div className="w-full overflow-auto flex justify-end">
@@ -305,7 +307,7 @@ export const TryClients = () => {
                                 {Array.from(
                                     {
                                         length: Math.ceil(
-                                            store.clients.length /
+                                            localStorage.getItem('data').length /
                                                 clientsPerPage
                                         )
                                     },
@@ -334,9 +336,11 @@ export const TryClients = () => {
                                         disabled={
                                             currentPage ===
                                                 Math.ceil(
-                                                    store.clients.length /
-                                                        clientsPerPage
-                                                ) || store.clients.length < 1
+                                                    localStorage.getItem('data')
+                                                        .length / clientsPerPage
+                                                ) ||
+                                            localStorage.getItem('data').length <
+                                                1
                                         }>
                                         <span>{t("next")}</span>
                                     </button>
