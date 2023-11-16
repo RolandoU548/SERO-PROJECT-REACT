@@ -79,7 +79,6 @@ export const CreateClient = () => {
             } else {
                 data.image = "noImage";
             }
-            console.log(data);
             await actions.createClient(data);
             notify();
         } catch (error) {

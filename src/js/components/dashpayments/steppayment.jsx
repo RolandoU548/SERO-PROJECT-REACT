@@ -308,7 +308,7 @@ export const StepPayment = () => {
                                                     <option
                                                         key={client.id}
                                                         value={client.name}>
-                                                        {client.name}
+                                                        {`${client.name} ${client.lastname}`}
                                                     </option>
                                                 ))}
                                             </select>

@@ -24,37 +24,29 @@ export const Payments = () => {
     const [toDateFilter, setToDateFilter] = useState("");
     const [invoiceFilter, setInvoiceFilter] = useState("");
     const [paymentsData, setPaymentData] = useState(store.payments);
-    // store.payments.filter(payment => {
-    //     return store.clients
-    //         .find(client => client.id === payment.client)
-    //         ?.name.toLowerCase()
-    //         .includes(customerFilter.toLowerCase());
-    // })
 
     const filterPayment = () => {
         if (store.clients.length > 0 && paymentsData.length > 0) {
             if (customerFilter) {
                 const client = store.clients.find(client =>
-                    client.name
+                    `${client.name} ${client.lastname}`
                         .toLowerCase()
                         .includes(customerFilter.toLowerCase())
                 );
-                console.log(client);
                 if (client) {
-                    console.log(
-                        paymentsData.filter(payment => {
-                            const paymentClient = store.clients.find(
-                                client => client.id === payment.client
-                            );
-                            return client.name === paymentClient.name;
-                        })
-                    );
+                    return paymentsData.filter(payment => {
+                        const paymentClient = store.clients.find(
+                            client => client.id === payment.client
+                        );
+                        return client.name === paymentClient.name;
+                    });
                 }
-            } else {
-                console.log(paymentsData);
+                return [];
             }
+            return paymentsData;
         }
     };
+    const [currentPayments, setCurrentPayments] = useState(filterPayment());
 
     const [sortColumn, setSortColumn] = useState("status");
     const [sortDirection, setSortDirection] = useState("asc");
@@ -68,29 +60,35 @@ export const Payments = () => {
         }
     };
 
-    paymentsData.sort((a, b) => {
-        const isAsc = sortDirection === "asc" ? 1 : -1;
-        if (a[sortColumn] < b[sortColumn]) {
-            return -1 * isAsc;
-        } else if (a[sortColumn] > b[sortColumn]) {
-            return 1 * isAsc;
-        } else {
-            return 0;
-        }
-    });
+    currentPayments &&
+        currentPayments.sort((a, b) => {
+            const isAsc = sortDirection === "asc" ? 1 : -1;
+            if (a[sortColumn] < b[sortColumn]) {
+                return -1 * isAsc;
+            } else if (a[sortColumn] > b[sortColumn]) {
+                return 1 * isAsc;
+            } else {
+                return 0;
+            }
+        });
 
     useEffect(() => {
+        actions.getAllPayments();
+        actions.getAllClients();
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 2000);
-        actions.getAllPayments();
-        actions.getAllClients();
         return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
         setPaymentData(store.payments);
+        setCurrentPayments(filterPayment());
     }, [store.payments]);
+
+    useEffect(() => {
+        setCurrentPayments(filterPayment());
+    }, [customerFilter]);
 
     const handleAddPayment = () => {
         navigate("/steppayment");
@@ -102,7 +100,7 @@ export const Payments = () => {
                 <RingLoader color="#26C6DA" loading={isLoading} size={100} />
             </div>
         );
-    } else {
+    } else if (currentPayments) {
         return (
             <>
                 <img
@@ -113,7 +111,7 @@ export const Payments = () => {
                     <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
                         {t("payments")}
                     </h2>
-                    <div className="glass p-10 mt-5 m-auto w-11/12">
+                    <div className="glass p-10 my-5 m-auto w-11/12">
                         <div className="flex justify-between items-center mb-5 gap-6">
                             <div className="flex items-center">
                                 <label htmlFor="customerFilter">
@@ -284,7 +282,7 @@ export const Payments = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {paymentsData.map(payment => (
+                                {currentPayments.map(payment => (
                                     <tr key={payment.id}>
                                         <td className=" py-4">
                                             <span
