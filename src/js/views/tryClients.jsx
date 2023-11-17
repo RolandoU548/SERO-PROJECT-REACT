@@ -38,39 +38,37 @@ export const TryClients = () => {
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients =
-        localStorage.getItem('data') &&
-        localStorage
-            .getItem('data')
-            // .filter(
-            //     data =>
-            //         data.name
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase()) ||
-            //         data.lastname
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase()) ||
-            //         data.email
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase()) ||
-            //         data.phone
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase()) ||
-            //         client.business
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase()) ||
-            //         data.description
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase()) ||
-            //         data.status
-            //             .toLowerCase()
-            //             .includes(searchTerm.toLowerCase())
-            // )
-            // .sort((a, b) =>
-            //     sortOrder.ascending
-            //         ? a[sortOrder.column].localeCompare(b[sortOrder.column])
-            //         : b[sortOrder.column].localeCompare(a[sortOrder.column])
-            // )
-            // .slice(indexOfFirstClient, indexOfLastClient);
+        localStorage.getItem("data") && localStorage.getItem("data");
+    // .filter(
+    //     data =>
+    //         data.name
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase()) ||
+    //         data.lastname
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase()) ||
+    //         data.email
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase()) ||
+    //         data.phone
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase()) ||
+    //         client.business
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase()) ||
+    //         data.description
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase()) ||
+    //         data.status
+    //             .toLowerCase()
+    //             .includes(searchTerm.toLowerCase())
+    // )
+    // .sort((a, b) =>
+    //     sortOrder.ascending
+    //         ? a[sortOrder.column].localeCompare(b[sortOrder.column])
+    //         : b[sortOrder.column].localeCompare(a[sortOrder.column])
+    // )
+    // .slice(indexOfFirstClient, indexOfLastClient);
 
     // Labels Filtrados
     // const sortClients = (clients, column, ascending) => {
@@ -217,7 +215,8 @@ export const TryClients = () => {
                                                 <img
                                                     src={data.image}
                                                     alt={data.name}
-                    data        className="h-20 w-20 object-cover rounded-full inline-block"
+                                                    data
+                                                    className="h-20 w-20 object-cover rounded-full inline-block"
                                                 />
                                             ) : (
                                                 <i
@@ -242,10 +241,7 @@ export const TryClients = () => {
                                             {data.business.substring(0, 30)}
                                         </td>
                                         <td className="px-4 py-2 text-center">
-                                            {data.description.substring(
-                                                0,
-                                                30
-                                            )}
+                                            {data.description.substring(0, 30)}
                                         </td>
                                         <td className="px-4 py-2 text-center">
                                             <div
@@ -287,8 +283,8 @@ export const TryClients = () => {
                     <div className="flex justify-between items-center mt-5">
                         <div className="tiny:w-96 text-gray-700 dark:text-gray-600">
                             {t("showing")} {indexOfFirstClient + 1} {t("to")}{" "}
-                            {indexOfLastClient} {t("of")} {localStorage.getItem('data').length}{" "}
-                            {t("entries")}
+                            {indexOfLastClient} {t("of")}{" "}
+                            {localStorage.getItem("data").length} {t("entries")}
                         </div>
                         <div className="w-full overflow-auto flex justify-end">
                             <ul
@@ -307,8 +303,8 @@ export const TryClients = () => {
                                 {Array.from(
                                     {
                                         length: Math.ceil(
-                                            localStorage.getItem('data').length /
-                                                clientsPerPage
+                                            localStorage.getItem("data")
+                                                .length / clientsPerPage
                                         )
                                     },
                                     (_, i) => (
@@ -336,11 +332,11 @@ export const TryClients = () => {
                                         disabled={
                                             currentPage ===
                                                 Math.ceil(
-                                                    localStorage.getItem('data')
+                                                    localStorage.getItem("data")
                                                         .length / clientsPerPage
                                                 ) ||
-                                            localStorage.getItem('data').length <
-                                                1
+                                            localStorage.getItem("data")
+                                                .length < 1
                                         }>
                                         <span>{t("next")}</span>
                                     </button>
