@@ -36,7 +36,7 @@ export const PrivateNavbar = () => {
             link: "/forms",
             icon: TbReportAnalytics
         },
-        { name: t2("tasks"), link: "/tasks", icon: FaTasks },
+        // { name: t2("tasks"), link: "/tasks", icon: FaTasks },
         {
             name: t2("payments"),
             link: "/payments",

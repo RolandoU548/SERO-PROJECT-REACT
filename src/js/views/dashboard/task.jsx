@@ -39,15 +39,15 @@ export const Task = ({ task, onDelete, onUpdateStatus }) => {
                     </button>
                 </div>
             </div>
-            <p className="text-gray-700">{task.description}</p>
+            <p className="dark:text-black text-white">{task.description}</p>
             <div className="flex justify-between items-center mt-2">
-                <span className="text-gray-700">{task.assignedTo}</span>
+                <span className="dark:text-black text-white">{task.assignedTo}</span>
                 <div className="flex items-center">
                     <button className="mr-2" onClick={handleDelete}>
                         <FaTrashAlt className="h-5 w-5 text-red-500" />
                     </button>
                     <button>
-                        <HiPencilAlt className="h-5 w-5 text-blue-500" />
+                        <HiPencilAlt className="h-5 w-5 text-cyan-300 dark:text-cyan-400" />
                     </button>
                 </div>
             </div>
