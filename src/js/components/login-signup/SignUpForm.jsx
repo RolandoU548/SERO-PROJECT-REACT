@@ -36,7 +36,7 @@ export const SignUpForm = ({
     } = useForm();
 
     const submit = async data => {
-        data.role = ["user", "admin"];
+        data.role = ["user"];
         const respuesta = await actions.createUser(data);
         if (respuesta?.message === `User ${data.email} already exists`) {
             toast.error(`${data.email} ${t("userAlreadyExists")}`, {

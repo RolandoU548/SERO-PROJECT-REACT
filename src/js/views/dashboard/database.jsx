@@ -51,13 +51,13 @@ export const Database = () => {
     const hotTableComponent = useRef(null);
 
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
         actions.getRows().then(rows => {
-            if (rows.info.text) {
+            if (rows.info?.text) {
                 setRows(rows.info.text);
             }
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 2000);
         });
     }, []);
 
