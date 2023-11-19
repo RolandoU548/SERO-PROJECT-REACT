@@ -47,7 +47,7 @@ export const Functionalities = () => {
                 title={t("clientsCard")}
                 paragraph={t("clients1")}
                 image="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fapp%2FClientsCardBG.jpg?alt=media&token=f601f515-64e0-4fe4-a297-1b999876d15a"
-                to="/tryClients"
+                to="/signup"
 
             />
             {/* Panel de Control */}
