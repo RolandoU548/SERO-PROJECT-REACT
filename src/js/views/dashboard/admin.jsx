@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import "../../../css/app.css";
 import "../../../css/glass.css";
+import { RingLoader } from "react-spinners";
 import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 import { UpdateUserModal } from "../../components/adminView/UpdateUserModal";
 import { DeleteUserModal } from "../../components/adminView/DeleteUserModal";
@@ -11,13 +12,16 @@ import { useTranslation } from "react-i18next";
 export const Admin = () => {
     const [t] = useTranslation("createUser");
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
     const [user, setUser] = useState();
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        actions.getAllUsers(store.token);
+        actions.getAllUsers(store.token).then(() => {
+            setIsLoading(false);
+        });
     }, []);
 
     const [searchTerm, setSearchTerm] = useState("");
@@ -89,7 +93,13 @@ export const Admin = () => {
             ascending: sortOrder.column === column ? !sortOrder.ascending : true
         });
     };
-
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <RingLoader color="#26C6DA" loading={isLoading} size={100} />
+            </div>
+        );
+    }
     if (currentUsers) {
         return (
             <>

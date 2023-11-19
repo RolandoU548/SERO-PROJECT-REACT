@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef, useContext } from "react";
+import { React, useState, useRef } from "react";
 import "../../css/app.css";
 import "../../css/glass.css";
 import { useTranslation } from "react-i18next";
@@ -6,7 +6,7 @@ import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import { registerLanguageDictionary, esMX, enUS } from "handsontable/i18n";
 import "handsontable/dist/handsontable.full.min.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 registerAllModules();
 registerLanguageDictionary(enUS);
@@ -52,9 +52,7 @@ export const TryDatabase = () => {
                             <p>{t("downloadFile")}</p>
                         </div>
                         <Link to="/signup">
-                            <div
-                                className="flex h-12 w-40 justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                                >
+                            <div className="flex h-12 w-40 justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300">
                                 <p>{t("saveTable")}</p>
                             </div>
                         </Link>

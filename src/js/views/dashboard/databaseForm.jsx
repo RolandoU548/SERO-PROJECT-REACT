@@ -55,9 +55,7 @@ export const DatabaseForm = () => {
             const result = await actions.columnsInvitationDbForm(dbhash);
             console.log(result);
             const cols = result != null ? result.columns : null;
-            setTimeout(() => {
-                setColumns(cols);
-            }, 2000);
+            setColumns(cols);
         })();
     });
 

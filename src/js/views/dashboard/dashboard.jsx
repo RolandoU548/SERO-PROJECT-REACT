@@ -20,14 +20,14 @@ export const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
+        actions.getAllClients().then(() => {
+            setNumClients(store.clients.length);
+        });
+        actions.getAllPayments().then(() => {
+            setNumPayments(store.payments.length);
+        });
+        actions.getAllTask();
         setTimeout(() => {
-            actions.getAllClients().then(() => {
-                setNumClients(store.clients.length);
-            });
-            actions.getAllPayments().then(() => {
-                setNumPayments(store.payments.length);
-            });
-            actions.getAllTask();
             setIsLoading(false);
         }, 2000);
     }, []);

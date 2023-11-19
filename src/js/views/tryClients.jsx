@@ -27,13 +27,6 @@ export const TryClients = () => {
         ascending: true
     });
 
-    useEffect(() => {
-        setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-    }, []);
-
     // Usuario actual
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexOfFirstClient = indexOfLastClient - clientsPerPage;
