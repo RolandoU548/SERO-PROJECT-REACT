@@ -27,7 +27,7 @@ export const ClientProfile = ({ client, setIsOpen }) => {
     const fileInputRef = useRef(null);
 
     const notify = () =>
-        toast.success(t("clientUpdate"), {
+        toast.success(t("clientUpdated"), {
             position: "bottom-right",
             style: {
                 background: "rgba(23, 23, 23, 0.2)",
