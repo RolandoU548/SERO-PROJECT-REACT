@@ -65,5 +65,6 @@
     "contactmessage": "Contact Messages",
     "namelastname": "Name and Last name",
     "toastdeleted": "Message Deleted",
-    "filesdeleted": "Files Deleted"
+    "filesdeleted": "Files Deleted",
+    "clientUpdated": "Client Updated"
 }

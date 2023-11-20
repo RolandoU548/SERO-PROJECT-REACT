@@ -17,7 +17,7 @@ export const CreditMemo = ({ id }) => {
     const [t] = useTranslation("payments");
 
     const notify = () =>
-        toast.error(t("creditSuccess"), {
+        toast.success(t("creditSuccess"), {
             position: "bottom-right",
             style: {
                 background: "rgba(23, 23, 23, 0.2)",

@@ -20,10 +20,15 @@ export const Payments = () => {
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const [customerFilter, setCustomerFilter] = useState("");
-    const [fromDateFilter, setFromDateFilter] = useState("");
-    const [toDateFilter, setToDateFilter] = useState("");
-    const [invoiceFilter, setInvoiceFilter] = useState("");
     const [paymentsData, setPaymentData] = useState(store.payments);
+
+    useEffect(() => {
+        actions.getAllPayments();
+        actions.getAllClients();
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+    }, []);
 
     const filterPayment = () => {
         if (store.clients.length > 0 && paymentsData.length > 0) {
@@ -73,14 +78,6 @@ export const Payments = () => {
         });
 
     useEffect(() => {
-        actions.getAllPayments();
-        actions.getAllClients();
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-    }, []);
-
-    useEffect(() => {
         setPaymentData(store.payments);
         setCurrentPayments(filterPayment());
     }, [store.payments]);
@@ -126,51 +123,6 @@ export const Payments = () => {
                                     }
                                     placeholder={t("filterByCustomer")}
                                     className="border border-gray-400 rounded py-1 px-2 text-black"
-                                />
-                                <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                                    <FaSearch className="w-4 h-4 text-gray-400" />
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex items-center">
-                            <label
-                                htmlFor="fromDateFilter"
-                                className="mr-2 ml-2">
-                                {t("from")}:
-                            </label>
-                            <input
-                                type="date"
-                                id="fromDateFilter"
-                                value={fromDateFilter}
-                                onChange={e =>
-                                    setFromDateFilter(e.target.value)
-                                }
-                                className="border border-gray-400 rounded py-1 px-2 text-gray-400"
-                            />
-                            <label htmlFor="toDateFilter" className="mr-2 ml-2">
-                                {t("to")}:
-                            </label>
-                            <input
-                                type="date"
-                                id="toDateFilter"
-                                value={toDateFilter}
-                                onChange={e => setToDateFilter(e.target.value)}
-                                className="border border-gray-400 rounded py-1 px-2 text-gray-400"
-                            />
-                        </div>
-                        <div className="flex items-center">
-                            <label htmlFor="invoiceFilter">
-                                {t("invoice")}:
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    id="invoiceFilter"
-                                    value={invoiceFilter}
-                                    onChange={e =>
-                                        setInvoiceFilter(e.target.value)
-                                    }
-                                    className="border border-gray-400 rounded py-1 px-2 text-black ml-2"
                                 />
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-2">
                                     <FaSearch className="w-4 h-4 text-gray-400" />

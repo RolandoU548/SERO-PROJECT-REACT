@@ -50,5 +50,10 @@
     "actions": "Acciones",
     "from": "Desde",
     "to": "Hasta",
-    "add": "Nuevo"
+    "add": "Nuevo",
+    "showing": "Mostrando",
+    "to1": "a",
+    "of": "de",
+    "entries": "Entradas",
+    "previous": "Anterior"
 }
