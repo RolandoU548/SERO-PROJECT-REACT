@@ -1,6 +1,5 @@
 .logo {
-  postion: relative;
-  length: 50%;
+  position: relative;
 }
 
 .animated {
@@ -67,4 +66,4 @@
 .tada {
   -webkit-animation-name: tada;
   animation-name: tada;
-}
+}/*# sourceMappingURL=tadaAnimation.css.map */

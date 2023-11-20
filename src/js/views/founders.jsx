@@ -131,7 +131,7 @@ export const Founder = () => {
             <h2 className="mix-blend-difference font-black z-10 text-center mt-16 w-full text-5xl">
                 {t("backEndFrameworks")}
             </h2>
-            <div className="flex flex-wrap gap-2 glass max-w-[30rem] w-11/12 p-5 mt-12 justify-evenly m-auto items-center">
+            <div className="flex flex-wrap gap-2 glass max-w-[30rem] w-11/12 p-5 my-12 justify-evenly m-auto items-center">
                 <div className="p-3 flex items-center logo animated tada">
                     <img src="jwt-logo.png" className="rounded-lg w-48" />
                 </div>
