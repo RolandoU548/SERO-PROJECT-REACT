@@ -458,7 +458,7 @@ export const StepPayment = () => {
                                                             boxSizing:
                                                                 "border-box",
                                                             backgroundImage:
-                                                                "url('../../../../public/bg-card.jpeg')",
+                                                                "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
                                                             backgroundColor:
                                                                 "gray",
                                                             backgroundSize:
@@ -479,7 +479,7 @@ export const StepPayment = () => {
                                                             <div>
                                                                 <img
                                                                     className="w-25 h-10 mt-2"
-                                                                    src="../../../../public/visa-logo-png-2026.png"
+                                                                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
                                                                 />
                                                             </div>
                                                         </div>
@@ -577,7 +577,7 @@ export const StepPayment = () => {
                                                             boxSizing:
                                                                 "border-box",
                                                             backgroundImage:
-                                                                "url('../../../../public/bg-card.jpeg')",
+                                                                "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
                                                             backgroundColor:
                                                                 "gray",
                                                             backgroundSize:
@@ -600,7 +600,7 @@ export const StepPayment = () => {
                                                             <div>
                                                                 <img
                                                                     className="w-25 h-10 mt-2"
-                                                                    src="../../../../public/visa-logo-png-2026.png"
+                                                                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
                                                                 />
                                                             </div>
                                                         </div>

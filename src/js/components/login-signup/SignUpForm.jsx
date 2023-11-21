@@ -69,7 +69,7 @@ export const SignUpForm = ({
             <label className="dark:text-white text-xl">
                 {name}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black sm:text-base"
                     placeholder={exampleName}
                     type="text"
                     autoComplete="name"
@@ -90,7 +90,7 @@ export const SignUpForm = ({
             <label className="dark:text-white text-xl">
                 {lastName}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black sm:text-base"
                     placeholder={exampleLastName}
                     type="text"
                     autoComplete="family-name"
@@ -114,7 +114,7 @@ export const SignUpForm = ({
             <label className="dark:text-white text-xl">
                 {email}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black sm:text-base"
                     placeholder={exampleEmail}
                     type="text"
                     autoComplete="email"
@@ -143,7 +143,7 @@ export const SignUpForm = ({
             <label className="dark:text-white text-xl">
                 {password}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black sm:text-base"
                     placeholder={examplePassword}
                     type="password"
                     autoComplete="new-password"
@@ -171,7 +171,7 @@ export const SignUpForm = ({
             <label className="dark:text-white text-xl">
                 {t("confirmPassword")}
                 <input
-                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black"
+                    className="w-full p-2 text-xl border rounded focus:outline-blue-600 text-black sm:text-base"
                     placeholder={t("confirmPassword")}
                     type="password"
                     autoComplete="new-password"

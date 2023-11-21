@@ -89,14 +89,6 @@ export const LoginSignupCard = props => {
                             {t("agreement")}
                         </p>
                     </SignUpForm>
-                    {/* <div className="border-b text-center">
-                        <div className="px-2 inline-block text-sm text-gray-600 tracking-wide bg-white transform translate-y-1/2 dark:bg-black dark:text-white rounded transition duration-500">
-                            {t("signupOption")}
-                        </div>
-                    </div>
-                    <div className="mt-5">
-                        <Buttons buttonGoogle={t("signupGoogle")} />
-                    </div> */}
                     <p className="text-center text-sm text-gray-600 font-medium dark:text-white mt-6 tracking-wide">
                         {t("account")}
                         <button
