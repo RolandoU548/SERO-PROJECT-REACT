@@ -15,7 +15,10 @@ export const TryForms = () => {
                 muted
                 playsInline
                 className="invert w-screen h-screen -z-50 fixed top-0 left-0 object-cover dark:invert-0 transition duration-500">
-                <source src="DatabaseBG.mp4" type="video/mp4" />
+                <source
+                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/videos%2FDatabaseBG.mp4?alt=media&token=c3f73120-40c7-41d2-bcbf-c23dadd86dc7"
+                    type="video/mp4"
+                />
             </video>
             <div className="font-serif text-black dark:text-white mt-28">
                 <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
