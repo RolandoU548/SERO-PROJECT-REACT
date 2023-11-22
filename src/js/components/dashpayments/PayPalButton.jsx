@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
-// import PropTypes from "prop-types";
 
 export const PayPalButton = () => {
     const { t } = useTranslation("payments");
@@ -27,8 +26,7 @@ export const PayPalButton = () => {
 
     useEffect(() => {
         const script = document.createElement("script");
-        script.src =
-            "https://www.paypal.com/sdk/js?client-id=AWx2fi2KjROLraDYpuPyIK0QzJl93tbq7a7QUjKQqfX7UCxD_r4hWz_QFQUK0ASU5e-Y1aAHkpguC1SE";
+        script.src = import.meta.env.VITE_PAYPAL_CLIENT_ID;
         script.async = true;
         document.body.appendChild(script);
 
@@ -36,7 +34,6 @@ export const PayPalButton = () => {
             window.paypal
                 .Buttons({
                     createOrder: (data, actions) => {
-                        // Set up the transaction details
                         return actions.order.create({
                             purchase_units: [
                                 {
@@ -48,9 +45,7 @@ export const PayPalButton = () => {
                         });
                     },
                     onApprove: (data, actions) => {
-                        // Capture the funds from the transaction
                         return actions.order.capture().then(details => {
-                            // Show a success message to the user
                             notify();
                             navigate("/steppayment");
                         });
@@ -90,6 +85,3 @@ export const PayPalButton = () => {
         </>
     );
 };
-// PayPalButton.propTypes = {
-//     handleBack: PropTypes.func.isRequired
-// };

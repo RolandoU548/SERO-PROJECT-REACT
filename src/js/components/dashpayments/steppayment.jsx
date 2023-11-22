@@ -10,7 +10,6 @@ import { ref as storageRef, uploadBytes } from "firebase/storage";
 import ReactCardFlip from "react-card-flip";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { PayPalButton } from "./PayPalButton";
 
 export const StepPayment = () => {
     const navigate = useNavigate();
@@ -19,7 +18,6 @@ export const StepPayment = () => {
     const [t] = useTranslation("payments");
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
-    const [paymentMethod, setPaymentMethod] = useState("creditCard");
     const [fileList, setFileList] = useState([]);
     const [filesUploaded, setFilesUploaded] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
@@ -81,36 +79,48 @@ export const StepPayment = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault();
+        handleCreditCard();
         setStep(2);
     };
 
-    const handlePaymentMethod = method => {
-        const metodo = method === "paypal" ? "Paypal" : "Credit Card";
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            method: metodo
-        }));
-        console.log(method);
+    const handleCreditCard = () => {
+        actions.storePayments(
+            {
+                ...formData,
+                method: "creditCard"
+            },
+            formData
+        );
     };
 
     const handlePaypal = () => {
-        actions.storePayments(formData);
+        actions.storePayments(
+            {
+                ...formData,
+                method: "Paypal"
+            },
+            formData
+        );
         navigate("/paypalbutton");
+
+        console.log(formData);
     };
 
     useEffect(() => {
-        // setFormData(prevFormData => ({
-        //     ...prevFormData,
-        //     method: paymentMethod
-        // }));
+        actions.storePayments(
+            {
+                ...store.paymentform,
+                method: "creditCard"
+            },
+            store.paymentform
+        );
         if (store.paymentform.step) {
             setStep(store.paymentform.step);
-            // return () => actions.storePayments({});
         }
     }, []);
 
     const handlePaymentSubmit = () => {
-        actions.createPayment({ ...formData, status: "Paid" });
+        actions.createPayment({ ...store.paymentform, status: "Paid" });
         notify();
         setStep(3);
     };
@@ -122,7 +132,6 @@ export const StepPayment = () => {
     const handleReset = () => {
         setStep(1);
         setFormData({});
-        // setPaymentMethod("creditCard");
     };
 
     const generateCurrentDate = () => {
@@ -417,251 +426,211 @@ export const StepPayment = () => {
                             </div>
                         )}
                         {step === 2 && (
-                            <div className="glass p-10 mt-5 m-auto w-11/12">
+                            <div className="glass p-10 my-6 m-auto w-11/12">
                                 <form onSubmit={handlePaymentSubmit}>
                                     <div className="flex justify-center items-center mb-10">
                                         <button
                                             type="button"
-                                            // className={`${
-                                            //     paymentMethod === "creditCard"
-                                            //         ? "bg-black text-cyan-300 border border-cyan-300"
-                                            //         : "bg-gray-200 text-gray-700"
-                                            // } py-2 px-4 rounded-l-lg`}
-                                            className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-l-lg"
-                                            onClick={() =>
-                                                handlePaymentMethod(
-                                                    "creditCard"
-                                                )
-                                            }>
+                                            className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-l-lg">
                                             <FaCreditCard className="h-5 w-5 mr-2" />
                                             {t("creditcard")}
                                         </button>
                                         <button
                                             type="button"
-                                            // className={`${
-                                            //     paymentMethod === "paypal"
-                                            //         ? "bg-black text-cyan-300 border border-cyan-300"
-                                            //         : "bg-black text-cyan-300 border border-cyan-300"
-                                            // } py-2 px-4 rounded-r-lg`}
-                                            className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-l-lg"
+                                            className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-r-lg"
                                             onClick={() => {
                                                 handlePaypal();
-                                                handlePaymentMethod("paypal");
                                             }}>
                                             <FaCreditCard className="h-5 w-5 mr-2" />
                                             {t("paypal")}
                                         </button>
                                     </div>
-                                    {paymentMethod === "creditCard" && (
-                                        <div>
-                                            <ReactCardFlip
-                                                isFlipped={isFlipped}
-                                                flipDirection="horizontal">
-                                                <div key="front">
-                                                    <div
-                                                        className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl`}
-                                                        style={{
-                                                            width: "512px",
-                                                            height: "288px",
-                                                            display: "flex",
-                                                            flexDirection:
-                                                                "column",
-                                                            justifyContent:
-                                                                "space-between",
-                                                            padding: "20px",
-                                                            boxSizing:
-                                                                "border-box",
-                                                            backgroundImage:
-                                                                "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
-                                                            backgroundColor:
-                                                                "gray",
-                                                            backgroundSize:
-                                                                "cover",
-                                                            backgroundPosition:
-                                                                "center",
-                                                            position:
-                                                                "relative",
-                                                            transformOrigin:
-                                                                "center",
-                                                            transitionProperty:
-                                                                "transform"
-                                                        }}>
-                                                        <div className="flex justify-between">
-                                                            <p className="font-bold">
-                                                                {t("serobank")}
+                                    <div>
+                                        <ReactCardFlip
+                                            isFlipped={isFlipped}
+                                            flipDirection="horizontal">
+                                            <div key="front">
+                                                <div
+                                                    className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl`}
+                                                    style={{
+                                                        width: "512px",
+                                                        height: "288px",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        justifyContent:
+                                                            "space-between",
+                                                        padding: "20px",
+                                                        boxSizing: "border-box",
+                                                        backgroundImage:
+                                                            "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
+                                                        backgroundColor: "gray",
+                                                        backgroundSize: "cover",
+                                                        backgroundPosition:
+                                                            "center",
+                                                        position: "relative",
+                                                        transformOrigin:
+                                                            "center",
+                                                        transitionProperty:
+                                                            "transform"
+                                                    }}>
+                                                    <div className="flex justify-between">
+                                                        <p className="font-bold">
+                                                            {t("serobank")}
+                                                        </p>
+                                                        <div>
+                                                            <img
+                                                                className="w-25 h-10 mt-2"
+                                                                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex justify-between">
+                                                        <div className="flex flex-col w-2/3">
+                                                            <p className="font-light self-start mt-2">
+                                                                {t("name")}
                                                             </p>
-                                                            <div>
-                                                                <img
-                                                                    className="w-25 h-10 mt-2"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
+                                                            <div className="flex justify-between">
+                                                                <input
+                                                                    type="text"
+                                                                    id="cardName"
+                                                                    name="cardName"
+                                                                    className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                    placeholder="Roberto J. Vargas"
+                                                                    value={
+                                                                        cardName
+                                                                    }
+                                                                    onChange={
+                                                                        handleCardNameChange
+                                                                    }
                                                                 />
                                                             </div>
                                                         </div>
-
+                                                    </div>
+                                                    <div className="flex flex-col w-full">
                                                         <div className="flex justify-between">
-                                                            <div className="flex flex-col w-2/3">
-                                                                <p className="font-light self-start mt-2">
-                                                                    {t("name")}
-                                                                </p>
-                                                                <div className="flex justify-between">
-                                                                    <input
-                                                                        type="text"
-                                                                        id="cardName"
-                                                                        name="cardName"
-                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                        placeholder="Roberto J. Vargas"
-                                                                        value={
-                                                                            cardName
-                                                                        }
-                                                                        onChange={
-                                                                            handleCardNameChange
-                                                                        }
-                                                                    />
-                                                                </div>
-                                                            </div>
+                                                            <p className="font-light">
+                                                                {t(
+                                                                    "cardnumber"
+                                                                )}
+                                                            </p>
                                                         </div>
-                                                        <div className="flex flex-col w-full">
+                                                        <div className="flex justify-between">
+                                                            <input
+                                                                type="text"
+                                                                id="cardNumber"
+                                                                name="cardNumber"
+                                                                className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                placeholder="0000 0000 0000 0000"
+                                                                value={
+                                                                    cardNumber
+                                                                }
+                                                                onChange={
+                                                                    handleCardNumberChange
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <div className="flex flex-col w-1/2">
                                                             <div className="flex justify-between">
-                                                                <p className="font-light">
+                                                                <p className="font-light text-xs">
                                                                     {t(
-                                                                        "cardnumber"
+                                                                        "expiry"
                                                                     )}
                                                                 </p>
                                                             </div>
                                                             <div className="flex justify-between">
                                                                 <input
                                                                     type="text"
-                                                                    id="cardNumber"
-                                                                    name="cardNumber"
+                                                                    id="cardExpiration"
+                                                                    name="cardExpiration"
                                                                     className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                    placeholder="0000 0000 0000 0000"
+                                                                    placeholder={t(
+                                                                        "expirydate"
+                                                                    )}
                                                                     value={
-                                                                        cardNumber
+                                                                        cardExpiration
                                                                     }
-                                                                    onChange={
-                                                                        handleCardNumberChange
-                                                                    }
+                                                                    onChange={e => {
+                                                                        handleCardExpirationChange(
+                                                                            e
+                                                                        );
+                                                                    }}
                                                                 />
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex justify-between">
-                                                            <div className="flex flex-col w-1/2">
-                                                                <div className="flex justify-between">
-                                                                    <p className="font-light text-xs">
-                                                                        {t(
-                                                                            "expiry"
-                                                                        )}
-                                                                    </p>
-                                                                </div>
-                                                                <div className="flex justify-between">
-                                                                    <input
-                                                                        type="text"
-                                                                        id="cardExpiration"
-                                                                        name="cardExpiration"
-                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                        placeholder={t(
-                                                                            "expirydate"
-                                                                        )}
-                                                                        value={
-                                                                            cardExpiration
-                                                                        }
-                                                                        onChange={e => {
-                                                                            handleCardExpirationChange(
-                                                                                e
-                                                                            );
-                                                                        }}
-                                                                    />
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div key="back">
-                                                    <div
-                                                        className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl `}
-                                                        style={{
-                                                            width: "512px",
-                                                            height: "288px",
-                                                            display: "flex",
-                                                            flexDirection:
-                                                                "column",
-                                                            justifyContent:
-                                                                "space-between",
-                                                            padding: "20px",
-                                                            boxSizing:
-                                                                "border-box",
-                                                            backgroundImage:
-                                                                "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
-                                                            backgroundColor:
-                                                                "gray",
-                                                            backgroundSize:
-                                                                "cover",
-                                                            backgroundPosition:
-                                                                "center",
-                                                            position:
-                                                                "relative",
-                                                            transformOrigin:
-                                                                "center",
-                                                            transitionDuration:
-                                                                "2s",
-                                                            transitionProperty:
-                                                                "transform"
-                                                        }}>
-                                                        <div className="flex justify-between">
-                                                            <p className="font-bold">
-                                                                {t("serobank")}
-                                                            </p>
-                                                            <div>
-                                                                <img
-                                                                    className="w-25 h-10 mt-2"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
-                                                                />
-                                                            </div>
+                                            </div>
+                                            <div key="back">
+                                                <div
+                                                    className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl `}
+                                                    style={{
+                                                        width: "512px",
+                                                        height: "288px",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        justifyContent:
+                                                            "space-between",
+                                                        padding: "20px",
+                                                        boxSizing: "border-box",
+                                                        backgroundImage:
+                                                            "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
+                                                        backgroundColor: "gray",
+                                                        backgroundSize: "cover",
+                                                        backgroundPosition:
+                                                            "center",
+                                                        position: "relative",
+                                                        transformOrigin:
+                                                            "center",
+                                                        transitionDuration:
+                                                            "2s",
+                                                        transitionProperty:
+                                                            "transform"
+                                                    }}>
+                                                    <div className="flex justify-between">
+                                                        <p className="font-bold">
+                                                            {t("serobank")}
+                                                        </p>
+                                                        <div>
+                                                            <img
+                                                                className="w-25 h-10 mt-2"
+                                                                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
+                                                            />
                                                         </div>
-                                                        <div className="flex flex-col justify-center items-center w-full mt-16">
-                                                            <div className="flex flex-col justify-between">
-                                                                <div className="flex justify-center">
-                                                                    <p className="font-light text-xs">
-                                                                        {t(
-                                                                            "cvv"
-                                                                        )}
-                                                                    </p>
-                                                                </div>
-                                                                <div className="flex justify-between mb-24">
-                                                                    <input
-                                                                        type="text"
-                                                                        id="cardCvv"
-                                                                        name="cardCvv"
-                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                        placeholder="123"
-                                                                        value={
-                                                                            cardCvv
-                                                                        }
-                                                                        onChange={e => {
-                                                                            handleCardCvvChange(
-                                                                                e
-                                                                            );
-                                                                        }}
-                                                                    />
-                                                                </div>
+                                                    </div>
+                                                    <div className="flex flex-col justify-center items-center w-full mt-16">
+                                                        <div className="flex flex-col justify-between">
+                                                            <div className="flex justify-center">
+                                                                <p className="font-light text-xs">
+                                                                    {t("cvv")}
+                                                                </p>
+                                                            </div>
+                                                            <div className="flex justify-between mb-24">
+                                                                <input
+                                                                    type="text"
+                                                                    id="cardCvv"
+                                                                    name="cardCvv"
+                                                                    className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                    placeholder="123"
+                                                                    value={
+                                                                        cardCvv
+                                                                    }
+                                                                    onChange={e => {
+                                                                        handleCardCvvChange(
+                                                                            e
+                                                                        );
+                                                                    }}
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </ReactCardFlip>
-                                        </div>
-                                    )}
-                                    {paymentMethod === "paypal" && (
-                                        <div className="flex justify-center">
-                                            <PayPalButton
-                                                handleBack={handleBack}
-                                                handleAmountChange={
-                                                    handleAmountChange
-                                                }
-                                            />
-                                        </div>
-                                    )}
-                                    <div className="flex justify-between">
+                                            </div>
+                                        </ReactCardFlip>
+                                    </div>
+                                    <div className="flex justify-between pt-6">
                                         <button
                                             type="button"
                                             className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
@@ -679,7 +648,7 @@ export const StepPayment = () => {
                             </div>
                         )}
                         {step === 3 && (
-                            <div className="glass p-10 mt-5 m-auto w-3/4">
+                            <div className="glass p-10 my-6  m-auto w-3/4">
                                 <div className="p-5 m-auto w-15/12">
                                     <h2 className="text-2xl pb-5 font-bold mb-5 text-center">
                                         {t("paymentsummary")}
