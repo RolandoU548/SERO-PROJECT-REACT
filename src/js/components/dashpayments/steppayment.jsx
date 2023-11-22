@@ -10,6 +10,7 @@ import { ref as storageRef, uploadBytes } from "firebase/storage";
 import ReactCardFlip from "react-card-flip";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PayPalButton } from "./PayPalButton";
 
 export const StepPayment = () => {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ export const StepPayment = () => {
     const clients = store.clients;
     const [t] = useTranslation("payments");
     const [step, setStep] = useState(1);
+    const [showComponent, setShowComponent] = useState(false);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
     const [fileList, setFileList] = useState([]);
@@ -89,6 +91,10 @@ export const StepPayment = () => {
             ...prevFormData,
             method: paymentMethod
         }));
+    };
+
+    const handlePaypalClick = () => {
+        navigate("/PayPalButton", { state: { formData } });
     };
 
     useEffect(() => {
@@ -431,9 +437,9 @@ export const StepPayment = () => {
                                                     ? "bg-black text-cyan-300 border border-cyan-300"
                                                     : "bg-black text-cyan-300 border border-cyan-300"
                                             } py-2 px-4 rounded-r-lg`}
-                                            onClick={() =>
-                                                navigate("/PayPalButton")
-                                            }>
+                                            onClick={() => {
+                                                handlePaypalClick();
+                                            }}>
                                             <FaCreditCard className="h-5 w-5 mr-2" />
                                             {t("paypal")}
                                         </button>
@@ -635,6 +641,16 @@ export const StepPayment = () => {
                                                     </div>
                                                 </div>
                                             </ReactCardFlip>
+                                        </div>
+                                    )}
+                                    {paymentMethod === "paypal" && (
+                                        <div className="flex justify-center">
+                                            <PayPalButton
+                                                handleBack={handleBack}
+                                                handleAmountChange={
+                                                    handleAmountChange
+                                                }
+                                            />
                                         </div>
                                     )}
                                     <div className="flex justify-between">
