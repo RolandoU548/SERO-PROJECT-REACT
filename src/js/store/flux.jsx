@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             tryclients: [],
             users: [],
             payments: [],
-            tasks: []
+            tasks: [],
+            paymentform: {}
         },
         actions: {
             changeTheme: theme => {
@@ -337,6 +338,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error(error);
                 }
             },
+
+            storePayments: data => {
+                setStore({ paymentform: data });
+                return data;
+            },
+
             updatePayment: async (id, payment) => {
                 try {
                     const response = await fetch(

@@ -18,7 +18,6 @@ export const StepPayment = () => {
     const clients = store.clients;
     const [t] = useTranslation("payments");
     const [step, setStep] = useState(1);
-    const [showComponent, setShowComponent] = useState(false);
     const [formData, setFormData] = useState({});
     const [paymentMethod, setPaymentMethod] = useState("creditCard");
     const [fileList, setFileList] = useState([]);
@@ -86,22 +85,28 @@ export const StepPayment = () => {
     };
 
     const handlePaymentMethod = method => {
-        const paymentMethod = method === "paypal" ? "Paypal" : "Credit Card";
+        const metodo = method === "paypal" ? "Paypal" : "Credit Card";
         setFormData(prevFormData => ({
             ...prevFormData,
-            method: paymentMethod
+            method: metodo
         }));
+        console.log(method);
     };
 
-    const handlePaypalClick = () => {
-        navigate("/PayPalButton", { state: { formData } });
+    const handlePaypal = () => {
+        actions.storePayments(formData);
+        navigate("/paypalbutton");
     };
 
     useEffect(() => {
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            method: "Credit Card"
-        }));
+        // setFormData(prevFormData => ({
+        //     ...prevFormData,
+        //     method: paymentMethod
+        // }));
+        if (store.paymentform.step) {
+            setStep(store.paymentform.step);
+            // return () => actions.storePayments({});
+        }
     }, []);
 
     const handlePaymentSubmit = () => {
@@ -117,7 +122,7 @@ export const StepPayment = () => {
     const handleReset = () => {
         setStep(1);
         setFormData({});
-        setPaymentMethod("creditCard");
+        // setPaymentMethod("creditCard");
     };
 
     const generateCurrentDate = () => {
@@ -417,11 +422,12 @@ export const StepPayment = () => {
                                     <div className="flex justify-center items-center mb-10">
                                         <button
                                             type="button"
-                                            className={`${
-                                                paymentMethod === "creditCard"
-                                                    ? "bg-black text-cyan-300 border border-cyan-300"
-                                                    : "bg-gray-200 text-gray-700"
-                                            } py-2 px-4 rounded-l-lg`}
+                                            // className={`${
+                                            //     paymentMethod === "creditCard"
+                                            //         ? "bg-black text-cyan-300 border border-cyan-300"
+                                            //         : "bg-gray-200 text-gray-700"
+                                            // } py-2 px-4 rounded-l-lg`}
+                                            className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-l-lg"
                                             onClick={() =>
                                                 handlePaymentMethod(
                                                     "creditCard"
@@ -432,13 +438,15 @@ export const StepPayment = () => {
                                         </button>
                                         <button
                                             type="button"
-                                            className={`${
-                                                paymentMethod === "paypal"
-                                                    ? "bg-black text-cyan-300 border border-cyan-300"
-                                                    : "bg-black text-cyan-300 border border-cyan-300"
-                                            } py-2 px-4 rounded-r-lg`}
+                                            // className={`${
+                                            //     paymentMethod === "paypal"
+                                            //         ? "bg-black text-cyan-300 border border-cyan-300"
+                                            //         : "bg-black text-cyan-300 border border-cyan-300"
+                                            // } py-2 px-4 rounded-r-lg`}
+                                            className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-l-lg"
                                             onClick={() => {
-                                                handlePaypalClick();
+                                                handlePaypal();
+                                                handlePaymentMethod("paypal");
                                             }}>
                                             <FaCreditCard className="h-5 w-5 mr-2" />
                                             {t("paypal")}
@@ -694,31 +702,33 @@ export const StepPayment = () => {
                                                 {t("client")}:
                                             </p>
                                             <p className="font-bold text-lg">
-                                                {t("mehtod")}:
+                                                {t("method")}:
                                             </p>
                                         </div>
                                         <div className="font-bold text-lg">
-                                            <p>{formData.invoice}</p>
-                                            <p>{formData.date}</p>
-                                            <p>{formData.service}</p>
-                                            <p>{formData.amount}</p>
+                                            <p>{store.paymentform.invoice}</p>
+                                            <p>{store.paymentform.date}</p>
+                                            <p>{store.paymentform.service}</p>
+                                            <p>{store.paymentform.amount}</p>
                                             <p>
                                                 {
                                                     store.clients.find(
                                                         client =>
                                                             client.id ===
-                                                            formData.client
+                                                            store.paymentform
+                                                                .client
                                                     )?.name
                                                 }{" "}
                                                 {
                                                     store.clients.find(
                                                         client =>
                                                             client.id ===
-                                                            formData.client
+                                                            store.paymentform
+                                                                .client
                                                     )?.lastname
                                                 }
                                             </p>
-                                            <p>{formData.method}</p>
+                                            <p>{store.paymentform.method}</p>
                                         </div>
                                     </div>
                                     <div className="flex flex-col items-center justify-center mt-6">

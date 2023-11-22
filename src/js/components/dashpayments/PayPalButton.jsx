@@ -1,7 +1,30 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useContext } from "react";
+import { Context } from "../../store/appContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
+// import PropTypes from "prop-types";
 
 export const PayPalButton = () => {
+    const { t } = useTranslation("payments");
+    const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
+
+    const paypalAmount = store.paymentform.amount;
+
+    const notify = () =>
+        toast.success(t("paymentpaypal"), {
+            position: "bottom-right",
+            style: {
+                background: "rgba(23, 23, 23, 0.2)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
+                color: "#fff",
+                borderRadius: "10px"
+            }
+        });
+
     useEffect(() => {
         const script = document.createElement("script");
         script.src =
@@ -18,7 +41,7 @@ export const PayPalButton = () => {
                             purchase_units: [
                                 {
                                     amount: {
-                                        value: "10.00"
+                                        value: paypalAmount
                                     }
                                 }
                             ]
@@ -28,11 +51,13 @@ export const PayPalButton = () => {
                         // Capture the funds from the transaction
                         return actions.order.capture().then(details => {
                             // Show a success message to the user
-                            console.log("Payment completed successfully!");
+                            notify();
+                            navigate("/steppayment");
                         });
                     }
                 })
                 .render("#paypal-button-container");
+            actions.storePayments({ ...store.paymentform, step: 3 });
         };
     }, []);
 
@@ -51,7 +76,13 @@ export const PayPalButton = () => {
                     <button
                         type="button"
                         className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
-                        onClick={handleBack}>
+                        onClick={() => {
+                            navigate("/steppayment");
+                            actions.storePayments({
+                                ...store.paymentform,
+                                step: 2
+                            });
+                        }}>
                         Back
                     </button>
                 </div>
@@ -59,6 +90,6 @@ export const PayPalButton = () => {
         </>
     );
 };
-PayPalButton.propTypes = {
-    handleBack: PropTypes.func.isRequired
-};
+// PayPalButton.propTypes = {
+//     handleBack: PropTypes.func.isRequired
+// };
