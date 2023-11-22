@@ -66,7 +66,7 @@ export const LoginSignupCard = props => {
         <Base>
             <ReactCardFlip isFlipped={flip} flipDirection="vertical">
                 {/* SIGNUP */}
-                <div className="m-auto lg:my-20 my-20 w-[25rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative h-[calc(100vh-80px)]">
+                <div className="m-auto lg:my-20 my-20 w-[35rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative h-[calc(100vh-80px)]">
                     <BackArrow
                         className="absolute top-3 right-4 md:hidden"
                         to="/"
@@ -99,7 +99,7 @@ export const LoginSignupCard = props => {
                     </p>
                 </div>
                 {/* LOGIN */}
-                <div className="m-auto lg:my-20 my-20 w-[25rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative h-[calc(100vh-80px)]">
+                <div className="m-auto lg:my-20 my-20 w-[35rem] max-w-[95%] items-center glass py-10 px-8 resp:px-4 relative h-[calc(100vh-80px)]">
                     <BackArrow
                         className="absolute top-4 right-5 md:hidden"
                         to="/"
