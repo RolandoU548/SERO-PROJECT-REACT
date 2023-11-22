@@ -49,11 +49,11 @@ export const Calendar = () => {
 
     return (
         <>
-            <div className="text-sm font-medium text-white items-end flex justify-between mb-12">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
+            <div className="text-sm font-medium text-white items-end flex flex-col justify-between mb-12">
+                <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("calendar")}
-                </h1>
-                <div className="w-96 items-center flex h-10">
+                </h2>
+                <div className="w-full sm:w-96 items-center flex h-10 mt-6">
                     <button
                         onClick={handlePrevYear}
                         className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
@@ -64,7 +64,7 @@ export const Calendar = () => {
                         className="mr-2 px-3 bg-cyan-300 text-black rounded-full">
                         <FaChevronLeft />
                     </button>
-                    <div className="text-md font-bold dark:text-white text-black">
+                    <div className="text-md font-bold dark:text-white text-black text-center">
                         {t(currentMonth.format("MMMM YYYY"))}
                     </div>
                     <button
@@ -79,26 +79,26 @@ export const Calendar = () => {
                     </button>
                 </div>
             </div>
-            <div className="grid grid-cols-7 gap-2">
-                <div className="text-sm font-bold text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-7 gap-2">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("sunday")}
                 </div>
-                <div className="text-sm font-bold text-white">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("monday")}
                 </div>
-                <div className="text-sm font-bold text-white">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("tuesday")}
                 </div>
-                <div className="text-sm font-bold text-white">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("wednesday")}
                 </div>
-                <div className="text-sm font-bold text-white">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("thursday")}
                 </div>
-                <div className="text-sm font-bold text-white">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("friday")}
                 </div>
-                <div className="text-sm font-bold text-white">
+                <div className="hidden sm:flex text-sm font-bold text-white">
                     {t("saturday")}
                 </div>
                 {weeks.map((week, index) => (

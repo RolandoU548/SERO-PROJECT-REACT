@@ -101,9 +101,9 @@ export const CreateClient = () => {
                 className="invert w-screen h-screen -z-50 fixed object-cover top-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="font-serif dark:text-white mt-28">
-                <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 m-auto">
+                <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("createClient")}
-                </h1>
+                </h2>
                 <div className="glass p-14 mt-5 m-auto w-11/12">
                     <form onSubmit={handleSubmit(submit)} className="space-y-6">
                         <div className="grid grid-cols-1 gap-4">
@@ -211,7 +211,7 @@ export const CreateClient = () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label>
                                     {t("phone")}
@@ -378,51 +378,51 @@ export const CreateClient = () => {
                                         )}
                                     </label>
                                 </div>
-                                <div>
-                                    <div>
-                                        <label>{t("image")}</label>
-                                        <div className="relative rounded-md shadow-sm">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
-                                            <input
-                                                type="file"
-                                                accept="image/*"
-                                                className="hidden"
-                                                ref={fileInputRef}
-                                                onChange={handleImageChange}
-                                            />
-                                            <button
-                                                type="button"
-                                                className="flex text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 block w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
-                                                onClick={handleButtonClick}>
-                                                <FaImage className="h-5 w-5" />
-                                                {image
-                                                    ? t("changeImage")
-                                                    : t("selectImage")}
-                                            </button>
-                                        </div>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="mt-4 ">
+                                    <label>{t("image")}</label>
+                                    <div className="relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            ref={fileInputRef}
+                                            onChange={handleImageChange}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="flex text-start focus:ring-cyan-400 items-center gap-2 focus:border-cyan-400 w-full pl-10 py-3 mb-4 sm:text-md border border-cyan-300 text-cyan-300 rounded-md bg-black hover:bg-cyan-400 hover:text-black transition duration-300"
+                                            onClick={handleButtonClick}>
+                                            <FaImage className="h-5 w-5" />
+                                            {image
+                                                ? t("changeImage")
+                                                : t("selectImage")}
+                                        </button>
                                     </div>
-                                    {image && (
-                                        <div className="relative w-64">
-                                            <img
-                                                src={image}
-                                                alt="Uploaded image preview"
-                                            />
-                                            <button
-                                                type="button"
-                                                className="absolute top-0 right-0 mt-2 mr-2 focus:outline-none"
-                                                onClick={handleDeleteImage}>
-                                                <FaTimes className="h-5 w-5 text-red-500" />
-                                            </button>
-                                        </div>
-                                    )}
                                 </div>
-                                <div className="mt-5 col-span-2 flex justify-center items-center ">
-                                    <button
-                                        type="submit"
-                                        className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-400 hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        {t("createClient")}
-                                    </button>
-                                </div>
+                                {image && (
+                                    <div className="relative w-64">
+                                        <img
+                                            src={image}
+                                            alt="Uploaded image preview"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="absolute top-0 right-0 mt-2 mr-2 focus:outline-none"
+                                            onClick={handleDeleteImage}>
+                                            <FaTimes className="h-5 w-5 text-red-500" />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="mt-5 col-span-2 flex justify-center items-center ">
+                                <button
+                                    type="submit"
+                                    className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-black text-md font-medium rounded-md bg-cyan-400 hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    {t("createClient")}
+                                </button>
                             </div>
                         </div>
                     </form>

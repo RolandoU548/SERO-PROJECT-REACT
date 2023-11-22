@@ -134,11 +134,11 @@ export const ClientCard = () => {
                 />
                 <div className="font-serif text-gray-200 mt-28">
                     <div className="flex items-center">
-                        <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black text-black dark:text-white m-auto">
+                        <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                             {t("clientprofile")}
-                        </h1>
+                        </h2>
                     </div>
-                    <div className="glass p-10 mt-2 m-auto w-11/12">
+                    <div className="glass p-[3vw] my-5 m-auto tiny:w-11/12 w-[98%]">
                         <HiArrowCircleLeft
                             className="h-12 w-12 text-gray-200 cursor-pointer"
                             onClick={() => navigate("/clients")}
@@ -160,7 +160,7 @@ export const ClientCard = () => {
                                             />
                                         )}
                                     </div>
-                                    <h1 className="text-2xl font-bold text-white ml-20">
+                                    <h1 className="text-2xl font-bold text-white ml-20 sm:ml-20">
                                         {client.name} {client.lastname}
                                     </h1>
                                     <div className="relative left-36 bottom-14">
@@ -245,7 +245,11 @@ export const ClientCard = () => {
                                                 </div>
                                             ))}
                                             <button
-                                                className="mt-4 bg-black hover:text-cyan-300 border border-neutral-500  hover:border-cyan-300 transition duration-300 text-white font-bold py-2 px-4 rounded-md"
+                                                className={`mt-4 bg-black hover:text-cyan-300 border border-neutral-500 hover:border-cyan-300 transition duration-300 text-white font-bold py-2 px-4 rounded-md ${
+                                                    window.innerWidth <= 480
+                                                        ? "w-32"
+                                                        : "max-w-md:w-32 lg:w-auto"
+                                                }`}
                                                 onClick={handleSubmit}>
                                                 {t("uploadfiles")}
                                             </button>

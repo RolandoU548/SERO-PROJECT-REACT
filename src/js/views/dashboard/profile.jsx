@@ -45,8 +45,8 @@ export const Profile = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fprofile%2FProfileBG.jpeg?alt=media&token=c90a4f9c-9ae6-4ce2-a4b2-0bb4af67e72e"
                 className="invert w-full fixed -z-50 bottom-0 left-0 dark:invert-0 transition duration-500"
             />
-            <div className="dark:text-white mt-28 w-[30rem] max-w-full m-auto mb-5 p-5">
-                <div className="border border-black dark:border-white transition duration-300 rounded-xl p-3">
+            <div className="dark:text-white mt-28 w-[30rem] max-w-full m-auto mb-5 p-2">
+                <div className="border border-black dark:border-white transition duration-300 rounded-xl p-2">
                     <div className="mx-auto text-center flex flex-col justify-center items-center my-6">
                         <i
                             className="fa-regular fa-circle-user text-8xl invert dark:invert-0 rounded-full mx-auto text-center"
@@ -91,7 +91,7 @@ export const Profile = () => {
                         </li>
                     </ul>
                     <table className="w-full">
-                        <tbody className="flex flex-col gap-3 text-sm px-5">
+                        <tbody className="flex flex-col gap-3 text-sm px-2">
                             <tr className="flex flex-row justify-between items-center">
                                 <td className="font-semibold">{t("email")}</td>
                                 <td className="text-center">{user.email}</td>
@@ -104,7 +104,7 @@ export const Profile = () => {
                                     {t("contactnumber")}
                                 </td>
                                 {editingField === "phone" ? (
-                                    <td className="flex gap-1">
+                                    <td className="flex gap-1 ">
                                         <input
                                             type="text"
                                             value={editedValue}

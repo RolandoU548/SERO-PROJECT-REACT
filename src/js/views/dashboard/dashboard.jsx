@@ -66,7 +66,7 @@ export const Dashboard = () => {
                         {t("dashboard")}
                     </h2>
                     <div className="p-10 m-auto w-11/12">
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                        <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
                             <div
                                 className="glass p-4 m-2 flex flex-row items-center justify-evenly cursor-pointer hover:bg-gray-800 hover:text-black dark:hover:text-white dark:hover:bg-gray-800"
                                 onClick={() => {
@@ -128,21 +128,21 @@ export const Dashboard = () => {
                                 <FaFileAlt className="text-5xl text-cyan-300" />
                             </div>
                         </div>
-                        <div className="flex flex-row gap-16 justify-evenly w-11/12 m-auto">
-                            <div className="glass p-10 mt-5 text-center w-4/12 h-[25rem] flex flex-col">
-                                <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                        <div className="flex flex-col md:flex-row gap-4 justify-evenly w-11/12 m-auto">
+                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[25rem] flex flex-col">
+                                <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto mt-4">
                                     {t("paymentsChart")}
                                 </h1>
                                 <PieChartPayment numPayments={numPayments} />
                             </div>
-                            <div className="glass p-10 mt-5 text-center w-4/12 h-[25rem] flex flex-col">
-                                <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[25rem] flex flex-col">
+                                <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto mt-4">
                                     {t("clientsChart")}
                                 </h1>
                                 <PieChartClient numClients={numClients} />
                             </div>
-                            <div className="glass p-10 mt-5 text-center w-4/12 h-[25rem] flex flex-col">
-                                <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto">
+                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[25rem] flex flex-col">
+                                <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto mt-4">
                                     {t("tasksChart")}
                                 </h1>
                                 <PieChartTask tasks={tasks} />

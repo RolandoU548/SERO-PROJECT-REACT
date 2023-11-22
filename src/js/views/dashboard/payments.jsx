@@ -104,182 +104,230 @@ export const Payments = () => {
                 className="invert w-screen h-screen -z-50 fixed object-cover bottom-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="font-serif text-black dark:text-white mt-28">
-                <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 m-auto">
+                <h2 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                     {t("payments")}
                 </h2>
-                <div className="glass p-10 my-5 m-auto w-11/12">
+                <div className="glass p-[3vw] my-5 m-auto tiny:w-11/12 w-[98%]">
                     <div className="flex justify-between items-center mb-5 gap-6">
-                        <div className="flex items-center">
-                            <label htmlFor="customerFilter">
-                                {t("client")}:
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    id="customerFilter"
-                                    value={customerFilter}
-                                    onChange={e =>
-                                        setCustomerFilter(e.target.value)
-                                    }
-                                    placeholder={t("filterByCustomer")}
-                                    className="border border-gray-400 rounded py-1 px-2 text-black"
-                                />
-                                <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                                    <FaSearch className="w-4 h-4 text-gray-400" />
-                                </span>
-                            </div>
+                        <div className="relative w-96 max-w-[65%]">
+                            <input
+                                type="text"
+                                id="customerFilter"
+                                value={customerFilter}
+                                onChange={e =>
+                                    setCustomerFilter(e.target.value)
+                                }
+                                placeholder={t("filterByCustomer")}
+                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-full"
+                            />
+                            <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3 pointer-events-none">
+                                <FaSearch className="h-4 w-4 fill-current text-gray-800 dark:text-gray-500" />
+                            </span>
                         </div>
+
                         <button
-                            className="flex items-center bg-cyan-300 hover:bg-cyan-400 text-black  text-md font-bold px-4 py-2 rounded-full"
+                            className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50 flex items-center"
                             onClick={handleAddPayment}>
-                            <FaPlus className="mr-2" />
-                            {t("add")}
+                            <span className="mr-2">{t("add")}</span>
+                            <FaPlus />
                         </button>
                     </div>
-                    <table className="table-auto w-full text-center">
-                        <thead>
-                            <tr className="border-b-4 border-y-blue-300">
-                                <th
-                                    className=" py-4 text-lg font-bold cursor-pointer"
-                                    onClick={() => handleSort("status")}>
-                                    {t("status")}{" "}
-                                    {sortColumn === "status" &&
-                                        (sortDirection === "asc" ? (
-                                            <FaSortUp className="inline-block ml-1" />
-                                        ) : (
-                                            <FaSortDown className="inline-block ml-1" />
-                                        ))}
-                                    {!sortColumn.includes("status") && (
-                                        <FaSort className="inline-block ml-1" />
-                                    )}
-                                </th>
-                                <th
-                                    className="py-4 text-lg font-bold cursor-pointer"
-                                    onClick={() => handleSort("method")}>
-                                    {t("method")}{" "}
-                                    {sortColumn === "method" &&
-                                        (sortDirection === "asc" ? (
-                                            <FaSortUp className="inline-block ml-1" />
-                                        ) : (
-                                            <FaSortDown className="inline-block ml-1" />
-                                        ))}
-                                    {!sortColumn.includes("method") && (
-                                        <FaSort className="inline-block ml-1" />
-                                    )}
-                                </th>
-                                <th
-                                    className="py-4 text-lg font-bold cursor-pointer"
-                                    onClick={() => handleSort("date")}>
-                                    {t("date")}{" "}
-                                    {sortColumn === "date" &&
-                                        (sortDirection === "asc" ? (
-                                            <FaSortUp className="inline-block ml-1" />
-                                        ) : (
-                                            <FaSortDown className="inline-block ml-1" />
-                                        ))}
-                                    {!sortColumn.includes("date") && (
-                                        <FaSort className="inline-block ml-1" />
-                                    )}
-                                </th>
-                                <th
-                                    className="py-4 text-lg font-bold cursor-pointer"
-                                    onClick={() => handleSort("client")}>
-                                    {t("client")}{" "}
-                                    {sortColumn === "client" &&
-                                        (sortDirection === "asc" ? (
-                                            <FaSortUp className="inline-block ml-1" />
-                                        ) : (
-                                            <FaSortDown className="inline-block ml-1" />
-                                        ))}
-                                    {!sortColumn.includes("client") && (
-                                        <FaSort className="inline-block ml-1" />
-                                    )}
-                                </th>
-                                <th
-                                    className="py-4 text-lg font-bold cursor-pointer"
-                                    onClick={() => handleSort("amount")}>
-                                    {t("amount")}{" "}
-                                    {sortColumn === "amount" &&
-                                        (sortDirection === "asc" ? (
-                                            <FaSortUp className="inline-block ml-1" />
-                                        ) : (
-                                            <FaSortDown className="inline-block ml-1" />
-                                        ))}
-                                    {!sortColumn.includes("amount") && (
-                                        <FaSort className="inline-block ml-1" />
-                                    )}
-                                </th>
-                                <th
-                                    className="py-4 text-lg font-bold cursor-pointer"
-                                    onClick={() => handleSort("invoice")}>
-                                    {t("invoice")}{" "}
-                                    {sortColumn === "invoice" &&
-                                        (sortDirection === "asc" ? (
-                                            <FaSortUp className="inline-block ml-1" />
-                                        ) : (
-                                            <FaSortDown className="inline-block ml-1" />
-                                        ))}
-                                    {!sortColumn.includes("invoice") && (
-                                        <FaSort className="inline-block ml-1" />
-                                    )}
-                                </th>
-                                <th className="py-4 text-lg font-bold">
-                                    {t("actions")}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentPayments?.map(payment => (
-                                <tr key={payment.id}>
-                                    <td className=" py-4">
-                                        <span
-                                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                                                payment.status !== "Paid"
-                                                    ? "bg-red-700 text-white font-bold"
-                                                    : "bg-green-700 text-white font-bold"
-                                            }`}>
-                                            {t(payment.status)}
-                                        </span>
-                                    </td>
-                                    <td className="py-4">
-                                        {t(
-                                            payment.method
-                                                .replace(" ", "")
-                                                .toLowerCase()
-                                        )}
-                                    </td>
-                                    <td className="py-4">{payment.date}</td>
-                                    <td className="py-4">
-                                        {
-                                            store.clients.find(
-                                                client =>
-                                                    client.id === payment.client
-                                            )?.name
-                                        }{" "}
-                                        {
-                                            store.clients.find(
-                                                client =>
-                                                    client.id === payment.client
-                                            )?.lastname
-                                        }
-                                    </td>
-                                    <td className="py-4">{payment.amount}</td>
-                                    <td className="py-4">{payment.invoice}</td>
-                                    <td className="py-4">
-                                        <button
-                                            className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-                                            onClick={() =>
-                                                navigate(
-                                                    `/creditmemo/${payment.id}`
-                                                )
-                                            }>
-                                            <FaFileAlt />
-                                        </button>
-                                    </td>
+                    <div className="overflow-x-auto">
+                        <table className="text-black dark:text-white table w-full text-center">
+                            <thead>
+                                <tr className="border-b-4 border-y-blue-300">
+                                    <th
+                                        className="py-2 px-4 text-md font-bold"
+                                        onClick={() => handleSort("status")}>
+                                        <div className="flex items-center">
+                                            {t("status")}{" "}
+                                            {sortColumn === "status" && (
+                                                <div className="ml-1">
+                                                    {sortDirection === "asc" ? (
+                                                        <FaSortUp className="inline-block" />
+                                                    ) : (
+                                                        <FaSortDown className="inline-block" />
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!sortColumn.includes("status") && (
+                                                <div className="ml-1">
+                                                    <FaSort className="inline-block" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </th>
+                                    <th
+                                        className="py-2 px-4 text-md font-bold"
+                                        onClick={() => handleSort("method")}>
+                                        <div className="flex items-center">
+                                            {t("method")}{" "}
+                                            {sortColumn === "method" && (
+                                                <div className="ml-1">
+                                                    {sortDirection === "asc" ? (
+                                                        <FaSortUp className="inline-block" />
+                                                    ) : (
+                                                        <FaSortDown className="inline-block" />
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!sortColumn.includes("method") && (
+                                                <div className="ml-1">
+                                                    <FaSort className="inline-block" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </th>
+                                    <th
+                                        className="py-2 px-4 text-md font-bold"
+                                        onClick={() => handleSort("date")}>
+                                        <div className="flex items-center">
+                                            {t("date")}{" "}
+                                            {sortColumn === "date" && (
+                                                <div className="ml-1">
+                                                    {sortDirection === "asc" ? (
+                                                        <FaSortUp className="inline-block" />
+                                                    ) : (
+                                                        <FaSortDown className="inline-block" />
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!sortColumn.includes("date") && (
+                                                <div className="ml-1">
+                                                    <FaSort className="inline-block" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </th>
+                                    <th
+                                        className="py-2 px-4 text-md font-bold"
+                                        onClick={() => handleSort("client")}>
+                                        <div className="flex items-center">
+                                            {t("client")}{" "}
+                                            {sortColumn === "client" && (
+                                                <div className="ml-1">
+                                                    {sortDirection === "asc" ? (
+                                                        <FaSortUp className="inline-block" />
+                                                    ) : (
+                                                        <FaSortDown className="inline-block" />
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!sortColumn.includes("client") && (
+                                                <div className="ml-1">
+                                                    <FaSort className="inline-block" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </th>
+                                    <th
+                                        className="py-2 px-4 text-md font-bold"
+                                        onClick={() => handleSort("amount")}>
+                                        <div className="flex items-center">
+                                            {t("amount")}{" "}
+                                            {sortColumn === "amount" && (
+                                                <div className="ml-1">
+                                                    {sortDirection === "asc" ? (
+                                                        <FaSortUp className="inline-block" />
+                                                    ) : (
+                                                        <FaSortDown className="inline-block" />
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!sortColumn.includes("amount") && (
+                                                <div className="ml-1">
+                                                    <FaSort className="inline-block" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </th>
+                                    <th
+                                        className="py-2 px-4 text-md font-bold"
+                                        onClick={() => handleSort("invoice")}>
+                                        <div className="flex items-center">
+                                            {t("invoice")}{" "}
+                                            {sortColumn === "invoice" && (
+                                                <div className="ml-1">
+                                                    {sortDirection === "asc" ? (
+                                                        <FaSortUp className="inline-block" />
+                                                    ) : (
+                                                        <FaSortDown className="inline-block" />
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!sortColumn.includes(
+                                                "invoice"
+                                            ) && (
+                                                <div className="ml-1">
+                                                    <FaSort className="inline-block" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </th>
+                                    <th className=" py-2 px-4 text-md font-bold">
+                                        {t("actions")}
+                                    </th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {currentPayments?.map(payment => (
+                                    <tr key={payment.id}>
+                                        <td className=" py-4">
+                                            <span
+                                                className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                                    payment.status !== "Paid"
+                                                        ? "bg-red-700 text-white font-bold"
+                                                        : "bg-green-700 text-white font-bold"
+                                                }`}>
+                                                {t(payment.status)}
+                                            </span>
+                                        </td>
+                                        <td className="py-4">
+                                            {t(
+                                                payment.method
+                                                    .replace(" ", "")
+                                                    .toLowerCase()
+                                            )}
+                                        </td>
+                                        <td className="py-4">{payment.date}</td>
+                                        <td className="py-4">
+                                            {
+                                                store.clients.find(
+                                                    client =>
+                                                        client.id ===
+                                                        payment.client
+                                                )?.name
+                                            }{" "}
+                                            {
+                                                store.clients.find(
+                                                    client =>
+                                                        client.id ===
+                                                        payment.client
+                                                )?.lastname
+                                            }
+                                        </td>
+                                        <td className="py-4">
+                                            {payment.amount}
+                                        </td>
+                                        <td className="py-4">
+                                            {payment.invoice}
+                                        </td>
+                                        <td className="py-4">
+                                            <button
+                                                className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                onClick={() =>
+                                                    navigate(
+                                                        `/creditmemo/${payment.id}`
+                                                    )
+                                                }>
+                                                <FaFileAlt />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>

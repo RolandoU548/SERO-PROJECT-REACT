@@ -229,20 +229,58 @@ export const StepPayment = () => {
             />
             <div className="font-serif text-gray-200 mt-28">
                 <div className="flex items-center">
-                    <h1 className="w-10/12 text-xl minimum:text-[0.5rem] tiny:text-3xl sm:text-7xl md:text-6xl font-black z-10 text-black dark:text-white m-auto">
+                    <h1 className="w-10/12 text-3xl minimum:text-4xl md:text-5xl lg:text-6xl font-black z-10 text-black dark:text-white m-auto">
                         {t("createpayment")}
                     </h1>
                 </div>
-                <div className="px-10 mt-5 m-auto w-3/4">
-                    <div className="font-serif text-black dark:text-white mt-16">
-                        <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
-                            <li
-                                className={`flex md:w-full items-center ${
-                                    step >= 1
-                                        ? "text-cyan-300 dark:text-cyan-300 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
-                                        : ""
-                                }`}>
-                                <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-cyan-300 dark:after:text-cyan-300">
+                <div className="px-[3vw] my-2 m-auto tiny:w-11/12 w-[98%]">
+                    <div className="font-serif text-black dark:text-white">
+                        <div className="sm:mt-16 md:mt-20 lg:mt-24 ">
+                            <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+                                <li
+                                    className={`flex md:w-full tiny:1/4 items-center  ${
+                                        step >= 1
+                                            ? "text-cyan-300 dark:text-cyan-300 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
+                                            : ""
+                                    }`}>
+                                    <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-cyan-300 dark:after:text-cyan-300">
+                                        <svg
+                                            className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        <span className="mr-2">1</span>
+                                        {t("information")}
+                                    </span>
+                                </li>
+                                <li
+                                    className={`flex md:w-full items-center ${
+                                        step >= 2
+                                            ? "text-cyan-300 dark:text-cyan-300 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
+                                            : ""
+                                    }`}>
+                                    <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-cyan-300 dark:after:text-cyan-300">
+                                        <svg
+                                            className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>
+                                        <span className="mr-2">2</span>
+                                        {t("pay")}
+                                    </span>
+                                </li>
+                                <li
+                                    className={`flex items-center ${
+                                        step >= 3
+                                            ? "text-cyan-300 dark:text-cyan-300"
+                                            : ""
+                                    }`}>
                                     <svg
                                         className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
                                         aria-hidden="true"
@@ -251,55 +289,19 @@ export const StepPayment = () => {
                                         viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                                     </svg>
-                                    <span className="mr-2">1</span>
-                                    {t("information")}
-                                </span>
-                            </li>
-                            <li
-                                className={`flex md:w-full items-center ${
-                                    step >= 2
-                                        ? "text-cyan-300 dark:text-cyan-300 sm:after:inline-block after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:mx-6 xl:after:mx-10 dark:after:border-gray-700"
-                                        : ""
-                                }`}>
-                                <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-cyan-300 dark:after:text-cyan-300">
-                                    <svg
-                                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20">
-                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                                    </svg>
-                                    <span className="mr-2">2</span>
-                                    {t("pay")}
-                                </span>
-                            </li>
-                            <li
-                                className={`flex items-center ${
-                                    step >= 3
-                                        ? "text-cyan-300 dark:text-cyan-300"
-                                        : ""
-                                }`}>
-                                <svg
-                                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                                </svg>
-                                <span className="mr-2">3</span>
-                                {t("confirmation")}
-                            </li>
-                        </ol>
+                                    <span className="mr-2">3</span>
+                                    {t("confirmation")}
+                                </li>
+                            </ol>
+                        </div>
                         {step === 1 && (
-                            <div className="glass p-10 my-5 m-auto w-11/12">
+                            <div className="glass p-4 my-5 m-auto tiny:w-11/12 w-[100%]">
                                 <form onSubmit={handleFormSubmit}>
                                     <div className="flex flex-col-2 flex-row justify-center">
                                         <div className="w-full md:w-1/2 pr-10">
                                             <label
                                                 htmlFor="date"
-                                                className="block text-white font-bold mb-2">
+                                                className="block text-black dark:text-white font-bold mb-2">
                                                 {t("date")}
                                             </label>
                                             <div className="relative">
@@ -312,7 +314,7 @@ export const StepPayment = () => {
                                             </div>
                                             <label
                                                 htmlFor="client"
-                                                className="block text-white font-bold mb-2">
+                                                className="block text-black dark:text-white font-bold mb-2">
                                                 {t("client")}
                                             </label>
                                             <select
@@ -334,7 +336,7 @@ export const StepPayment = () => {
                                             </select>
                                             <label
                                                 htmlFor="services"
-                                                className="block text-white font-bold mb-2">
+                                                className="block text-black dark:text-white font-bold mb-2">
                                                 {t("services")}
                                             </label>
                                             <select
@@ -361,7 +363,7 @@ export const StepPayment = () => {
                                             <div>
                                                 <label
                                                     htmlFor="invoice"
-                                                    className="block text-white font-bold mb-2">
+                                                    className="block text-black dark:text-white font-bold mb-2">
                                                     {t("invoice")}
                                                 </label>
                                                 <div className="relative">
@@ -381,7 +383,7 @@ export const StepPayment = () => {
                                                 </div>
                                                 <label
                                                     htmlFor="amount"
-                                                    className="block text-white font-bold mb-2">
+                                                    className="block text-black dark:text-white font-bold mb-2">
                                                     {t("amount")}
                                                 </label>
                                                 <div className="relative">
@@ -401,7 +403,7 @@ export const StepPayment = () => {
                                                 </div>
                                                 <label
                                                     htmlFor="description"
-                                                    className="block text-white font-bold mb-2">
+                                                    className="block text-black dark:text-white font-bold mb-2">
                                                     {t("description")}
                                                 </label>
                                                 <textarea
@@ -426,9 +428,9 @@ export const StepPayment = () => {
                             </div>
                         )}
                         {step === 2 && (
-                            <div className="glass p-10 my-6 m-auto w-11/12">
+                            <div className="glass p-4 my-5 m-auto tiny:w-11/12 w-[100%]">
                                 <form onSubmit={handlePaymentSubmit}>
-                                    <div className="flex justify-center items-center mb-10">
+                                    <div className="flex justify-center items-center my-5">
                                         <button
                                             type="button"
                                             className="bg-black text-cyan-300 border border-cyan-300 py-2 px-4 rounded-l-lg">
@@ -450,179 +452,208 @@ export const StepPayment = () => {
                                             isFlipped={isFlipped}
                                             flipDirection="horizontal">
                                             <div key="front">
-                                                <div
-                                                    className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl`}
-                                                    style={{
-                                                        width: "512px",
-                                                        height: "288px",
-                                                        display: "flex",
-                                                        flexDirection: "column",
-                                                        justifyContent:
-                                                            "space-between",
-                                                        padding: "20px",
-                                                        boxSizing: "border-box",
-                                                        backgroundImage:
-                                                            "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
-                                                        backgroundColor: "gray",
-                                                        backgroundSize: "cover",
-                                                        backgroundPosition:
-                                                            "center",
-                                                        position: "relative",
-                                                        transformOrigin:
-                                                            "center",
-                                                        transitionProperty:
-                                                            "transform"
-                                                    }}>
-                                                    <div className="flex justify-between">
-                                                        <p className="font-bold">
-                                                            {t("serobank")}
-                                                        </p>
-                                                        <div>
-                                                            <img
-                                                                className="w-25 h-10 mt-2"
-                                                                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex justify-between">
-                                                        <div className="flex flex-col w-2/3">
-                                                            <p className="font-light self-start mt-2">
-                                                                {t("name")}
+                                                <div className="overflow-x-auto">
+                                                    <div
+                                                        className={`glass w-full sm:w-128 sm:h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl`}
+                                                        style={{
+                                                            width: "512px",
+                                                            height: "288px",
+                                                            display: "flex",
+                                                            flexDirection:
+                                                                "column",
+                                                            justifyContent:
+                                                                "space-between",
+                                                            padding: "20px",
+                                                            boxSizing:
+                                                                "border-box",
+                                                            backgroundImage:
+                                                                "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
+                                                            backgroundColor:
+                                                                "gray",
+                                                            backgroundSize:
+                                                                "cover",
+                                                            backgroundPosition:
+                                                                "center",
+                                                            position:
+                                                                "relative",
+                                                            transformOrigin:
+                                                                "center",
+                                                            transitionProperty:
+                                                                "transform"
+                                                        }}>
+                                                        <div className="flex justify-between">
+                                                            <p className="font-bold">
+                                                                {t("serobank")}
                                                             </p>
-                                                            <div className="flex justify-between">
-                                                                <input
-                                                                    type="text"
-                                                                    id="cardName"
-                                                                    name="cardName"
-                                                                    className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                    placeholder="Roberto J. Vargas"
-                                                                    value={
-                                                                        cardName
-                                                                    }
-                                                                    onChange={
-                                                                        handleCardNameChange
-                                                                    }
+                                                            <div>
+                                                                <img
+                                                                    className="w-25 h-10 mt-2"
+                                                                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
                                                                 />
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="flex flex-col w-full">
+
                                                         <div className="flex justify-between">
-                                                            <p className="font-light">
-                                                                {t(
-                                                                    "cardnumber"
-                                                                )}
-                                                            </p>
+                                                            <div className="flex flex-col w-2/3">
+                                                                <p className="font-light self-start mt-2">
+                                                                    {t("name")}
+                                                                </p>
+                                                                <div className="flex justify-between">
+                                                                    <input
+                                                                        type="text"
+                                                                        required
+                                                                        id="cardName"
+                                                                        name="cardName"
+                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                        placeholder="Roberto J. Vargas"
+                                                                        value={
+                                                                            cardName
+                                                                        }
+                                                                        onChange={e => {
+                                                                            const regex =
+                                                                                /^[a-zA-Z\s]*$/;
+                                                                            if (
+                                                                                regex.test(
+                                                                                    e
+                                                                                        .target
+                                                                                        .value
+                                                                                )
+                                                                            ) {
+                                                                                handleCardNameChange(
+                                                                                    e
+                                                                                );
+                                                                            }
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="flex justify-between">
-                                                            <input
-                                                                type="text"
-                                                                id="cardNumber"
-                                                                name="cardNumber"
-                                                                className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                placeholder="0000 0000 0000 0000"
-                                                                value={
-                                                                    cardNumber
-                                                                }
-                                                                onChange={
-                                                                    handleCardNumberChange
-                                                                }
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex justify-between">
-                                                        <div className="flex flex-col w-1/2">
+                                                        <div className="flex flex-col w-full">
                                                             <div className="flex justify-between">
-                                                                <p className="font-light text-xs">
+                                                                <p className="font-light">
                                                                     {t(
-                                                                        "expiry"
+                                                                        "cardnumber"
                                                                     )}
                                                                 </p>
                                                             </div>
                                                             <div className="flex justify-between">
                                                                 <input
                                                                     type="text"
-                                                                    id="cardExpiration"
-                                                                    name="cardExpiration"
+                                                                    required
+                                                                    id="cardNumber"
+                                                                    name="cardNumber"
                                                                     className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                    placeholder={t(
-                                                                        "expirydate"
-                                                                    )}
+                                                                    placeholder="0000 0000 0000 0000"
                                                                     value={
-                                                                        cardExpiration
+                                                                        cardNumber
                                                                     }
-                                                                    onChange={e => {
-                                                                        handleCardExpirationChange(
-                                                                            e
-                                                                        );
-                                                                    }}
+                                                                    onChange={
+                                                                        handleCardNumberChange
+                                                                    }
                                                                 />
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex justify-between">
+                                                            <div className="flex flex-col w-1/2">
+                                                                <div className="flex justify-between">
+                                                                    <p className="font-light text-xs">
+                                                                        {t(
+                                                                            "expiry"
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                                <div className="flex justify-between">
+                                                                    <input
+                                                                        type="text"
+                                                                        required
+                                                                        id="cardExpiration"
+                                                                        name="cardExpiration"
+                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                        placeholder={t(
+                                                                            "expirydate"
+                                                                        )}
+                                                                        value={
+                                                                            cardExpiration
+                                                                        }
+                                                                        onChange={e => {
+                                                                            handleCardExpirationChange(
+                                                                                e
+                                                                            );
+                                                                        }}
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div key="back">
-                                                <div
-                                                    className={`glass w-128 h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl `}
-                                                    style={{
-                                                        width: "512px",
-                                                        height: "288px",
-                                                        display: "flex",
-                                                        flexDirection: "column",
-                                                        justifyContent:
-                                                            "space-between",
-                                                        padding: "20px",
-                                                        boxSizing: "border-box",
-                                                        backgroundImage:
-                                                            "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
-                                                        backgroundColor: "gray",
-                                                        backgroundSize: "cover",
-                                                        backgroundPosition:
-                                                            "center",
-                                                        position: "relative",
-                                                        transformOrigin:
-                                                            "center",
-                                                        transitionDuration:
-                                                            "2s",
-                                                        transitionProperty:
-                                                            "transform"
-                                                    }}>
-                                                    <div className="flex justify-between">
-                                                        <p className="font-bold">
-                                                            {t("serobank")}
-                                                        </p>
-                                                        <div>
-                                                            <img
-                                                                className="w-25 h-10 mt-2"
-                                                                src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex flex-col justify-center items-center w-full mt-16">
-                                                        <div className="flex flex-col justify-between">
-                                                            <div className="flex justify-center">
-                                                                <p className="font-light text-xs">
-                                                                    {t("cvv")}
-                                                                </p>
-                                                            </div>
-                                                            <div className="flex justify-between mb-24">
-                                                                <input
-                                                                    type="text"
-                                                                    id="cardCvv"
-                                                                    name="cardCvv"
-                                                                    className="text-white bg-transparent border-b-2 border-white w-full"
-                                                                    placeholder="123"
-                                                                    value={
-                                                                        cardCvv
-                                                                    }
-                                                                    onChange={e => {
-                                                                        handleCardCvvChange(
-                                                                            e
-                                                                        );
-                                                                    }}
+                                                <div className="overflow-x-auto">
+                                                    <div
+                                                        className={`glass w-full sm:w-128 sm:h-72 m-auto bg-red-100 rounded-xxl relative text-white shadow-2xl`}
+                                                        style={{
+                                                            width: "512px",
+                                                            height: "288px",
+                                                            display: "flex",
+                                                            flexDirection:
+                                                                "column",
+                                                            justifyContent:
+                                                                "space-between",
+                                                            padding: "20px",
+                                                            boxSizing:
+                                                                "border-box",
+                                                            backgroundImage:
+                                                                "url('https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fbg-card.jpeg?alt=media&token=db4a5511-de73-47b9-96ca-0c6411348386')",
+                                                            backgroundColor:
+                                                                "gray",
+                                                            backgroundSize:
+                                                                "cover",
+                                                            backgroundPosition:
+                                                                "center",
+                                                            position:
+                                                                "relative",
+                                                            transformOrigin:
+                                                                "center",
+                                                            transitionProperty:
+                                                                "transform"
+                                                        }}>
+                                                        <div className="flex justify-between">
+                                                            <p className="font-bold">
+                                                                {t("serobank")}
+                                                            </p>
+                                                            <div>
+                                                                <img
+                                                                    className="w-25 h-10 mt-2"
+                                                                    src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fpayments%2Fvisa-logo-png-2026.png?alt=media&token=8a659b34-4430-4434-8314-dfeb6ea81f9f"
                                                                 />
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex flex-col justify-center items-center w-full mt-16">
+                                                            <div className="flex flex-col justify-between">
+                                                                <div className="flex justify-center">
+                                                                    <p className="font-light text-xs">
+                                                                        {t(
+                                                                            "cvv"
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                                <div className="flex justify-between mb-24">
+                                                                    <input
+                                                                        type="text"
+                                                                        id="cardCvv"
+                                                                        name="cardCvv"
+                                                                        className="text-white bg-transparent border-b-2 border-white w-full"
+                                                                        placeholder="123"
+                                                                        value={
+                                                                            cardCvv
+                                                                        }
+                                                                        onChange={e => {
+                                                                            handleCardCvvChange(
+                                                                                e
+                                                                            );
+                                                                        }}
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -648,7 +679,7 @@ export const StepPayment = () => {
                             </div>
                         )}
                         {step === 3 && (
-                            <div className="glass p-10 my-6  m-auto w-3/4">
+                            <div className="glass p-4 my-5 m-auto tiny:w-11/12 w-[100%]">
                                 <div className="p-5 m-auto w-15/12">
                                     <h2 className="text-2xl pb-5 font-bold mb-5 text-center">
                                         {t("paymentsummary")}
