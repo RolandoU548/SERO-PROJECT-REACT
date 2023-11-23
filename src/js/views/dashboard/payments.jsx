@@ -37,14 +37,15 @@ export const Payments = () => {
         store.payments &&
         store.payments.filter(payment => {
             if (customerFilter) {
-                const client = store.clients.find(client =>
+                const clients = store.clients.filter(client =>
                     `${client.name} ${client.lastname}`
                         .toLowerCase()
                         .includes(customerFilter.toLowerCase())
                 );
-                if (client) {
-                    return payment.client === client.id;
-                }
+                const clientsId = clients.map(client => {
+                    return client.id;
+                });
+                return clientsId.includes(payment.client);
             }
             return true;
         });
@@ -53,8 +54,6 @@ export const Payments = () => {
     currentPayments &&
         currentPayments.sort((a, b) => {
             const isAsc = sortOrder.ascending ? 1 : -1;
-            console.log("a: ", a);
-            console.log("b: ", b);
             if (a[sortOrder.column] < b[sortOrder.column]) {
                 return -1 * isAsc;
             } else if (a[sortOrder.column] > b[sortOrder.column]) {
