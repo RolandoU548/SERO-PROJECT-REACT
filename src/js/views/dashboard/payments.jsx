@@ -35,30 +35,26 @@ export const Payments = () => {
 
     const currentPayments =
         store.payments &&
-        store.payments
-            .filter(payment => {
-                if (customerFilter) {
-                    const client = store.clients.find(client =>
-                        `${client.name} ${client.lastname}`
-                            .toLowerCase()
-                            .includes(customerFilter.toLowerCase())
-                    );
-                    if (client) {
-                        return payment.client === client.id;
-                    }
+        store.payments.filter(payment => {
+            if (customerFilter) {
+                const client = store.clients.find(client =>
+                    `${client.name} ${client.lastname}`
+                        .toLowerCase()
+                        .includes(customerFilter.toLowerCase())
+                );
+                if (client) {
+                    return payment.client === client.id;
                 }
-                return true;
-            })
-            .sort((a, b) =>
-                sortOrder.ascending
-                    ? a[sortOrder.column].localeCompare(b[sortOrder.column])
-                    : b[sortOrder.column].localeCompare(a[sortOrder.column])
-            );
+            }
+            return true;
+        });
 
     // Labels Filtrados
-    const sortPayments = (payments, sortOrder) => {
-        return payments.sort((a, b) => {
+    currentPayments &&
+        currentPayments.sort((a, b) => {
             const isAsc = sortOrder.ascending ? 1 : -1;
+            console.log("a: ", a);
+            console.log("b: ", b);
             if (a[sortOrder.column] < b[sortOrder.column]) {
                 return -1 * isAsc;
             } else if (a[sortOrder.column] > b[sortOrder.column]) {
@@ -67,7 +63,6 @@ export const Payments = () => {
                 return 0;
             }
         });
-    };
 
     const handleSort = column => {
         setSortOrder({
@@ -76,11 +71,7 @@ export const Payments = () => {
         });
     };
 
-    const sortedPayments = sortPayments(
-        currentPayments,
-        sortOrder.column,
-        sortOrder.ascending
-    );
+    // sortPayments(currentPayments, sortOrder);
 
     const handleAddPayment = () => {
         navigate("/steppayment");
