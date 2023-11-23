@@ -303,7 +303,7 @@ export const CreateClient = () => {
                                             <input
                                                 type="text"
                                                 autoComplete="business"
-                                                className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
+                                                className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md mb-4"
                                                 placeholder={t("business")}
                                                 {...register("business", {
                                                     required: {
@@ -379,10 +379,10 @@ export const CreateClient = () => {
                                     </label>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div className="mt-4 ">
+                            <div>
+                                <div>
                                     <label>{t("image")}</label>
-                                    <div className="relative rounded-md shadow-sm">
+                                    <div className=" w-[50%] relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                                         <input
                                             type="file"
