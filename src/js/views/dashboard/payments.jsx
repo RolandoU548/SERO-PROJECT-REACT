@@ -56,7 +56,7 @@ export const Payments = () => {
             );
 
     // Labels Filtrados
-    const sortPayments = (payments, column, ascending) => {
+    const sortPayments = (payments, sortOrder) => {
         return payments.sort((a, b) => {
             const isAsc = sortOrder.ascending ? 1 : -1;
             if (a[sortOrder.column] < b[sortOrder.column]) {
@@ -76,7 +76,11 @@ export const Payments = () => {
         });
     };
 
-    sortPayments(currentPayments, sortOrder.column, sortOrder.ascending);
+    const sortedPayments = sortPayments(
+        currentPayments,
+        sortOrder.column,
+        sortOrder.ascending
+    );
 
     const handleAddPayment = () => {
         navigate("/steppayment");
