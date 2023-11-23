@@ -20,7 +20,10 @@ export const Payments = () => {
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const [customerFilter, setCustomerFilter] = useState("");
-    const [paymentsData, setPaymentData] = useState(store.payments);
+    const [sortOrder, setSortOrder] = useState({
+        column: "status",
+        ascending: true
+    });
 
     useEffect(() => {
         actions.getAllPayments();
@@ -30,61 +33,50 @@ export const Payments = () => {
         }, 2000);
     }, []);
 
-    const filterPayment = () => {
-        if (store.clients.length > 0 && paymentsData.length > 0) {
-            if (customerFilter) {
-                const client = store.clients.find(client =>
-                    `${client.name} ${client.lastname}`
-                        .toLowerCase()
-                        .includes(customerFilter.toLowerCase())
-                );
-                if (client) {
-                    return paymentsData.filter(payment => {
-                        const paymentClient = store.clients.find(
-                            client => client.id === payment.client
-                        );
-                        return client.name === paymentClient.name;
-                    });
+    const currentPayments =
+        store.payments &&
+        store.payments
+            .filter(payment => {
+                if (customerFilter) {
+                    const client = store.clients.find(client =>
+                        `${client.name} ${client.lastname}`
+                            .toLowerCase()
+                            .includes(customerFilter.toLowerCase())
+                    );
+                    if (client) {
+                        return payment.client === client.id;
+                    }
                 }
-                return [];
-            }
-            return paymentsData;
-        }
-    };
-    const [currentPayments, setCurrentPayments] = useState(filterPayment());
+                return true;
+            })
+            .sort((a, b) =>
+                sortOrder.ascending
+                    ? a[sortOrder.column].localeCompare(b[sortOrder.column])
+                    : b[sortOrder.column].localeCompare(a[sortOrder.column])
+            );
 
-    const [sortColumn, setSortColumn] = useState("status");
-    const [sortDirection, setSortDirection] = useState("asc");
-
-    const handleSort = column => {
-        if (sortColumn === column) {
-            setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-        } else {
-            setSortColumn(column);
-            setSortDirection("asc");
-        }
-    };
-
-    currentPayments &&
-        currentPayments.sort((a, b) => {
-            const isAsc = sortDirection === "asc" ? 1 : -1;
-            if (a[sortColumn] < b[sortColumn]) {
+    // Labels Filtrados
+    const sortPayments = (payments, column, ascending) => {
+        return payments.sort((a, b) => {
+            const isAsc = sortOrder.ascending ? 1 : -1;
+            if (a[sortOrder.column] < b[sortOrder.column]) {
                 return -1 * isAsc;
-            } else if (a[sortColumn] > b[sortColumn]) {
+            } else if (a[sortOrder.column] > b[sortOrder.column]) {
                 return 1 * isAsc;
             } else {
                 return 0;
             }
         });
+    };
 
-    useEffect(() => {
-        setPaymentData(store.payments);
-        setCurrentPayments(filterPayment());
-    }, [store.payments]);
+    const handleSort = column => {
+        setSortOrder({
+            column,
+            ascending: sortOrder.column === column ? !sortOrder.ascending : true
+        });
+    };
 
-    useEffect(() => {
-        setCurrentPayments(filterPayment());
-    }, [customerFilter]);
+    sortPayments(currentPayments, sortOrder.column, sortOrder.ascending);
 
     const handleAddPayment = () => {
         navigate("/steppayment");
@@ -141,16 +133,15 @@ export const Payments = () => {
                                         onClick={() => handleSort("status")}>
                                         <div className="flex items-center justify-center">
                                             {t("status")}{" "}
-                                            {sortColumn === "status" && (
+                                            {sortOrder.column === "status" ? (
                                                 <div className="ml-1">
-                                                    {sortDirection === "asc" ? (
+                                                    {sortOrder.ascending ? (
                                                         <FaSortUp className="inline-block" />
                                                     ) : (
                                                         <FaSortDown className="inline-block" />
                                                     )}
                                                 </div>
-                                            )}
-                                            {!sortColumn.includes("status") && (
+                                            ) : (
                                                 <div className="ml-1">
                                                     <FaSort className="inline-block" />
                                                 </div>
@@ -162,16 +153,15 @@ export const Payments = () => {
                                         onClick={() => handleSort("method")}>
                                         <div className="flex items-center justify-center">
                                             {t("method")}{" "}
-                                            {sortColumn === "method" && (
+                                            {sortOrder.column === "method" ? (
                                                 <div className="ml-1">
-                                                    {sortDirection === "asc" ? (
+                                                    {sortOrder.ascending ? (
                                                         <FaSortUp className="inline-block" />
                                                     ) : (
                                                         <FaSortDown className="inline-block" />
                                                     )}
                                                 </div>
-                                            )}
-                                            {!sortColumn.includes("method") && (
+                                            ) : (
                                                 <div className="ml-1">
                                                     <FaSort className="inline-block" />
                                                 </div>
@@ -183,16 +173,15 @@ export const Payments = () => {
                                         onClick={() => handleSort("date")}>
                                         <div className="flex items-center justify-center">
                                             {t("date")}{" "}
-                                            {sortColumn === "date" && (
+                                            {sortOrder.column === "date" ? (
                                                 <div className="ml-1">
-                                                    {sortDirection === "asc" ? (
+                                                    {sortOrder.ascending ? (
                                                         <FaSortUp className="inline-block" />
                                                     ) : (
                                                         <FaSortDown className="inline-block" />
                                                     )}
                                                 </div>
-                                            )}
-                                            {!sortColumn.includes("date") && (
+                                            ) : (
                                                 <div className="ml-1">
                                                     <FaSort className="inline-block" />
                                                 </div>
@@ -204,16 +193,15 @@ export const Payments = () => {
                                         onClick={() => handleSort("client")}>
                                         <div className="flex items-center justify-center">
                                             {t("client")}{" "}
-                                            {sortColumn === "client" && (
+                                            {sortOrder.column === "client" ? (
                                                 <div className="ml-1">
-                                                    {sortDirection === "asc" ? (
+                                                    {sortOrder.ascending ? (
                                                         <FaSortUp className="inline-block" />
                                                     ) : (
                                                         <FaSortDown className="inline-block" />
                                                     )}
                                                 </div>
-                                            )}
-                                            {!sortColumn.includes("client") && (
+                                            ) : (
                                                 <div className="ml-1">
                                                     <FaSort className="inline-block" />
                                                 </div>
@@ -225,16 +213,15 @@ export const Payments = () => {
                                         onClick={() => handleSort("amount")}>
                                         <div className="flex items-center justify-center">
                                             {t("amount")}{" "}
-                                            {sortColumn === "amount" && (
+                                            {sortOrder.column === "amount" ? (
                                                 <div className="ml-1">
-                                                    {sortDirection === "asc" ? (
+                                                    {sortOrder.ascending ? (
                                                         <FaSortUp className="inline-block" />
                                                     ) : (
                                                         <FaSortDown className="inline-block" />
                                                     )}
                                                 </div>
-                                            )}
-                                            {!sortColumn.includes("amount") && (
+                                            ) : (
                                                 <div className="ml-1">
                                                     <FaSort className="inline-block" />
                                                 </div>
@@ -246,18 +233,15 @@ export const Payments = () => {
                                         onClick={() => handleSort("invoice")}>
                                         <div className="flex items-center justify-center">
                                             {t("invoice")}{" "}
-                                            {sortColumn === "invoice" && (
+                                            {sortOrder.column === "invoice" ? (
                                                 <div className="ml-1">
-                                                    {sortDirection === "asc" ? (
+                                                    {sortOrder.ascending ? (
                                                         <FaSortUp className="inline-block" />
                                                     ) : (
                                                         <FaSortDown className="inline-block" />
                                                     )}
                                                 </div>
-                                            )}
-                                            {!sortColumn.includes(
-                                                "invoice"
-                                            ) && (
+                                            ) : (
                                                 <div className="ml-1">
                                                     <FaSort className="inline-block" />
                                                 </div>
@@ -283,11 +267,7 @@ export const Payments = () => {
                                             </span>
                                         </td>
                                         <td className="py-2">
-                                            {t(
-                                                payment.method
-                                                    .replace(" ", "")
-                                                    .toLowerCase()
-                                            )}
+                                            {t(payment.method.toLowerCase())}
                                         </td>
                                         <td className="py-2">{payment.date}</td>
                                         <td className="py-2">

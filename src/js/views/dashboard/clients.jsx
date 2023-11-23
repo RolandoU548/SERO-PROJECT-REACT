@@ -87,11 +87,7 @@ export const Clients = () => {
         });
     };
 
-    const sortedClients = sortClients(
-        currentClients,
-        sortOrder.column,
-        sortOrder.ascending
-    );
+    sortClients(currentClients, sortOrder.column, sortOrder.ascending);
 
     if (isLoading) {
         return (
