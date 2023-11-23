@@ -253,27 +253,29 @@ export const Clients = () => {
                                                 {client.status}
                                             </div>
                                         </td>
-                                        <td className="py-2 text-center justify-center flex gap-x-1 my-auto">
-                                            <ClientCardButton
-                                                key={client.id}
-                                                client={client}
-                                            />
-                                            <button
-                                                className="m-1 p-1.5 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700  hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-                                                onClick={() => {
-                                                    setClient(client);
-                                                    setIsOpenEdit(true);
-                                                }}>
-                                                <FaEdit />
-                                            </button>
-                                            <button
-                                                className="m-1 p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-                                                onClick={() => {
-                                                    setClient(client);
-                                                    setIsOpenDelete(true);
-                                                }}>
-                                                <FaTrash />
-                                            </button>
+                                        <td className="py-2 text-center h-full gap-x-1">
+                                            <div className="flex">
+                                                <ClientCardButton
+                                                    key={client.id}
+                                                    client={client}
+                                                />
+                                                <button
+                                                    className="m-1 p-1.5 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700  hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                    onClick={() => {
+                                                        setClient(client);
+                                                        setIsOpenEdit(true);
+                                                    }}>
+                                                    <FaEdit />
+                                                </button>
+                                                <button
+                                                    className="m-1 p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                    onClick={() => {
+                                                        setClient(client);
+                                                        setIsOpenDelete(true);
+                                                    }}>
+                                                    <FaTrash />
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

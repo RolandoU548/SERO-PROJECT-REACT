@@ -118,7 +118,7 @@ export const Payments = () => {
                                     setCustomerFilter(e.target.value)
                                 }
                                 placeholder={t("filterByCustomer")}
-                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-full"
+                                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-700 focus:bg-white w-full"
                             />
                             <span className="absolute top-0 md:right-4 tiny:right-2 right-1 mt-3 pointer-events-none">
                                 <FaSearch className="h-4 w-4 fill-current text-gray-800 dark:text-gray-500" />
@@ -314,7 +314,7 @@ export const Payments = () => {
                                         </td>
                                         <td className="py-4">
                                             <button
-                                                className="ml-2 px-2 py-1 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                className="ml-2 px-2 py-1 text-xs rounded-lg bg-black dark:hover:text-black dark:text-cyan-300 border hover:text-black transition duration-300 border-black dark:border-cyan-300 hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 bg-orange-300 hover:bg-orange-400 dark:bg-black dark:hover:bg-cyan-400"
                                                 onClick={() =>
                                                     navigate(
                                                         `/creditmemo/${payment.id}`
