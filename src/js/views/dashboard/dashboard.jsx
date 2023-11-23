@@ -129,19 +129,19 @@ export const Dashboard = () => {
                             </div>
                         </div>
                         <div className="flex flex-col md:flex-row gap-4 justify-evenly w-11/12 m-auto">
-                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[25rem] flex flex-col">
+                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[30rem] flex flex-col">
                                 <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto mt-4">
                                     {t("paymentsChart")}
                                 </h1>
                                 <PieChartPayment numPayments={numPayments} />
                             </div>
-                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[25rem] flex flex-col">
+                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[30rem] flex flex-col">
                                 <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto mt-4">
                                     {t("clientsChart")}
                                 </h1>
                                 <PieChartClient numClients={numClients} />
                             </div>
-                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[25rem] flex flex-col">
+                            <div className="glass p-2 mt-5 text-center sm:w-full md:w-6/12 lg:w-4/12 xl:w-4/12 h-[30rem] flex flex-col">
                                 <h1 className="mb-2 text-xl font-black z-10 text-black dark:text-white m-auto mt-4">
                                     {t("tasksChart")}
                                 </h1>

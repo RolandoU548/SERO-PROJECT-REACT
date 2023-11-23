@@ -48,7 +48,7 @@
     "addtask": "Agregar",
     "cancel": "Cancelar",
     "deletetask": "Eliminar Tarea",
-    "sure": "Estas seguro de Elminar este Pago? Este proceso no se podrá revertir.",
+    "sure": "Estas seguro de Elminar este Tarea? Este proceso no se podrá revertir.",
     "yes": "Si",
     "no": "No"
 }

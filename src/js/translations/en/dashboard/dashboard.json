@@ -48,7 +48,7 @@
     "addtask": "Add task",
     "cancel": "Cancel",
     "deletetask": "Delete task",
-    "sure": "Are you sure you want to delete this client? This action cannot be undone.",
+    "sure": "Are you sure you want to delete this task? This action cannot be undone.",
     "yes": "Yes",
     "no": "No"
 }
