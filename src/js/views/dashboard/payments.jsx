@@ -23,13 +23,11 @@ export const Payments = () => {
     const [paymentsData, setPaymentData] = useState(store.payments);
 
     useEffect(() => {
-        actions.getAllClients().then(() => {
-            actions.getAllPayments();
+        actions.getAllPayments();
+        actions.getAllClients();
+        setTimeout(() => {
             setIsLoading(false);
-        });
-        // setTimeout(() => {
-        //     setIsLoading(false);
-        // }, 2000);
+        }, 5000);
     }, []);
 
     const filterPayment = () => {
