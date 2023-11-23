@@ -211,7 +211,7 @@ export const Clients = () => {
                                                 <img
                                                     src={client.image}
                                                     alt={client.name}
-                                                    className="h-20 w-20 object-cover rounded-full inline-block"
+                                                    className="h-14 w-14 object-cover rounded-full inline-block"
                                                 />
                                             ) : (
                                                 <i
@@ -253,7 +253,7 @@ export const Clients = () => {
                                                 {client.status}
                                             </div>
                                         </td>
-                                        <td className="py-2 text-center flex gap-x-1 my-auto">
+                                        <td className="py-2 text-center justify-center flex gap-x-1 my-auto">
                                             <ClientCardButton
                                                 key={client.id}
                                                 client={client}
