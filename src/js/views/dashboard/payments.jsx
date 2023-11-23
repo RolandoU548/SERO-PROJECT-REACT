@@ -24,10 +24,12 @@ export const Payments = () => {
 
     useEffect(() => {
         actions.getAllPayments();
-        actions.getAllClients();
-        setTimeout(() => {
+        actions.getAllClients().then(() => {
             setIsLoading(false);
-        }, 2000);
+        });
+        // setTimeout(() => {
+        //     setIsLoading(false);
+        // }, 2000);
     }, []);
 
     const filterPayment = () => {
