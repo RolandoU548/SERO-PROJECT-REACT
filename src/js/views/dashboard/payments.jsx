@@ -139,7 +139,7 @@ export const Payments = () => {
                                     <th
                                         className="py-2 px-4 text-md font-bold"
                                         onClick={() => handleSort("status")}>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center justify-center">
                                             {t("status")}{" "}
                                             {sortColumn === "status" && (
                                                 <div className="ml-1">
@@ -158,9 +158,9 @@ export const Payments = () => {
                                         </div>
                                     </th>
                                     <th
-                                        className="py-2 px-4 text-md font-bold"
+                                        className="py-2 px-4 text-center text-md font-bold"
                                         onClick={() => handleSort("method")}>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center justify-center">
                                             {t("method")}{" "}
                                             {sortColumn === "method" && (
                                                 <div className="ml-1">
@@ -179,9 +179,9 @@ export const Payments = () => {
                                         </div>
                                     </th>
                                     <th
-                                        className="py-2 px-4 text-md font-bold"
+                                        className="py-2 px-4 text-center text-md font-bold"
                                         onClick={() => handleSort("date")}>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center justify-center">
                                             {t("date")}{" "}
                                             {sortColumn === "date" && (
                                                 <div className="ml-1">
@@ -200,9 +200,9 @@ export const Payments = () => {
                                         </div>
                                     </th>
                                     <th
-                                        className="py-2 px-4 text-md font-bold"
+                                        className="py-2 px-4 text-center text-md font-bold"
                                         onClick={() => handleSort("client")}>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center justify-center">
                                             {t("client")}{" "}
                                             {sortColumn === "client" && (
                                                 <div className="ml-1">
@@ -221,9 +221,9 @@ export const Payments = () => {
                                         </div>
                                     </th>
                                     <th
-                                        className="py-2 px-4 text-md font-bold"
+                                        className="py-2 px-4 text-center text-md font-bold"
                                         onClick={() => handleSort("amount")}>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center justify-center">
                                             {t("amount")}{" "}
                                             {sortColumn === "amount" && (
                                                 <div className="ml-1">
@@ -242,9 +242,9 @@ export const Payments = () => {
                                         </div>
                                     </th>
                                     <th
-                                        className="py-2 px-4 text-md font-bold"
+                                        className="py-2 px-4 text-center text-md font-bold"
                                         onClick={() => handleSort("invoice")}>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center justify-center">
                                             {t("invoice")}{" "}
                                             {sortColumn === "invoice" && (
                                                 <div className="ml-1">
@@ -264,7 +264,7 @@ export const Payments = () => {
                                             )}
                                         </div>
                                     </th>
-                                    <th className=" py-2 px-4 text-md font-bold">
+                                    <th className=" py-2 px-4 text-center text-md font-bold">
                                         {t("actions")}
                                     </th>
                                 </tr>
@@ -272,7 +272,7 @@ export const Payments = () => {
                             <tbody>
                                 {currentPayments?.map(payment => (
                                     <tr key={payment.id}>
-                                        <td className=" py-4">
+                                        <td className=" py-2">
                                             <span
                                                 className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                                                     payment.status !== "Paid"
@@ -282,15 +282,15 @@ export const Payments = () => {
                                                 {t(payment.status)}
                                             </span>
                                         </td>
-                                        <td className="py-4">
+                                        <td className="py-2">
                                             {t(
                                                 payment.method
                                                     .replace(" ", "")
                                                     .toLowerCase()
                                             )}
                                         </td>
-                                        <td className="py-4">{payment.date}</td>
-                                        <td className="py-4">
+                                        <td className="py-2">{payment.date}</td>
+                                        <td className="py-2">
                                             {
                                                 store.clients.find(
                                                     client =>
@@ -306,15 +306,15 @@ export const Payments = () => {
                                                 )?.lastname
                                             }
                                         </td>
-                                        <td className="py-4">
+                                        <td className="py-2">
                                             {payment.amount}
                                         </td>
-                                        <td className="py-4">
+                                        <td className="py-2">
                                             {payment.invoice}
                                         </td>
-                                        <td className="py-4">
+                                        <td className="py-2">
                                             <button
-                                                className="ml-2 px-2 py-1 text-xs rounded-lg bg-black dark:hover:text-black dark:text-cyan-300 border hover:text-black transition duration-300 border-black dark:border-cyan-300 hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 bg-orange-300 hover:bg-orange-400 dark:bg-black dark:hover:bg-cyan-400"
+                                                className="ml-2 px-2 py-1 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700  hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                                 onClick={() =>
                                                     navigate(
                                                         `/creditmemo/${payment.id}`
