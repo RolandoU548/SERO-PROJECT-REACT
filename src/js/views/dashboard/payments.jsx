@@ -30,7 +30,7 @@ export const Payments = () => {
         actions.getAllClients();
         setTimeout(() => {
             setIsLoading(false);
-        }, 2000);
+        }, 5000);
     }, []);
 
     const currentPayments =
