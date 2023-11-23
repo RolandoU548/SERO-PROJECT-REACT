@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import PropTypes from "prop-types";
-import { FaImage } from "react-icons/fa";
+import { FaImage, FaTimes } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -90,6 +90,13 @@ export const ClientProfile = ({ client, setIsOpen }) => {
             console.error(error);
         }
     };
+
+    const handleDeleteImage = async () => {
+        const imageRef = storageRef(storage, imageUrl);
+        await deleteObject(imageRef);
+        setImageUrl(null);
+    };
+
     return (
         <>
             <div className="fixed top-20 z-50 inset-0 overflow-y-auto">
@@ -108,7 +115,6 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                         aria-hidden="true">
                         &#8203;
                     </span>
-
                     <div
                         className="inline-block align-bottom glass text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full rounded-t-lg"
                         role="dialog"
@@ -122,6 +128,21 @@ export const ClientProfile = ({ client, setIsOpen }) => {
                             </h3>
                             <div className="mt-5 flex justify-center items-center rounded-t-lg">
                                 <div className="flex flex-col space-y-2">
+                                    {imageUrl && (
+                                        <div className="relative w-64 h-40 m-auto">
+                                            <img
+                                                className="rounded-full object-cover h-full w-rull m-auto"
+                                                src={imageUrl}
+                                                alt="Uploaded image preview"
+                                            />
+                                            <button
+                                                type="button"
+                                                className="absolute top-0 right-0 mt-2 mr-2 focus:outline-none"
+                                                onClick={handleDeleteImage}>
+                                                <FaTimes className="h-5 w-5 text-red-500" />
+                                            </button>
+                                        </div>
+                                    )}
                                     <div>
                                         <div>
                                             <label

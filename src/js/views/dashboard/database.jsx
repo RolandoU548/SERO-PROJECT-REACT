@@ -16,17 +16,14 @@ registerLanguageDictionary(enUS);
 registerLanguageDictionary(esMX);
 
 export const Database = () => {
-    const notify = () =>
-        toast.success(t("savedTable"), {
+    const notify = () => {
+        toast("Custom Style", {
             position: "bottom-right",
-            style: {
-                background: "rgba(23, 23, 23, 0.2)",
-                backdropFilter: "blur(10px)",
-                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
-                color: "#fff",
-                borderRadius: "10px"
-            }
+            className: "foo-bar",
+            color: "#000",
+            theme: "dark"
         });
+    };
     const notifyDownload = () =>
         toast.success(t("downloadTable"), {
             position: "bottom-right",
