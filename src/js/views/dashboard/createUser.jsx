@@ -20,7 +20,7 @@ export const CreateUser = () => {
         formState: { errors }
     } = useForm({
         defaultValues: {
-            role: "user"
+            role: ["user"]
         }
     });
     const navigate = useNavigate();

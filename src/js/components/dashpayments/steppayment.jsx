@@ -96,10 +96,10 @@ export const StepPayment = () => {
     const handlePaypal = () => {
         actions.storePayments(
             {
-                ...formData,
+                ...store.paymentform,
                 method: "Paypal"
             },
-            formData
+            store.paymentform
         );
         navigate("/paypalbutton");
 
@@ -107,13 +107,6 @@ export const StepPayment = () => {
     };
 
     useEffect(() => {
-        actions.storePayments(
-            {
-                ...store.paymentform,
-                method: "creditCard"
-            },
-            store.paymentform
-        );
         if (store.paymentform.step) {
             setStep(store.paymentform.step);
         }

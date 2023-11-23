@@ -122,7 +122,7 @@ export const Dashboard = () => {
                                         {t("forms")}
                                     </div>
                                     <div className="font-bold text-cyan-300 text-md sm:text-xl">
-                                        3
+                                        2
                                     </div>
                                 </div>
                                 <FaFileAlt className="text-5xl text-cyan-300" />
