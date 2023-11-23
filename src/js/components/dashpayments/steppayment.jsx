@@ -235,7 +235,7 @@ export const StepPayment = () => {
                 </div>
                 <div className="px-[3vw] my-2 m-auto tiny:w-11/12 w-[98%]">
                     <div className="font-serif text-black dark:text-white">
-                        <div className="sm:mt-16 md:mt-20 lg:mt-24 ">
+                        <div className="sm:mt-16 md:mt-20 lg:mt-12 ">
                             <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
                                 <li
                                     className={`flex md:w-full tiny:1/4 items-center  ${
@@ -742,7 +742,7 @@ export const StepPayment = () => {
                                         />
                                         <label
                                             htmlFor="fileInput"
-                                            className="bg-cyan-300 hover:bg-cyan-400 text-black font-bold py-2 px-4 rounded">
+                                            className="bg-black hover:bg-cyan-300 text-cyan-300 hover:text-black transition duration-300 border border-cyan-300 font-bold py-2 px-4 rounded">
                                             {t("selectpdf")}
                                         </label>
                                         {fileList.length > 0 && (
@@ -772,7 +772,7 @@ export const StepPayment = () => {
                                                     </div>
                                                 ))}
                                                 <button
-                                                    className="mt-4 ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                                    className="mt-4 ml-5 bg-green-500 hover:bg-green-700 text-white transition duration-300 font-bold py-2 px-4 rounded"
                                                     onClick={handleSubmit}>
                                                     {t("uploadfiles")}
                                                 </button>
@@ -791,19 +791,19 @@ export const StepPayment = () => {
                                 <div className="flex justify-evenly">
                                     <button
                                         type="button"
-                                        className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md mt-4"
+                                        className="bg-gray-200 hover:bg-gray-300 transition duration-300 text-gray-700 py-2 px-4 rounded-md mt-4"
                                         onClick={handleBack}>
                                         {t("back")}
                                     </button>
                                     <button
                                         type="button"
-                                        className="bg-red-500 text-white py-2 px-4 rounded-md mt-4"
+                                        className="bg-red-600 hover:bg-red-700 transition duration-300 text-white py-2 px-4 rounded-md mt-4"
                                         onClick={handleReset}>
                                         {t("startover")}
                                     </button>
                                     <button
                                         type="button"
-                                        className="bg-neutral-800 text-white py-2 px-4 rounded-md mt-4"
+                                        className="bg-cyan-300 hover:bg-cyan-400 transition duration-300 text-black py-2 px-4 rounded-md mt-4"
                                         onClick={() => {
                                             handlePaymentSubmit();
                                             navigate("/payments");
