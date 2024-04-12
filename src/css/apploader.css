@@ -1,19 +1,28 @@
 .apploader {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  position: absolute;
-  animation: colorchange 1.3s infinite alternate;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    animation:
+        colorchange 1.3s infinite alternate,
+        dissapear 2s 5s forwards;
 }
 
 @keyframes colorchange {
-  0% {
-    color: white;
-  }
-  70% {
-    color: cyan;
-  }
-  100% {
-    color: white;
-  }
-}/*# sourceMappingURL=apploader.css.map */
+    0% {
+        color: white;
+    }
+    70% {
+        color: cyan;
+    }
+    100% {
+        color: white;
+    }
+}
+
+@keyframes dissapear {
+    to {
+        opacity: 0;
+        display: none;
+    }
+}

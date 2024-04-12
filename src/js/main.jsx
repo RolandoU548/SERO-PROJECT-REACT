@@ -13,15 +13,15 @@ function App() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowLoader(false);
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timer);
     }, []);
 
     return (
         <React.StrictMode>
             <I18nextProvider i18n={i18next}>
-                {showLoader ? <AppLoader /> : <Layout />}
-                {/* <Layout /> */}
+                {showLoader ? <AppLoader /> : <></>}
+                <Layout />
             </I18nextProvider>
             <ToastContainer autoClose={3000} />
         </React.StrictMode>
