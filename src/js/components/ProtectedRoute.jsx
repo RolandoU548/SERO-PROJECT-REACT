@@ -9,6 +9,7 @@ export const ProtectedRoute = ({
     redirectTo = "/login",
     role = ["user", "admin"]
 }) => {
+    const [returning, setReturning] = useState(null);
     const [logged, setLogged] = useState(true);
     const { actions, store } = useContext(Context);
     supabase.auth.onAuthStateChange((event, session) => {
@@ -16,14 +17,32 @@ export const ProtectedRoute = ({
     });
 
     useEffect(() => {
-        actions.getUser();
+        if (store.user.role) {
+            if (role.includes(store.user.role)) {
+                setReturning(true);
+            } else {
+                setReturning(false);
+            }
+        } else {
+            (async () => {
+                const user = await actions.getUser();
+                if (user) {
+                    if (role.includes(store.user.role)) {
+                        setReturning(true);
+                    } else {
+                        setReturning(false);
+                    }
+                }
+            })();
+        }
     }, []);
 
-    console.log(store.user.role, logged);
-    if (!logged || !role.includes(store.user.role)) {
+    if (!logged || returning === false) {
         return <Navigate to={redirectTo} />;
     }
-    return children || <Outlet />;
+    if (returning) {
+        return children || <Outlet />;
+    }
 };
 
 ProtectedRoute.propTypes = {

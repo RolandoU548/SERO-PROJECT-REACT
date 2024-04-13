@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 name: "Prueba",
                 lastname: "Sero",
                 email: null,
-                role: "user"
+                role: null
             },
             clients: [],
             tryclients: [],
@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         name: null,
                         lastname: null,
                         email: null,
-                        role: "user"
+                        role: null
                     },
                     users: null
                 });
