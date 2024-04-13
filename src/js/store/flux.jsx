@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 name: "Prueba",
                 lastname: "Sero",
                 email: null,
-                role: ["user", "admin"]
+                role: "user"
             },
             clients: [],
             tryclients: [],
@@ -27,7 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             password
                         });
                     if (data.session) {
-                        return true;
+                        const user = await getActions().getUser();
+                        if (user) return true;
                     }
                     if (error) {
                         alert(
@@ -85,11 +86,23 @@ const getState = ({ getStore, getActions, setStore }) => {
                         name: null,
                         lastname: null,
                         email: null,
-                        role: []
+                        role: "user"
                     },
                     users: null
                 });
                 localStorage.removeItem("token");
+            },
+            getUser: async () => {
+                const { data: user, error } = await supabase
+                    .from("user_roles")
+                    .select("*")
+                    .single();
+                if (error) {
+                    console.error(error);
+                    return false;
+                }
+                setStore({ user });
+                return true;
             },
             changeTheme: theme => {
                 setStore({ theme });

@@ -69,7 +69,7 @@ export const PrivateNavbar = () => {
             }
         });
 
-    if (store.user.role.includes("admin")) {
+    if (store.user.role === "admin") {
         menus.push(
             {
                 name: t2("contactmessages"),
