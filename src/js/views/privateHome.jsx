@@ -20,7 +20,7 @@ export const PrivateHome = () => {
                 />
             </video>
             <h2 className="font-serif dark:text-white text-5xl text-center mb-10 mt-32 mx-auto w-4/5 font-semibold">
-                {t("cardMessage")}
+                {t("optionMessage")}
             </h2>
             <div className="flex justify-evenly flex-wrap my-10 gap-5">
                 <FuncionalityCard

@@ -8,6 +8,7 @@
     "main": "main.jsx",
     "type": "module",
     "scripts": {
+        "start": "vite --port 3000",
         "dev": "vite --port 3000",
         "build": "vite build",
         "lint": "eslint --fix . --ext .js,.jsx",
