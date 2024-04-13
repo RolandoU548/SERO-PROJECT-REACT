@@ -6,6 +6,7 @@ import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { supabase } from "../../../supabase/supabase.js";
 
 export const SignUpForm = ({
     name,
@@ -42,32 +43,8 @@ export const SignUpForm = ({
         watch
     } = useForm();
 
-    const submit = async data => {
-        data.role = ["user"];
-        const respuesta = await actions.createUser(data);
-        if (respuesta?.message === `User ${data.email} already exists`) {
-            toast.error(`${data.email} ${t("userAlreadyExists")}`, {
-                position: "bottom-right",
-                style: {
-                    background: "rgba(23, 23, 23, 0.2)",
-                    backdropFilter: "blur(10px)",
-                    boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
-                    color: "#fff",
-                    borderRadius: "10px"
-                }
-            });
-        } else if (respuesta?.message === "A user has been created") {
-            notify();
-            const token = await actions.generateToken(data);
-            if (token.token) {
-                const userAuthenticated = await actions.identificateUser(
-                    token.token
-                );
-                if (userAuthenticated) {
-                    navigate("/private");
-                }
-            }
-        }
+    const submit = async formData => {
+        actions.signUp(formData.email, formData.password);
         reset();
     };
 

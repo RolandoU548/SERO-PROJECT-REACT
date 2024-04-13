@@ -38,22 +38,16 @@ export const LoginForm = ({
             }
         });
 
-    const submit = async data => {
-        const token = await actions.generateToken(data);
-        if (token.message === "Incorrect password") {
-            toast.error(t("incorrectPassword"));
-        } else if (token.message === "User doesn't exist") {
-            toast.error(t("userNotRegistered"));
-        } else if (token.token) {
-            const userAuthenticated = await actions.identificateUser(
-                token.token
-            );
-            if (userAuthenticated) {
-                notify();
-                navigate("/private");
-            }
+    const submit = async formData => {
+        const response = await actions.signInWithPassword(
+            formData.email,
+            formData.password
+        );
+        if (response) {
+            notify();
+            navigate("/private");
+            reset();
         }
-        reset();
     };
 
     return (

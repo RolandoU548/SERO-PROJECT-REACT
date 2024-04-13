@@ -1,7 +1,8 @@
+import { supabase } from "../../supabase/supabase.js";
+
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            token: localStorage.getItem("token") || null,
             theme: null,
             user: {
                 id: null,
@@ -18,6 +19,78 @@ const getState = ({ getStore, getActions, setStore }) => {
             paymentform: {}
         },
         actions: {
+            signInWithPassword: async (email, password) => {
+                try {
+                    const { data, error } =
+                        await supabase.auth.signInWithPassword({
+                            email,
+                            password
+                        });
+                    if (data.session) {
+                        return true;
+                    }
+                    if (error) {
+                        alert(
+                            "Error al iniciar sesión. Por favor, inténtalo de nuevo."
+                        );
+                        console.error(error);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+                return false;
+            },
+            signUp: async (email, password) => {
+                try {
+                    const { data, error } = await supabase.auth.signUp({
+                        email,
+                        password,
+                        options: {
+                            emailRedirectTo: "http://localhost:3000/private"
+                        }
+                    });
+                    if (data?.user) {
+                        alert(
+                            "Registro exitoso. Por favor, verifica tu correo electrónico."
+                        );
+                    }
+                    if (error) {
+                        alert(
+                            "Error al registrar. Por favor, inténtalo de nuevo."
+                        );
+                        console.error(error);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            signInWithGoogle: async () => {
+                const { error } = await supabase.auth.signInWithOAuth({
+                    provider: "google",
+                    options: {
+                        queryParams: {
+                            access_type: "offline",
+                            prompt: "consent"
+                        }
+                    }
+                });
+                if (error) console.error(error);
+            },
+            signOut: () => {
+                supabase.auth.signOut();
+                setStore({
+                    token: null,
+                    user: {
+                        id: null,
+                        name: null,
+                        lastname: null,
+                        email: null,
+                        role: []
+                    },
+                    users: null
+                });
+                localStorage.removeItem("token");
+            },
             changeTheme: theme => {
                 setStore({ theme });
             },
@@ -179,20 +252,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
-            },
-            signOut: () => {
-                setStore({
-                    token: null,
-                    user: {
-                        id: null,
-                        name: null,
-                        lastname: null,
-                        email: null,
-                        role: []
-                    },
-                    users: null
-                });
-                localStorage.removeItem("token");
             },
             getAllClients: async () => {
                 const store = getStore();

@@ -1,38 +1,24 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { supabase } from "../../supabase/supabase.js";
 import PropTypes from "prop-types";
-import { Context } from "../store/appContext.jsx";
 
-export const ProtectedRoute = ({
-    children,
-    redirectTo = "/login",
-    role = ["user"]
-}) => {
-    const { store } = useContext(Context);
-    // Este usuario deberia venir del Contexto
-
-    // Deberia decir store.token en lugar del localStorage
-    const verifyRoles = (lista1, lista2) => {
-        for (const elemento of lista1) {
-            if (!lista2.includes(elemento)) {
-                return false;
-            }
-        }
-        return true;
-    };
-
-    if (localStorage.getItem("token") && verifyRoles(role, store.user.role)) {
-        return children || <Outlet />;
-    }
-    return <Navigate to={redirectTo} />;
+export const ProtectedRoute = ({ children, redirectTo = "/login" }) => {
+    const [logged, setLogged] = useState(true);
+    supabase.auth.onAuthStateChange((event, session) => {
+        setLogged(!!session);
+    });
+    if (!logged) return <Navigate to={redirectTo} />;
+    return children || <Outlet />;
 };
 
 ProtectedRoute.propTypes = {
     children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element),
         PropTypes.string,
         PropTypes.array,
         PropTypes.object
     ]),
-    redirectTo: PropTypes.string,
-    role: PropTypes.array
+    redirectTo: PropTypes.string
 };
