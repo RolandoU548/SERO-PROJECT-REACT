@@ -8,7 +8,7 @@ export const FuncionalityCard = ({ title, image, to }) => {
     return (
         <div
             className={
-                "cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-center bg-cover rounded-2xl h-[25rem] flex justify-center items-center text-white text-5xl font-semibold border-2 border-white relative" +
+                "cursor-pointer ease-out duration-300 hover:scale-105 w-72 bg-center bg-cover rounded-2xl h-96 flex justify-center items-center text-white text-5xl font-semibold border-2 border-white relative" +
                 " " +
                 image
             }

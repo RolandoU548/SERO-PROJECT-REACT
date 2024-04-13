@@ -19,10 +19,10 @@ export const PrivateHome = () => {
                     type="video/mp4"
                 />
             </video>
-            <h2 className="font-serif dark:text-white text-5xl text-center mb-10 mt-32 mx-auto w-4/5 font-semibold">
+            <h2 className="font-serif dark:text-white text-5xl text-center mb-6 mt-28 mx-auto w-4/5 font-semibold">
                 {t("optionMessage")}
             </h2>
-            <div className="flex justify-evenly flex-wrap my-10 gap-5">
+            <div className="flex justify-evenly flex-wrap my-5 gap-5">
                 <FuncionalityCard
                     title={t("databaseCard")}
                     to="/database"
