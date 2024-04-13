@@ -37,7 +37,7 @@ export const ProtectedRoute = ({
         }
     }, []);
 
-    if (!logged || returning === false) {
+    if (returning === false || !logged) {
         return <Navigate to={redirectTo} />;
     }
     if (returning) {
