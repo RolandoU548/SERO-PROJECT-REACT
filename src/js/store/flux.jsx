@@ -543,7 +543,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         .from("database")
                         .select("*")
                         .eq("user_id", store.user.user_id);
-                    console.log(data);
                     tableExists = data.length !== 0;
                     if (error) {
                         console.error(error);
@@ -613,7 +612,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                     if (error) {
                         console.error(error);
                     }
-                    return data[0].content;
+                    if (data.length !== 0) {
+                        return data[0].content;
+                    }
+                    return null;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }

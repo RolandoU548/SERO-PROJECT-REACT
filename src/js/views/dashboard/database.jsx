@@ -17,7 +17,7 @@ registerLanguageDictionary(enUS);
 registerLanguageDictionary(esMX);
 
 export const Database = () => {
-    const notify = () =>
+    const notifySaved = () =>
         toast.success(t("savedTable"), {
             position: "bottom-right",
             style: {
@@ -53,11 +53,12 @@ export const Database = () => {
 
     useEffect(() => {
         actions.getTable().then(table => {
-            console.log(table);
-            const newTable = table.map(row => {
-                return convertJSONToArray(row);
-            });
-            setTable(newTable);
+            if (table) {
+                const newTable = table.map(row => {
+                    return convertJSONToArray(row);
+                });
+                setTable(newTable);
+            }
             setIsLoading(false);
         });
     }, []);
@@ -79,35 +80,32 @@ export const Database = () => {
     };
 
     const sendTable = async () => {
-        // const data = await actions.sendRow(table);
-        // if (data.message === "Row created" || data.message === "Row updated") {
-        //     notify();
-        // }
         const newTable = table.map(row => {
             return convertArrayToJSON(row);
         });
-        const data = await actions.sendTable(newTable);
-        console.log(data);
+        actions.sendTable(newTable).then(() => {
+            notifySaved();
+        });
     };
 
     const downloadFile = () => {
         const downloadPlugin =
             hotTableComponent.current.hotInstance.getPlugin("exportFile");
-        notifyDownload();
         downloadPlugin.downloadFile("csv", {
             filename: "DatabaseTable",
             fileExtension: "csv",
             mimeType: "text/csv"
         });
+        notifyDownload();
     };
 
-    // if (isLoading) {
-    //     return (
-    //         <div className="flex justify-center items-center h-screen">
-    //             <RingLoader color="#26C6DA" loading={isLoading} size={100} />
-    //         </div>
-    //     );
-    // }
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <RingLoader color="#26C6DA" loading={isLoading} size={100} />
+            </div>
+        );
+    }
 
     return (
         <>
