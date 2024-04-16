@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useRef, useContext } from "react";
 import { Context } from "../../store/appContext.jsx";
-import "../../../css/app.css";
+import "../../../css/database.css";
 import "../../../css/glass.css";
 import { useTranslation } from "react-i18next";
 import { HotTable } from "@handsontable/react";
@@ -10,6 +10,7 @@ import "handsontable/dist/handsontable.full.min.css";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { supabase } from "../../../supabase/supabase.js";
 
 registerAllModules();
 registerLanguageDictionary(enUS);
@@ -42,7 +43,7 @@ export const Database = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [t] = useTranslation("database");
     const i18n = useTranslation("global")[1];
-    const [rows, setRows] = useState([
+    const [table, setTable] = useState([
         ["ID", "Name", "Lastname"],
         ["1", "Jose", "García"],
         ["2", "Ramón", "Pérez"]
@@ -51,19 +52,31 @@ export const Database = () => {
     const hotTableComponent = useRef(null);
 
     useEffect(() => {
-        actions.getRows().then(rows => {
-            if (rows.info?.text) {
-                setRows(rows.info.text);
-            }
-            setIsLoading(false);
-        });
+        // actions.getTable().then(table => {
+        //     console.log(table);
+        //     setTable(table.content);
+        //     setIsLoading(false);
+        // });
     }, []);
 
-    const sendRow = async () => {
-        const data = await actions.sendRow(rows);
-        if (data.message === "Row created" || data.message === "Row updated") {
-            notify();
-        }
+    const convertToJSON = array => {
+        const json = {};
+        array.forEach((element, index) => {
+            json[index] = element;
+        });
+        return json;
+    };
+
+    const sendTable = async () => {
+        // const data = await actions.sendRow(table);
+        // if (data.message === "Row created" || data.message === "Row updated") {
+        //     notify();
+        // }
+        const newTable = table.map(row => {
+            return convertToJSON(row);
+        });
+        const data = await actions.sendTable(newTable);
+        console.log(data);
     };
 
     const downloadFile = () => {
@@ -77,13 +90,14 @@ export const Database = () => {
         });
     };
 
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <RingLoader color="#26C6DA" loading={isLoading} size={100} />
-            </div>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div className="flex justify-center items-center h-screen">
+    //             <RingLoader color="#26C6DA" loading={isLoading} size={100} />
+    //         </div>
+    //     );
+    // }
+
     return (
         <>
             <img
@@ -103,34 +117,30 @@ export const Database = () => {
                         </div>
                         <div
                             className="flex h-12 w-40 justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                            onClick={sendRow}>
+                            onClick={sendTable}>
                             <p>{t("saveTable")}</p>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-end ">
-                    <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto table2">
-                        <div
-                            className="h-full p-0 m-0"
-                            style={{ overflowX: "auto" }}>
-                            {rows.length > 0 && (
-                                <HotTable
-                                    ref={hotTableComponent}
-                                    data={rows}
-                                    language={
-                                        i18n.language === "es"
-                                            ? esMX.languageCode
-                                            : enUS.languageCode
-                                    }
-                                    licenseKey="non-commercial-and-evaluation"
-                                    colHeaders={true}
-                                    rowHeaders={true}
-                                    columnSorting={true}
-                                    contextMenu={true}
-                                    dropdownMenu={true}
-                                    filters={true}
-                                />
-                            )}
+                    <div className="glass p-10 w-11/12 h-[30rem] my-5 m-auto">
+                        <div className="h-full p-0 m-0 scrollbar-hidden overflow-x-auto">
+                            <HotTable
+                                ref={hotTableComponent}
+                                data={table}
+                                language={
+                                    i18n.language === "es"
+                                        ? esMX.languageCode
+                                        : enUS.languageCode
+                                }
+                                licenseKey="non-commercial-and-evaluation"
+                                colHeaders={true}
+                                rowHeaders={true}
+                                columnSorting={true}
+                                contextMenu={true}
+                                dropdownMenu={true}
+                                filters={true}
+                            />
                         </div>
                     </div>
                 </div>

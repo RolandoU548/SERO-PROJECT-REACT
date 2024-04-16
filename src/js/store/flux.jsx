@@ -535,23 +535,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            sendRow: async object => {
-                const store = getStore();
+            sendTable: async object => {
                 try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/row",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
-                            },
-                            body: JSON.stringify({
-                                text: object
-                            })
-                        }
-                    );
-                    const data = await resp.json();
+                    const { data, error } = await supabase
+                        .from("database")
+                        .insert([
+                            {
+                                content: object
+                            }
+                        ])
+                        .select();
+                    if (error) {
+                        console.error(error);
+                    }
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
@@ -576,20 +572,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            getRows: async () => {
-                const store = getStore();
+            getTable: async () => {
                 try {
-                    const resp = await fetch(
-                        `${import.meta.env.VITE_BACKEND_URL}/user_rows`,
-                        {
-                            method: "GET",
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
-                            }
-                        }
-                    );
-                    const data = await resp.json();
+                    const { data, error } = await supabase
+                        .from("database")
+                        .select("content");
+                    if (error) {
+                        console.error(error);
+                    }
+                    console.log(data[0].content.json);
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
