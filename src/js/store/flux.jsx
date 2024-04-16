@@ -580,8 +580,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     if (error) {
                         console.error(error);
                     }
-                    console.log(data[0].content.json);
-                    return data;
+                    return data[0].content;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }

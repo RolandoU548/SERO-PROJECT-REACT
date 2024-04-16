@@ -52,14 +52,25 @@ export const Database = () => {
     const hotTableComponent = useRef(null);
 
     useEffect(() => {
-        // actions.getTable().then(table => {
-        //     console.log(table);
-        //     setTable(table.content);
-        //     setIsLoading(false);
-        // });
+        actions.getTable().then(table => {
+            console.log(table);
+            const newTable = table.map(row => {
+                return convertJSONToArray(row);
+            });
+            setTable(newTable);
+            setIsLoading(false);
+        });
     }, []);
 
-    const convertToJSON = array => {
+    const convertJSONToArray = json => {
+        const array = [];
+        for (const key in json) {
+            array.push(json[key]);
+        }
+        return array;
+    };
+
+    const convertArrayToJSON = array => {
         const json = {};
         array.forEach((element, index) => {
             json[index] = element;
@@ -73,7 +84,7 @@ export const Database = () => {
         //     notify();
         // }
         const newTable = table.map(row => {
-            return convertToJSON(row);
+            return convertArrayToJSON(row);
         });
         const data = await actions.sendTable(newTable);
         console.log(data);
