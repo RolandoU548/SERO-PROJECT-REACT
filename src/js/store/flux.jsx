@@ -536,21 +536,54 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             sendTable: async object => {
+                let tableExists = false;
                 try {
+                    const store = getStore();
                     const { data, error } = await supabase
                         .from("database")
-                        .insert([
-                            {
-                                content: object
-                            }
-                        ])
-                        .select();
+                        .select("*")
+                        .eq("user_id", store.user.user_id);
+                    console.log(data);
+                    tableExists = data.length !== 0;
                     if (error) {
                         console.error(error);
                     }
-                    return data;
                 } catch (error) {
                     console.log("There has been an error", error);
+                }
+
+                if (!tableExists) {
+                    try {
+                        const { data, error } = await supabase
+                            .from("database")
+                            .insert([
+                                {
+                                    content: object
+                                }
+                            ])
+                            .select();
+                        if (error) {
+                            console.error(error);
+                        }
+                        return data;
+                    } catch (error) {
+                        console.log("There has been an error", error);
+                    }
+                } else {
+                    try {
+                        const store = getStore();
+                        const { data, error } = await supabase
+                            .from("database")
+                            .update({ content: object })
+                            .eq("user_id", store.user.user_id)
+                            .select();
+                        if (error) {
+                            console.error(error);
+                        }
+                        return data;
+                    } catch (error) {
+                        console.log("There has been an error", error);
+                    }
                 }
             },
             getRow: async id => {
