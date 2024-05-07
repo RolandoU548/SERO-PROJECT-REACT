@@ -10,7 +10,6 @@ import "handsontable/dist/handsontable.full.min.css";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { supabase } from "../../../supabase/supabase.js";
 
 registerAllModules();
 registerLanguageDictionary(enUS);

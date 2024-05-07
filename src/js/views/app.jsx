@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/app.css";
 import "../../css/glass.css";
@@ -8,20 +7,24 @@ import { Services } from "./animations/Services";
 import { Contact } from "./animations/Contact";
 import { Functionalities } from "./animations/Functionalities";
 import { Footer } from "./animations/Footer";
-import { isTokenExpired } from "../utils/isTokenExpired";
+import { supabase } from "../../supabase/supabase.js";
 
 export const App = () => {
-    const { actions } = useContext(Context);
     const [t] = useTranslation("app");
     const navigate = useNavigate();
-    if (localStorage.getItem("token")) {
-        const validateSession = isTokenExpired(localStorage.getItem("token"));
-        if (validateSession) {
-            actions.signOut();
-        } else {
-            navigate("/private");
-        }
-    }
+
+    supabase.auth.onAuthStateChange((event, session) => {
+        if (session) navigate("/private");
+    });
+
+    // if (localStorage.getItem("token")) {
+    //     const validateSession = isTokenExpired(localStorage.getItem("token"));
+    //     if (validateSession) {
+    //         actions.signOut();
+    //     } else {
+    //         navigate("/private");
+    //     }
+    // }
 
     return (
         <div className="font-serif dark:text-white">

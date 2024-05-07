@@ -16,7 +16,6 @@ import {
     FiLogOut,
     FiMessageSquare
 } from "react-icons/fi";
-import { FaTasks } from "react-icons/fa";
 import "../../css/glass.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,13 +35,11 @@ export const PrivateNavbar = () => {
             link: "/forms",
             icon: TbReportAnalytics
         },
-        // { name: t2("tasks"), link: "/tasks", icon: FaTasks },
         {
             name: t2("payments"),
             link: "/payments",
             icon: FiDollarSign
         }
-        // { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
     const notifyToken = () =>

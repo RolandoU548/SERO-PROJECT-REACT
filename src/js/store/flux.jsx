@@ -80,17 +80,21 @@ const getState = ({ getStore, getActions, setStore }) => {
             signOut: () => {
                 supabase.auth.signOut();
                 setStore({
-                    token: null,
+                    theme: null,
                     user: {
                         id: null,
-                        name: null,
-                        lastname: null,
+                        name: "Prueba",
+                        lastname: "Sero",
                         email: null,
                         role: null
                     },
-                    users: null
+                    clients: [],
+                    tryclients: [],
+                    users: [],
+                    payments: [],
+                    tasks: [],
+                    paymentform: {}
                 });
-                localStorage.removeItem("token");
             },
             getUser: async () => {
                 const { data: user, error } = await supabase
