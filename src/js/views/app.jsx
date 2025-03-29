@@ -17,7 +17,7 @@ export const App = () => {
     if (localStorage.getItem("token")) {
         const validateSession = isTokenExpired(localStorage.getItem("token"));
         if (validateSession) {
-            actions.signOut();
+            // actions.signOut();
         } else {
             navigate("/private");
         }

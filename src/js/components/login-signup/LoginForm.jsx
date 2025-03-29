@@ -39,21 +39,20 @@ export const LoginForm = ({
         });
 
     const submit = async data => {
-        const token = await actions.generateToken(data);
-        if (token.message === "Incorrect password") {
+        const resp = await actions.login(data);
+        if (resp.message === "Incorrect password"){
             toast.error(t("incorrectPassword"));
-        } else if (token.message === "User doesn't exist") {
-            toast.error(t("userNotRegistered"));
-        } else if (token.token) {
-            const userAuthenticated = await actions.identificateUser(
-                token.token
-            );
-            if (userAuthenticated) {
-                notify();
-                navigate("/private");
-            }
+            return;
         }
-        reset();
+       if (resp.message === "User not found") {
+            toast.error(t("userNotRegistered"));
+            return;
+        }
+        if(resp.message === "Logged in succesfully"){
+            notify();
+            navigate("/private");
+            reset();
+        }
     };
 
     return (

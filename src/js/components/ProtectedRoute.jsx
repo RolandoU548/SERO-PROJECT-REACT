@@ -24,7 +24,9 @@ export const ProtectedRoute = ({
     if (localStorage.getItem("token") && verifyRoles(role, store.user.role)) {
         return children || <Outlet />;
     }
-    return <Navigate to={redirectTo} />;
+    // esto se cambiara luego
+    return children || <Outlet />;
+    // return <Navigate to={redirectTo} />;
 };
 
 ProtectedRoute.propTypes = {

@@ -92,7 +92,7 @@ export const PrivateNavbar = () => {
                 if (validateSession) {
                     clearInterval(intervalId);
                     notifyToken();
-                    actions.signOut();
+                    // actions.signOut();
                 }
             }
         }, 10000);

@@ -4,7 +4,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.linkedEditing": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.wordWrap": "on",
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"

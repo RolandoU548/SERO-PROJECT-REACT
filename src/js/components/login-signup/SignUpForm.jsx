@@ -45,7 +45,7 @@ export const SignUpForm = ({
     const submit = async data => {
         data.role = ["user"];
         const respuesta = await actions.createUser(data);
-        if (respuesta?.message === `User ${data.email} already exists`) {
+        if (respuesta?.message === `Email already exists`) {
             toast.error(`${data.email} ${t("userAlreadyExists")}`, {
                 position: "bottom-right",
                 style: {
@@ -58,17 +58,12 @@ export const SignUpForm = ({
             });
         } else if (respuesta?.message === "A user has been created") {
             notify();
-            const token = await actions.generateToken(data);
-            if (token.token) {
-                const userAuthenticated = await actions.identificateUser(
-                    token.token
-                );
-                if (userAuthenticated) {
-                    navigate("/private");
-                }
+            const resp = await actions.login(data);
+            if(resp.message === "Logged in succesfully"){
+                navigate("/private");
+                reset();
             }
         }
-        reset();
     };
 
     return (

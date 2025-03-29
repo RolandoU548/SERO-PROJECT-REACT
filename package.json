@@ -1,14 +1,14 @@
 {
     "name": "sero-project",
     "engines": {
-        "node": "18.x"
+        "node": "22.x"
     },
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "main": "main.jsx",
     "type": "module",
     "scripts": {
-        "dev": "vite --port 3000",
+        "dev": "vite --port 5000",
         "build": "vite build",
         "lint": "eslint --fix . --ext .js,.jsx",
         "preview": "vite preview",

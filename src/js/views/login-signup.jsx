@@ -60,7 +60,7 @@ export const LoginSignupCard = props => {
     };
 
     useEffect(() => {
-        actions.signOut();
+        // actions.signOut();
     }, []);
     return (
         <Base>

@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            token: localStorage.getItem("token") || null,
+            accessToken: null,
             theme: null,
             user: {
                 id: null,
@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             createUser: async info => {
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/user",
+                        import.meta.env.VITE_BACKEND_URL + "/users",
                         {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + `/user/${info.id}`,
+                        import.meta.env.VITE_BACKEND_URL + `/users/${info.id}`,
                         {
                             method: "PUT",
                             headers: {
@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + `/user/${id}`,
+                        import.meta.env.VITE_BACKEND_URL + `/users/${id}`,
                         {
                             method: "DELETE",
                             headers: {
@@ -90,6 +90,27 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
+                }
+            },
+            login: async info => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/auth/login",
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                email: info.email,
+                                password: info.password
+                            })
+                        }
+                    );
+                    const data = await resp.json();
+                    setStore({ user:data.user});
+                    setStore({ accessToken: data.accessToken });
+                    return data;
+                } catch (error) {
+                    console.log("Error generating Token", error);
                 }
             },
             generateToken: async info => {
@@ -116,7 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             identificateUser: async token => {
                 try {
                     const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/user",
+                        import.meta.env.VITE_BACKEND_URL + "/users",
                         {
                             headers: {
                                 "Content-Type": "application/json",
@@ -180,7 +201,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            signOut: () => {
+            signOut: async() => {
+                try {
+                   await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/auth/logout",
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                        }
+                    );
+                } catch (error) {
+                    console.log("Error logging out", error);
+                }
                 setStore({
                     token: null,
                     user: {
