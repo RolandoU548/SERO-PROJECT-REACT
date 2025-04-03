@@ -8,7 +8,6 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
-import { isTokenExpired } from "../utils/isTokenExpired.js";
 import {
     FiDatabase,
     FiDollarSign,
@@ -16,7 +15,6 @@ import {
     FiLogOut,
     FiMessageSquare
 } from "react-icons/fi";
-import { FaTasks } from "react-icons/fa";
 import "../../css/glass.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -69,7 +67,7 @@ export const PrivateNavbar = () => {
             }
         });
 
-    if (store.user.role.includes("admin")) {
+    if (store.user.role === "admin") {
         menus.push(
             {
                 name: t2("contactmessages"),
@@ -85,18 +83,18 @@ export const PrivateNavbar = () => {
         );
     }
 
-    useEffect(() => {
-        const intervalId = setInterval(function () {
-            if (store.token) {
-                const validateSession = isTokenExpired(store.token);
-                if (validateSession) {
-                    clearInterval(intervalId);
-                    notifyToken();
-                    // actions.signOut();
-                }
-            }
-        }, 10000);
-    }, []);
+    // useEffect(() => {
+    //     const intervalId = setInterval(function () {
+    //         if (store.token) {
+    //             const validateSession = isTokenExpired(store.token);
+    //             if (validateSession) {
+    //                 clearInterval(intervalId);
+    //                 notifyToken();
+    //                 actions.signOut();
+    //             }
+    //         }
+    //     }, 10000);
+    // }, []);
 
     return (
         <>
@@ -159,8 +157,8 @@ export const PrivateNavbar = () => {
                                         mt-2 text-red-500 group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-gray-800 hover:bg-gray-400 rounded-md cursor-pointer"
                                 onClick={() => {
                                     logOutToast();
-                                    actions.signOut();
                                     navigate("/");
+                                    actions.signOut();
                                 }}>
                                 <div>
                                     <FiLogOut />
@@ -241,7 +239,7 @@ export const PrivateNavbar = () => {
                     <ul className="flex items-center resp:mt-5 resp:flex-col">
                         <li className="mt-4">
                             <Link to="/profile" className="text-xl text-light">
-                                {store.user.role.includes("admin") && (
+                                {store.user.role === "admin" && (
                                     <span className="text-sm text-cyan-500 dark:text-cyan-400 font-bold mr-1">
                                         admin
                                     </span>

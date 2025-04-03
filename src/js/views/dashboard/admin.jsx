@@ -54,8 +54,10 @@ export const Admin = () => {
                     user.email
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase()) ||
-                    user.role.includes(searchTerm.toLowerCase())
-            )
+                    user.role
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())
+                    )
             // eslint-disable-next-line array-callback-return
             .sort((a, b) => {
                 if (

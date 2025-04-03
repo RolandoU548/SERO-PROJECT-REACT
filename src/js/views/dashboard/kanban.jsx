@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 // import { useSelector } from "react-redux";
 import { FaPlus } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
 import { Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { Task } from "./task";

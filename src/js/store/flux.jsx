@@ -1,14 +1,16 @@
+import { fetchWithAuth } from "../utils/fetchWithAuth";
+
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             accessToken: null,
             theme: null,
             user: {
-                id: null,
+                _id: null,
                 name: "Prueba",
                 lastname: "Sero",
-                email: null,
-                role: ["user", "admin"]
+                email: "prueba@sero.com",
+                role: "user"
             },
             clients: [],
             tryclients: [],
@@ -20,6 +22,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         actions: {
             changeTheme: theme => {
                 setStore({ theme });
+            },
+            setUser: user => {
+                setStore({ user });
+            },
+            changeAccessToken: accessToken => {
+                setStore({ accessToken });
             },
             createUser: async info => {
                 try {
@@ -99,6 +107,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
+                            credentials: "include",
                             body: JSON.stringify({
                                 email: info.email,
                                 password: info.password
@@ -106,71 +115,36 @@ const getState = ({ getStore, getActions, setStore }) => {
                         }
                     );
                     const data = await resp.json();
-                    setStore({ user:data.user});
+                    setStore({ user: data.user });
                     setStore({ accessToken: data.accessToken });
                     return data;
                 } catch (error) {
                     console.log("Error generating Token", error);
                 }
             },
-            generateToken: async info => {
+            signOut: async() => {
+                setStore({
+                    accessToken: null,
+                    user: {
+                        id: null,
+                        name: null,
+                        lastname: null,
+                        email: null,
+                        role: null
+                    },
+                    users: null
+                });
                 try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/token",
+                   await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/auth/logout",
                         {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                email: info.email,
-                                password: info.password
-                            })
+                            credentials: "include"
                         }
                     );
-                    const data = await resp.json();
-                    localStorage.setItem("token", data.token);
-                    setStore({ token: data.token });
-                    return data;
                 } catch (error) {
-                    console.log("Error generating Token", error);
-                }
-            },
-            identificateUser: async token => {
-                try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/users",
-                        {
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + token
-                            }
-                        }
-                    );
-                    const data = await resp.json();
-                    if (resp.ok) {
-                        let birthday = null;
-                        if (data.birthday) {
-                            birthday = new Date(data.birthday);
-                            const birthdayPlusOne = birthday.getDate() + 1;
-                            birthday.setDate(birthdayPlusOne);
-                        }
-                        const createdAt = new Date(data.createdAt);
-                        const createdAtPlusOne = createdAt.getDate() + 1;
-                        createdAt.setDate(createdAtPlusOne);
-                        setStore({
-                            user: {
-                                ...data,
-                                role: data.role.map(role => {
-                                    return role.role;
-                                }),
-                                createdAt,
-                                birthday
-                            }
-                        });
-                        return true;
-                    }
-                    return false;
-                } catch (error) {
-                    console.log("There has been an error", error);
+                    console.log("Error logging out", error);
                 }
             },
             getAllUsers: async token => {
@@ -187,12 +161,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     const data = await resp.json();
                     if (resp.ok) {
                         setStore({
-                            users: data.map(user => {
-                                user.role = user.role.map(role => {
-                                    return role.role;
-                                });
-                                return user;
-                            })
+                            users: data
                         });
                         return true;
                     }
@@ -200,31 +169,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
-            },
-            signOut: async() => {
-                try {
-                   await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/auth/logout",
-                        {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                        }
-                    );
-                } catch (error) {
-                    console.log("Error logging out", error);
-                }
-                setStore({
-                    token: null,
-                    user: {
-                        id: null,
-                        name: null,
-                        lastname: null,
-                        email: null,
-                        role: []
-                    },
-                    users: null
-                });
-                localStorage.removeItem("token");
             },
             getAllClients: async () => {
                 const store = getStore();
@@ -495,62 +439,32 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            sendRow: async object => {
+            sendSpreadsheet: async object => {
                 const store = getStore();
                 try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/row",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
-                            },
-                            body: JSON.stringify({
-                                text: object
-                            })
-                        }
-                    );
-                    const data = await resp.json();
-                    return data;
+                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/spreadsheets", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            user: store.user._id,
+                            tableData: object
+                        })
+                    }, store.accessToken, setStore)
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
             },
-            getRow: async id => {
+            getSpreadsheet: async () => {
                 const store = getStore();
                 try {
-                    const resp = await fetch(
-                        `${import.meta.env.VITE_BACKEND_URL}/row/${id}`,
-                        {
-                            method: "GET",
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
-                            }
+                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/spreadsheets/user/" + store.user._id, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
                         }
-                    );
-                    const data = await resp.json();
-                    return data;
-                } catch (error) {
-                    console.log("There has been an error", error);
-                }
-            },
-            getRows: async () => {
-                const store = getStore();
-                try {
-                    const resp = await fetch(
-                        `${import.meta.env.VITE_BACKEND_URL}/user_rows`,
-                        {
-                            method: "GET",
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
-                            }
-                        }
-                    );
-                    const data = await resp.json();
-                    return data;
+                    }, store.accessToken, setStore)
                 } catch (error) {
                     console.log("There has been an error", error);
                 }

@@ -40,7 +40,7 @@ export const LoginForm = ({
 
     const submit = async data => {
         const resp = await actions.login(data);
-        if (resp.message === "Incorrect password"){
+        if (resp.message === "Incorrect password") {
             toast.error(t("incorrectPassword"));
             return;
         }
@@ -48,7 +48,7 @@ export const LoginForm = ({
             toast.error(t("userNotRegistered"));
             return;
         }
-        if(resp.message === "Logged in succesfully"){
+        if (resp.message === "Logged in succesfully") {
             notify();
             navigate("/private");
             reset();

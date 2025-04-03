@@ -51,17 +51,17 @@ export const Database = () => {
     const hotTableComponent = useRef(null);
 
     useEffect(() => {
-        actions.getRows().then(rows => {
-            if (rows.info?.text) {
-                setRows(rows.info.text);
+        actions.getSpreadsheet().then(response => {
+            if (response?.spreadsheet?.tableData) {
+                setRows(response.spreadsheet.tableData);
             }
             setIsLoading(false);
         });
     }, []);
 
-    const sendRow = async () => {
-        const data = await actions.sendRow(rows);
-        if (data.message === "Row created" || data.message === "Row updated") {
+    const sendSpreadsheet = async () => {
+        const data = await actions.sendSpreadsheet(rows);
+        if (data.message === "Spreadsheet created successfully" || data.message === "Spreadsheet updated successfully") {
             notify();
         }
     };
@@ -103,7 +103,7 @@ export const Database = () => {
                         </div>
                         <div
                             className="flex h-12 w-40 justify-center text-white items-center mr-5 bg-[rgba(0,0,0,0.85)] hover:bg-[rgba(0,0,0,0.6)] dark:bg-[rgba(255,255,255,0.2)] dark:hover:bg-[rgba(255,255,255,0.3)] rounded-full cursor-pointer p-3 transition duration-300"
-                            onClick={sendRow}>
+                            onClick={sendSpreadsheet}>
                             <p>{t("saveTable")}</p>
                         </div>
                     </div>

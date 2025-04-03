@@ -38,7 +38,7 @@ export const LoginSignupCard = props => {
             lastname: response.user.displayName.split(" ")[1],
             email: response.user.email,
             password: response.user.uid,
-            role: ["user", "admin"],
+            role: "user",
             status: "Active"
         };
         await actions.createUser(user);

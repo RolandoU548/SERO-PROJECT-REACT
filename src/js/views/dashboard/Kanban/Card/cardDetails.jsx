@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-    Calendar,
     CheckSquare,
     Clock,
     CreditCard,
@@ -33,7 +32,7 @@ const CardDetails = props => {
     const initializeTag = (value, color) => ({
         id: uuidv4(),
         tagName: value,
-        color: color
+        color
     });
 
     const Input = () => (

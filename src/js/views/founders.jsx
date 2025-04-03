@@ -1,13 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FounderCard } from "../components/founders/FounderCard.jsx";
-import { useNavigate } from "react-router-dom";
 import "../../css/glass.css";
 import "../../css/tadaAnimation.css";
 
 export const Founder = () => {
     const [t] = useTranslation("founders");
-    const navigate = useNavigate();
     return (
         <div className="font-serif text-white">
             <h2 className="mix-blend-difference lg:px-32 text-3xl minimum:text-[2.5rem] tiny:text-6xl sm:text-7xl md:text-7xl font-black z-10 text-center mt-36">
@@ -139,25 +137,6 @@ export const Founder = () => {
                     <img src="bcrypt-logo.png" className="w-24 rounded-lg" />
                 </div>
             </div>
-            {/* <div className="mt-16">
-                <button
-                    className="block dark:text-gray-200 text-black"
-                    onClick={() => {
-                        localStorage.setItem(
-                            "token",
-                            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMDAyMTg0MCwianRpIjoiNzMxMmRmZGItODZkNi00Y2FlLThmMWUtOWQ4MjMwY2I1NTA5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJvbGFuZG91NTQ4QGdtYWlsLmNvbSIsIm5iZiI6MTcwMDAyMTg0MCwiZXhwIjoxNzAwMTA4MjQwfQ.57jBfh6D2hqAm7JXTNH9lwS1XaMnBCLv1MrnW535MJA"
-                        );
-                    }}>
-                    token
-                </button>
-                <button
-                    className="text-4xl block dark:text-gray-200 text-black"
-                    onClick={() => {
-                        navigate("/private");
-                    }}>
-                    PRIVATE
-                </button>
-            </div> */}
         </div>
     );
 };
