@@ -314,12 +314,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error(error);
                 }
             },
-
             storePayments: data => {
                 setStore({ paymentform: data });
                 return data;
             },
-
             updatePayment: async (id, payment) => {
                 try {
                     const response = await fetch(
@@ -459,7 +457,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             getSpreadsheet: async () => {
                 const store = getStore();
                 try {
-                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/spreadsheets/user/" + store.user._id, {
+                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/spreadsheets/me", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
