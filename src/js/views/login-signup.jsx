@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import ReactCardFlip from "react-card-flip";
@@ -59,9 +59,6 @@ export const LoginSignupCard = props => {
         }
     };
 
-    useEffect(() => {
-        // actions.signOut();
-    }, []);
     return (
         <Base>
             <ReactCardFlip isFlipped={flip} flipDirection="vertical">

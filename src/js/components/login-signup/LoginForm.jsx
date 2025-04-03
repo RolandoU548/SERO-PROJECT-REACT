@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,11 @@ export const LoginForm = ({
 }) => {
     const [t] = useTranslation("loginform");
     const { actions } = useContext(Context);
+
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const {
         register,
         handleSubmit,
@@ -44,13 +48,13 @@ export const LoginForm = ({
             toast.error(t("incorrectPassword"));
             return;
         }
-       if (resp.message === "User not found") {
+        if (resp.message === "User not found") {
             toast.error(t("userNotRegistered"));
             return;
         }
         if (resp.message === "Logged in succesfully") {
             notify();
-            navigate("/private");
+            navigate(from, { replace: true });
             reset();
         }
     };

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useLocation, Navigate, Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext.jsx";
 
@@ -9,12 +9,12 @@ export const ProtectedRoute = ({
     roles = ["user", "admin"]
 }) => {
     const { store } = useContext(Context);
+    const location = useLocation();
 
     if (store.accessToken && roles.includes(store.user.role)) {
         return children || <Outlet />;
     }
-    console.log("Redirección")
-    return <Navigate to={redirectTo} />;
+    return <Navigate to={redirectTo} state={{ from: location }} replace />;
 };
 
 ProtectedRoute.propTypes = {
