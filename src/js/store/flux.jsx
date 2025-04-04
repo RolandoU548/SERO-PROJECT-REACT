@@ -52,30 +52,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            updateUser: async info => {
+            updateUser: async user => {
                 const store = getStore();
                 try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + `/users/${info.id}`,
-                        {
-                            method: "PUT",
-                            headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
-                            },
-                            body: JSON.stringify(info)
-                        }
-                    );
-                    if (resp.ok) {
-                        const data = await resp.json();
-                        return data;
-                    } else {
-                        console.log(
-                            "Error updating user. Status:",
-                            resp.status
-                        );
-                        return null;
-                    }
+                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/users/me", {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(user)
+                    }, store.accessToken, setStore)
                 } catch (error) {
                     console.log("There has been an error", error);
                     return null;

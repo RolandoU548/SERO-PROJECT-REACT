@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
 import { Context } from "../../store/appContext";
 
 export const Profile = () => {
@@ -10,40 +9,38 @@ export const Profile = () => {
     const [editingField, setEditingField] = useState(null);
     const [editedValue, setEditedValue] = useState("");
     const user = store.user;
-    const [userStatus, setUserStatus] = useState(store.user.status);
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset
-    } = useForm();
 
     const handleFieldEdit = fieldName => {
         setEditingField(fieldName);
     };
-
     const handleFieldSave = async () => {
-        const updatedInfo = {
-            ...user,
-            [editingField]: editedValue
-        };
-        await actions.updateUser(updatedInfo);
-        await actions.identificateUser(store.token);
-        setEditedValue("");
+        if (editedValue) {
+            const updatedInfo = {
+                ...user,
+                [editingField]: editedValue
+            };
+            await actions.updateUser(updatedInfo);
+            actions.setUser(updatedInfo);
+            setEditedValue("");
+        }
         setEditingField(null);
     };
 
-    const changeStatus = async status => {
-        await actions.updateUser({ ...user, status });
-        await actions.identificateUser(store.token);
+    const changeIsActive = async isActive => {
+        if (isActive === "Active") {
+            isActive = true;
+        } else {
+            isActive = false;
+        }
+        await actions.updateUser({ ...user, isActive });
+        actions.setUser({ ...user, isActive });
     };
 
     return (
         <>
             <img
+                className="w-screen h-screen -z-50 fixed object-cover top-0 dark:invert-0 invert transition duration-500"
                 src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fprofile%2FProfileBG.jpeg?alt=media&token=c90a4f9c-9ae6-4ce2-a4b2-0bb4af67e72e"
-                className="invert w-full fixed -z-50 bottom-0 left-0 dark:invert-0 transition duration-500"
             />
             <div className="dark:text-white mt-28 w-[30rem] max-w-full m-auto mb-5 p-2">
                 <div className="border border-black dark:border-white transition duration-300 rounded-xl p-2">
@@ -60,20 +57,22 @@ export const Profile = () => {
                         <li className="flex justify-between items-center py-3">
                             <span>{t("status")}</span>
                             <select
-                                name="status"
-                                id="status"
+                                name="isActive"
+                                id="isActive"
                                 className={
                                     "py-1 rounded text-sm" +
                                     " " +
-                                    (store.user.status !== "Inactive"
+                                    (store.user.isActive
                                         ? "bg-cyan-500"
                                         : "bg-red-500")
                                 }
-                                value={userStatus}
-                                defaultValue={store.user.status}
+                                defaultValue={
+                                    store.user.isActive
+                                        ? "Active"
+                                        : "Inactive"
+                                }
                                 onChange={e => {
-                                    setUserStatus(e.target.value);
-                                    changeStatus(e.target.value);
+                                    changeIsActive(e.target.value);
                                 }}>
                                 <option value="Active" className="bg-cyan-500">
                                     {t("active")}
@@ -86,7 +85,11 @@ export const Profile = () => {
                         <li className="flex items-center py-3">
                             <span>{t("members")}</span>
                             <span className="ml-auto">
-                                {user.createdAt?.toLocaleDateString()}
+                                {`${new Date(user?.createdAt).getUTCDate()}/${
+                                    new Date(user?.createdAt).getUTCMonth() + 1
+                                }/${new Date(
+                                    user?.createdAt
+                                ).getUTCFullYear()}`}
                             </span>
                         </li>
                     </ul>
@@ -195,7 +198,20 @@ export const Profile = () => {
                                     <td className="flex gap-1">
                                         <input
                                             type="date"
-                                            value={editedValue}
+                                            value={
+                                                editedValue ||
+                                                `${new Date(
+                                                    user?.birthday
+                                                ).getUTCFullYear()}-${String(
+                                                    new Date(
+                                                        user?.birthday
+                                                    ).getUTCMonth() + 1
+                                                ).padStart(2, "0")}-${String(
+                                                    new Date(
+                                                        user?.birthday
+                                                    ).getUTCDate()
+                                                ).padStart(2, "0")}`
+                                            }
                                             onChange={e =>
                                                 setEditedValue(e.target.value)
                                             }
@@ -217,7 +233,15 @@ export const Profile = () => {
                                 ) : (
                                     <>
                                         <td className="text-center gap-1">
-                                            {user.birthday?.toLocaleDateString()}
+                                            {`${new Date(
+                                                user?.birthday
+                                            ).getUTCDate()}/${
+                                                new Date(
+                                                    user?.birthday
+                                                ).getUTCMonth() + 1
+                                            }/${new Date(
+                                                user?.birthday
+                                            ).getUTCFullYear()}`}
                                         </td>
                                         <td>
                                             <button
