@@ -96,14 +96,14 @@ export const Profile = () => {
                     <table className="w-full">
                         <tbody className="flex flex-col gap-3 text-sm px-2">
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">{t("email")}</td>
+                                <td className="font-semibold w-1/3">{t("email")}</td>
                                 <td className="text-center">{user.email}</td>
                                 <td className="bg-neutral-400 text-neutral-300 px-3 py-1 border border-neutral-300 rounded-md cursor-not-allowed">
                                     {t("edit")}
                                 </td>
                             </tr>
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">
+                                <td className="font-semibold w-1/3">
                                     {t("contactnumber")}
                                 </td>
                                 {editingField === "phone" ? (
@@ -147,7 +147,7 @@ export const Profile = () => {
                                 )}
                             </tr>
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">
+                                <td className="font-semibold w-1/3">
                                     {t("address")}
                                 </td>
                                 {editingField === "address" ? (
@@ -191,7 +191,7 @@ export const Profile = () => {
                                 )}
                             </tr>
                             <tr className="flex flex-row justify-between items-center">
-                                <td className="font-semibold">
+                                <td className="font-semibold w-1/3">
                                     {t("birthday")}
                                 </td>
                                 {editingField === "birthday" ? (
