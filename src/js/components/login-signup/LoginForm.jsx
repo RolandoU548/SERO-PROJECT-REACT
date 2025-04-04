@@ -52,7 +52,7 @@ export const LoginForm = ({
             toast.error(t("userNotRegistered"));
             return;
         }
-        if (resp.message === "Logged in succesfully") {
+        if (resp.message === "Logged in successfully") {
             notify();
             navigate(from, { replace: true });
             reset();

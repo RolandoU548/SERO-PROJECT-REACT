@@ -59,7 +59,7 @@ export const SignUpForm = ({
         } else if (respuesta?.message === "A user has been created") {
             notify();
             const resp = await actions.login(data);
-            if (resp.message === "Logged in succesfully") {
+            if (resp.message === "Logged in successfully") {
                 navigate("/private");
                 reset();
             }
