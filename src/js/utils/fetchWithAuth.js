@@ -67,7 +67,7 @@ export const fetchWithAuth = async (
 const handleRefreshToken = async (setAccessToken) => {
     const refreshResponse = await fetch(
         import.meta.env.VITE_BACKEND_URL + "/auth/refreshAccessToken",
-        { method: "POST", credentials: "include" }
+        { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include" }
     );
 
     const refreshData = await refreshResponse.json();

@@ -13,6 +13,7 @@ export const AuthInitializer = ({ children }) => {
             try {
                 const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/auth/refreshAccessToken", {
                     method: "POST",
+                    headers: { "Content-Type": "application/json" },
                     credentials: "include"
                 });
 
