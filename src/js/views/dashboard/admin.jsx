@@ -19,15 +19,16 @@ export const Admin = () => {
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        actions.getAllUsers(store.token).then(() => {
+        const getAllUsers = async () => {
+            await actions.getAllUsers();
             setIsLoading(false);
-        });
+        };
+        getAllUsers();
     }, []);
 
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [usersPerPage] = useState(5);
-    // const [clients, setClients] = useState(store.clients);
+    const [usersPerPage] = useState(10);
     const [sortOrder, setSortOrder] = useState({
         column: "name",
         "[{}]": "role",
@@ -37,11 +38,11 @@ export const Admin = () => {
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers =
         store.users?.filter(user => {
-            return user.id !== store.user.id;
+            return user._id !== store.user._id;
         }) &&
         store.users
             ?.filter(user => {
-                return user.id !== store.user.id;
+                return user._id !== store.user._id;
             })
             .filter(
                 user =>
@@ -54,11 +55,8 @@ export const Admin = () => {
                     user.email
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase()) ||
-                    user.role
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    )
-            // eslint-disable-next-line array-callback-return
+                    user.role.toLowerCase().includes(searchTerm.toLowerCase())
+            )
             .sort((a, b) => {
                 if (
                     Array.isArray(a[sortOrder.column]) &&
@@ -95,6 +93,7 @@ export const Admin = () => {
             ascending: sortOrder.column === column ? !sortOrder.ascending : true
         });
     };
+
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -102,6 +101,7 @@ export const Admin = () => {
             </div>
         );
     }
+
     if (currentUsers) {
         return (
             <>
@@ -109,7 +109,7 @@ export const Admin = () => {
                     <UpdateUserModal setIsOpen={setIsOpenEdit} user={user} />
                 )}
                 {isOpenDelete && (
-                    <DeleteUserModal setIsOpen={setIsOpenDelete} user={user} />
+                    <DeleteUserModal setIsOpen={setIsOpenDelete} userId={user._id} />
                 )}
                 <img
                     src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fadmin%2FAdminBG.jpeg?alt=media&token=bb862525-094d-4ea4-bd01-ad4ed93518fe"
@@ -190,7 +190,7 @@ export const Admin = () => {
                                 </thead>
                                 <tbody>
                                     {currentUsers.map(user => (
-                                        <tr key={user.id}>
+                                        <tr key={user._id}>
                                             <td className="px-4 py-2 text-center">
                                                 {user.name}
                                             </td>
@@ -201,23 +201,12 @@ export const Admin = () => {
                                                 {user.email}
                                             </td>
                                             <td className="px-4 py-2 text-center">
-                                                {user.role
-                                                    .sort((a, b) =>
-                                                        a.localeCompare(b)
-                                                    )
-                                                    .map((role, i) => {
-                                                        return (
-                                                            <button
-                                                                key={i}
-                                                                className="m-1 p-1 rounded-md bg-neutral-800  px-2 text-cyan-300">
-                                                                {role}
-                                                            </button>
-                                                        );
-                                                    })}
+                                                <button className="m-1 p-1 rounded-md bg-neutral-800  px-2 text-cyan-300">
+                                                    {user.role}
+                                                </button>
                                             </td>
                                             <td className="py-2 text-center">
                                                 <button
-                                                    key={user.id}
                                                     className="m-1 p-1.5 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700  hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                                     onClick={() => {
                                                         setUser(user);
@@ -226,7 +215,6 @@ export const Admin = () => {
                                                     <FaEdit />
                                                 </button>
                                                 <button
-                                                    key={user.id}
                                                     className="m-1 p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                                                     onClick={() => {
                                                         setUser(user);
@@ -246,7 +234,7 @@ export const Admin = () => {
                                 {indexOfLastUser} {t("of")}{" "}
                                 {
                                     store.users?.filter(user => {
-                                        return user.id !== store.user.id;
+                                        return user._id !== store.user._id;
                                     }).length
                                 }{" "}
                                 {t("entries")}
@@ -268,8 +256,8 @@ export const Admin = () => {
                                             length: Math.ceil(
                                                 store.users?.filter(user => {
                                                     return (
-                                                        user.id !==
-                                                        store.user.id
+                                                        user._id !==
+                                                        store.user._id
                                                     );
                                                 }).length / usersPerPage
                                             )
@@ -299,20 +287,17 @@ export const Admin = () => {
                                             disabled={
                                                 currentPage ===
                                                     Math.ceil(
-                                                        store.users?.filter(
-                                                            user => {
-                                                                return (
-                                                                    user.id !==
-                                                                    store.user
-                                                                        .id
-                                                                );
-                                                            }
-                                                        ).length / usersPerPage
+                                                        store.users?.filter(user => {
+                                                            return (
+                                                                user._id !==
+                                                                store.user.id
+                                                            );
+                                                        }).length / usersPerPage
                                                     ) ||
                                                 store.users?.filter(user => {
                                                     return (
-                                                        user.id !==
-                                                        store.user.id
+                                                        user._id !==
+                                                        store.user._id
                                                     );
                                                 }).length < 1
                                             }>

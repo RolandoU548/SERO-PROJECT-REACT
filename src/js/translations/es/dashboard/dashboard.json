@@ -44,11 +44,11 @@
     "taskadded": "Tarea Agregada",
     "task": "Tarea",
     "addtaskto": "Agregar tarea a",
-    "taskdescription": "Descripcion de Tarea",
+    "taskdescription": "Descripción de Tarea",
     "addtask": "Agregar",
     "cancel": "Cancelar",
     "deletetask": "Eliminar Tarea",
-    "sure": "Estas seguro de Elminar este Tarea? Este proceso no se podrá revertir.",
-    "yes": "Si",
+    "sure": "¿Estás seguro de que quieres eliminar esta tarea? Este proceso no se podrá revertir.",
+    "yes": "Sí",
     "no": "No"
 }

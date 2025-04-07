@@ -14,8 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             clients: [],
             tryclients: [],
-            users: [],
             payments: [],
+            users: [],
             tasks: [],
             paymentform: {}
         },
@@ -28,6 +28,53 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             changeAccessToken: accessToken => {
                 setStore({ accessToken });
+            },
+            login: async info => {
+                try {
+                    const resp = await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/auth/login",
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            credentials: "include",
+                            body: JSON.stringify({
+                                email: info.email,
+                                password: info.password
+                            })
+                        }
+                    );
+                    const data = await resp.json();
+                    setStore({ user: data.user });
+                    setStore({ accessToken: data.accessToken });
+                    return data;
+                } catch (error) {
+                    console.log("Error generating Token", error);
+                }
+            },
+            signOut: async () => {
+                setStore({
+                    accessToken: null,
+                    user: {
+                        id: null,
+                        name: null,
+                        lastname: null,
+                        email: null,
+                        role: null
+                    },
+                    users: null
+                });
+                try {
+                    await fetch(
+                        import.meta.env.VITE_BACKEND_URL + "/auth/logout",
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            credentials: "include"
+                        }
+                    );
+                } catch (error) {
+                    console.log("Error logging out", error);
+                }
             },
             createUser: async info => {
                 try {
@@ -52,110 +99,86 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("There has been an error", error);
                 }
             },
-            updateUser: async user => {
+            updateOwnUser: async user => {
                 const store = getStore();
                 try {
-                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/users/me", {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json"
+                    return await fetchWithAuth(
+                        import.meta.env.VITE_BACKEND_URL + "/users/me",
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(user)
                         },
-                        body: JSON.stringify(user)
-                    }, store.accessToken, setStore)
+                        store.accessToken,
+                        setStore
+                    );
                 } catch (error) {
                     console.log("There has been an error", error);
                     return null;
                 }
             },
-            deleteUser: async id => {
+            updateUserById: async user => {
                 const store = getStore();
                 try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + `/users/${id}`,
+                    return await fetchWithAuth(
+                        import.meta.env.VITE_BACKEND_URL + "/users/" + user._id,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(user)
+                        },
+                        store.accessToken,
+                        setStore
+                    );
+                } catch (error) {
+                    console.log("There has been an error", error);
+                    return null;
+                }
+            },
+            deleteUserById: async userId => {
+                const store = getStore();
+                try {
+                    return await fetchWithAuth(
+                        import.meta.env.VITE_BACKEND_URL + "/users/" + userId,
                         {
                             method: "DELETE",
                             headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + store.token
+                                "Content-Type": "application/json"
                             }
-                        }
+                        },
+                        store.accessToken,
+                        setStore
                     );
-                    const data = await resp.json();
-                    return data;
                 } catch (error) {
                     console.log("There has been an error", error);
+                    return null;
                 }
             },
-            login: async info => {
+            getAllUsers: async () => {
+                const store = getStore();
                 try {
-                    const resp = await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/auth/login",
-                        {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            credentials: "include",
-                            body: JSON.stringify({
-                                email: info.email,
-                                password: info.password
-                            })
-                        }
-                    );
-                    const data = await resp.json();
-                    setStore({ user: data.user });
-                    setStore({ accessToken: data.accessToken });
-                    return data;
-                } catch (error) {
-                    console.log("Error generating Token", error);
-                }
-            },
-            signOut: async() => {
-                setStore({
-                    accessToken: null,
-                    user: {
-                        id: null,
-                        name: null,
-                        lastname: null,
-                        email: null,
-                        role: null
-                    },
-                    users: null
-                });
-                try {
-                   await fetch(
-                        import.meta.env.VITE_BACKEND_URL + "/auth/logout",
-                        {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            credentials: "include"
-                        }
-                    );
-                } catch (error) {
-                    console.log("Error logging out", error);
-                }
-            },
-            getAllUsers: async token => {
-                try {
-                    const resp = await fetch(
+                    const data = await fetchWithAuth(
                         import.meta.env.VITE_BACKEND_URL + "/users",
                         {
+                            method: "GET",
                             headers: {
-                                "Content-Type": "application/json",
-                                authorization: "Bearer " + token
+                                "Content-Type": "application/json"
                             }
-                        }
+                        },
+                        store.accessToken,
+                        setStore
                     );
-                    const data = await resp.json();
-                    if (resp.ok) {
-                        setStore({
-                            users: data
-                        });
-                        return true;
-                    }
-                    return false;
+                    setStore({ users: data.users });
+                    return data;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
             },
+
             getAllClients: async () => {
                 const store = getStore();
                 try {
@@ -426,16 +449,21 @@ const getState = ({ getStore, getActions, setStore }) => {
             sendSpreadsheet: async object => {
                 const store = getStore();
                 try {
-                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/spreadsheets", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
+                    return await fetchWithAuth(
+                        import.meta.env.VITE_BACKEND_URL + "/spreadsheets",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                user: store.user._id,
+                                tableData: object
+                            })
                         },
-                        body: JSON.stringify({
-                            user: store.user._id,
-                            tableData: object
-                        })
-                    }, store.accessToken, setStore)
+                        store.accessToken,
+                        setStore
+                    );
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
@@ -443,12 +471,17 @@ const getState = ({ getStore, getActions, setStore }) => {
             getSpreadsheet: async () => {
                 const store = getStore();
                 try {
-                    return await fetchWithAuth(import.meta.env.VITE_BACKEND_URL + "/spreadsheets/me", {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }, store.accessToken, setStore)
+                    return await fetchWithAuth(
+                        import.meta.env.VITE_BACKEND_URL + "/spreadsheets/me",
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        },
+                        store.accessToken,
+                        setStore
+                    );
                 } catch (error) {
                     console.log("There has been an error", error);
                 }

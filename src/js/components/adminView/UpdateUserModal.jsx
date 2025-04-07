@@ -5,28 +5,25 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 
 export const UpdateUserModal = ({ setIsOpen, user }) => {
-    const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
     const [t] = useTranslation("createUser");
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors }
-    } = useForm({
-        defaultValues: {
-            role: user.role
-        }
-    });
+    } = useForm({});
 
     const submit = async data => {
         const info = data;
-        info.id = user.id;
-        const updateResult = await actions.updateUser(info);
-        setIsOpen(false);
+        info._id = user._id;
+        if (!info.role) info.role = "user";
+        const updateResult = await actions.updateUserById(info);
         if (updateResult.message === "A user has been updated") {
-            actions.getAllUsers(store.token);
+            actions.getAllUsers();
         }
         reset();
+        setIsOpen(false);
     };
 
     return (
@@ -60,7 +57,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                             id="modal-headline">
                             {t("userdata")}
                         </h3>
-                        <div className="m-auto mt-5 flex flex-col space-y-2 items-around w-8/12">
+                        <div className="m-auto mt-5 flex flex-col space-y-2 items-around px-4">
                             <div className="flex justify-between items-center">
                                 <label htmlFor="name" className="font-bold">
                                     {t("name")}:
@@ -125,30 +122,8 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                     autoComplete="email"
                                     className="rounded-md px-3 py-2 text-black text-center"
                                     defaultValue={user.email}
-                                    {...register("email", {
-                                        required: {
-                                            value: true,
-                                            message: t("emailRequired")
-                                        },
-                                        minLength: {
-                                            value: 5,
-                                            message: t("emailMinLength")
-                                        },
-                                        maxLength: {
-                                            value: 60,
-                                            message: t("emailMaxLength")
-                                        },
-                                        pattern: {
-                                            value: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/,
-                                            message: t("invalidEmail")
-                                        }
-                                    })}
+                                    disabled
                                 />
-                                {errors.email && (
-                                    <span className="text-sm text-red-500">
-                                        {errors.email.message}
-                                    </span>
-                                )}
                             </div>
                             <div className="flex justify-between items-center">
                                 <label className="font-bold">
@@ -157,6 +132,9 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                 <fieldset className="flex gap-x-2">
                                     <label>
                                         <input
+                                            defaultChecked={
+                                                user.role === "admin"
+                                            }
                                             type="checkbox"
                                             name={t("role")}
                                             value="admin"
@@ -169,8 +147,8 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                             type="checkbox"
                                             name={t("role")}
                                             value="user"
+                                            defaultChecked
                                             readOnly
-                                            {...register("role")}
                                         />
                                         {t("user")}
                                     </label>

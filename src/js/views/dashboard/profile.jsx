@@ -19,7 +19,7 @@ export const Profile = () => {
                 ...user,
                 [editingField]: editedValue
             };
-            await actions.updateUser(updatedInfo);
+            await actions.updateOwnUser(updatedInfo);
             actions.setUser(updatedInfo);
             setEditedValue("");
         }
@@ -32,7 +32,7 @@ export const Profile = () => {
         } else {
             isActive = false;
         }
-        await actions.updateUser({ ...user, isActive });
+        await actions.updateOwnUser({ ...user, isActive });
         actions.setUser({ ...user, isActive });
     };
 

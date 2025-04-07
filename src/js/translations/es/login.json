@@ -5,10 +5,10 @@
     "exampleEmail": "nombre@correoelectrónico.com",
     "password": "Contraseña",
     "examplePassword": "Contraseña",
-    "forgottenPassword": "Olvidaste tu contraseña?",
+    "forgottenPassword": "¿Olvidaste tu contraseña?",
     "loginButton": "Iniciar Sesión",
     "loginGoogle": "Iniciar Sesión con Google",
-    "noAccount": "No tienes una cuenta?",
+    "noAccount": "¿No tienes una cuenta?",
     "signup": "Crear Cuenta",
     "login": "Acceso exitoso"
 }

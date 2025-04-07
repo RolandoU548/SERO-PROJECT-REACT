@@ -10,10 +10,10 @@
     "exampleEmail": "nombre@correoelectrónico.com",
     "password": "Contraseña",
     "examplePassword": "Contraseña",
-    "forgottenPassword": "Olvidaste tu contraseña?",
+    "forgottenPassword": "¿Olvidaste tu contraseña?",
     "agreement": "Acepto cumplir con los Términos de servicio de SERØ y su Política de privacidad",
     "signupButton": "Crear Cuenta",
-    "account": "Ya tienes una cuenta?",
+    "account": "¿Ya tienes una cuenta?",
     "login": "Acceder",
     "signup": "Registro exitoso"
 }
