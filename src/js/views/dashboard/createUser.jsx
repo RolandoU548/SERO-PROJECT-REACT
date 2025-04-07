@@ -18,11 +18,7 @@ export const CreateUser = () => {
         reset,
         watch,
         formState: { errors }
-    } = useForm({
-        defaultValues: {
-            role: "user"
-        }
-    });
+    } = useForm();
     const navigate = useNavigate();
     const notify = () =>
         toast.success(t("userCreated"), {
@@ -37,8 +33,9 @@ export const CreateUser = () => {
         });
 
     const submit = async data => {
+        if (!data.role) data.role = "user";
         const respuesta = await actions.createUser(data);
-        if (respuesta?.message === `User ${data.email} already exists`) {
+        if (respuesta?.message === "Email already exists") {
             toast.error(`${data.email} ${t("userAlreadyExists")}`, {
                 position: "bottom-right",
                 style: {
@@ -177,7 +174,7 @@ export const CreateUser = () => {
                                         </div>
                                         <input
                                             type="password"
-                                            autoComplete="password"
+                                            autoComplete="new-password"
                                             className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                             placeholder={t("password")}
                                             {...register("password", {
@@ -215,7 +212,7 @@ export const CreateUser = () => {
                                         </div>
                                         <input
                                             type="password"
-                                            autoComplete="password"
+                                            autoComplete="new-password"
                                             className="text-black focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 py-3 sm:text-md border-gray-300 rounded-md"
                                             placeholder={t("confirmPassword")}
                                             {...register("confirmPassword", {
@@ -272,7 +269,7 @@ export const CreateUser = () => {
                                             name="role"
                                             value="user"
                                             readOnly
-                                            {...register("role")}
+                                            defaultChecked
                                         />
                                         User
                                     </label>

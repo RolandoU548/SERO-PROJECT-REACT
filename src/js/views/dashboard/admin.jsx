@@ -124,6 +124,8 @@ export const Admin = () => {
                             <div className="relative w-96 max-w-[65%]">
                                 <input
                                     type="text"
+                                    id="searchUser"
+                                    autoComplete="name"
                                     placeholder={t("searchuser")}
                                     className="px-4 py-2 rounded-lg bg-gray-100 text-gray-900 dark:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white w-full"
                                     value={searchTerm}

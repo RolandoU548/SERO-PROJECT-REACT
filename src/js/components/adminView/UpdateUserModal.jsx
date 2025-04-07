@@ -120,9 +120,9 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
                                     type="email"
                                     id="email"
                                     autoComplete="email"
-                                    className="rounded-md px-3 py-2 text-black text-center"
+                                    className="pointer-events-none opacity-50 rounded-md px-3 py-2 text-black text-center"
                                     defaultValue={user.email}
-                                    disabled
+                                    readOnly
                                 />
                             </div>
                             <div className="flex justify-between items-center">
