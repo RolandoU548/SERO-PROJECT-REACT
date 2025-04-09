@@ -6,13 +6,15 @@ import { Context } from "../store/appContext.jsx";
 export const ProtectedRoute = ({
     children,
     redirectTo = "/login",
-    roles = ["user", "admin"]
+    redirectToIfLoggedIn = "/private",
+    allowedRoles = ["user", "admin"]
 }) => {
     const { store } = useContext(Context);
     const location = useLocation();
 
-    if (store.accessToken && roles.includes(store.user.role)) {
-        return children || <Outlet />;
+    if (store.accessToken) {
+        if (allowedRoles.includes(store.user.role)) return children || <Outlet />;
+        return <Navigate to={redirectToIfLoggedIn} />;
     }
     return <Navigate to={redirectTo} state={{ from: location }} replace />;
 };
@@ -24,5 +26,6 @@ ProtectedRoute.propTypes = {
         PropTypes.object
     ]),
     redirectTo: PropTypes.string,
-    roles: PropTypes.array
+    redirectToIfLoggedIn: PropTypes.string,
+    allowedRoles: PropTypes.array
 };

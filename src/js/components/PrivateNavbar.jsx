@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -34,26 +34,13 @@ export const PrivateNavbar = () => {
             link: "/forms",
             icon: TbReportAnalytics
         },
-        // { name: t2("tasks"), link: "/tasks", icon: FaTasks },
         {
             name: t2("payments"),
             link: "/payments",
             icon: FiDollarSign
         }
-        // { name: t2("settings"), link: "/settings", icon: RiSettings4Line }
     ];
     const [open, setOpen] = useState(false);
-    const notifyToken = () =>
-        toast.error(t2("notifytoken"), {
-            position: "top-center",
-            style: {
-                background: "rgba(23, 23, 23, 0.2)",
-                backdropFilter: "blur(10px)",
-                boxShadow: "0 4px 6px 0 rgba(77, 208, 225, 0.37)",
-                color: "#fff",
-                borderRadius: "10px"
-            }
-        });
 
     const logOutToast = () =>
         toast.error(t2("logouttoast"), {
@@ -82,19 +69,6 @@ export const PrivateNavbar = () => {
             }
         );
     }
-
-    // useEffect(() => {
-    //     const intervalId = setInterval(function () {
-    //         if (store.token) {
-    //             const validateSession = isTokenExpired(store.token);
-    //             if (validateSession) {
-    //                 clearInterval(intervalId);
-    //                 notifyToken();
-    //                 actions.signOut();
-    //             }
-    //         }
-    //     }, 10000);
-    // }, []);
 
     return (
         <>
@@ -171,7 +145,6 @@ export const PrivateNavbar = () => {
                                         !open &&
                                         "opacity-0 translate-x-28 overflow-hidden"
                                     }`}>
-                                    {/* { name: t2("logout"), link: "/", icon: FiLogOut, margin: true } */}
                                     {t2("logout")}
                                 </h2>
                                 <h2
@@ -240,7 +213,7 @@ export const PrivateNavbar = () => {
                         <li className="mt-4">
                             <Link to="/profile" className="text-xl text-light">
                                 {store.user.role === "admin" && (
-                                    <span className="text-sm text-cyan-500 dark:text-cyan-400 font-bold mr-1">
+                                    <span className="text-sm text-orange-400 dark:text-cyan-400 font-bold mr-1">
                                         admin
                                     </span>
                                 )}
@@ -258,16 +231,6 @@ export const PrivateNavbar = () => {
                                 />
                             </Link>
                         </li>
-                        {/* <li className="my-2.5">
-                            <button
-                                className="hover:bg-cyan-300 dark:hover:bg-cyan-300 hover:text-black transition duration-300 dark:hover:text-white w-40 text-xl p-2 dark:text-black rounded-full bg-black text-white dark:bg-white ml-4 resp:dark:bg-gray-100 resp:m-0 resp:border resp:border-gray-400"
-                                onClick={() => {
-                                    actions.signOut();
-                                    navigate("/");
-                                }}>
-                                {t("logout")}
-                            </button>
-                        </li> */}
                         <li className="my-2.5 mr-3">
                             <LanguageButton className="ml-3 md:mt-2.5 resp:absolute resp:top-3 resp:right-5 w-9 h-6" />
                         </li>

@@ -4,7 +4,7 @@ import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 
-export const UpdateUserModal = ({ setIsOpen, user }) => {
+export const UpdateUserModal = ({ setIsOpen, getAllUsers, user }) => {
     const { actions } = useContext(Context);
     const [t] = useTranslation("createUser");
     const {
@@ -20,7 +20,7 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
         if (!info.role) info.role = "user";
         const updateResult = await actions.updateUserById(info);
         if (updateResult.message === "A user has been updated") {
-            actions.getAllUsers();
+            getAllUsers()
         }
         reset();
         setIsOpen(false);
@@ -179,5 +179,6 @@ export const UpdateUserModal = ({ setIsOpen, user }) => {
 
 UpdateUserModal.propTypes = {
     setIsOpen: PropTypes.func.isRequired,
+    getAllUsers: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
 };

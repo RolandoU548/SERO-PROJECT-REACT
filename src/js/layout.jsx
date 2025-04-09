@@ -401,7 +401,7 @@ const Layout = () => {
                             }
                         />
                     </Route>
-                    <Route element={<ProtectedRoute role={["admin"]} />}>
+                    <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
                         <Route
                             path="/admin"
                             transition="fade"

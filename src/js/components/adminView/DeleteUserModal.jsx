@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Context } from "../../store/appContext";
 import { useTranslation } from "react-i18next";
 
-export const DeleteUserModal = ({ setIsOpen, userId }) => {
+export const DeleteUserModal = ({ setIsOpen, getAllUsers, userId }) => {
     const { t } = useTranslation("createUser");
     const { actions } = useContext(Context);
 
@@ -33,7 +33,9 @@ export const DeleteUserModal = ({ setIsOpen, userId }) => {
                             id="modal-headline">
                             {t("deleteuser")}
                         </h3>
-                        <p className="mt-2 text-sm text-gray-100">{t("sure")}</p>
+                        <p className="mt-2 text-sm text-gray-100">
+                            {t("sure")}
+                        </p>
                     </div>
                     <div className="bg-neutral-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button
@@ -44,7 +46,7 @@ export const DeleteUserModal = ({ setIsOpen, userId }) => {
                                     deleteResult.message ===
                                     "User deleted successfully"
                                 ) {
-                                    actions.getAllUsers();
+                                    getAllUsers();
                                 }
                                 setIsOpen(false);
                             }}
@@ -69,5 +71,6 @@ export const DeleteUserModal = ({ setIsOpen, userId }) => {
 
 DeleteUserModal.propTypes = {
     setIsOpen: PropTypes.func.isRequired,
+    getAllUsers: PropTypes.func.isRequired,
     userId: PropTypes.string.isRequired
 };

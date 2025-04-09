@@ -18,74 +18,55 @@ export const Admin = () => {
     const [user, setUser] = useState();
     const { store, actions } = useContext(Context);
 
+    // Estados para la paginación
+    const [users, setUsers] = useState([]);
+    const [totalUsers, setTotalUsers] = useState(0);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 10;
+
+    const getAllUsers = async (page = currentPage) => {
+        const data = await actions.getAllUsers(page, usersPerPage);
+        setUsers(data.users);
+        setTotalUsers(data.totalUsers);
+        setTotalPages(data.totalPages);
+        setCurrentPage(data.currentPage);
+        setIsLoading(false);
+    };
+
+    const handlePageChange = page => {
+        if (page >= 1 && page <= totalPages) {
+            getAllUsers(page);
+        }
+    };
+
     useEffect(() => {
-        const getAllUsers = async () => {
-            await actions.getAllUsers();
-            setIsLoading(false);
-        };
         getAllUsers();
     }, []);
 
+    // Estados para la búsqueda y ordenamiento
     const [searchTerm, setSearchTerm] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const [usersPerPage] = useState(10);
     const [sortOrder, setSortOrder] = useState({
         column: "name",
         "[{}]": "role",
         ascending: true
     });
-    const indexOfLastUser = currentPage * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers =
-        store.users?.filter(user => {
-            return user._id !== store.user._id;
-        }) &&
-        store.users
-            ?.filter(user => {
-                return user._id !== store.user._id;
-            })
-            .filter(
-                user =>
-                    user.name
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    user.lastname
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    user.email
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                    user.role.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .sort((a, b) => {
-                if (
-                    Array.isArray(a[sortOrder.column]) &&
-                    Array.isArray(b[sortOrder.column])
-                ) {
-                    return sortOrder.ascending
-                        ? a[sortOrder.column]
-                              .sort((a, b) => a.localeCompare(b))[0]
-                              .localeCompare(
-                                  b[sortOrder.column].sort((a, b) =>
-                                      a.localeCompare(b)
-                                  )[0]
-                              )
-                        : b[sortOrder.column]
-                              .sort((a, b) => a.localeCompare(b))[0]
-                              .localeCompare(
-                                  a[sortOrder.column].sort((a, b) =>
-                                      a.localeCompare(b)
-                                  )[0]
-                              );
-                } else {
-                    return sortOrder.ascending
-                        ? a[sortOrder.column].localeCompare(b[sortOrder.column])
-                        : b[sortOrder.column].localeCompare(
-                              a[sortOrder.column]
-                          );
-                }
-            })
-            .slice(indexOfFirstUser, indexOfLastUser);
+
+    const currentUsers = users
+        ?.filter(
+            user =>
+                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.lastname
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.role.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .sort((a, b) => {
+            return sortOrder.ascending
+                ? a[sortOrder.column].localeCompare(b[sortOrder.column])
+                : b[sortOrder.column].localeCompare(a[sortOrder.column]);
+        });
 
     const handleSort = column => {
         setSortOrder({
@@ -106,10 +87,18 @@ export const Admin = () => {
         return (
             <>
                 {isOpenEdit && (
-                    <UpdateUserModal setIsOpen={setIsOpenEdit} user={user} />
+                    <UpdateUserModal
+                        setIsOpen={setIsOpenEdit}
+                        getAllUsers={getAllUsers}
+                        user={user}
+                    />
                 )}
                 {isOpenDelete && (
-                    <DeleteUserModal setIsOpen={setIsOpenDelete} userId={user._id} />
+                    <DeleteUserModal
+                        setIsOpen={setIsOpenDelete}
+                        getAllUsers={getAllUsers}
+                        userId={user._id}
+                    />
                 )}
                 <img
                     src="https://firebasestorage.googleapis.com/v0/b/ser0-project.appspot.com/o/images%2Fadmin%2FAdminBG.jpeg?alt=media&token=bb862525-094d-4ea4-bd01-ad4ed93518fe"
@@ -138,7 +127,7 @@ export const Admin = () => {
                                 </span>
                             </div>
                             <button
-                                className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-300 text-black dark:hover:bg-cyan-400 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
+                                className="bg-orange-300 hover:bg-orange-400 sm:px-4 p-2 rounded-lg dark:bg-cyan-400 text-black dark:hover:bg-cyan-500 focus:outline-none focus:ring-2 transition duration-300 focus:ring-blue-600 border border-black focus:ring-opacity-50"
                                 onClick={() => navigate("/createUser")}>
                                 {t("adduser")}
                             </button>
@@ -192,7 +181,13 @@ export const Admin = () => {
                                 </thead>
                                 <tbody>
                                     {currentUsers.map(user => (
-                                        <tr key={user._id}>
+                                        <tr
+                                            key={user._id}
+                                            style={
+                                                user._id === store.user._id
+                                                    ? { opacity: "0.6" }
+                                                    : {}
+                                            }>
                                             <td className="px-4 py-2 text-center">
                                                 {user.name}
                                             </td>
@@ -203,13 +198,17 @@ export const Admin = () => {
                                                 {user.email}
                                             </td>
                                             <td className="px-4 py-2 text-center">
-                                                <button className="m-1 p-1 rounded-md bg-neutral-800  px-2 text-cyan-300">
+                                                <div className="inline-block m-1 p-1 rounded-md bg-neutral-800 px-2 text-orange-300 dark:text-cyan-300">
                                                     {user.role}
-                                                </button>
+                                                </div>
                                             </td>
                                             <td className="py-2 text-center">
                                                 <button
-                                                    className="m-1 p-1.5 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700  hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                    className="m-1 p-1.5 text-xs rounded-lg bg-black text-white border border-neutral-600 hover:bg-neutral-700 hover:border-cyan-300 hover:text-cyan-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                                    disabled={
+                                                        user._id ===
+                                                        store.user._id
+                                                    }
                                                     onClick={() => {
                                                         setUser(user);
                                                         setIsOpenEdit(true);
@@ -217,7 +216,11 @@ export const Admin = () => {
                                                     <FaEdit />
                                                 </button>
                                                 <button
-                                                    className="m-1 p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                                                    className="m-1 p-1.5 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 hover:ring-yellow-600 hover:ring-1"
+                                                    disabled={
+                                                        user._id ===
+                                                        store.user._id
+                                                    }
                                                     onClick={() => {
                                                         setUser(user);
                                                         setIsOpenDelete(true);
@@ -232,14 +235,10 @@ export const Admin = () => {
                         </div>
                         <div className="flex justify-between items-center mt-5">
                             <div className="tiny:w-96 text-gray-700 dark:text-gray-600">
-                                {t("showing")} {indexOfFirstUser + 1} {t("to")}{" "}
-                                {indexOfLastUser} {t("of")}{" "}
-                                {
-                                    store.users?.filter(user => {
-                                        return user._id !== store.user._id;
-                                    }).length
-                                }{" "}
-                                {t("entries")}
+                                {t("showing")}{" "}
+                                {(currentPage - 1) * usersPerPage + 1} {t("to")}{" "}
+                                {Math.min(currentPage * usersPerPage, totalUsers)} {t("of")}{" "}
+                                {totalUsers} {t("entries")}
                             </div>
                             <div className="w-full overflow-auto flex justify-end">
                                 <ul className="flex rounded list-none">
@@ -247,23 +246,16 @@ export const Admin = () => {
                                         <button
                                             className="relative block p-2.5 leading-tight text-white border-r-0 rounded-l bg-neutral-950 border border-neutral-700 transition duration-300 focus:outline-none"
                                             onClick={() =>
-                                                setCurrentPage(currentPage - 1)
+                                                handlePageChange(
+                                                    currentPage - 1
+                                                )
                                             }
                                             disabled={currentPage === 1}>
                                             <span>{t("previous")}</span>
                                         </button>
                                     </li>
                                     {Array.from(
-                                        {
-                                            length: Math.ceil(
-                                                store.users?.filter(user => {
-                                                    return (
-                                                        user._id !==
-                                                        store.user._id
-                                                    );
-                                                }).length / usersPerPage
-                                            )
-                                        },
+                                        { length: totalPages },
                                         (_, i) => (
                                             <li key={i}>
                                                 <button
@@ -273,7 +265,7 @@ export const Admin = () => {
                                                             : ""
                                                     }`}
                                                     onClick={() =>
-                                                        setCurrentPage(i + 1)
+                                                        handlePageChange(i + 1)
                                                     }>
                                                     {i + 1}
                                                 </button>
@@ -284,24 +276,12 @@ export const Admin = () => {
                                         <button
                                             className="relative block p-2.5 leading-tight bg-w text-white rounded-r bg-neutral-950 border border-neutral-700 transition duration-300 focus:outline-none"
                                             onClick={() =>
-                                                setCurrentPage(currentPage + 1)
+                                                handlePageChange(
+                                                    currentPage + 1
+                                                )
                                             }
                                             disabled={
-                                                currentPage ===
-                                                    Math.ceil(
-                                                        store.users?.filter(user => {
-                                                            return (
-                                                                user._id !==
-                                                                store.user.id
-                                                            );
-                                                        }).length / usersPerPage
-                                                    ) ||
-                                                store.users?.filter(user => {
-                                                    return (
-                                                        user._id !==
-                                                        store.user._id
-                                                    );
-                                                }).length < 1
+                                                currentPage === totalPages
                                             }>
                                             <span>{t("next")}</span>
                                         </button>

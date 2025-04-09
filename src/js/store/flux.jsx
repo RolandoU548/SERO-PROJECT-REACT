@@ -15,7 +15,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             clients: [],
             tryclients: [],
             payments: [],
-            users: [],
             tasks: [],
             paymentform: {}
         },
@@ -158,11 +157,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return null;
                 }
             },
-            getAllUsers: async () => {
+            getAllUsers: async (page, usersPerPage) => {
                 const store = getStore();
                 try {
                     const data = await fetchWithAuth(
-                        import.meta.env.VITE_BACKEND_URL + "/users",
+                        `${import.meta.env.VITE_BACKEND_URL}/users?page=${page}&limit=${usersPerPage}`,
                         {
                             method: "GET",
                             headers: {
@@ -172,13 +171,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                         store.accessToken,
                         setStore
                     );
-                    setStore({ users: data.users });
                     return data;
                 } catch (error) {
                     console.log("There has been an error", error);
                 }
             },
-
             getAllClients: async () => {
                 const store = getStore();
                 try {
